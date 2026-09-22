@@ -1,3 +1,7 @@
+## 2026-09-22 — Mapa do sistema no README
+
+- Adicionado diagrama Mermaid das áreas, arquivos e conexões principais do GAEVA OS, com links para os arquivos correspondentes. Nenhum código de aplicação ou banco foi alterado.
+
 ## 2026-09-17 — Prévia visual de Ações comerciais
 
 - Implementadas as rotas navegáveis `/comercial/acoes` e `/comercial/acoes/$id` sobre o shell existente, visíveis apenas para os perfis Comercial e Admin já existentes.
