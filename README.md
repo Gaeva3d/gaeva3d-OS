@@ -2,6 +2,98 @@
 
 Sistema operacional pós-venda da GAEVA. Antes de implementar, leia a [documentação atual e as decisões de produto](docs/gaeva-os/00-visao-geral.md). O blueprint é visão de longo prazo; o estágio atual permite apenas simplificações do core operacional.
 
+## Mapa do sistema
+
+O diagrama abaixo mostra as áreas da aplicação, seus principais arquivos e as conexões com o Supabase. Clique em um componente para abrir o arquivo correspondente.
+
+```mermaid
+flowchart TD
+
+subgraph group_access["Access and shell"]
+  node_auth["Sign in<br/>[auth-screen.tsx]"]
+  node_shell["App shell<br/>[app-shell.tsx]"]
+  node_dashboard["Operations dashboard<br/>[index.tsx]"]
+end
+
+subgraph group_orders["Orders and customers"]
+  node_orders_list["Orders table<br/>[index.tsx]"]
+  node_new_order["New order<br/>[novo.tsx]"]
+  node_order_detail["Order detail<br/>[$id.tsx]"]
+  node_order_kanban["Orders Kanban<br/>[kanban.tsx]"]
+  node_customers["Customer directory<br/>[index.tsx]"]
+  node_customer_detail["Customer profile<br/>[$id.tsx]"]
+  node_order_ops["Order operations"]
+end
+
+subgraph group_operations["Production operations"]
+  node_production["Production board<br/>[producao.tsx]"]
+  node_printers["Printer management<br/>[impressoras.tsx]"]
+  node_team["Team management<br/>[equipe.tsx]"]
+  node_team_access["Team access handler<br/>[handler.ts]"]
+  node_settings["Settings<br/>[configuracoes.tsx]"]
+  node_commercial["Commercial actions"]
+end
+
+subgraph group_platform["Data and integrations"]
+  node_store["GAEVA data store<br/>[store.tsx]"]
+  node_mappers["Supabase mappers"]
+  node_supabase_client["Supabase client<br/>[client.ts]"]
+end
+
+node_staff(("GAEVA staff"))
+node_supabase[("Supabase")]
+
+node_staff -->|"signs in"| node_auth
+node_staff -->|"manages orders"| node_orders_list
+node_staff -->|"tracks production"| node_production
+node_staff -->|"manages customers"| node_customers
+node_staff -->|"manages printers"| node_printers
+node_staff -->|"manages team"| node_team
+node_staff -->|"reviews operation"| node_dashboard
+node_dashboard -->|"reads activity"| node_supabase_client
+node_team_access -->|"verifies and links access"| node_supabase
+node_supabase_client -->|"connects"| node_supabase
+node_store -->|"maps records"| node_mappers
+node_mappers -->|"uses client"| node_supabase_client
+node_orders_list -->|"opens order"| node_order_detail
+node_orders_list -->|"starts intake"| node_new_order
+node_orders_list -->|"switches view"| node_order_kanban
+node_customers -->|"opens profile"| node_customer_detail
+
+click node_auth "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/components/gaeva/auth-screen.tsx"
+click node_shell "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/components/gaeva/app-shell.tsx"
+click node_dashboard "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/routes/index.tsx"
+click node_orders_list "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/routes/pedidos/index.tsx"
+click node_new_order "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/routes/pedidos/novo.tsx"
+click node_order_detail "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/routes/pedidos/%24id.tsx"
+click node_order_kanban "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/routes/pedidos/kanban.tsx"
+click node_customers "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/routes/clientes/index.tsx"
+click node_customer_detail "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/routes/clientes/%24id.tsx"
+click node_order_ops "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/lib/gaeva/order-operations.ts"
+click node_production "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/routes/producao.tsx"
+click node_printers "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/routes/impressoras.tsx"
+click node_team "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/routes/equipe.tsx"
+click node_team_access "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/supabase/functions/team-access/handler.ts"
+click node_settings "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/routes/configuracoes.tsx"
+click node_commercial "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/routes/comercial.acoes.index.tsx"
+click node_store "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/lib/gaeva/store.tsx"
+click node_mappers "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/lib/gaeva/supabase-mappers.ts"
+click node_supabase_client "https://github.com/Gaeva3d/gaeva3d-OS/blob/main/src/integrations/supabase/client.ts"
+
+classDef toneNeutral fill:#f8fafc,stroke:#334155,stroke-width:1.5px,color:#0f172a
+classDef toneBlue fill:#dbeafe,stroke:#2563eb,stroke-width:1.5px,color:#172554
+classDef toneAmber fill:#fef3c7,stroke:#d97706,stroke-width:1.5px,color:#78350f
+classDef toneMint fill:#dcfce7,stroke:#16a34a,stroke-width:1.5px,color:#14532d
+classDef toneRose fill:#ffe4e6,stroke:#e11d48,stroke-width:1.5px,color:#881337
+classDef toneIndigo fill:#e0e7ff,stroke:#4f46e5,stroke-width:1.5px,color:#312e81
+classDef toneTeal fill:#ccfbf1,stroke:#0f766e,stroke-width:1.5px,color:#134e4a
+class node_auth,node_shell,node_dashboard toneBlue
+class node_orders_list,node_new_order,node_order_detail,node_order_kanban,node_customers,node_customer_detail,node_order_ops,node_supabase toneAmber
+class node_production,node_printers,node_team,node_team_access,node_settings,node_commercial toneMint
+class node_store,node_mappers,node_supabase_client toneRose
+class node_staff toneIndigo
+```
+
 ## Especificação original do projeto
 
 O conteúdo abaixo preserva a especificação inicial. Para o estado atual e limites de implementação, prevalece a documentação acima.
