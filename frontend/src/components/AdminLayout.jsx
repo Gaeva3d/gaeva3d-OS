@@ -1,0 +1,599 @@
+import { Outlet, Link, NavLink, useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import Breadcrumbs from "./Breadcrumbs";
+import GaevaTopbar from "./nav/GaevaTopbar";
+import useActivityTokenRefresh from "../hooks/useActivityTokenRefresh";
+import { useApi } from "../hooks/useApi";
+import {
+  getCurrentVersion,
+  getCurrentVersionSync,
+  formatVersion,
+} from "../utils/version";
+import { API_URL } from "../config/api";
+import { useFeatureFlags } from "../hooks/useFeatureFlags";
+import "../styles/gaeva-shell.css";
+import { gaevaLabel } from "./nav/gaevaNavigation";
+import { MenuIcon } from "./nav/navIcons";
+import { navGroups } from "./nav/navConfig";
+
+/**
+ * The sidebar brand mark. A shop's uploaded logo replaces the FilaOps
+ * wordmark; without one the GAEVA mark shows. Collapsed, the compact mark
+ * remains available at icon width. onLogoError fires if the logo image fails to load,
+ * so the caller can fall back to the no-logo layout.
+ */
+function SidebarBrand({ companyLogoUrl, compact = false, onLogoError }) {
+  if (companyLogoUrl) {
+    return (
+      <img
+        src={companyLogoUrl}
+        alt="Logotipo da empresa"
+        onError={onLogoError}
+        className={`h-10 w-auto object-contain ${compact ? "max-w-[3rem]" : "max-w-[10rem]"}`}
+      />
+    );
+  }
+  return (
+    <span className="gaeva-brand">
+      <span className="gaeva-brand-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round">
+          <path d="m12 2 9 5v10l-9 5-9-5V7l9-5Z M3 7l9 5 9-5 M12 12v10" />
+        </svg>
+      </span>
+      {!compact && <span><strong>GAEVA OS</strong><small>Gestão da operação 3D</small></span>}
+    </span>
+  );
+}
+
+/**
+ * Attribution at the foot of the sidebar, shown only when a shop logo has
+ * replaced the FilaOps wordmark at the top.
+ */
+function PoweredBy({ companyLogoUrl, compact = false }) {
+  if (!companyLogoUrl) return null;
+  return (
+    <div
+      className="shrink-0 px-4 py-3 text-xs text-center"
+      style={{
+        borderTop: "1px solid var(--gaeva-border)",
+        color: "var(--gaeva-muted)",
+        opacity: 0.7,
+      }}
+      title="Tecnologia FilaOps"
+    >
+      {compact ? "FilaOps" : "Tecnologia FilaOps"}
+    </div>
+  );
+}
+
+/**
+ * The admin shell: sidebar, top bar, and the outlet every /admin/* route
+ * renders into.
+ *
+ * Owns session validation on entry, the collapsible/mobile sidebar state, and
+ * the role- and tier-filtering of nav entries. The nav structure itself lives
+ * in ./nav/navConfig and its glyphs in ./nav/navIcons.
+ */
+export default function AdminLayout() {
+  const navigate = useNavigate();
+  const api = useApi();
+  // Persist sidebar state in localStorage
+  const [sidebarOpen, setSidebarOpen] = useState(() => {
+    const saved = localStorage.getItem("sidebarOpen");
+    if (saved === null) return true;
+    try {
+      return JSON.parse(saved);
+    } catch {
+      return true;
+    }
+  });
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [appearance, setAppearance] = useState(() => localStorage.getItem("gaevaAppearance") === "dark" ? "dark" : "light");
+  const toggleAppearance = () => setAppearance((current) => {
+    const next = current === "dark" ? "light" : "dark";
+    localStorage.setItem("gaevaAppearance", next);
+    return next;
+  });
+  // Focus moves into the drawer when it opens and back to the trigger when
+  // it closes, so keyboard and screen-reader users don't lose their place.
+  const menuTriggerRef = useRef(null);
+  const menuCloseRef = useRef(null);
+  const menuPanelRef = useRef(null);
+  const menuWasOpen = useRef(false);
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      menuCloseRef.current?.focus();
+    } else if (menuWasOpen.current) {
+      menuTriggerRef.current?.focus();
+    }
+    menuWasOpen.current = mobileMenuOpen;
+  }, [mobileMenuOpen]);
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const keydown = (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        setMobileMenuOpen(false);
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const panel = menuPanelRef.current;
+      const controls = [...(panel?.querySelectorAll('a[href], button:not([disabled]), [tabindex="0"]') || [])];
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      if (!panel?.contains(document.activeElement) || (event.shiftKey && document.activeElement === first) || (!event.shiftKey && document.activeElement === last)) {
+        event.preventDefault();
+        (event.shiftKey ? last : first)?.focus();
+      }
+    };
+    const desktop = window.matchMedia?.("(min-width: 768px)");
+    const closeOnDesktop = (event) => { if (event.matches) setMobileMenuOpen(false); };
+    desktop?.addEventListener?.("change", closeOnDesktop);
+    document.addEventListener("keydown", keydown, true);
+    return () => {
+      document.removeEventListener("keydown", keydown, true);
+      desktop?.removeEventListener?.("change", closeOnDesktop);
+    };
+  }, [mobileMenuOpen]);
+
+  // Save sidebar state to localStorage when it changes
+  useEffect(() => {
+    localStorage.setItem("sidebarOpen", JSON.stringify(sidebarOpen));
+  }, [sidebarOpen]);
+
+  // Auto-refresh tokens when user is active to prevent losing work
+  useActivityTokenRefresh();
+  const [currentVersion, setCurrentVersion] = useState(getCurrentVersionSync());
+  const [user] = useState(() => {
+    const userData = localStorage.getItem("adminUser");
+    if (!userData) return null;
+
+    try {
+      return JSON.parse(userData);
+    } catch (error) {
+      console.error("Failed to parse adminUser from localStorage:", error);
+      localStorage.removeItem("adminUser");
+      return null;
+    }
+  });
+
+  // Company logo from settings
+  const [companyLogoUrl, setCompanyLogoUrl] = useState(null);
+
+  useEffect(() => {
+    const checkCompanyLogo = async () => {
+      try {
+        const res = await fetch(`${API_URL}/api/v1/settings/company/logo`, {
+          credentials: "include",
+        });
+        if (res.ok) {
+          setCompanyLogoUrl(`${API_URL}/api/v1/settings/company/logo`);
+        }
+      } catch {
+        // No logo uploaded - show only the FilaOps logo
+      }
+    };
+    checkCompanyLogo();
+  }, []);
+
+  // AI Settings for SecurityBadge
+  const [aiSettings, setAiSettings] = useState(null);
+  const [aiSettingsFailed, setAiSettingsFailed] = useState(false);
+  const [portalLinkLoading, setPortalLinkLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchAiSettings = async () => {
+      if (!localStorage.getItem("adminUser")) return;
+
+      try {
+        const response = await fetch(`${API_URL}/api/v1/settings/ai`, {
+          credentials: "include",
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setAiSettings(data);
+          setAiSettingsFailed(false);
+        } else if (response.status === 401 || response.status === 403) {
+          // Stop polling on auth failure to avoid console spam
+          setAiSettingsFailed(true);
+        }
+      } catch (error) {
+        console.error("Failed to fetch AI settings:", error);
+      }
+    };
+
+    fetchAiSettings();
+    // Refresh every 30 seconds in case settings change, but stop on auth failure
+    const interval = setInterval(() => {
+      if (!aiSettingsFailed) fetchAiSettings();
+    }, 30000);
+    return () => clearInterval(interval);
+  }, [aiSettingsFailed]);
+
+  // Filter nav items based on user role
+  const isAdmin = user?.account_type === "admin";
+  const { isPro, hasFeature } = useFeatureFlags();
+
+  const filteredNavGroups = navGroups
+    .filter((group) => {
+      if (group.adminOnly && !isAdmin) return false;
+      if (group.proOnly && !isPro) return false;
+      if (group.feature && !hasFeature(group.feature)) return false;
+      return true;
+    })
+    .map((group) => ({
+      ...group,
+      items: group.items.filter((item) => {
+        if (item.adminOnly && !isAdmin) return false;
+        if (item.proOnly && !isPro) return false;
+        if (item.feature && !hasFeature(item.feature)) return false;
+        return true;
+      }),
+    }))
+    .filter((group) => group.items.length > 0);
+
+  useEffect(() => {
+    if (!localStorage.getItem("adminUser")) {
+      navigate("/admin/login");
+    }
+  }, [navigate]);
+
+  // Validate the session against the server on entering the admin shell.
+  // The localStorage check above is only a fast hint — after a backend
+  // restart the cookie session can be dead while adminUser persists,
+  // which used to leave users on a 401-riddled page until they manually
+  // re-signed in. The shared apiClient attempts a silent token refresh
+  // on 401; if that fails, its onUnauthorized clears adminUser and
+  // redirects to login, so a dead session bounces cleanly instead of
+  // looking broken. Network-level failures (backend fully down) are
+  // swallowed — login couldn't succeed either, and the connection
+  // banner already communicates the outage.
+  useEffect(() => {
+    api.get("/api/v1/auth/me").catch(() => {});
+  }, [api]);
+
+  useEffect(() => {
+    const fetchVersion = async () => {
+      try {
+        const version = await getCurrentVersion();
+        setCurrentVersion(version);
+      } catch (error) {
+        console.error("Failed to fetch version:", error);
+      }
+    };
+    fetchVersion();
+  }, []);
+
+  // The hosted buyer portal, when this farm has one. PRO reports it as
+  // buyer_url next to the admin link; a shop with only the Core-served
+  // portal gets null and no button.
+  const [buyerPortalUrl, setBuyerPortalUrl] = useState(null);
+  useEffect(() => {
+    if (!isPro || !isAdmin) return;
+    let cancelled = false;
+    fetch(`${API_URL}/api/v1/pro/portal/admin-link`, { credentials: "include" })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (!cancelled) setBuyerPortalUrl(data?.buyer_url || null);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [isPro, isAdmin]);
+
+  const handleOpenPortalAdmin = async () => {
+    setPortalLinkLoading(true);
+    // Open window synchronously to avoid popup blocker (must be in user-click call stack)
+    // NOTE: Cannot use noopener here — it causes window.open to return null,
+    // which prevents navigating the window after the fetch completes.
+    const portalWindow = window.open("about:blank", "_blank");
+    if (!portalWindow) {
+      alert("Permita janelas pop-up para este site e tente novamente.");
+      setPortalLinkLoading(false);
+      return;
+    }
+    try {
+      const res = await fetch(`${API_URL}/api/v1/pro/portal/admin-link`, {
+        credentials: "include",
+      });
+      if (!res.ok) throw new Error("Failed to get portal link");
+      const data = await res.json();
+      if (!data.url) throw new Error("No portal URL returned");
+      portalWindow.location.href = data.url;
+    } catch (err) {
+      console.error("Portal admin link failed:", err);
+      portalWindow.close();
+      alert("Não foi possível abrir a administração do portal. Tente novamente.");
+    } finally {
+      setPortalLinkLoading(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await fetch(`${API_URL}/api/v1/auth/logout`, {
+        method: "POST",
+        credentials: "include",
+      });
+    } catch {
+      // Continue with local cleanup even if server call fails
+    }
+    localStorage.removeItem("adminUser");
+    navigate("/admin/login");
+  };
+
+  return (
+    <>
+      {/* Skip to content link for keyboard accessibility */}
+      <a
+        href="#main-content"
+        inert={mobileMenuOpen ? true : undefined}
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900"
+      >
+        Pular para o conteúdo principal
+      </a>
+      <div
+        className="gaeva-shell min-h-screen flex"
+        data-appearance={appearance}
+        style={{ backgroundColor: "var(--gaeva-background)" }}
+      >
+        {/* Mobile menu button. Hidden while the drawer is open: it sits above
+            the drawer and would cover the brand mark; the drawer has its own
+            close button. */}
+        {!mobileMenuOpen && (
+          <button
+            ref={menuTriggerRef}
+            onClick={() => setMobileMenuOpen(true)}
+            className="gaeva-mobile-trigger md:hidden fixed top-4 left-4 z-50 p-2 rounded-lg transition-all"
+            style={{ backgroundColor: "var(--gaeva-sidebar-surface)" }}
+            aria-label="Abrir menu de navegação"
+          >
+            <MenuIcon />
+          </button>
+        )}
+
+        {/* Mobile sidebar overlay */}
+        {mobileMenuOpen && (
+          <div
+            className="md:hidden fixed inset-0 z-40 bg-black bg-opacity-50"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <aside
+              ref={menuPanelRef}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Menu de navegação"
+              className="gaeva-sidebar w-64 h-full flex flex-col"
+              style={{
+                backgroundColor: "var(--gaeva-sidebar-surface)",
+                borderRight: "1px solid var(--gaeva-border)",
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div
+                className="p-4 flex items-center justify-between"
+                style={{ borderBottom: "1px solid var(--gaeva-border)" }}
+              >
+                <Link
+                  to="/admin"
+                  aria-label="Ir para o painel inicial"
+                  className="flex items-center gap-3 min-w-0"
+                >
+                  <SidebarBrand
+                    companyLogoUrl={companyLogoUrl}
+                    onLogoError={() => setCompanyLogoUrl(null)}
+                  />
+                </Link>
+                <button
+                  ref={menuCloseRef}
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-label="Fechar menu de navegação"
+                  className="p-2 rounded-lg transition-colors"
+                  style={{ color: "var(--gaeva-muted)" }}
+                >
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <nav className="flex-1 p-4 overflow-y-auto">
+                {filteredNavGroups.map((group, groupIndex) => (
+                  <div key={groupIndex} className={group.label ? "mt-4" : ""}>
+                    {group.label && (
+                      <div
+                        className="px-3 py-2 text-xs font-semibold uppercase tracking-wider"
+                        style={{ color: "var(--gaeva-muted)" }}
+                      >
+                        {gaevaLabel(group.label)}
+                      </div>
+                    )}
+                    <div className="space-y-1">
+                      {group.items.map((item) => (
+                        <NavLink
+                          key={item.path}
+                          to={item.path}
+                          end={item.end}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={({ isActive }) =>
+                            `flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
+                              isActive ? "nav-item-active" : "nav-item"
+                            }`
+                          }
+                        >
+                          <item.icon />
+                          <span>{gaevaLabel(item.label)}</span>
+                          {(group.proOnly || item.proOnly) && !isPro && (
+                            <svg
+                              className="w-3 h-3 ml-auto"
+                              style={{ color: "var(--gaeva-muted)" }}
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                              />
+                            </svg>
+                          )}
+                        </NavLink>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </nav>
+              <PoweredBy companyLogoUrl={companyLogoUrl} />
+            </aside>
+          </div>
+        )}
+
+        {/* Desktop sidebar */}
+        <aside
+          inert={mobileMenuOpen ? true : undefined}
+          className={`gaeva-sidebar hidden md:flex ${
+            sidebarOpen ? "w-64" : "w-20"
+          } transition-all duration-300 flex-col h-screen sticky top-0`}
+          style={{
+            backgroundColor: "var(--gaeva-sidebar-surface)",
+            borderRight: "1px solid var(--gaeva-border)",
+          }}
+        >
+          <div
+            className="p-4 flex items-center justify-between"
+            style={{ borderBottom: "1px solid var(--gaeva-border)" }}
+          >
+            <Link
+              to="/admin"
+              aria-label="Ir para o painel inicial"
+              className={`flex items-center ${sidebarOpen ? "gap-3" : "justify-center w-full"}`}
+            >
+              <SidebarBrand
+                companyLogoUrl={companyLogoUrl}
+                compact={!sidebarOpen}
+                onLogoError={() => setCompanyLogoUrl(null)}
+              />
+            </Link>
+            {sidebarOpen && (
+              <button
+                aria-label={sidebarOpen ? "Recolher menu" : "Expandir menu"}
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                className="p-2 rounded-lg transition-colors"
+                style={{ color: "var(--gaeva-muted)" }}
+              >
+                <MenuIcon />
+              </button>
+            )}
+          </div>
+          {!sidebarOpen && (
+            <div
+              className="p-2 flex justify-center"
+              style={{ borderBottom: "1px solid var(--gaeva-border)" }}
+            >
+              <button
+                aria-label={sidebarOpen ? "Recolher menu" : "Expandir menu"}
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                className="p-2 rounded-lg transition-colors"
+                style={{ color: "var(--gaeva-muted)" }}
+              >
+                <MenuIcon />
+              </button>
+            </div>
+          )}
+          <nav className="flex-1 p-4 overflow-y-auto">
+            {filteredNavGroups.map((group, groupIndex) => (
+              <div key={groupIndex} className={group.label ? "mt-4" : ""}>
+                {group.label && sidebarOpen && (
+                  <div
+                    className="px-3 py-2 text-xs font-semibold uppercase tracking-wider"
+                    style={{ color: "var(--gaeva-muted)" }}
+                  >
+                    {gaevaLabel(group.label)}
+                  </div>
+                )}
+                {/* When collapsed, add spacing where header would be */}
+                {group.label && !sidebarOpen && <div className="h-4" />}
+                <div className="space-y-1">
+                  {group.items.map((item) => (
+                    <NavLink
+                      key={item.path}
+                      to={item.path}
+                      end={item.end}
+                      title={!sidebarOpen ? gaevaLabel(item.label) : undefined}
+                      className={({ isActive }) =>
+                        `flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
+                          isActive ? "nav-item-active" : "nav-item"
+                        } ${!sidebarOpen ? "justify-center" : ""}`
+                      }
+                    >
+                      <item.icon />
+                      {sidebarOpen && <span>{gaevaLabel(item.label)}</span>}
+                      {sidebarOpen &&
+                        (group.proOnly || item.proOnly) &&
+                        !isPro && (
+                          <svg
+                            className="w-3 h-3 ml-auto"
+                            style={{ color: "var(--gaeva-muted)" }}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                            />
+                          </svg>
+                        )}
+                    </NavLink>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </nav>
+          <PoweredBy companyLogoUrl={companyLogoUrl} compact={!sidebarOpen} />
+        </aside>
+        <div className="gaeva-workspace flex-1 flex flex-col" inert={mobileMenuOpen ? true : undefined}>
+          <GaevaTopbar
+            groups={filteredNavGroups}
+            user={user}
+            version={formatVersion(currentVersion)}
+            aiSettings={aiSettings}
+            appearance={appearance}
+            onToggleAppearance={toggleAppearance}
+            onLogout={handleLogout}
+            isPro={isPro}
+            isAdmin={isAdmin}
+            buyerPortalUrl={buyerPortalUrl}
+            portalLinkLoading={portalLinkLoading}
+            onOpenPortalAdmin={handleOpenPortalAdmin}
+          />
+          <main
+            id="main-content"
+            className="gaeva-main flex-1 p-6 overflow-auto"
+            tabIndex="-1"
+          >
+            <div className="gaeva-module-surface">
+              <Breadcrumbs />
+              <Outlet />
+            </div>
+          </main>
+        </div>
+      </div>
+    </>
+  );
+}

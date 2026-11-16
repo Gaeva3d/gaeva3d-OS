@@ -1,0 +1,1424 @@
+/**
+ * OrderDetail - Order Command Center
+ *
+ * Comprehensive view for managing order fulfillment:
+ * - Order header and line items
+ * - Material requirements (BOM explosion)
+ * - Capacity requirements (routing explosion)
+ * - Action buttons (Create WO, Create PO, Schedule)
+ */
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useApi } from "../../hooks/useApi";
+import { useToast } from "../../components/Toast";
+import { useFormatCurrency } from "../../hooks/useFormatCurrency";
+import { closeShortReasonLabel, orderCopy, orderErrorMessage, orderStatusLabel } from "../../components/orders/orderCopy";
+import { API_URL } from "../../config/api";
+import RecordPaymentModal from "../../components/payments/RecordPaymentModal";
+import ActivityTimeline from "../../components/ActivityTimeline";
+import ShippingTimeline from "../../components/ShippingTimeline";
+import BlockingIssuesPanel from "../../components/orders/BlockingIssuesPanel";
+import FulfillmentProgress from "../../components/orders/FulfillmentProgress";
+import { useFulfillmentStatus } from "../../hooks/useFulfillmentStatus";
+import { ProductionProgressSummary, ProductionOrderStatusCard } from "../../components/orders/ProductionStatusCards";
+import MaterialRequirementsSection from "../../components/orders/MaterialRequirementsSection";
+import CapacityRequirementsSection from "../../components/orders/CapacityRequirementsSection";
+import PaymentsSection from "../../components/orders/PaymentsSection";
+import ShippingAddressSection from "../../components/orders/ShippingAddressSection";
+import { CancelOrderModal, DeleteOrderModal } from "../../components/orders/OrderModals";
+import ReleaseScheduleWizard from "../../components/production/ReleaseScheduleWizard";
+import OrderHeaderActions from "../../components/orders/OrderHeaderActions";
+import LegacyFulfillmentBanner from "../../components/orders/LegacyFulfillmentBanner";
+import OrderLineItemsTable from "../../components/orders/OrderLineItemsTable";
+import OrderWorkflowPanel from "../../components/orders/OrderWorkflowPanel";
+import {
+  SHIPPED_ORDER_STATUSES,
+  UNCONFIRMED_ORDER_STATUSES,
+} from "../../components/orders/orderWorkflowUtils";
+
+const getInvoiceBalanceDue = (invoice) =>
+  invoice?.balance_due ?? invoice?.amount_due ?? 0;
+
+// Preserve unknown source quantities through the existing projections. Zero
+// is a measured value; missing, malformed and non-finite values are not zero.
+const quantityOrUnknown = (value) => (typeof value === "number" || typeof value === "string")
+  && /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/.test(String(value).trim())
+  && Number.isFinite(Number(value)) ? Number(value) : null;
+
+const COMPLETE_PRODUCTION_STATUSES = new Set(["complete", "completed", "closed"]);
+// LEGACY-1: order-level fulfillment_status values that count as shipment
+// evidence (order_status.py sets "shipped"/"delivered"; "fulfilled" is
+// accepted defensively for older data).
+const SHIPMENT_EVIDENCE_FULFILLMENT_STATUSES = new Set([
+  "fulfilled",
+  "shipped",
+  "delivered",
+]);
+
+export default function OrderDetail() {
+  const { orderId } = useParams();
+  const navigate = useNavigate();
+  const toast = useToast();
+  const api = useApi();
+  const formatCurrency = useFormatCurrency();
+
+  const [order, setOrder] = useState(null);
+  const [materialRequirements, setMaterialRequirements] = useState([]);
+  const [capacityRequirements, setCapacityRequirements] = useState([]);
+  const [productionOrders, setProductionOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const hasOrderProduct = () => {
+    return Boolean(
+      order?.product_id ||
+        order?.lines?.some((line) => Boolean(line.product_id))
+    );
+  };
+
+  const hasMainProductWO = () => {
+    // Cancelled WOs are not coverage — mirrored in
+    // generate_production_orders() (backend) — keep in sync.
+    const activePOs = productionOrders.filter(
+      (po) => po.status !== "cancelled"
+    );
+    const productLines = order?.lines?.filter((line) => line.product_id) || [];
+    if (productLines.length > 0) {
+      const woLineIds = new Set(
+        activePOs
+          .map((po) => po.sales_order_line_id)
+          .filter((lineId) => lineId !== null && lineId !== undefined)
+      );
+      // LEGACY-1 fallback: WOs created before line-level linkage existed
+      // have sales_order_line_id = null. Treat such a WO as covering every
+      // line with the same product_id (coverage check, not assignment).
+      // Mirrored in generate_production_orders() in
+      // backend/app/services/sales_order_service.py — keep in sync.
+      const legacyCoveredProductIds = new Set(
+        activePOs
+          .filter(
+            (po) =>
+              po.sales_order_line_id === null ||
+              po.sales_order_line_id === undefined
+          )
+          .map((po) => po.product_id)
+      );
+      return productLines.every(
+        (line) =>
+          woLineIds.has(line.id) || legacyCoveredProductIds.has(line.product_id)
+      );
+    }
+    if (order?.product_id) {
+      return activePOs.some((po) => po.product_id === order.product_id);
+    }
+    return false;
+  };
+
+  // LEGACY-1: shipment evidence — did anything actually ship?
+  const hasShipmentEvidence = () => {
+    if (!order) return false;
+    if (order.shipped_at) return true;
+    if (SHIPMENT_EVIDENCE_FULFILLMENT_STATUSES.has(order.fulfillment_status)) {
+      return true;
+    }
+    return (order.lines || []).some(
+      (line) => parseFloat(line.shipped_quantity || 0) > 0
+    );
+  };
+
+  // Mismatch: status claims shipped/delivered/completed, but no shipment
+  // was ever recorded — legacy data from an older FilaOps version.
+  const isLegacyFulfillmentMismatch = () =>
+    Boolean(order) &&
+    SHIPPED_ORDER_STATUSES.has(order.status) &&
+    !hasShipmentEvidence();
+
+  const [error, setError] = useState(null);
+  const [exploding, setExploding] = useState(false);
+  const [paymentSummary, setPaymentSummary] = useState(null);
+  const [payments, setPayments] = useState([]);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [isRefund, setIsRefund] = useState(false);
+
+  // Cancel/Delete modal state
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+
+  // Confirm/Reject external order state
+  const [showRejectModal, setShowRejectModal] = useState(false);
+  const [rejectReason, setRejectReason] = useState("");
+  const [confirmingOrder, setConfirmingOrder] = useState(false);
+
+  // Invoice generation state
+  const [generatingInvoice, setGeneratingInvoice] = useState(false);
+  const [orderInvoice, setOrderInvoice] = useState(null);
+  const [invoiceLoading, setInvoiceLoading] = useState(false);
+  const [sendingInvoice, setSendingInvoice] = useState(false);
+
+  const isBillingReleaseSatisfied = () => {
+    const invoiceStatus = orderInvoice?.status || "";
+    const totalPaid = Number(paymentSummary?.total_paid || 0);
+    return (
+      order?.payment_status === "paid" ||
+      totalPaid > 0 ||
+      ["sent", "partially_paid", "paid"].includes(invoiceStatus)
+    );
+  };
+
+  const getProductionReleaseBlockReason = () => {
+    if (!order) return orderCopy.orderLoading;
+    if (!hasOrderProduct()) return orderCopy.productLineRequired;
+    if (hasMainProductWO()) return orderCopy.productionOrderExists;
+    // Mirror the backend rule exactly: status must be "confirmed" (not merely past-unconfirmed)
+    if (order.status !== "confirmed") {
+      if (UNCONFIRMED_ORDER_STATUSES.has(order.status)) {
+        return orderCopy.confirmationRequired;
+      }
+      return `A criação de ordens de produção exige que o pedido esteja confirmado. Status atual: ${orderStatusLabel(order.status)}.`;
+    }
+    if (!isBillingReleaseSatisfied()) {
+      return orderCopy.billingRequired;
+    }
+    return "";
+  };
+
+  const canGenerateProductionOrder = () => !getProductionReleaseBlockReason();
+
+  // Close short state
+  const [showCloseShortModal, setShowCloseShortModal] = useState(false);
+  const [closeShortReason, setCloseShortReason] = useState("");
+  const [closingShort, setClosingShort] = useState(false);
+  const [closeShortPreview, setCloseShortPreview] = useState(null);
+  const [loadingPreview, setLoadingPreview] = useState(false);
+
+  // Refresh state
+  const [refreshing, setRefreshing] = useState(false);
+
+  // SCHED-3b: guided schedule wizard state
+  // wizardPending=true means we're waiting for fetchProductionOrders to
+  // resolve so we can hand the new PO to the wizard.
+  const [wizardPending, setWizardPending] = useState(false);
+  const [wizardOpen, setWizardOpen] = useState(false);
+  const [wizardProductionOrder, setWizardProductionOrder] = useState(null);
+  // Codes returned by generate-production-orders — the wizard must target
+  // one of THESE, not whatever sorts first in productionOrders.
+  const [wizardTargetCodes, setWizardTargetCodes] = useState([]);
+
+  // Collapsible sections state
+  const [expandedSections, setExpandedSections] = useState({
+    materialRequirements: true,
+    capacityRequirements: true,
+    productionOrders: true,
+    payments: true,
+  });
+
+  // Material availability check state
+  const [checkingAvailability, setCheckingAvailability] = useState(false);
+  // Material requirements SUMMARY (object: has_shortages/materials_short/…) —
+  // drives the requirements section's shortage footer + historical badge.
+  const [materialSummary, setMaterialSummary] = useState(null);
+  // Per-production-order availability CHECKS (array) — drives the "Check
+  // Material Availability" result list. Kept separate from the summary above:
+  // one state var previously held both shapes, so clicking Check overwrote the
+  // summary object with an array and silently flipped the shortage footer.
+  const [availabilityChecks, setAvailabilityChecks] = useState([]);
+  // #845/#846: single-order can-ship preflight — the authoritative ship gate
+  // (status + address + inventory), shared with ship_order(). Drives the
+  // FulfillmentProgress Ship button so it can't advertise a ship the backend
+  // would reject.
+  const [canShip, setCanShip] = useState(null);
+
+  // Fulfillment status hook (UI-302)
+  const {
+    data: fulfillmentStatus,
+    loading: fulfillmentLoading,
+    error: fulfillmentError,
+    refetch: refetchFulfillment,
+  } = useFulfillmentStatus(orderId);
+
+  const explodeBOM = async (productId, quantity) => {
+    setExploding(true);
+    try {
+      // PRIMARY: Use the new material-requirements endpoint (routing-first approach)
+      try {
+        const matReqData = await api.get(
+          `/api/v1/sales-orders/${orderId}/material-requirements`
+        );
+
+        const requirements = (matReqData.requirements || []).map((req) => ({
+          product_id: req.product_id,
+          product_sku: req.product_sku || "",
+          product_name: req.product_name || "",
+          gross_quantity: quantityOrUnknown(req.quantity_required),
+          net_shortage: quantityOrUnknown(req.quantity_short),
+          on_hand_quantity: quantityOrUnknown(req.quantity_available),
+          available_quantity: quantityOrUnknown(req.quantity_available),
+          unit_cost: null,
+          has_bom: req.has_bom || false,
+          operation_code: req.operation_code || null,
+          material_source: req.material_source || "bom",
+          has_incoming_supply: req.has_incoming_supply || false,
+          incoming_supply_details: req.incoming_supply_details || null,
+        }));
+        setMaterialRequirements(requirements);
+        setMaterialSummary(matReqData.summary);
+      } catch {
+        // FALLBACK: Use the MRP requirements endpoint
+        try {
+          const data = await api.get(
+            `/api/v1/mrp/requirements?product_id=${productId}`
+          );
+
+          const scaled = (data.requirements || []).map((req) => {
+            const gross = quantityOrUnknown(req.gross_quantity);
+            const multiplier = quantityOrUnknown(quantity);
+            const gross_qty = gross == null || multiplier == null ? null : quantityOrUnknown(gross * multiplier);
+            const available_qty = quantityOrUnknown(req.available_quantity);
+            const incoming_qty = quantityOrUnknown(req.incoming_quantity);
+            const safety_stock = quantityOrUnknown(req.safety_stock);
+
+            const available_supply = available_qty + incoming_qty;
+            let net_shortage = [gross_qty, available_qty, incoming_qty, safety_stock].some((value) => value == null)
+              ? null : quantityOrUnknown(gross_qty - available_supply + safety_stock);
+
+            if (net_shortage < 0) {
+              net_shortage = 0;
+            }
+
+            return {
+              product_id: req.product_id,
+              product_sku: req.product_sku || "",
+              product_name: req.product_name || "",
+              gross_quantity: gross_qty,
+              net_shortage: net_shortage,
+              on_hand_quantity: quantityOrUnknown(req.on_hand_quantity),
+              available_quantity: available_qty,
+              unit_cost: quantityOrUnknown(req.unit_cost),
+              has_bom: req.has_bom || false,
+              operation_code: null,
+              material_source: "bom",
+            };
+          });
+          setMaterialRequirements(scaled);
+          // Fallback path has no summary object — clear it so the shortage
+          // footer/badge can't show the previous order's stale summary.
+          setMaterialSummary(null);
+        } catch {
+          // If MRP endpoint fails, try BOM explosion directly
+          try {
+            const bomData = await api.get(
+              `/api/v1/mrp/explode-bom/${productId}?quantity=${quantity}`
+            );
+
+            const requirements = (bomData.components || []).map((comp) => ({
+              product_id: comp.product_id,
+              product_sku: comp.product_sku,
+              product_name: comp.product_name,
+              gross_quantity: quantityOrUnknown(comp.gross_quantity),
+              net_shortage: null,
+              on_hand_quantity: null,
+              available_quantity: null,
+              unit_cost: null,
+              has_bom: comp.has_bom || false,
+              operation_code: null,
+              material_source: "bom",
+            }));
+            setMaterialRequirements(requirements);
+            setMaterialSummary(null);
+          } catch {
+            // All BOM endpoints failed - material requirements section will be empty
+          }
+        }
+      }
+
+      // Get routing for capacity requirements (optional)
+      try {
+        const routing = await api.get(
+          `/api/v1/routings/product/${productId}`
+        );
+
+        if (routing.operations && routing.operations.length > 0) {
+          const capacity = routing.operations.map((op) => {
+            const setupTime = parseFloat(op.setup_time_minutes) || 0;
+            const runTime = parseFloat(op.run_time_minutes) || 0;
+            return {
+              ...op,
+              setup_time_minutes: setupTime,
+              run_time_minutes: runTime,
+              total_time_minutes: setupTime + runTime * quantity,
+              work_center_name:
+                op.work_center?.name || op.work_center_name || "N/A",
+              operation_name:
+                op.operation_name || op.operation_code || orderCopy.operation,
+            };
+          });
+          setCapacityRequirements(capacity);
+        }
+      } catch {
+        // Routing is optional - don't fail
+      }
+    } catch {
+      // BOM explosion failure - material requirements section will be empty
+    } finally {
+      setExploding(false);
+    }
+  };
+
+  const fetchOrder = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const data = await api.get(`/api/v1/sales-orders/${orderId}`);
+      setOrder(data);
+
+      // Explode BOM for material requirements
+      if (
+        data.order_type === "line_item" &&
+        data.lines &&
+        data.lines.length > 0
+      ) {
+        const firstLine = data.lines[0];
+        if (firstLine.product_id) {
+          await explodeBOM(firstLine.product_id, firstLine.quantity);
+        }
+      } else if (data.product_id) {
+        await explodeBOM(data.product_id, data.quantity);
+      } else if (data.quote_id) {
+        try {
+          const quoteData = await api.get(`/api/v1/quotes/${data.quote_id}`);
+          if (quoteData.product_id) {
+            await explodeBOM(quoteData.product_id, data.quantity);
+          }
+        } catch {
+          // Quote fetch failure is non-critical
+        }
+      }
+    } catch (err) {
+      setError(orderErrorMessage(err, orderCopy.orderFetchFailed));
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchProductionOrders = async () => {
+    if (!orderId) return;
+    try {
+      const data = await api.get(
+        `/api/v1/production-orders?sales_order_id=${orderId}`
+      );
+      setProductionOrders(data.items || data || []);
+    } catch {
+      // Production orders fetch failure is non-critical
+    }
+  };
+
+  const fetchPaymentData = async () => {
+    if (!orderId) return;
+    try {
+      const summary = await api.get(
+        `/api/v1/payments/order/${orderId}/summary`
+      );
+      setPaymentSummary(summary);
+    } catch {
+      // Payment summary fetch failure is non-critical
+    }
+    try {
+      const data = await api.get(`/api/v1/payments?order_id=${orderId}`);
+      setPayments(data.items || []);
+    } catch {
+      // Payment list fetch failure is non-critical
+    }
+  };
+
+  const fetchOrderInvoice = async ({ shouldApply = () => true } = {}) => {
+    if (!orderId) return null;
+    if (shouldApply()) {
+      setInvoiceLoading(true);
+    }
+    try {
+      const data = await api.get(
+        `/api/v1/invoices?sales_order_id=${orderId}&limit=1`
+      );
+      const invoices = data.items || data || [];
+      const invoice = invoices.length > 0 ? invoices[0] : null;
+      if (shouldApply()) {
+        setOrderInvoice(invoice);
+      }
+      return invoice;
+    } catch {
+      if (shouldApply()) {
+        setOrderInvoice(null);
+      }
+      return null;
+    } finally {
+      if (shouldApply()) {
+        setInvoiceLoading(false);
+      }
+    }
+  };
+
+  const fetchCanShip = async ({ shouldApply = () => true } = {}) => {
+    if (!orderId) return;
+    try {
+      const data = await api.get(`/api/v1/sales-orders/${orderId}/can-ship`);
+      if (shouldApply()) setCanShip(data);
+    } catch {
+      // Advisory only — ship_order() still enforces the gate server-side.
+      if (shouldApply()) setCanShip(null);
+    }
+  };
+
+  // The FulfillmentProgress panel now renders its Ship CTA/reasons from canShip,
+  // so a panel refresh must refresh the ship gate too — not just line readiness.
+  const refreshFulfillmentPanel = async () => {
+    await Promise.all([refetchFulfillment(), fetchCanShip()]);
+  };
+
+  useEffect(() => {
+    if (!orderId) return undefined;
+    let cancelled = false;
+    const shouldApply = () => !cancelled;
+
+    void (async () => {
+      try {
+        await Promise.all([
+          fetchOrder(),
+          fetchProductionOrders(),
+          fetchPaymentData(),
+          fetchOrderInvoice({ shouldApply }),
+          fetchCanShip({ shouldApply }),
+        ]);
+      } catch {
+        // Individual fetchers own user-visible error state.
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orderId]);
+
+  // SCHED-3b: open the wizard once productionOrders is populated after release
+  useEffect(() => {
+    if (!wizardPending || productionOrders.length === 0) return;
+    // Target a WO created by THIS generate call (matched by code). If codes
+    // are unavailable (older API shape), fall back to the newest WO for this
+    // order rather than index 0.
+    const target = wizardTargetCodes.length
+      ? productionOrders.find((po) => wizardTargetCodes.includes(po.code))
+      : [...productionOrders].sort(
+          (a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0)
+        )[0];
+    if (!target) return; // refetch hasn't caught up with the new WO yet
+    setWizardPending(false);
+    setWizardTargetCodes([]);
+    setWizardProductionOrder(target);
+    setWizardOpen(true);
+  }, [wizardPending, wizardTargetCodes, productionOrders]);
+
+  const handlePaymentRecorded = () => {
+    setShowPaymentModal(false);
+    setIsRefund(false);
+    fetchPaymentData();
+    fetchOrder();
+    fetchOrderInvoice();
+    toast.success(isRefund ? orderCopy.refundRecorded : orderCopy.paymentRecorded);
+  };
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    try {
+      await Promise.all([
+        fetchOrder(),
+        fetchProductionOrders(),
+        fetchPaymentData(),
+        fetchOrderInvoice(),
+        fetchCanShip(),
+      ]);
+      toast.success(orderCopy.dataRefreshed);
+    } catch {
+      toast.error(orderCopy.refreshFailed);
+    } finally {
+      setRefreshing(false);
+    }
+  };
+
+  const handleCreateProductionOrder = async () => {
+    const blockReason = getProductionReleaseBlockReason();
+    if (blockReason) {
+      toast.error(blockReason);
+      return;
+    }
+
+    try {
+      const result = await api.post(
+        `/api/v1/sales-orders/${orderId}/generate-production-orders`
+      );
+
+      toast.success(orderCopy.productionOrderCreated);
+      fetchProductionOrders();
+      fetchOrder();
+
+      // SCHED-3b: offer the guided schedule wizard after release.
+      // Remember WHICH orders this call created (by code) so the wizard
+      // targets a newly created WO, not whatever happens to sort first.
+      setWizardTargetCodes(result?.created_orders || []);
+      setWizardPending(true);
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
+
+  const handleCreatePurchaseOrder = async (materialReq) => {
+    // AdminPurchasing opens the pre-filled PO modal only for the
+    // create_po=true + product_id + quantity contract. The old material_id/qty
+    // keys were never read, so the modal never opened and nothing pre-filled.
+    const qty = materialReq.net_shortage;
+    navigate(
+      `/admin/purchasing?create_po=true&product_id=${materialReq.product_id}` +
+        (qty ? `&quantity=${qty}` : "")
+    );
+  };
+
+  const handleCreateWorkOrder = async (materialReq) => {
+    try {
+      await api.post(`/api/v1/production-orders`, {
+        product_id: materialReq.product_id,
+        quantity_ordered: Math.ceil(materialReq.net_shortage || 1),
+        sales_order_id: parseInt(orderId),
+        notes: `Created from SO ${order.order_number} for sub-assembly`,
+      });
+
+      toast.success(`Ordem de produção criada para ${materialReq.product_name}`);
+      fetchOrder();
+      fetchProductionOrders();
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
+
+  const handleCancelOrder = async (cancellationReason) => {
+    try {
+      await api.post(`/api/v1/sales-orders/${orderId}/cancel`, {
+        cancellation_reason: cancellationReason,
+      });
+
+      toast.success(`Pedido ${order.order_number} cancelado`);
+      setShowCancelModal(false);
+      fetchOrder();
+    } catch (err) {
+      toast.error(orderErrorMessage(err, orderCopy.cancelFailed));
+    }
+  };
+
+  const openCloseShortModal = async () => {
+    setLoadingPreview(true);
+    try {
+      const preview = await api.get(`/api/v1/sales-orders/${orderId}/close-short-preview`);
+      setCloseShortPreview(preview);
+      setShowCloseShortModal(true);
+    } catch (err) {
+      toast.error(orderErrorMessage(err, orderCopy.closePreviewFailed));
+    } finally {
+      setLoadingPreview(false);
+    }
+  };
+
+  const handleCloseShort = async () => {
+    if (!closeShortReason.trim()) return;
+    setClosingShort(true);
+    try {
+      await api.post(`/api/v1/sales-orders/${orderId}/close-short`, {
+        reason: closeShortReason,
+      });
+      toast.success(`Pedido ${order.order_number} encerrado parcialmente e pronto para envio`);
+      setShowCloseShortModal(false);
+      setCloseShortReason("");
+      setCloseShortPreview(null);
+      fetchOrder();
+      fetchProductionOrders();
+      refetchFulfillment();
+    } catch (err) {
+      toast.error(orderErrorMessage(err, orderCopy.closeShortFailed));
+    } finally {
+      setClosingShort(false);
+    }
+  };
+
+  const handleConfirmOrder = async () => {
+    setConfirmingOrder(true);
+    try {
+      if (order.status === "pending_confirmation") {
+        await api.post(`/api/v1/sales-orders/${orderId}/confirm`);
+      } else {
+        await api.patch(`/api/v1/sales-orders/${orderId}/status`, {
+          status: "confirmed",
+        });
+      }
+      toast.success(`Pedido ${order.order_number} confirmado`);
+      const refreshResults = await Promise.allSettled([
+        fetchOrder(),
+        fetchOrderInvoice(),
+        fetchPaymentData(),
+        fetchProductionOrders(),
+        refetchFulfillment(),
+      ]);
+      if (refreshResults.some((result) => result.status === "rejected")) {
+        toast.error(orderCopy.confirmationRefreshFailed);
+      }
+    } catch (err) {
+      toast.error(orderErrorMessage(err, orderCopy.confirmFailed));
+    } finally {
+      setConfirmingOrder(false);
+    }
+  };
+
+  const handleAcceptShortPO = async (po) => {
+    if (!confirm(`Aceitar quantidade parcial na ordem ${po.code || `WO-${po.id}`}? A ordem será concluída com ${po.quantity_completed}/${po.quantity_ordered} unidades.`)) return;
+    try {
+      await api.post(`/api/v1/production-orders/${po.id}/accept-short`);
+      toast.success(`${po.code || `WO-${po.id}`} encerrada com quantidade parcial (${po.quantity_completed}/${po.quantity_ordered})`);
+      fetchOrder();
+      fetchProductionOrders();
+      refetchFulfillment();
+    } catch (err) {
+      toast.error(orderErrorMessage(err, orderCopy.acceptShortFailed));
+    }
+  };
+
+  const [rejectingOrder, setRejectingOrder] = useState(false);
+
+  const handleRejectOrder = async () => {
+    if (!rejectReason.trim()) return;
+    setRejectingOrder(true);
+    try {
+      await api.post(`/api/v1/sales-orders/${orderId}/reject`, {
+        reason: rejectReason,
+      });
+      toast.success(`Pedido ${order.order_number} rejeitado`);
+      setShowRejectModal(false);
+      setRejectReason("");
+      fetchOrder();
+    } catch (err) {
+      toast.error(orderErrorMessage(err, orderCopy.rejectFailed));
+    } finally {
+      setRejectingOrder(false);
+    }
+  };
+
+  const handleDeleteOrder = async () => {
+    try {
+      await api.del(`/api/v1/sales-orders/${orderId}`);
+
+      toast.success(`Pedido ${order.order_number} excluído`);
+      navigate("/admin/orders");
+    } catch (err) {
+      toast.error(orderErrorMessage(err, orderCopy.deleteFailed));
+    }
+  };
+
+  const handleGenerateInvoice = async () => {
+    setGeneratingInvoice(true);
+    try {
+      const invoice = await api.post("/api/v1/invoices", {
+        sales_order_id: order.id,
+      });
+      setOrderInvoice(invoice);
+      toast.success(`Fatura ${invoice.invoice_number} emitida`);
+      await Promise.all([fetchOrder(), fetchOrderInvoice(), fetchPaymentData()]);
+    } catch (err) {
+      toast.error(err.response?.data?.detail || orderErrorMessage(err, orderCopy.invoiceCreateFailed));
+    } finally {
+      setGeneratingInvoice(false);
+    }
+  };
+
+  const handleSendOrderInvoice = async () => {
+    if (!orderInvoice) return;
+    setSendingInvoice(true);
+    try {
+      const invoice = await api.post(`/api/v1/invoices/${orderInvoice.id}/send`);
+      setOrderInvoice(invoice);
+      toast.success(`Fatura ${invoice.invoice_number} marcada como enviada`);
+    } catch (err) {
+      toast.error(err.response?.data?.detail || orderErrorMessage(err, orderCopy.invoiceSendFailed));
+    } finally {
+      setSendingInvoice(false);
+    }
+  };
+
+  const handleDownloadOrderInvoice = async () => {
+    if (!orderInvoice) return;
+    try {
+      const response = await fetch(
+        `${API_URL}/api/v1/invoices/${orderInvoice.id}/pdf`,
+        { credentials: "include" }
+      );
+      if (!response.ok) throw new Error(orderCopy.invoiceDownloadFailed);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${orderInvoice.invoice_number || "invoice"}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      toast.error(orderErrorMessage(err, orderCopy.invoiceDownloadFailed));
+    }
+  };
+
+  const getProductionComplete = () => {
+    return (
+      productionOrders.length > 0 &&
+      productionOrders.every((po) => COMPLETE_PRODUCTION_STATUSES.has(po.status))
+    );
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-[var(--ink)]">{orderCopy.loadingOrder}</div>
+      </div>
+    );
+  }
+
+  if (error || !order) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-[var(--status-red)]">Erro: {error || orderCopy.orderNotFound}</div>
+      </div>
+    );
+  }
+
+  const handleCheckAvailability = async () => {
+    if (!hasOrderProduct()) {
+      toast.error(orderCopy.availabilityProductRequired);
+      return;
+    }
+
+    setCheckingAvailability(true);
+    try {
+      if (productionOrders.length > 0) {
+        const checks = await Promise.all(
+          productionOrders.map(async (po) => {
+            try {
+              return await api.get(
+                `/api/v1/production-orders/${po.id}/material-availability`
+              );
+            } catch {
+              return null;
+            }
+          })
+        );
+        setAvailabilityChecks(checks.filter(Boolean));
+      } else {
+        toast.info(orderCopy.availabilityProductionRequired);
+      }
+    } catch {
+      toast.error(orderCopy.availabilityFailed);
+    } finally {
+      setCheckingAvailability(false);
+    }
+  };
+
+  const toggleSection = (section) => {
+    setExpandedSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
+
+  return (
+    <div className="space-y-6 p-6">
+      {/* Header — wrapped in a paper card so the dark ink title/subtitle read
+          against the (still-dark) app shell until the shell slice lands. */}
+      <div className="flex justify-between items-center bg-[var(--paper)] border border-[var(--rule-hair)] rounded-xl p-4 shadow-[var(--shadow-pop)]">
+        <div>
+          <button
+            onClick={() => navigate("/admin/orders")}
+            className="text-[var(--ink-3)] hover:text-[var(--ink)] mb-2"
+          >
+            &larr; Voltar para pedidos
+          </button>
+          <h1 className="text-2xl font-bold text-[var(--ink)]">
+            Pedido: {order.order_number}
+          </h1>
+          <p className="text-[var(--ink-3)] mt-1">{orderCopy.orderCommandCenter}</p>
+        </div>
+        <OrderHeaderActions
+          orderId={order.id}
+          refreshing={refreshing}
+          onRefresh={handleRefresh}
+        />
+      </div>
+
+      {/* LEGACY-1: data-health banner for legacy fulfillment mismatch */}
+      {isLegacyFulfillmentMismatch() && (
+        <LegacyFulfillmentBanner
+          order={order}
+          orderId={orderId}
+          onResolved={() => {
+            fetchOrder();
+            fetchProductionOrders();
+            refetchFulfillment();
+          }}
+        />
+      )}
+
+      {/* Order Workflow */}
+      <OrderWorkflowPanel
+        order={order}
+        orderInvoice={orderInvoice}
+        paymentSummary={paymentSummary}
+        productionOrders={productionOrders}
+        materialRequirements={materialRequirements}
+        generatingInvoice={generatingInvoice}
+        sendingInvoice={sendingInvoice}
+        confirmingOrder={confirmingOrder}
+        hasOrderProduct={hasOrderProduct}
+        hasMainProductWO={hasMainProductWO}
+        hasShipmentEvidence={hasShipmentEvidence}
+        isBillingReleaseSatisfied={isBillingReleaseSatisfied}
+        getProductionComplete={getProductionComplete}
+        getProductionReleaseBlockReason={getProductionReleaseBlockReason}
+        onConfirmOrder={handleConfirmOrder}
+        onCreateProductionOrder={handleCreateProductionOrder}
+        onGenerateInvoice={handleGenerateInvoice}
+        onSendInvoice={handleSendOrderInvoice}
+        onRecordPayment={() => {
+          setIsRefund(false);
+          setShowPaymentModal(true);
+        }}
+        onRejectOrder={() => setShowRejectModal(true)}
+        onCancelOrder={() => setShowCancelModal(true)}
+        onCloseShort={openCloseShortModal}
+        onDeleteOrder={() => setShowDeleteConfirm(true)}
+      />
+
+      {/* Quick Actions \u2014 idempotent tools only (links + checks) */}
+      <div className="bg-[var(--paper)] border border-[var(--rule-hair)] rounded-xl p-6 shadow-[var(--shadow-pop)]">
+        <h2 className="text-lg font-semibold text-[var(--ink)] mb-4 flex items-center gap-2">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          {orderCopy.quickActions}
+        </h2>
+        {invoiceLoading && !orderInvoice && (
+          <div className="mb-4 rounded-lg border border-[var(--rule-hair)] bg-[var(--paper-sunk)] px-4 py-3 text-sm text-[var(--ink-3)]">
+            {orderCopy.checkingInvoice}
+          </div>
+        )}
+        {orderInvoice && (
+          <div className="mb-4 rounded-lg border border-[var(--status-green)]/30 bg-[var(--status-green-tint)] px-4 py-3">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <div className="text-xs uppercase tracking-wide text-[var(--status-green)]">
+                  {orderCopy.orderInvoice}
+                </div>
+                <div className="mt-1 flex flex-wrap items-center gap-3">
+                  <span className="font-mono text-sm font-semibold text-[var(--ink)]">
+                    {orderInvoice.invoice_number}
+                  </span>
+                  <span className="rounded-full bg-[var(--paper-sunk)] px-2 py-1 text-xs text-[var(--ink-2)]">
+                    {orderStatusLabel(orderInvoice.status || "draft")}
+                  </span>
+                  <span className="text-sm text-[var(--ink-2)]">
+                    Saldo {formatCurrency(getInvoiceBalanceDue(orderInvoice))}
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => navigate(`/admin/invoices?invoice=${orderInvoice.id}`)}
+                  className="rounded-lg bg-[var(--paper-sunk)] text-[var(--ink-2)] border border-[var(--rule-hair)] px-3 py-2 text-sm hover:bg-[var(--rule-hair)]"
+                >
+                  {orderCopy.openInvoice}
+                </button>
+                <button
+                  onClick={handleDownloadOrderInvoice}
+                  className="rounded-lg bg-[var(--paper-sunk)] text-[var(--ink-2)] border border-[var(--rule-hair)] px-3 py-2 text-sm hover:bg-[var(--rule-hair)]"
+                >
+                  {orderCopy.downloadPdf}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <button
+            onClick={handleCheckAvailability}
+            disabled={checkingAvailability || productionOrders.length === 0}
+            className="px-4 py-3 bg-[var(--orange)] text-white rounded-lg hover:bg-[var(--orange-press)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-colors"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {checkingAvailability ? orderCopy.checking : orderCopy.checkMaterials}
+          </button>
+          {productionOrders.length > 0 && (
+            <button
+              onClick={() => navigate(`/admin/production/${productionOrders[0].id}`)}
+              className="px-4 py-3 bg-[var(--paper-sunk)] text-[var(--ink-2)] border border-[var(--rule-hair)] rounded-lg hover:bg-[var(--rule-hair)] flex items-center justify-center gap-2 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              {orderCopy.viewInProduction}
+            </button>
+          )}
+        </div>
+        {availabilityChecks.length > 0 && (
+          <div className="mt-4 space-y-2">
+            {availabilityChecks.map((avail, idx) => (
+              <div
+                key={idx}
+                className={`p-3 rounded-lg ${
+                  avail.can_release
+                    ? "bg-[var(--status-green-tint)] border border-[var(--status-green)]/30"
+                    : "bg-[var(--status-red-tint)] border border-[var(--status-red)]/30"
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-[var(--ink)] font-medium">{avail.order_code}</span>
+                  <span className={`text-sm ${avail.can_release ? "text-[var(--status-green)]" : "text-[var(--status-red)]"}`}>
+                    {avail.can_release ? "✓ Materiais disponíveis" : `\u26A0 ${avail.shortage_count} ${avail.shortage_count === 1 ? "material em falta" : "materiais em falta"}`}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Fulfillment Progress (UI-302) */}
+      <FulfillmentProgress
+        fulfillmentStatus={fulfillmentStatus}
+        loading={fulfillmentLoading}
+        error={fulfillmentError}
+        onRefresh={refreshFulfillmentPanel}
+        canShip={canShip}
+        onShip={() => navigate(`/admin/shipping?orderId=${order.id}`)}
+        closedShort={order?.closed_short === true}
+      />
+
+      {/* Blocking Issues Panel */}
+      <BlockingIssuesPanel
+        orderType="sales"
+        orderId={order.id}
+        onActionClick={(action) => {
+          if (action.reference_type === 'purchase_order') {
+            navigate(`/admin/purchasing?po_id=${action.reference_id}`);
+          } else if (action.reference_type === 'make_product') {
+            const qty = parseFloat(action.impact?.match(/Need\s+([\d.]+)/)?.[1] || 0);
+            handleCreateWorkOrder({
+              product_id: action.reference_id,
+              product_name: action.action.replace('Create production order for ', ''),
+              net_shortage: qty
+            });
+          } else if (action.reference_type === 'product') {
+            const quantityMatch = action.impact?.match(/Need\s+([\d.]+)/);
+            const quantity = quantityMatch ? quantityMatch[1] : '';
+            navigate(`/admin/purchasing?create_po=true&product_id=${action.reference_id}${quantity ? `&quantity=${quantity}` : ''}`);
+          } else if (action.reference_type === 'production_order') {
+            navigate(`/admin/production/${action.reference_id}`);
+          }
+        }}
+      />
+
+      {/* Order Summary */}
+      <div className="bg-[var(--paper)] border border-[var(--rule-hair)] rounded-xl p-6 shadow-[var(--shadow-pop)]">
+        <h2 className="text-lg font-semibold text-[var(--ink)] mb-4">{orderCopy.orderSummary}</h2>
+        <div className="grid grid-cols-4 gap-4">
+          <div>
+            <div className="text-sm text-[var(--ink-3)]">{orderCopy.product}</div>
+            <div className="text-[var(--ink)] font-medium">
+              {order.lines?.length > 1
+                ? `${order.lines.length} itens`
+                : order.product_name || order.lines?.[0]?.product_name || "N/A"}
+            </div>
+          </div>
+          <div>
+            <div className="text-sm text-[var(--ink-3)]">
+              {order.lines?.length > 1 ? orderCopy.lines : orderCopy.quantity}
+            </div>
+            <div className="text-[var(--ink)] font-medium">
+              {order.lines?.length > 1 ? order.lines.length : order.quantity}
+            </div>
+          </div>
+          <div>
+            <div className="text-sm text-[var(--ink-3)]">{orderCopy.status}</div>
+            <div className="text-[var(--ink)] font-medium flex items-center gap-2 capitalize">
+              {orderStatusLabel(order.status)}
+              {order.closed_short && (
+                getProductionComplete() ? (
+                  <span className="px-2 py-0.5 text-xs rounded-full bg-[var(--status-green-tint)] text-[var(--status-green)] border border-[var(--status-green)]/30">
+                    {orderCopy.previouslyClosedShort}
+                  </span>
+                ) : (
+                  <span className="px-2 py-0.5 text-xs rounded-full bg-[var(--status-amber-tint)] text-[var(--status-amber)] border border-[var(--status-amber)]/30">
+                    {orderCopy.closedShort}
+                  </span>
+                )
+              )}
+            </div>
+          </div>
+          <div>
+            <div className="text-sm text-[var(--ink-3)]">{orderCopy.total}</div>
+            <div className="text-[var(--ink)] font-medium">
+              {formatCurrency(order.grand_total ?? order.total_price ?? 0)}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Line Items */}
+      {order.lines && order.lines.length > 0 && (
+        <OrderLineItemsTable
+          order={order}
+          orderId={orderId}
+          onOrderUpdated={fetchOrder}
+        />
+      )}
+
+      {/* Customer Information */}
+      <div className="bg-[var(--paper)] border border-[var(--rule-hair)] rounded-xl p-6 shadow-[var(--shadow-pop)]">
+        <h2 className="text-lg font-semibold text-[var(--ink)] mb-4">{orderCopy.customer}</h2>
+        {order.customer_name || order.customer_email ? (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div>
+              <div className="text-sm text-[var(--ink-3)]">{orderCopy.name}</div>
+              <div className="text-[var(--ink)] font-medium">
+                {order.customer_name || "\u2014"}
+              </div>
+            </div>
+            <div>
+              <div className="text-sm text-[var(--ink-3)]">{orderCopy.email}</div>
+              <div className="text-[var(--ink)] font-medium">
+                {order.customer_email ? (
+                  <a href={`mailto:${order.customer_email}`} className="text-[var(--orange)] hover:underline">
+                    {order.customer_email}
+                  </a>
+                ) : "\u2014"}
+              </div>
+            </div>
+            <div>
+              <div className="text-sm text-[var(--ink-3)]">{orderCopy.phone}</div>
+              <div className="text-[var(--ink)] font-medium">
+                {order.customer_phone || "\u2014"}
+              </div>
+            </div>
+            {order.customer_id && (
+              <div>
+                <div className="text-sm text-[var(--ink-3)]">{orderCopy.customerId}</div>
+                <div className="text-[var(--ink)] font-medium">
+                  <button
+                    onClick={() => navigate(`/admin/customers/${order.customer_id}`)}
+                    className="text-[var(--orange)] hover:underline"
+                  >
+                    #{order.customer_id}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        ) : order.quote_id ? (
+          <div className="text-[var(--ink-3)]">
+            Os dados do cliente estão na proposta vinculada.
+            <button
+              onClick={() => navigate(`/admin/quotes`)}
+              className="text-[var(--orange)] hover:underline ml-2"
+            >
+              {orderCopy.viewQuote}
+            </button>
+          </div>
+        ) : (
+          <div className="text-[var(--ink-3)]">{orderCopy.noCustomer}</div>
+        )}
+      </div>
+
+      {/* Shipping Address */}
+      <ShippingAddressSection order={order} onOrderUpdated={fetchOrder} />
+
+      {/* Material Requirements */}
+      <MaterialRequirementsSection
+        materialRequirements={materialRequirements}
+        materialAvailability={materialSummary}
+        expandedSections={expandedSections}
+        onToggle={toggleSection}
+        exploding={exploding}
+        order={order}
+        onCreateWorkOrder={handleCreateWorkOrder}
+        onCreatePurchaseOrder={handleCreatePurchaseOrder}
+      />
+
+      {/* Capacity Requirements */}
+      <CapacityRequirementsSection
+        capacityRequirements={capacityRequirements}
+        expandedSections={expandedSections}
+        onToggle={toggleSection}
+        orderQuantity={order.quantity}
+      />
+
+      {/* Production Orders - Status Display */}
+      {productionOrders.length > 0 && (
+        <div className="bg-[var(--paper)] border border-[var(--rule-hair)] rounded-xl p-6 shadow-[var(--shadow-pop)]">
+          <button
+            onClick={() => toggleSection("productionOrders")}
+            className="flex items-center gap-2 text-lg font-semibold text-[var(--ink)] hover:text-[var(--ink-2)] mb-4"
+          >
+            <svg
+              className={`w-5 h-5 transition-transform ${expandedSections.productionOrders ? "rotate-90" : ""}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+            Status da produção ({productionOrders.length})
+          </button>
+          {expandedSections.productionOrders && (
+            <div className="space-y-3">
+              <ProductionProgressSummary orders={productionOrders} />
+              {productionOrders.map((po) => (
+                <ProductionOrderStatusCard
+                  key={po.id}
+                  order={po}
+                  onViewInProduction={() =>
+                    navigate(`/admin/production/${po.id}`)
+                  }
+                  onAcceptShort={handleAcceptShortPO}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Payments */}
+      <PaymentsSection
+        payments={payments}
+        paymentSummary={paymentSummary}
+        onRecordPayment={() => {
+          setIsRefund(false);
+          setShowPaymentModal(true);
+        }}
+        onRefund={() => {
+          setIsRefund(true);
+          setShowPaymentModal(true);
+        }}
+      />
+
+      {/* Activity Timeline */}
+      <div className="bg-[var(--paper)] border border-[var(--rule-hair)] rounded-xl p-6 shadow-[var(--shadow-pop)]">
+        <h2 className="text-lg font-semibold text-[var(--ink)] mb-4">{orderCopy.activity}</h2>
+        <ActivityTimeline orderId={parseInt(orderId)} />
+      </div>
+
+      {/* Shipping Timeline - Show if order has been shipped */}
+      {order?.tracking_number && (
+        <div className="bg-[var(--paper)] border border-[var(--rule-hair)] rounded-xl p-6 shadow-[var(--shadow-pop)]">
+          <div className="flex items-center gap-2 mb-4">
+            <svg className="w-5 h-5 text-[var(--ink-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+            </svg>
+            <h2 className="text-lg font-semibold text-[var(--ink)]">{orderCopy.shippingTracking}</h2>
+          </div>
+          <ShippingTimeline orderId={parseInt(orderId)} />
+        </div>
+      )}
+
+      {/* Record Payment Modal */}
+      {showPaymentModal && (
+        <RecordPaymentModal
+          orderId={parseInt(orderId)}
+          isRefund={isRefund}
+          onClose={() => {
+            setShowPaymentModal(false);
+            setIsRefund(false);
+          }}
+          onSuccess={handlePaymentRecorded}
+        />
+      )}
+
+      {/* SCHED-3b: Guided initial-schedule wizard (shown after production release) */}
+      {wizardOpen && wizardProductionOrder && (
+        <ReleaseScheduleWizard
+          isOpen={wizardOpen}
+          productionOrder={wizardProductionOrder}
+          onClose={() => {
+            setWizardOpen(false);
+            setWizardProductionOrder(null);
+          }}
+          onOpenScheduler={() => {
+            setWizardOpen(false);
+            navigate(`/admin/production/${wizardProductionOrder.id}`);
+          }}
+          onRefresh={() => {
+            fetchProductionOrders();
+          }}
+        />
+      )}
+
+      {/* Cancel Order Modal */}
+      {showCancelModal && (
+        <CancelOrderModal
+          orderNumber={order.order_number}
+          onCancel={handleCancelOrder}
+          onClose={() => setShowCancelModal(false)}
+        />
+      )}
+
+      {/* Delete Order Confirmation Modal */}
+      {showDeleteConfirm && (
+        <DeleteOrderModal
+          orderNumber={order.order_number}
+          onDelete={handleDeleteOrder}
+          onClose={() => setShowDeleteConfirm(false)}
+        />
+      )}
+
+      {/* Close Short Modal */}
+      {showCloseShortModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" onClick={() => { setShowCloseShortModal(false); setCloseShortPreview(null); setCloseShortReason(""); }}>
+          <div className="bg-[var(--paper)] border border-[var(--rule-hair)] rounded-xl p-6 max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto shadow-[var(--shadow-pop)]" onClick={(e) => e.stopPropagation()}>
+            <h3 className="text-lg font-semibold text-[var(--ink)] mb-2">
+              {orderCopy.closeOrderShort}
+            </h3>
+            <p className="text-[var(--ink-3)] text-sm mb-4">
+              As quantidades do pedido serão ajustadas ao que foi produzido e o pedido ficará pronto para envio.
+            </p>
+
+            {/* Unresolved PO warning */}
+            {closeShortPreview && !closeShortPreview.all_pos_resolved && (
+              <div className="bg-[var(--status-red-tint)] border border-[var(--status-red)]/30 rounded-lg p-3 mb-4">
+                <p className="text-[var(--status-red)] text-sm font-medium mb-1">{orderCopy.unresolvedProductionOrders}</p>
+                <p className="text-[var(--status-red)]/80 text-xs">
+                  Primeiro, aceite a quantidade produzida nestas ordens: {closeShortPreview.unresolved_pos.join(", ")}
+                </p>
+              </div>
+            )}
+
+            {/* Preview table from backend */}
+            {loadingPreview ? (
+              <div className="bg-[var(--paper-sunk)] rounded-lg p-4 mb-4 text-center text-[var(--ink-3)] text-sm">{orderCopy.loadingPreview}</div>
+            ) : closeShortPreview?.lines ? (
+              <div className="bg-[var(--paper-sunk)] rounded-lg p-3 mb-4">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="text-[var(--ink-3)] text-xs">
+                      <th className="text-left py-1">{orderCopy.product}</th>
+                      <th className="text-right py-1">{orderCopy.ordered}</th>
+                      <th className="text-right py-1">{orderCopy.adjusted}</th>
+                      <th className="text-left py-1 pl-3">{orderCopy.reason}</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-[var(--rule-hair)]">
+                    {closeShortPreview.lines.map((line) => (
+                      <tr key={line.line_id}>
+                        <td className="py-1.5 text-[var(--ink)] text-xs">{line.product_id ? line.product_name || line.product_sku || "—" : "Item de material"}</td>
+                        <td className="py-1.5 text-right text-[var(--ink)]">{line.ordered_qty}</td>
+                        <td className={`py-1.5 text-right font-medium ${line.will_adjust ? "text-[var(--status-amber)]" : "text-[var(--status-green)]"}`}>
+                          {line.achievable_qty}
+                        </td>
+                        <td className="py-1.5 text-left pl-3 text-[var(--ink-3)] text-xs max-w-[200px] truncate">{closeShortReasonLabel(line.reason)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+
+                {/* PO summary */}
+                {closeShortPreview.lines.some(l => l.linked_po_summary?.length > 0) && (
+                  <div className="mt-3 pt-3 border-t border-[var(--rule-hair)]">
+                    <p className="text-xs text-[var(--ink-4)] mb-1">{orderCopy.linkedProductionOrders}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {[...new Map(closeShortPreview.lines.flatMap(l => l.linked_po_summary || []).map(po => [po.po_number, po])).values()].map(po => (
+                        <span key={po.po_number} className={`px-2 py-0.5 rounded text-xs ${["complete", "completed", "closed", "cancelled"].includes(po.status) ? "bg-[var(--status-green-tint)] text-[var(--status-green)]" : "bg-[var(--status-amber-tint)] text-[var(--status-amber)]"}`}>
+                          {po.po_number}: {po.completed}/{po.ordered} ({orderStatusLabel(po.status)})
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : null}
+
+            <div className="bg-[var(--status-amber-tint)] border border-[var(--status-amber)]/30 rounded-lg p-3 mb-4">
+              <p className="text-[var(--status-amber)] text-sm">
+                Depois do ajuste das quantidades, siga o fluxo normal de envio.
+              </p>
+            </div>
+
+            <textarea
+              value={closeShortReason}
+              onChange={(e) => setCloseShortReason(e.target.value)}
+              aria-label="Motivo do encerramento parcial (obrigatório)"
+              placeholder="Motivo do encerramento parcial (obrigatório)…"
+              className="w-full bg-[var(--paper-sunk)] border border-[var(--rule-hair)] rounded-lg p-3 text-[var(--ink)] placeholder-[var(--ink-4)] focus:border-[var(--orange)] focus:ring-1 focus:ring-[var(--orange)] mb-4"
+              rows={2}
+            />
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => { setShowCloseShortModal(false); setCloseShortReason(""); setCloseShortPreview(null); }}
+                className="px-4 py-2 bg-[var(--paper-sunk)] text-[var(--ink-2)] border border-[var(--rule-hair)] rounded-lg hover:bg-[var(--rule-hair)]"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={handleCloseShort}
+                disabled={!closeShortReason.trim() || closingShort || (closeShortPreview && !closeShortPreview.all_pos_resolved)}
+                className="px-4 py-2 bg-[var(--orange)] text-white rounded-lg hover:bg-[var(--orange-press)] disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {closingShort ? orderCopy.closing : orderCopy.closeOrderShort}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Reject Order Modal */}
+      {showRejectModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+          <div className="bg-[var(--paper)] border border-[var(--rule-hair)] rounded-xl p-6 max-w-md w-full mx-4 shadow-[var(--shadow-pop)]">
+            <h3 className="text-lg font-semibold text-[var(--ink)] mb-4">
+              Rejeitar pedido {order.order_number}
+            </h3>
+            <p className="text-[var(--ink-3)] text-sm mb-4">
+              O pedido será cancelado e o sistema de origem será notificado.
+            </p>
+            <textarea
+              value={rejectReason}
+              onChange={(e) => setRejectReason(e.target.value)}
+              aria-label="Motivo da rejeição"
+              placeholder="Motivo da rejeição…"
+              className="w-full bg-[var(--paper-sunk)] border border-[var(--rule-hair)] rounded-lg p-3 text-[var(--ink)] placeholder-[var(--ink-4)] focus:border-[var(--status-red)] focus:ring-1 focus:ring-[var(--status-red)] mb-4"
+              rows={3}
+            />
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => {
+                  setShowRejectModal(false);
+                  setRejectReason("");
+                }}
+                className="px-4 py-2 bg-[var(--paper-sunk)] text-[var(--ink-2)] border border-[var(--rule-hair)] rounded-lg hover:bg-[var(--rule-hair)]"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={handleRejectOrder}
+                disabled={!rejectReason.trim() || rejectingOrder}
+                className="px-4 py-2 bg-[var(--status-red)] text-white rounded-lg hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {rejectingOrder ? orderCopy.rejecting : orderCopy.rejectOrder}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

@@ -1,45 +1,9 @@
----
-owner: "Renân"
-operational_owner: "Rayane Falconeres"
-outcome: "Operar pedidos GAEVA da venda confirmada até produção e expedição, com menos cliques, erros e retrabalho."
-status: "core_operacional"
-next_action: "Validar pedidos reais por papel e decidir quem confirma o pedido e registra a aprovação."
-review_date: "2026-09-16"
-source_of_truth: "GitHub: código, migrations e docs/gaeva-os; Supabase: dados operacionais."
----
+# Contexto — nova aplicação GAEVA OS
 
-# Contexto curto — GAEVA OS
+Direção r10: substituir todo o conteúdo rastreado no mesmo Gaeva3d/gaeva3d-OS por esta aplicação sobre FilaOps, através de revisão Git normal. Preservar URL, histórico publicado e Issues. Exclusão/recriação e force-push não pertencem a esta operação; publicação ainda depende da revisão do artefato exato.
 
-## O que é
+Fonte técnica e escopo: [README](README.md) e [plano canônico](docs/gaeva/current-plan.md). Stack da base selecionada: frontend React/Vite, backend FastAPI/PostgreSQL. TypeScript/Supabase/Kommo e a conexão Lovable pertencem ao histórico anterior; não são declarados stack ou integração ativa da nova aplicação.
 
-Sistema operacional pós-venda da GAEVA. O fluxo prioritário é Comercial → Designer → Produção → Expedição. O Kommo continua responsável pelo comercial conversacional.
+Um produto atende Gaeva3D e DryMaia, em instalações independentes. Ordem de preparação: Fundação → Plataforma → contratos do piloto Comercial. Preservar regras, autoria e dados; publicar fonte nova não executa migração de dados. Não ampliar recortes DRAFT, escolher políticas pendentes nem confundir QA parcial com integração de produção.
 
-## O que não é
-
-Não é CRM, e-commerce, ERP financeiro, portal do cliente nem sistema da Dry Maia. Não criar integrações, IA ou módulos futuros sem decisão explícita.
-
-## Stack e ambiente
-
-React 19, TypeScript, TanStack Start/Router, Supabase, Tailwind e Lovable. Repositório conectado ao Lovable; não reescrever histórico publicado.
-
-## Contrato atual
-
-1. Reutilizar → estender → adaptar → criar.
-2. Um pedido é um card; `orders.status` é a macroetapa oficial.
-3. Preservar autenticação, RLS, equipe, dados e histórico.
-4. Priorizar velocidade operacional e clareza da próxima ação.
-5. Estágio atual: core operacional. Não executar o roadmap inteiro.
-
-## Recuperação seletiva
-
-Leia somente quando a tarefa exigir:
-
-1. Escopo/estado: `docs/gaeva-os/00-visao-geral.md`
-2. Arquitetura/schema: `01-arquitetura-atual.md`
-3. Fluxo: `02-fluxo-operacional.md`
-4. Decisão ou limite: `03-decisoes-de-produto.md`
-5. Prioridade futura: `04-roadmap.md`
-6. Evidência de mudança: trecho recente de `05-changelog.md`
-7. Segurança: `08-revalidacao-tecnica.md`
-
-Não carregue a pasta inteira. GitHub é a verdade técnica; o Obsidian deve apenas indexar e apontar para esta fonte quando estiver acessível.
+Consulte apenas a spec/Task relevante pelo plano. Não copiar segredos, dados operacionais, backups ou histórico privado ERP para o repositório público. Backups legados permanecem fora da aplicação; histórico e Issues existentes continuam no mesmo repositório. Remoção de Company é operação separada.

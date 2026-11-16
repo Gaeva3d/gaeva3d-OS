@@ -1,0 +1,351 @@
+{
+  "task_id": "GAEVA-MOD-005",
+  "goal": "Preparar e revisar Acoes Comerciais no unico GAEVA OS conforme spec integrada, com maturidade e bloqueios explicitamente preservados.",
+  "scope": [
+    "Preparar PRD/recorte de campanhas, atribuicao, origem dos fatos/coortes/metricas e opt-in sem CRM paralelo."
+  ],
+  "out_of_scope": [
+    "Implementacao no mandato MT-A02; draft nao autoriza codigo.",
+    "Outra empresa/produto, microservico por modulo, novo CRM/chat do zero.",
+    "Publicar/Issue/branch/commit/PR/merge/deploy/restore sem autorizacao.",
+    "Codigo de roadmap sem PRD/contrato/maturidade suficientes."
+  ],
+  "allowed_paths": [
+    "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-005.md",
+    "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-005/**",
+    "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-005/evidence/**"
+  ],
+  "protected_paths": [
+    ".git/**",
+    ".env*",
+    "uploads/**",
+    "docs/discovery/**",
+    "docs/gaeva/retomada-tfd/transformacao-filaops/**/reviews/**",
+    "docs/gaeva/modulos/comercial/workflow.json",
+    "${LEGACY_APPLICATION_SOURCE}/**",
+    "${TFD_KNOWLEDGE_SOURCE}/**"
+  ],
+  "requirements": [
+    {
+      "id": "REQ-03",
+      "description": "Publicação comercial exige vendedor; rascunho IA não publica nem confirma pedido",
+      "source": "docs/gaeva/retomada-tfd/transformacao-filaops/prd-proposta.md; tabela Requisitos; REQ-03",
+      "priority": "MUST"
+    },
+    {
+      "id": "REQ-07",
+      "description": "Isolar cliente, arquivos e audiência de Threads; autorização de servidor impede acesso direto indevido",
+      "source": "docs/gaeva/retomada-tfd/transformacao-filaops/prd-proposta.md; tabela Requisitos; REQ-07",
+      "priority": "MUST"
+    },
+    {
+      "id": "REQ-10",
+      "description": "Aplicar guia/shell GAEVA e acesso por permissão às superfícies migradas; demonstrar estados de falha e dados indisponíveis",
+      "source": "docs/gaeva/retomada-tfd/transformacao-filaops/prd-proposta.md; tabela Requisitos; REQ-10",
+      "priority": "MUST"
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "AC-01",
+      "description": "Cada setor REQUIRED entrega evidencia propria do recorte REF01 e dos positivos/negativos TEST01; maturidade/stops e gates humanos respeitados, sem auto-PASS.",
+      "validation": "TEST-01",
+      "requirement_ids": [
+        "REQ-03",
+        "REQ-07",
+        "REQ-10"
+      ],
+      "microtask_ids": [
+        "MT-01",
+        "MT-02",
+        "MT-03"
+      ]
+    }
+  ],
+  "required_tests": [
+    {
+      "id": "TEST-01",
+      "type": "manual",
+      "command": "Procedimento futuro manual apos aprovacao/F1: P1/P2 documental: confrontar PRD/decisoes/origem de metrica/coorte e opt-in com o responsavel; listar campos/audiencias e lacunas; revisar spec antes de propor codigo. Ver ordem de passos no spec/phase-plan.md e modulo correspondente; registrar comandos reais e exits. NAO EXECUTADO.",
+      "expected": "Spec de recorte com formulas/dados/fontes/aceites e QA; ate obter fonte D08 permanece bloqueio de implementacao, sem dado inventado."
+    }
+  ],
+  "stop_conditions": [
+    "architecture_change_required",
+    "scope_expansion_required",
+    "mandatory_reference_missing",
+    "source_of_truth_conflict",
+    "human_task_json_divergence",
+    "authorization_required",
+    "D08/PRD: nenhuma formula ou automacao de fornecedor presumida.",
+    "Sem estimativa individual fundamentada da Task, G6 fica pendente; estimativa compartilhada F3/F5/F6 nao pode ser duplicada como total por modulo."
+  ],
+  "gates": {
+    "preparation": "Draft autorizado; QA desta sintese pendente. Pipeline workflow Comercial observado AWAITING_APPROVAL G0.",
+    "implementation": "NAO AUTORIZADA. Fase requer spec/Task/Discovery correntes, QA independente, gates humanos e stops resolvidos.",
+    "publication": "Issue/branch/PR inexistentes nesta entrega; publicar somente com autorizacao especifica.",
+    "merge": "Aprovacao humana explicita separada.",
+    "deploy": "Autorizacao operacional separada; recovery nao comprovado.",
+    "format": "Contrato nativo schemas/task.json; importado v2 nao rege esta Task. Vistas por render_task.py, QA desta sintese ainda pendente.",
+    "estimate": "Estimativa individual pendente; apenas validacao draft via allow_unestimated_draft/renderer --draft, nunca G6 completo."
+  },
+  "contract_revision": 3,
+  "title": "DRAFT - MOD-005 Acoes Comerciais",
+  "problem": "ROADMAP: somente PRD/spec; nenhuma implementacao pronta. Resultado alvo: Preparar PRD/recorte de campanhas, atribuicao, origem dos fatos/coortes/metricas e opt-in sem CRM paralelo.",
+  "complexity": "complex",
+  "spec": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-005.md",
+  "status": "draft",
+  "business_rules": [
+    {
+      "id": "RULE-01",
+      "description": "Reusar uma ficha/autoridade por registro; nao trocar estado de conversa/oportunidade/OP/gate.",
+      "source": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/integrated-spec.md"
+    },
+    {
+      "id": "RULE-02",
+      "description": "50% parcial e aceites da mesma revisao/gates finais permanecem quando aplicaveis; nao inventar aprovacao humana.",
+      "source": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/approval-decisions.md"
+    }
+  ],
+  "phases": [
+    {
+      "id": "P1-PREPARATION",
+      "title": "P1 PREPARATION",
+      "note": "Agrupamento interno preservado do draft r1. Fases macro e O/M/P vinculantes em spec/phase-plan.md; nao e gate aprovado. Estimativa por fase em spec/estimates/; julgamento de planejamento r5, sem autorizar execucao."
+    }
+  ],
+  "references": [
+    {
+      "id": "REF-01",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-005.md",
+      "purpose": "Escopo/contratos/stops especificos do modulo; documento completo no recorte aplicavel"
+    },
+    {
+      "id": "REF-02",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/integrated-spec.md",
+      "purpose": "Atores, invariantes, interfaces e fronteiras; documento completo no recorte aplicavel"
+    },
+    {
+      "id": "REF-03",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/phase-plan.md",
+      "purpose": "Procedimentos de teste futuros e fases com donos; documento completo no recorte aplicavel"
+    },
+    {
+      "id": "REF-04",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/approval-decisions.md",
+      "purpose": "Politicas propostas e limites de aprovacao; documento completo no recorte aplicavel"
+    },
+    {
+      "id": "REF-05",
+      "path": "docs/discovery/gaeva-transformacao/findings.md",
+      "purpose": "Evidencia e limites Q02-Q05; documento completo no recorte aplicavel"
+    },
+    {
+      "id": "REF-06",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/arquitetura/contracts.md",
+      "purpose": "C00-C06 e F01-IDEM corrige replay tipado; documento completo no recorte aplicavel"
+    },
+    {
+      "id": "REF-07",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/ui-ux/screen-matrix.md",
+      "purpose": "U01-U09 e V01-V15, validacao visual futura; documento completo no recorte aplicavel"
+    },
+    {
+      "id": "REF-08",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/dev-foundation/environment-matrix.md",
+      "purpose": "DF04 guard antes de imports e ambientes isolados; documento completo no recorte aplicavel"
+    },
+    {
+      "id": "REF-09",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/task-registry.json",
+      "purpose": "Dependencias externas de entrada/fase e reconciliacao canonica sem alterar ledger."
+    },
+    {
+      "id": "REF-10",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/pages-components.md",
+      "purpose": "Contrato UI/DEC-UX01 e componentes, inaplicavel onde nao houver UI."
+    },
+    {
+      "id": "REF-11",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/data-contracts.md",
+      "purpose": "Tipos/transacoes/F01-IDEM e limites de interfaces propostas."
+    }
+  ],
+  "sectors": {
+    "harness": {
+      "label": "harness",
+      "owner": "TFD-harness",
+      "applicability": "REQUIRED",
+      "reason": "Responsabilidade obrigatoria do recorte/fase"
+    },
+    "database": {
+      "label": "database",
+      "owner": "TFD-database",
+      "applicability": "N/A",
+      "reason": "Sem implementacao deste setor no recorte; modulo roadmap permanece preparacao"
+    },
+    "backend": {
+      "label": "backend",
+      "owner": "TFD-backend",
+      "applicability": "N/A",
+      "reason": "Sem implementacao deste setor no recorte; modulo roadmap permanece preparacao"
+    },
+    "frontend": {
+      "label": "frontend",
+      "owner": "TFD-frontend",
+      "applicability": "N/A",
+      "reason": "Sem implementacao deste setor no recorte; modulo roadmap permanece preparacao"
+    },
+    "ui_ux": {
+      "label": "ui_ux",
+      "owner": "TFD-ui_ux",
+      "applicability": "N/A",
+      "reason": "Sem implementacao deste setor no recorte; modulo roadmap permanece preparacao"
+    },
+    "qa": {
+      "label": "qa",
+      "owner": "TFD-qa_backend",
+      "applicability": "REQUIRED",
+      "reason": "Responsabilidade obrigatoria do recorte/fase"
+    },
+    "security": {
+      "label": "security",
+      "owner": "TFD-security",
+      "applicability": "N/A",
+      "reason": "Sem implementacao deste setor no recorte; modulo roadmap permanece preparacao"
+    },
+    "devops": {
+      "label": "devops",
+      "owner": "TFD-devops",
+      "applicability": "N/A",
+      "reason": "Sem implementacao deste setor no recorte; modulo roadmap permanece preparacao"
+    },
+    "observability": {
+      "label": "observability",
+      "owner": "TFD-devops",
+      "applicability": "N/A",
+      "reason": "Sem implementacao deste setor no recorte; modulo roadmap permanece preparacao"
+    },
+    "documentation": {
+      "label": "documentation",
+      "owner": "TFD-documentation",
+      "applicability": "REQUIRED",
+      "reason": "Responsabilidade obrigatoria do recorte/fase"
+    }
+  },
+  "microtasks": [
+    {
+      "id": "MT-01",
+      "title": "documentation - MOD-005 recorte verificavel",
+      "depends_on": [],
+      "allowed_paths": [
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-005/evidence/**"
+      ],
+      "checklist": [
+        "Rota preservada: plugin the-factory-developer; capability documentation-scoped-delivery; preferred_tool repository-native-tooling-after-authorization. Somente apos gates, sem ampliar escopo.",
+        "Registrar comportamento/fonte verificados e limites no modulo sem alegar implementacao ausente.",
+        "Sincronizar spec/Task/evidencia do recorte; roadmap entrega PRD/spec antes de qualquer codigo."
+      ],
+      "deliverables": [
+        "documentation - MOD-005 recorte verificavel: resultado e evidencia propria da fase, conforme REF01/03."
+      ],
+      "completion_condition": "Escopo REF01 e TEST01 aplicaveis demonstrados; stops/gates respeitados, revisao independente atual.",
+      "validator": "TFD-qa_spec",
+      "owner": "TFD-documentation",
+      "phase": "P1-PREPARATION",
+      "sector": "documentation",
+      "reference_ids": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11"
+      ]
+    },
+    {
+      "id": "MT-02",
+      "title": "qa - MOD-005 recorte verificavel",
+      "depends_on": [
+        "MT-01"
+      ],
+      "allowed_paths": [
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-005/evidence/**"
+      ],
+      "checklist": [
+        "Rota preservada: plugin the-factory-developer; capability qa-scoped-delivery; preferred_tool repository-native-tooling-after-authorization. Somente apos gates, sem ampliar escopo.",
+        "Inspecionar revisao independentemente e executar TEST01 aplicavel apos ambiente/gates seguros.",
+        "Emitir achados rastreaveis e recheck, sem autoaprovar implementacao de outro owner."
+      ],
+      "deliverables": [
+        "qa - MOD-005 recorte verificavel: resultado e evidencia propria da fase, conforme REF01/03."
+      ],
+      "completion_condition": "Escopo REF01 e TEST01 aplicaveis demonstrados; stops/gates respeitados, revisao independente atual.",
+      "validator": "TFD-qa_spec",
+      "owner": "TFD-qa_backend",
+      "phase": "P1-PREPARATION",
+      "sector": "qa",
+      "reference_ids": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11"
+      ]
+    },
+    {
+      "id": "MT-03",
+      "title": "harness - MOD-005 recorte verificavel",
+      "depends_on": [
+        "MT-02"
+      ],
+      "allowed_paths": [
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-005/evidence/**"
+      ],
+      "checklist": [
+        "Rota preservada: plugin the-factory-developer; capability harness-scoped-delivery; preferred_tool repository-native-tooling-after-authorization. Somente apos gates, sem ampliar escopo.",
+        "Conferir todos REQUIRED, dependencias/stops e revisoes/evidencias atuais.",
+        "Main coordena e registra gates humanos reais; nao delega ou completa gate por mencao."
+      ],
+      "deliverables": [
+        "harness - MOD-005 recorte verificavel: resultado e evidencia propria da fase, conforme REF01/03."
+      ],
+      "completion_condition": "Escopo REF01 e TEST01 aplicaveis demonstrados; stops/gates respeitados, revisao independente atual.",
+      "validator": "TFD-qa_spec",
+      "owner": "TFD-harness",
+      "phase": "P1-PREPARATION",
+      "sector": "harness",
+      "reference_ids": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11"
+      ]
+    }
+  ],
+  "estimate": {
+    "optimistic_h": 10,
+    "likely_h": 24,
+    "pessimistic_h": 50,
+    "confidence": "low",
+    "basis": "Julgamento de engenharia r5; F6 10/24/50: apenas fontes, PRD, opt-in e QA documental. Sem baseline; recursos/contratos existentes, QA e uma correcao limitada incluidos; espera humana/provedor e escopo novo excluidos. Reestimar se stops mudarem. Detalhes em estimates/."
+  }
+}

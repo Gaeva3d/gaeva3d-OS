@@ -1,0 +1,11 @@
+{
+  "task_id": "GAEVA-MOD-010",
+  "phase": "P1-PREPARATION",
+  "optimistic_h": 10,
+  "likely_h": 24,
+  "pessimistic_h": 50,
+  "confidence": "low",
+  "basis": "Julgamento de planejamento, nao medicao: Julgamento de engenharia r5; F6 10/24/50: apenas fontes, PRD e aplicabilidade; sem formulas ou implementacao. Sem baseline; recursos/contratos existentes, QA e uma correcao limitada incluidos; espera humana/provedor e escopo novo excluidos. Reestimar se stops mudarem. Detalhes em estimates/. Fase cobre MT-01, MT-02, MT-03. Preparacao unica integral.",
+  "updated_at": "2026-11-12",
+  "notes": "Esforco humano equivalente, nao prazo. Stops, dependencias, aprovacoes e maturidade da Task permanecem. Roadmap MOD005/007/010 estima so preparacao."
+}

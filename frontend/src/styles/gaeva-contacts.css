@@ -1,0 +1,73 @@
+/* Contacts: original catalog widgets for metric anatomy; existing list/forms unchanged.
+   Scoped to this page; Modals keep DEC-UX01. */
+.gaeva-contacts {
+  --contact-ink: #1c1c1e;
+  --contact-secondary: #606067;
+  --contact-surface: #fff;
+  --contact-group: #f2f2f7;
+  --contact-rule: #d1d1d6;
+  --contact-accent: #007aff;
+  color: var(--contact-ink);
+  max-width: 1600px;
+  margin-inline: auto;
+}
+.gaeva-shell[data-appearance="dark"] .gaeva-contacts {
+  --contact-ink: #f5f5f7;
+  --contact-secondary: #aeaeb2;
+  --contact-surface: #1c1c1e;
+  --contact-group: #2c2c2e;
+  --contact-rule: #48484a;
+  --contact-accent: #0a84ff;
+}
+.contacts-heading { padding-block: 8px 4px; }
+.contacts-heading h1 { color: var(--contact-ink); font-size: clamp(1.75rem, 1.55rem + .65vw, 2.125rem); letter-spacing: -.03em; line-height: 1.15; }
+.contacts-heading p:not(.contacts-eyebrow) { color: var(--contact-secondary); font-size: clamp(.875rem, .84rem + .14vw, 1rem); margin-top: 10px; }
+.contacts-heading .contacts-eyebrow { color: var(--contact-secondary); font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
+.contacts-heading-actions { flex-wrap: wrap; align-items: center; }
+.contacts-heading-actions button { min-height: 44px; padding: 10px 20px; border-radius: 9999px; font-size: .875rem; font-weight: 600; }
+.contacts-primary { background: var(--contact-accent); color: #fff; border: 1px solid transparent; }
+.contacts-secondary { background: var(--contact-surface); color: var(--contact-ink); border: 1px solid var(--contact-rule); }
+.contacts-primary:hover { filter: brightness(.94); }
+.contacts-secondary:hover { background: var(--contact-group); }
+/* index#widgets anatomy; painel-home final geometry. No fabricated visual slots. */
+.contacts-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.contact-metric-widget { min-width: 0; display: grid; grid-template-rows: auto 1fr; gap: 8px; margin: 0; padding: 12px; border: 1px solid var(--gaeva-border, #dedee4); border-radius: 16px; background: var(--contact-surface); box-shadow: 0 1px 2px rgb(0 0 0 / .045); }
+.contact-metric-widget .widget-top { display: flex; align-items: center; min-height: 36px; gap: 8px; }
+.contact-metric-widget .widget-heading { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.contact-metric-widget .widget-kicker { font-size: .75rem; color: var(--gaeva-muted, #60606a); letter-spacing: .035em; }
+.contact-metric-widget h3 { margin: 0; color: var(--contact-ink); font-size: .8125rem; line-height: 1.25; font-weight: 600; }
+.contact-metric-widget .widget-metric { display: grid; justify-items: start; align-content: start; gap: 3px; min-width: 0; min-height: clamp(46px, 3.65vw, 50px); line-height: 1.1; }
+.contact-metric-widget .widget-metric strong { color: var(--contact-ink); font-family: inherit; font-size: clamp(1.5rem, 1.3rem + .6vw, 1.8125rem); font-variant-numeric: tabular-nums; letter-spacing: -.04em; overflow-wrap: anywhere; }
+.contact-metric-widget .widget-metric .widget-currency { font-size: clamp(1.375rem, 1.22rem + .45vw, 1.625rem); }
+.gaeva-contacts { container-type: inline-size; }
+@container (max-width: 935px) { .contacts-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@container (max-width: 607px) { .contacts-metrics { grid-template-columns: minmax(0, 1fr); } }
+.contacts-toolbar { background: var(--contact-surface); border-color: var(--contact-rule); border-radius: 16px; align-items: center; padding: 12px; gap: 12px; }
+.contacts-toolbar input, .contacts-toolbar select { min-height: 44px; color: var(--contact-ink); background: var(--contact-group); border: 1px solid transparent; border-radius: 12px; font-size: 1rem; }
+.contacts-toolbar input::placeholder { color: var(--contact-secondary); opacity: 1; }
+.contacts-toolbar > div { width: 100%; min-width: 0; }
+.contacts-toolbar select { max-width: 100%; }
+.contacts-table-panel { background: var(--contact-surface); border-color: var(--contact-rule); border-radius: 20px; }
+.contacts-list-heading { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; padding: 20px 24px; border-bottom: 1px solid var(--contact-rule); }
+.contacts-list-heading h2 { font-size: 1.0625rem; font-weight: 600; color: var(--contact-ink); }
+.contacts-list-heading span { font-size: .8125rem; color: var(--contact-secondary); }
+.contacts-table-scroll { overscroll-behavior-inline: contain; scrollbar-width: thin; }
+.contacts-table-scroll table { min-width: 1180px; font-size: .875rem; }
+.contacts-table-scroll thead { background: var(--contact-group); }
+.contacts-table-scroll th { color: var(--contact-secondary); font-size: .75rem; font-weight: 600; letter-spacing: .035em; padding: 14px 16px; white-space: nowrap; }
+.contacts-table-scroll td { color: var(--contact-ink); border-color: var(--contact-rule); padding: 16px; vertical-align: middle; }
+.contacts-table-scroll tr { border-color: var(--contact-rule); }
+.contacts-table-scroll tbody tr:hover { background: var(--contact-group); }
+.contacts-person { white-space: nowrap; font-weight: 600; }
+.contacts-avatar { display: inline-grid; place-items: center; width: 36px; height: 36px; margin-right: 10px; border-radius: 50%; background: var(--contact-group); color: var(--contact-accent); font-size: .875rem; }
+.contacts-table-scroll td:last-child button { min-height: 44px; padding: 8px; color: var(--contact-accent); font-weight: 500; }
+.contacts-table-scroll td:nth-child(10) span { background: var(--contact-group); color: var(--contact-ink); border: 1px solid var(--contact-rule); white-space: nowrap; }
+.gaeva-contacts :is(.contacts-heading-actions button, .contacts-toolbar input, .contacts-toolbar select, .contacts-table-scroll, .contacts-table-scroll button):focus-visible { outline: 3px solid var(--contact-accent); outline-offset: 3px; }
+@media (max-width: 767px) {
+  .contacts-heading-actions { width: 100%; }
+  .contacts-heading-actions button { flex: 1; }
+  .contacts-toolbar { align-items: stretch; }
+  .contacts-toolbar select { width: 100%; }
+  .contacts-list-heading { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .contacts-primary, .contacts-secondary { transition: none; } }

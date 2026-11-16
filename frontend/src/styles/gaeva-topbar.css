@@ -1,0 +1,53 @@
+/* Approved header composition: breadcrumb, page search, appearance, bell, account. */
+.gaeva-topbar-v2 { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; padding: 0 32px; border-bottom: 1px solid var(--gaeva-border); }
+.gaeva-topbar-v2 > .gaeva-header-tools { display: flex; flex-wrap: nowrap; align-items: center; gap: 10px; }
+.gaeva-workspace-crumb { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--gaeva-muted); white-space: nowrap; }
+.gaeva-workspace-crumb strong { color: var(--gaeva-ink); font-weight: 600; }
+.gaeva-topbar-v2 button { cursor: pointer; color: var(--gaeva-ink); }
+.gaeva-topbar-v2 .gaeva-page-search { display: flex; align-items: center; gap: 9px; width: 250px; height: 36px; padding: 0 10px; border: 1px solid var(--gaeva-border); border-radius: 10px; background: var(--gaeva-surface); color: var(--gaeva-muted); font-size: 13px; }
+.gaeva-page-search kbd { margin-left: auto; padding: 2px 5px; border: 1px solid var(--gaeva-border); border-radius: 4px; font-size: 11px; white-space: nowrap; }
+.gaeva-topbar-v2 .gaeva-icon-control { display: grid; place-items: center; width: 36px; height: 36px; min-width: 36px; padding: 0; border: 1px solid var(--gaeva-border); background: var(--gaeva-surface); }
+.gaeva-topbar-v2 .gaeva-profile-control { display: flex; align-items: center; gap: 10px; padding: 0 0 0 8px; min-height: 36px; border: 0; background: transparent; }
+.gaeva-profile-avatar { display: grid; place-items: center; width: 33px; height: 33px; border-radius: 50%; color: var(--gaeva-blue); background: var(--gaeva-selection); font-size: 12px; font-weight: 650; }
+.gaeva-profile-name { text-align: left; font-size: 12px; font-weight: 600; max-width: 180px; overflow-wrap: anywhere; }
+.gaeva-profile-name small { display: block; font-size: 10px; font-weight: 400; color: var(--gaeva-muted); margin-top: 2px; }
+.gaeva-popover-anchor { position: relative; }
+.gaeva-header-popover { position: absolute; right: 0; top: calc(100% + 12px); z-index: 50; width: 296px; max-width: calc(100vw - 32px); padding: 16px; border: 1px solid var(--gaeva-border); border-radius: 14px; background: var(--gaeva-surface); box-shadow: 0 12px 36px rgba(0,0,0,.14); color: var(--gaeva-ink); font-size: 13px; }
+.gaeva-header-popover p { margin: 12px 0 8px; }
+.gaeva-header-popover small { display: block; color: var(--gaeva-muted); font-size: 11px; }
+.gaeva-account-heading { padding: 0 8px 12px; border-bottom: 1px solid var(--gaeva-border); margin-bottom: 6px; }
+.gaeva-account-popover > button, .gaeva-account-popover > a { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 7px 10px; border: 0; background: transparent; font-size: 13px; color: var(--gaeva-ink); text-decoration: none; }
+.gaeva-account-popover > a:hover, .gaeva-account-popover > button:hover { background: var(--gaeva-background); }
+.gaeva-account-system { display: grid; gap: 8px; padding: 10px 8px; border-block: 1px solid var(--gaeva-border); margin-block: 6px; }
+.gaeva-search-dialog { position: fixed; inset: 14vh 0 auto; margin-inline: auto; width: min(560px, calc(100vw - 32px)); max-height: 70vh; padding: 0; border: 1px solid var(--gaeva-border); border-radius: 16px; background: var(--gaeva-surface); color: var(--gaeva-ink); box-shadow: 0 20px 60px rgba(0,0,0,.18); }
+.gaeva-search-dialog::backdrop { background: rgba(0,0,0,.25); backdrop-filter: blur(3px); }
+.gaeva-search-heading { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--gaeva-border); }
+.gaeva-search-heading input { flex: 1; min-width: 0; outline: none; border: 0; background: transparent; color: var(--gaeva-ink); font-size: 1rem; }
+.gaeva-search-heading button { border: 1px solid var(--gaeva-border); background: transparent; font-size: 11px; padding: 2px 8px; }
+.gaeva-search-results { overflow-y: auto; max-height: 50vh; padding: 6px; }
+.gaeva-search-results a { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; text-decoration: none; color: var(--gaeva-ink); font-size: 14px; }
+.gaeva-search-results a:hover, .gaeva-search-results a:focus-visible { background: var(--gaeva-selection); color: var(--gaeva-blue); }
+.gaeva-search-results svg { width: 18px; height: 18px; }
+.gaeva-search-results p { padding: 12px; }
+@media(max-width: 1150px) { .gaeva-topbar-v2 { padding-inline: 22px; } .gaeva-topbar-v2 .gaeva-page-search { width: 200px; } .gaeva-profile-name { max-width: 110px; } }
+@media(max-width: 980px) { .gaeva-profile-name { display: none; } .gaeva-topbar-v2 .gaeva-page-search { width: 170px; } .gaeva-page-search kbd { display: none; } }
+@media(max-width: 767px) { .gaeva-topbar.gaeva-topbar-v2 { height: 64px; min-height: 64px; padding: 0 16px 0 60px; gap: 8px; } .gaeva-workspace-crumb { display: none; } .gaeva-topbar-v2 > .gaeva-header-tools { justify-content: flex-end; width: 100%; gap: 8px; } .gaeva-topbar-v2 .gaeva-page-search { width: 148px; } }
+@media(max-width: 430px) { .gaeva-topbar-v2 .gaeva-page-search { width: 36px; padding: 0; justify-content: center; border-radius: 100px; } .gaeva-page-search > span { display: none; } }
+@media(any-pointer: coarse) { .gaeva-topbar-v2 .gaeva-icon-control, .gaeva-topbar-v2 .gaeva-page-search, .gaeva-topbar-v2 .gaeva-profile-control { min-width: 44px; min-height: 44px; } .gaeva-search-results a { min-height: 44px; } }
+
+/* Final original painel-home shell geometry overrides painel-shell anatomy. */
+.gaeva-topbar.gaeva-topbar-v2 { height: var(--gaeva-header-height); min-height: var(--gaeva-header-height); padding: 0 var(--gaeva-gutter); background: var(--gaeva-surface); backdrop-filter: none; }
+.gaeva-topbar-v2 > .gaeva-header-tools { gap: 8px; }
+.gaeva-topbar-v2 .gaeva-page-search { height: 36px; min-height: 36px; border-radius: 999px; }
+.gaeva-topbar-v2 .gaeva-icon-control { height: 36px; min-height: 36px; min-width: 36px; }
+@media (max-width: 767px) {
+  .gaeva-topbar.gaeva-topbar-v2 { padding-left: 60px; }
+  .gaeva-topbar-v2 .gaeva-workspace-crumb { display: none; }
+}
+@media (max-width: 430px) {
+  .gaeva-topbar-v2 .gaeva-page-search { width: 36px; min-width: 36px; padding: 0; flex: 0 0 36px; }
+  .gaeva-page-search > svg { flex-shrink: 0; }
+}
+@media (any-pointer: coarse), (hover: none) {
+  .gaeva-topbar-v2 .gaeva-icon-control, .gaeva-topbar-v2 .gaeva-page-search, .gaeva-topbar-v2 .gaeva-profile-control { min-width: 44px; min-height: 44px; }
+}

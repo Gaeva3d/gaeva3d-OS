@@ -1,0 +1,609 @@
+/**
+ * AdminQuotes - Quote management orchestrator.
+ *
+ * Sub-components extracted per ARCHITECT-002:
+ *   QuoteFormModal, QuoteDetailModal, constants
+ */
+import { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import { API_URL } from "../../config/api";
+import { useApi } from "../../hooks/useApi";
+import { useToast } from "../../components/Toast";
+import EmptyState from "../../components/EmptyState";
+import { STATUS_OPTIONS, getStatusStyle } from "../../components/quotes/constants";
+import QuoteFormModal from "../../components/quotes/QuoteFormModal";
+import QuoteDetailModal from "../../components/quotes/QuoteDetailModal";
+
+export default function AdminQuotes() {
+  const navigate = useNavigate();
+  const api = useApi();
+  const toast = useToast();
+  const [quotes, setQuotes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState(null);
+  const [filters, setFilters] = useState({
+    search: "",
+    status: "all",
+  });
+
+  // Modal states
+  const [showQuoteModal, setShowQuoteModal] = useState(false);
+  const [editingQuote, setEditingQuote] = useState(null);
+  const [viewingQuote, setViewingQuote] = useState(null);
+
+  const fetchQuotes = useCallback(async () => {
+    setLoading(true);
+    try {
+      const params = new URLSearchParams();
+      params.set("limit", "200");
+      if (filters.status !== "all") params.set("status", filters.status);
+
+      const data = await api.get(`/api/v1/quotes?${params}`);
+      setQuotes(Array.isArray(data) ? data : []);
+    } catch (err) {
+      toast.error(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }, [api, filters.status, toast]);
+
+  const fetchStats = useCallback(async () => {
+    try {
+      const data = await api.get("/api/v1/quotes/stats");
+      setStats(data);
+    } catch {
+      // Stats fetch failure is non-critical
+    }
+  }, [api]);
+
+  useEffect(() => {
+    // Initial async fetch; state updates happen after the request settles.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchQuotes();
+    fetchStats();
+  }, [fetchQuotes, fetchStats]);
+
+  const filteredQuotes = quotes.filter((quote) => {
+    if (!filters.search) return true;
+    const search = filters.search.toLowerCase();
+    return (
+      quote.quote_number?.toLowerCase().includes(search) ||
+      quote.product_name?.toLowerCase().includes(search) ||
+      quote.customer_name?.toLowerCase().includes(search) ||
+      quote.customer_email?.toLowerCase().includes(search)
+    );
+  });
+
+  const handleSaveQuote = async (quoteData) => {
+    try {
+      if (editingQuote) {
+        await api.patch(`/api/v1/quotes/${editingQuote.id}`, quoteData);
+      } else {
+        await api.post("/api/v1/quotes", quoteData);
+      }
+
+      toast.success(editingQuote ? "Proposta atualizada" : "Proposta criada");
+      setShowQuoteModal(false);
+      setEditingQuote(null);
+      fetchQuotes();
+      fetchStats();
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
+
+  const handleUpdateStatus = async (quoteId, newStatus, rejectionReason = null) => {
+    try {
+      const updated = await api.patch(`/api/v1/quotes/${quoteId}/status`, {
+        status: newStatus,
+        rejection_reason: rejectionReason,
+      });
+
+      toast.success(`Proposta: ${STATUS_OPTIONS.find((status) => status.value === newStatus)?.label ?? newStatus}`);
+      fetchQuotes();
+      fetchStats();
+      if (viewingQuote?.id === quoteId) {
+        setViewingQuote(updated);
+      }
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
+
+  const handleConvertToOrder = async (quoteId) => {
+    try {
+      const data = await api.post(`/api/v1/quotes/${quoteId}/convert`);
+
+      toast.success(`Convertida no pedido ${data.order_number}`);
+      setViewingQuote(null);
+      fetchQuotes();
+      fetchStats();
+
+      // Navigate to the new order
+      navigate(`/admin/orders/${data.order_id}`);
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
+
+  // PDF download/print use raw fetch because apiClient does not support blob responses
+  const handleDownloadPDF = async (quote) => {
+    try {
+      const res = await fetch(`${API_URL}/api/v1/quotes/${quote.id}/pdf`, {
+        credentials: "include",
+      });
+
+      if (!res.ok) throw new Error("Falha ao gerar PDF");
+
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${quote.quote_number}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      a.remove();
+
+      toast.success("PDF da proposta baixado");
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
+
+  const handlePrintPDF = async (quote) => {
+    try {
+      const res = await fetch(`${API_URL}/api/v1/quotes/${quote.id}/pdf`, {
+        credentials: "include",
+      });
+
+      if (!res.ok) throw new Error("Falha ao gerar PDF");
+
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      // Open in new window for printing
+      const printWindow = window.open(url, "_blank");
+      if (printWindow) {
+        printWindow.onload = () => {
+          printWindow.print();
+        };
+      } else {
+        // Fallback: just open in new tab if popup blocked
+        window.open(url, "_blank");
+        toast.info("PDF aberto em outra aba. Use Ctrl+P no navegador para imprimir.");
+      }
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
+
+  const handleDuplicateQuote = async (quote) => {
+    try {
+      // Don't pass customer_id — prices are already net (discount applied).
+      // Passing customer_id would re-apply the discount on the backend.
+      const newQuoteData = {
+        customer_name: quote.customer_name || null,
+        customer_email: quote.customer_email || null,
+        customer_notes: quote.customer_notes || null,
+        admin_notes: `Duplicated from ${quote.quote_number}`,
+        apply_tax: quote.tax_rate ? true : false,
+        valid_days: 30,
+      };
+
+      // Duplicate with lines if multi-line, otherwise use header fields
+      if (quote.lines?.length > 0) {
+        newQuoteData.lines = quote.lines.map((l) => ({
+          product_id: l.product_id || null,
+          product_name: l.product_name,
+          quantity: l.quantity,
+          unit_price: parseFloat(l.unit_price || 0),
+          material_type: l.material_type || null,
+          color: l.color || null,
+        }));
+      } else {
+        newQuoteData.product_id = quote.product_id || null;
+        newQuoteData.product_name = quote.product_name;
+        newQuoteData.quantity = quote.quantity;
+        newQuoteData.unit_price = parseFloat(quote.unit_price || 0);
+        newQuoteData.material_type = quote.material_type || null;
+        newQuoteData.color = quote.color || null;
+      }
+
+      const newQuote = await api.post("/api/v1/quotes", newQuoteData);
+      toast.success(`Proposta duplicada com o número ${newQuote.quote_number}`);
+      fetchQuotes();
+      fetchStats();
+      setViewingQuote(newQuote);
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
+
+  const handleCopyQuoteLink = (quote) => {
+    // Create a shareable link - could be customer portal link or just quote reference
+    const quoteLink = `${window.location.origin}/quote/${quote.quote_number}`;
+    navigator.clipboard.writeText(quoteLink).then(() => {
+      toast.success("Link da proposta copiado");
+    }).catch(() => {
+      // Fallback - copy quote number
+      navigator.clipboard.writeText(quote.quote_number);
+      toast.success("Número da proposta copiado");
+    });
+  };
+
+  const handleDeleteQuote = async (quoteId) => {
+    if (!confirm("Deseja excluir esta proposta?")) return;
+
+    try {
+      await api.del(`/api/v1/quotes/${quoteId}`);
+      toast.success("Proposta excluída");
+      setViewingQuote(null);
+      fetchQuotes();
+      fetchStats();
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
+
+  const isExpired = (quote) => {
+    return new Date(quote.expires_at) < new Date();
+  };
+
+  const isExpiringSoon = (quote) => {
+    const expiresAt = new Date(quote.expires_at);
+    const now = new Date();
+    const sevenDaysFromNow = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+    return expiresAt > now && expiresAt <= sevenDaysFromNow;
+  };
+
+  const getDaysUntilExpiry = (quote) => {
+    const expiresAt = new Date(quote.expires_at);
+    const now = new Date();
+    const diffTime = expiresAt.getTime() - now.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
+  };
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-white">Gestão de propostas</h1>
+          <p className="text-gray-400 mt-1">Crie e gerencie propostas para clientes</p>
+        </div>
+        <button
+          onClick={() => {
+            setEditingQuote(null);
+            setShowQuoteModal(true);
+          }}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+          </svg>
+          Nova proposta
+        </button>
+      </div>
+
+      {/* Stats Cards - Clickable to filter */}
+      {stats && (
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+          <button
+            onClick={() => setFilters((f) => ({ ...f, status: "pending" }))}
+            className={`text-left bg-gradient-to-br from-yellow-600/20 to-yellow-600/5 border rounded-xl p-4 transition-all hover:scale-[1.02] ${
+              filters.status === "pending" ? "border-yellow-400 ring-1 ring-yellow-400" : "border-yellow-500/30"
+            }`}
+          >
+            <p className="text-gray-400 text-sm">Pendentes</p>
+            <p className="text-2xl font-bold text-white">{stats.pending}</p>
+            <p className="text-yellow-400 text-xs mt-1">
+              ${parseFloat(stats.pending_value || 0).toLocaleString()}
+            </p>
+          </button>
+          <button
+            onClick={() => setFilters((f) => ({ ...f, status: "approved" }))}
+            className={`text-left bg-gradient-to-br from-blue-600/20 to-blue-600/5 border rounded-xl p-4 transition-all hover:scale-[1.02] ${
+              filters.status === "approved" ? "border-blue-400 ring-1 ring-blue-400" : "border-blue-500/30"
+            }`}
+          >
+            <p className="text-gray-400 text-sm">Aprovadas</p>
+            <p className="text-2xl font-bold text-white">{stats.approved}</p>
+            <p className="text-blue-400 text-xs mt-1">Prontas para aceite</p>
+          </button>
+          <button
+            onClick={() => setFilters((f) => ({ ...f, status: "accepted" }))}
+            className={`text-left bg-gradient-to-br from-cyan-600/20 to-cyan-600/5 border rounded-xl p-4 transition-all hover:scale-[1.02] ${
+              filters.status === "accepted" ? "border-cyan-400 ring-1 ring-cyan-400" : "border-cyan-500/30"
+            }`}
+          >
+            <p className="text-gray-400 text-sm">Aceitas</p>
+            <p className="text-2xl font-bold text-white">{stats.accepted}</p>
+            <p className="text-cyan-400 text-xs mt-1">Prontas para conversão</p>
+          </button>
+          <button
+            onClick={() => setFilters((f) => ({ ...f, status: "converted" }))}
+            className={`text-left bg-gradient-to-br from-green-600/20 to-green-600/5 border rounded-xl p-4 transition-all hover:scale-[1.02] ${
+              filters.status === "converted" ? "border-green-400 ring-1 ring-green-400" : "border-green-500/30"
+            }`}
+          >
+            <p className="text-gray-400 text-sm">Convertidas</p>
+            <p className="text-2xl font-bold text-white">{stats.converted}</p>
+            <p className="text-green-400 text-xs mt-1">Geraram pedidos</p>
+          </button>
+          <div className="bg-gradient-to-br from-emerald-600/20 to-emerald-600/5 border border-emerald-500/30 rounded-xl p-4">
+            <p className="text-gray-400 text-sm">Taxa de conversão</p>
+            <p className="text-2xl font-bold text-white">
+              {stats.total > 0 ? ((stats.converted / stats.total) * 100).toFixed(1) : 0}%
+            </p>
+            <p className="text-emerald-400 text-xs mt-1">
+              {stats.converted} of {stats.total} quotes
+            </p>
+          </div>
+          <button
+            onClick={() => setFilters((f) => ({ ...f, status: "all" }))}
+            className={`text-left bg-gradient-to-br from-purple-600/20 to-purple-600/5 border rounded-xl p-4 transition-all hover:scale-[1.02] ${
+              filters.status === "all" ? "border-purple-400 ring-1 ring-purple-400" : "border-purple-500/30"
+            }`}
+          >
+            <p className="text-gray-400 text-sm">Valor das propostas</p>
+            <p className="text-2xl font-bold text-white">
+              ${parseFloat(stats.total_value || 0).toLocaleString()}
+            </p>
+            <p className="text-purple-400 text-xs mt-1">{stats.total} propostas, sem receita contabilizada</p>
+          </button>
+        </div>
+      )}
+
+      {/* Filters */}
+      <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex-1 relative">
+          <input
+            type="text"
+            placeholder="Buscar propostas..."
+            value={filters.search}
+            onChange={(e) => setFilters((f) => ({ ...f, search: e.target.value }))}
+            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white pl-10"
+          />
+          <svg
+            className="w-5 h-5 absolute left-3 top-2.5 text-gray-500"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </div>
+        <select
+          value={filters.status}
+          onChange={(e) => setFilters((f) => ({ ...f, status: e.target.value }))}
+          className="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white"
+        >
+          <option value="all">Todos os status</option>
+          {STATUS_OPTIONS.map((s) => (
+            <option key={s.value} value={s.value}>
+              {s.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Quotes Table */}
+      {loading ? (
+        <div className="flex items-center justify-center h-32">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+        </div>
+      ) : (
+        <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+          <div className="overflow-x-auto">
+          <table className="w-full min-w-[640px]">
+            <thead>
+              <tr className="border-b border-gray-800 bg-gray-800/50">
+                <th className="text-left px-4 py-3 text-gray-400 font-medium text-sm">Nº da proposta</th>
+                <th className="text-left px-4 py-3 text-gray-400 font-medium text-sm">Produto</th>
+                <th className="text-left px-4 py-3 text-gray-400 font-medium text-sm">Cliente</th>
+                <th className="text-left px-4 py-3 text-gray-400 font-medium text-sm">Qtd.</th>
+                <th className="text-left px-4 py-3 text-gray-400 font-medium text-sm">Total</th>
+                <th className="text-left px-4 py-3 text-gray-400 font-medium text-sm">Status</th>
+                <th className="text-left px-4 py-3 text-gray-400 font-medium text-sm">Validade</th>
+                <th className="text-right px-4 py-3 text-gray-400 font-medium text-sm">Ações</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-800">
+              {filteredQuotes.map((quote) => {
+                const expired = isExpired(quote) && quote.status !== "converted";
+                const expiringSoon = !expired && isExpiringSoon(quote) && quote.status !== "converted";
+                const daysLeft = getDaysUntilExpiry(quote);
+
+                return (
+                  <tr
+                    key={quote.id}
+                    className={`hover:bg-gray-800/50 cursor-pointer ${expired ? "opacity-60" : ""}`}
+                    onClick={() => setViewingQuote(quote)}
+                  >
+                    <td className="px-4 py-3">
+                      <span className="text-white font-mono">{quote.quote_number}</span>
+                    </td>
+                    <td className="px-4 py-3">
+                      <span className="text-white">
+                        {quote.line_count > 1
+                          ? `${quote.line_count} items`
+                          : quote.product_name || "—"}
+                      </span>
+                      {quote.line_count <= 1 && quote.material_type && (
+                        <span className="text-gray-500 text-sm ml-2">
+                          ({quote.material_type}
+                          {quote.color ? ` / ${quote.color}` : ""})
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3">
+                      <span className="text-white">{quote.customer_name || "—"}</span>
+                      {quote.customer_email && (
+                        <span className="text-gray-500 text-sm block">{quote.customer_email}</span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3 text-white">{quote.quantity}</td>
+                    <td className="px-4 py-3 text-green-400 font-medium">
+                      ${parseFloat(quote.total_price || 0).toFixed(2)}
+                    </td>
+                    <td className="px-4 py-3">
+                      <span className={`px-2 py-1 rounded-full text-xs ${getStatusStyle(quote.status)}`}>
+                        {quote.status}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3">
+                      {quote.status === "converted" ? (
+                        <span className="text-gray-500 text-sm">—</span>
+                      ) : expired ? (
+                        <span className="text-red-400 text-sm font-medium">Expirada</span>
+                      ) : expiringSoon ? (
+                        <span className="text-yellow-400 text-sm font-medium">
+                          {daysLeft} day{daysLeft !== 1 ? "s" : ""} left
+                        </span>
+                      ) : (
+                        <span className="text-gray-400 text-sm">
+                          {new Date(quote.expires_at).toLocaleDateString()}
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3 text-right" onClick={(e) => e.stopPropagation()}>
+                      <div className="flex justify-end gap-1">
+                        <button
+                          onClick={() => handleDownloadPDF(quote)}
+                          className="p-1.5 text-gray-400 hover:text-white hover:bg-gray-700 rounded"
+                          title="Baixar PDF"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                            />
+                          </svg>
+                        </button>
+                        <button
+                          onClick={() => handlePrintPDF(quote)}
+                          className="p-1.5 text-gray-400 hover:text-white hover:bg-gray-700 rounded"
+                          title="Imprimir proposta"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
+                            />
+                          </svg>
+                        </button>
+                        {quote.status === "pending" && (
+                          <button
+                            onClick={() => handleUpdateStatus(quote.id, "approved")}
+                            className="p-1.5 text-blue-400 hover:text-blue-300 hover:bg-blue-900/30 rounded"
+                            title="Aprovar"
+                          >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                          </button>
+                        )}
+                        {(quote.status === "approved" || quote.status === "accepted") && !expired && (
+                          <button
+                            onClick={() => handleConvertToOrder(quote.id)}
+                            className="p-1.5 text-green-400 hover:text-green-300 hover:bg-green-900/30 rounded"
+                            title="Converter em pedido"
+                          >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                              />
+                            </svg>
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+              {filteredQuotes.length === 0 && (
+                <tr>
+                  <td colSpan={8} className="py-4">
+                    {quotes.length === 0 ? (
+                      <EmptyState
+                        icon="orders"
+                        title="Nenhuma proposta cadastrada"
+                        description="Crie a primeira proposta para iniciar o processo de venda."
+                        actionLabel="Nova proposta"
+                        onAction={() => { setEditingQuote(null); setShowQuoteModal(true); }}
+                      />
+                    ) : (
+                      <EmptyState
+                        icon="filter"
+                        title="Nenhuma proposta corresponde aos filtros"
+                        onClearFilters={() => setFilters({ search: "", status: "all" })}
+                      />
+                    )}
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+          </div>
+        </div>
+      )}
+
+      {/* Create/Edit Quote Modal */}
+      {showQuoteModal && (
+        <QuoteFormModal
+          quote={editingQuote}
+          onSave={handleSaveQuote}
+          onClose={() => {
+            setShowQuoteModal(false);
+            setEditingQuote(null);
+          }}
+        />
+      )}
+
+      {/* View Quote Modal */}
+      {viewingQuote && (
+        <QuoteDetailModal
+          quote={viewingQuote}
+          onClose={() => setViewingQuote(null)}
+          onEdit={(quoteToEdit) => {
+            setEditingQuote(quoteToEdit);
+            setShowQuoteModal(true);
+            setViewingQuote(null);
+          }}
+          onUpdateStatus={handleUpdateStatus}
+          onConvert={handleConvertToOrder}
+          onDownloadPDF={handleDownloadPDF}
+          onPrintPDF={handlePrintPDF}
+          onDuplicate={handleDuplicateQuote}
+          onCopyLink={handleCopyQuoteLink}
+          onDelete={handleDeleteQuote}
+          getStatusStyle={getStatusStyle}
+          onRefresh={async () => {
+            // Refresh the viewing quote to get updated has_image flag
+            try {
+              const updated = await api.get(`/api/v1/quotes/${viewingQuote.id}`);
+              setViewingQuote(updated);
+            } catch {
+              // Non-critical: viewing quote refresh failure
+            }
+            fetchQuotes();
+          }}
+        />
+      )}
+    </div>
+  );
+}

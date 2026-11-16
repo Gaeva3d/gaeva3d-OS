@@ -1,0 +1,162 @@
+"""
+Inventory models
+"""
+from sqlalchemy import Column, Integer, String, Numeric, DateTime, Date, ForeignKey, Text, Boolean, Computed
+from sqlalchemy.dialects.postgresql import TIMESTAMP as PG_TIMESTAMP
+from sqlalchemy.orm import relationship
+from datetime import datetime, timezone
+
+from app.db.base import Base
+
+
+class InventoryLocation(Base):
+    """Inventory Location model - matches inventory_locations table"""
+    __tablename__ = "inventory_locations"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(100), nullable=False)
+    code = Column(String(50), nullable=True)
+    type = Column(String(50), nullable=True)  # warehouse, shelf, bin, etc.
+    parent_id = Column(Integer, ForeignKey('inventory_locations.id'), nullable=True)
+    active = Column(Boolean, default=True, nullable=True)
+
+    # Self-referential relationship for hierarchy
+    parent = relationship("InventoryLocation", remote_side=[id], backref="children")
+
+    # Inventory in this location
+    inventory_items = relationship("Inventory", back_populates="location")
+
+    def __repr__(self):
+        return f"<InventoryLocation {self.code}: {self.name}>"
+
+
+class Inventory(Base):
+    """Inventory model - matches inventory table"""
+    __tablename__ = "inventory"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    # References
+    product_id = Column(Integer, ForeignKey('products.id'), nullable=False)
+    location_id = Column(Integer, ForeignKey('inventory_locations.id'), nullable=False)
+
+    # Quantities
+    on_hand_quantity = Column(Numeric(10, 2), default=0, nullable=False)
+    allocated_quantity = Column(Numeric(10, 2), default=0, nullable=False)
+    # available_quantity is a computed column (on_hand - allocated)
+    available_quantity = Column(Numeric(10, 2), Computed("on_hand_quantity - allocated_quantity"))
+
+    # Metadata
+    last_counted = Column(DateTime, nullable=True)
+    # HARD-4b: epoch anchor for reconciliation report.
+    # NULL = never baselined (item never physically counted).
+    # When a reconciliation_baseline transaction is posted (HARD-4c), this is
+    # stamped with the transaction timestamp. The reconciliation report then
+    # sums only transactions >= baseline_timestamp; NULL rows sum ALL history.
+    baseline_timestamp = Column(
+        PG_TIMESTAMP(timezone=True),
+        nullable=True,
+        comment=(
+            "UTC timestamp of the last reconciliation_baseline (physical count). "
+            "NULL means the item has never been counted."
+        ),
+    )
+    # HARD-4c: on-hand at the moment of the last reconciliation_baseline.
+    # The reconciliation report computes:
+    #   drift = stored_on_hand - (baseline_on_hand + sum(post-baseline transactions))
+    # This makes zero-delta baselines correct: the opening balance of the new
+    # epoch is the physical count result, and post-count ledger activity is
+    # tracked on top of it.  NULL when baseline_timestamp IS NULL.
+    baseline_on_hand = Column(
+        Numeric(18, 4),
+        nullable=True,
+        comment=(
+            "on_hand_quantity snapshotted at the last reconciliation_baseline (physical count). "
+            "Used by the reconciliation report as the epoch opening balance."
+        ),
+    )
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), nullable=False)
+    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc), nullable=False)
+
+    # Relationships
+    product = relationship("Product", back_populates="inventory_items")
+    location = relationship("InventoryLocation", back_populates="inventory_items")
+
+    def __repr__(self):
+        return f"<Inventory {self.product.sku if self.product else 'N/A'}: {self.available_quantity}>"
+
+
+class InventoryTransaction(Base):
+    """Inventory Transaction model - matches inventory_transactions table"""
+    __tablename__ = "inventory_transactions"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    # References
+    product_id = Column(Integer, ForeignKey('products.id'), nullable=False)
+    location_id = Column(Integer, ForeignKey('inventory_locations.id'), nullable=True)
+    journal_entry_id = Column(Integer, ForeignKey('gl_journal_entries.id', ondelete='SET NULL'), nullable=True)
+
+    # Transaction details
+    transaction_type = Column(String(50), nullable=False)
+    # receipt, shipment, adjustment, consumption, transfer, reservation, scrap
+
+    reference_type = Column(String(50), nullable=True)
+    # sales_order, purchase_order, production_order, print_job, adjustment
+
+    reference_id = Column(Integer, nullable=True)
+
+    # Quantities
+    quantity = Column(Numeric(18, 4), nullable=False)
+
+    # Tracking
+    lot_number = Column(String(100), nullable=True)
+    serial_number = Column(String(100), nullable=True)
+
+    # Costs - SINGLE SOURCE OF TRUTH
+    # cost_per_unit: Cost per unit in transaction's unit ($/G for materials, $/EA for discrete)
+    # total_cost: Pre-calculated at creation time. UI displays this directly - NO client-side math.
+    # See docs/AI_DIRECTIVE_UOM_COSTS.md for details.
+    cost_per_unit = Column(Numeric(18, 4), nullable=True)
+    total_cost = Column(Numeric(18, 4), nullable=True,
+                        comment='Pre-calculated: quantity * cost_per_unit. UI displays directly.')
+    
+    # Unit of measure for quantity - STORED, not inferred from product
+    unit = Column(String(20), nullable=True,
+                  comment='Unit for quantity (G, EA, BOX). Stored at creation, not looked up.')
+
+    # Notes
+    notes = Column(Text, nullable=True)
+    reason_code = Column(String(50), nullable=True)  # Links to adjustment_reasons.code
+
+    # Negative Inventory Approval (for transactions that would cause negative inventory)
+    requires_approval = Column(Boolean, default=False, nullable=False)
+    approval_reason = Column(Text, nullable=True)
+    approved_by = Column(String(100), nullable=True)
+    approved_at = Column(DateTime, nullable=True)
+
+    # Rejection / void (HARD-11). A rejected held transaction is voided
+    # in-place — the row is kept for audit, on_hand is never mutated.
+    # A row is "pending" when requires_approval=True AND voided_by IS NULL
+    # AND approved_by IS NULL.
+    # A row is "voided" when voided_by IS NOT NULL — it must be excluded
+    # from COGS and any on_hand calculations.
+    voided_by = Column(String(100), nullable=True)
+    voided_at = Column(DateTime, nullable=True)
+    void_reason = Column(Text, nullable=True)
+
+    # Metadata
+    # transaction_date: User-entered date when the transaction actually occurred
+    # (e.g., when goods were physically received, not when entered in system)
+    # Distinct from created_at which is always the system entry timestamp
+    transaction_date = Column(Date, nullable=True, index=True)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), nullable=False)
+    created_by = Column(String(100), nullable=True)
+
+    # Relationships
+    location = relationship("InventoryLocation")
+    product = relationship("Product")
+    journal_entry = relationship("GLJournalEntry")
+
+    def __repr__(self):
+        return f"<InventoryTransaction {self.transaction_type}: {self.quantity}>"

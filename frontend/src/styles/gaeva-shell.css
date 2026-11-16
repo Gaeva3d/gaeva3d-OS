@@ -1,0 +1,152 @@
+/* Shared shell binding: docs/design/mockups/painel-geral/assets/
+   painel-shell.css anatomy + painel-home.css final shell overrides.
+   Module widgets/data remain outside this shell-only correction. */
+.gaeva-shell {
+  --gaeva-background: #f5f5f7;
+  --gaeva-surface: #fff;
+  --gaeva-ink: #1c1c1e;
+  --gaeva-muted: #60606a;
+  --gaeva-border: #dedee4;
+  --gaeva-blue: #005dbb;
+  --gaeva-sidebar-surface: #f1f1f4;
+  --gaeva-selection: #e1ebfa;
+  --gaeva-gutter: clamp(16px, 2.25vw, 32px);
+  --gaeva-header-height: 60px;
+  --gaeva-control: clamp(.875rem, .825rem + .2vw, 1rem);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  min-width: 0;
+}
+.gaeva-sidebar { flex-shrink: 0; }
+.gaeva-sidebar.w-64 { width: 244px; }
+.gaeva-sidebar.w-20 { width: 76px; }
+.gaeva-sidebar > div:first-child { height: var(--gaeva-header-height); min-height: var(--gaeva-header-height); padding: 0 20px; gap: 10px; }
+.gaeva-brand { display: flex; align-items: center; gap: 10px; color: var(--gaeva-ink); white-space: nowrap; }
+.gaeva-brand-mark { width: 30px; height: 30px; flex: 0 0 30px; display: grid; place-items: center; background: var(--gaeva-blue); color: white; border-radius: 10px; font-size: 30px; line-height: 1; }
+.gaeva-brand strong { display: block; font-size: 16px; letter-spacing: -.4px; }
+.gaeva-brand small { display: block; margin-top: 2px; font-size: 10px; color: var(--gaeva-muted); }
+.gaeva-sidebar nav { padding: 0 12px 16px; scrollbar-width: thin; scrollbar-color: #c4c4cb transparent; overscroll-behavior: contain; }
+.gaeva-sidebar nav > div { margin: 14px 0 21px; }
+.gaeva-sidebar nav > div:first-child { margin-top: 0; }
+.gaeva-sidebar nav > div > div:first-child:not(.space-y-1) { padding: 0 12px; margin-bottom: 5px; font-size: 10px; letter-spacing: .07em; }
+.gaeva-sidebar .nav-item, .gaeva-sidebar .nav-item-active { min-height: 36px; padding: 7px 12px; margin-block: 1px; border-radius: 10px; font-size: 13px; color: var(--gaeva-ink); background: transparent; border: 0; box-shadow: none; }
+.gaeva-sidebar .nav-item:hover { background: #f2f2f7; }
+.gaeva-sidebar .nav-item-active { background: var(--gaeva-selection); color: var(--gaeva-blue); font-weight: 600; }
+.gaeva-sidebar nav a > svg { width: 19px; height: 19px; flex-shrink: 0; }
+.gaeva-sidebar nav a > span { overflow-wrap: anywhere; }
+.gaeva-sidebar button, .gaeva-topbar button, .gaeva-topbar a { border-radius: 100px; }
+.gaeva-sidebar button { min-width: 32px; min-height: 32px; display: grid; place-items: center; }
+.gaeva-workspace { min-width: 0; }
+.gaeva-topbar { min-height: 72px; padding: 12px 24px; background: rgba(255,255,255,.92); backdrop-filter: blur(20px); color: var(--gaeva-ink); }
+.gaeva-topbar > div, .gaeva-topbar > div > div { min-width: 0; flex-wrap: wrap; gap: 10px; }
+.gaeva-topbar h1 { font-size: 13px; font-weight: 600; white-space: nowrap; }
+.gaeva-topbar-context { color: var(--gaeva-muted); font-weight: 400; margin-left: 8px; }
+.gaeva-topbar button, .gaeva-topbar a { font-size: var(--gaeva-control); min-height: 36px; padding: 6px 12px; }
+.gaeva-topbar button:hover { background: #f2f2f7; }
+.gaeva-main { min-width: 0; background: var(--gaeva-background); padding: 20px var(--gaeva-gutter) 48px; }
+.gaeva-mobile-trigger { color: var(--gaeva-ink); }
+.gaeva-sidebar :focus-visible, .gaeva-topbar :focus-visible, .gaeva-mobile-trigger:focus-visible { outline: 2px solid var(--gaeva-blue); outline-offset: 3px; }
+@media (max-width: 767px) {
+  .gaeva-topbar { padding: 12px 16px 12px 60px; }
+  .gaeva-topbar-context { display: none; }
+}
+@media (any-pointer: coarse) {
+  .gaeva-sidebar nav a, .gaeva-sidebar button, .gaeva-topbar button, .gaeva-topbar a, .gaeva-mobile-trigger { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gaeva-sidebar, .gaeva-sidebar *, .gaeva-topbar * { transition: none !important; }
+}
+/* Preserve the existing AI status meanings, adapt only their light-shell surface. */
+.gaeva-topbar .cursor-help { padding: 4px 9px; border-width: 1px; }
+.gaeva-topbar .cursor-help.bg-gray-700 { background: #f2f2f7; border-color: #dedee5; color: #606069; }
+.gaeva-topbar .cursor-help.bg-green-900\/50 { background: #e9f7ee; border-color: #b9dfc6; color: #18743a; }
+.gaeva-topbar .cursor-help.bg-yellow-900\/50 { background: #fff4e3; border-color: #efd7aa; color: #925100; }
+.gaeva-topbar .cursor-help > span { font-size: 12px; }
+@media (any-pointer: coarse) {
+  .gaeva-sidebar button, .gaeva-topbar button, .gaeva-mobile-trigger { min-width: 44px; }
+}
+/* Original painel-home dark shell tokens; existing module/status aliases remain. */
+.gaeva-shell[data-appearance="dark"] {
+  color-scheme: dark;
+  --gaeva-background: #17171a;
+  --gaeva-sidebar-surface: #202024;
+  --gaeva-surface: #2c2c2e;
+  --gaeva-field-surface: #1c1c1e;
+  --gaeva-ink: #ffffff;
+  --gaeva-muted: #b4b4be;
+  --gaeva-tertiary: rgba(235,235,245,.3);
+  --gaeva-border: #3c3c44;
+  --gaeva-border-opaque: #38383a;
+  --gaeva-fill: rgba(120,120,128,.36);
+  --gaeva-fill-secondary: rgba(120,120,128,.32);
+  --gaeva-fill-tertiary: rgba(120,120,128,.24);
+  --gaeva-blue: #72b7ff;
+  --gaeva-green: #30d158;
+  --gaeva-orange: #ff9f0a;
+  --gaeva-red: #ff453a;
+  --gaeva-yellow: #ffd60a;
+  --gaeva-selection: #263951;
+  --gaeva-blue-tint: color-mix(in srgb, var(--gaeva-blue) 16%, transparent);
+  --gaeva-green-tint: color-mix(in srgb, var(--gaeva-green) 16%, transparent);
+  --gaeva-orange-tint: color-mix(in srgb, var(--gaeva-orange) 16%, transparent);
+  --gaeva-red-tint: color-mix(in srgb, var(--gaeva-red) 16%, transparent);
+  --gaeva-yellow-tint: color-mix(in srgb, var(--gaeva-yellow) 16%, transparent);
+  --gaeva-shadow-card: 0 1px 3px rgba(0,0,0,.3), 0 1px 2px rgba(0,0,0,.4);
+  --gaeva-shadow-popover: 0 20px 25px rgba(0,0,0,.4), 0 8px 10px rgba(0,0,0,.5);
+}
+.gaeva-shell[data-appearance="dark"] .gaeva-sidebar { --gaeva-surface: var(--gaeva-sidebar-surface); }
+.gaeva-shell[data-appearance="dark"] .gaeva-topbar { background: var(--gaeva-surface); }
+.gaeva-shell[data-appearance="dark"] .gaeva-sidebar .nav-item { color: var(--gaeva-ink); }
+.gaeva-shell[data-appearance="dark"] .gaeva-sidebar .nav-item:hover,
+.gaeva-shell[data-appearance="dark"] .gaeva-topbar button:hover { background: var(--gaeva-fill-tertiary); }
+.gaeva-shell[data-appearance="dark"] .gaeva-sidebar .nav-item-active { color: var(--gaeva-blue); background: var(--gaeva-selection); }
+.gaeva-shell[data-appearance="dark"] .gaeva-topbar .gaeva-page-search { background: var(--gaeva-field-surface); }
+.gaeva-shell[data-appearance="dark"] .gaeva-search-heading input::placeholder { color: var(--gaeva-muted); opacity: 1; }
+.gaeva-shell[data-appearance="dark"] :is(.gaeva-header-popover, .gaeva-search-dialog) { box-shadow: var(--gaeva-shadow-popover); }
+.gaeva-shell[data-appearance="dark"] .gaeva-topbar .cursor-help.bg-gray-700 { background: var(--gaeva-fill-tertiary); border-color: var(--gaeva-border); color: var(--gaeva-muted); }
+.gaeva-shell[data-appearance="dark"] .gaeva-topbar .cursor-help.bg-green-900\/50 { background: var(--gaeva-green-tint); border-color: var(--gaeva-green); color: var(--gaeva-green); }
+.gaeva-shell[data-appearance="dark"] .gaeva-topbar .cursor-help.bg-yellow-900\/50 { background: var(--gaeva-orange-tint); border-color: var(--gaeva-orange); color: var(--gaeva-orange); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center {
+  --color-surface-raised: var(--gaeva-surface);
+  --color-surface-hover: var(--gaeva-fill-tertiary);
+  --color-text-muted: var(--gaeva-muted);
+}
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center > .space-y-8 > section { background: var(--gaeva-surface); border-radius: 16px; box-shadow: var(--gaeva-shadow-card); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.bg-gray-800, .bg-paper-sunk) { background: var(--gaeva-field-surface); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center .bg-gray-700 { background: var(--gaeva-fill-tertiary); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.bg-emerald-900\/30, .bg-emerald-500\/10, .bg-status-green-tint) { background: var(--gaeva-green-tint); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.bg-blue-900\/30, .bg-blue-500\/10, .bg-blue-500\/5) { background: var(--gaeva-blue-tint); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.bg-amber-900\/30, .bg-amber-500\/10, .bg-amber-500\/15, .bg-orange-500\/10, .bg-status-amber-tint) { background: var(--gaeva-orange-tint); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.bg-red-900\/30, .bg-red-500\/10, .bg-red-500\/20, .bg-status-red-tint) { background: var(--gaeva-red-tint); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center .bg-yellow-500\/10 { background: var(--gaeva-yellow-tint); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.text-blue-400, .text-blue-300, .text-blue-400\/80) { color: var(--gaeva-blue); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.text-emerald-400, .text-emerald-300, .text-status-green) { color: var(--gaeva-green); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.text-amber-400, .text-amber-300, .text-orange-400, .text-status-amber) { color: var(--gaeva-orange); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.text-red-400, .text-red-300, .text-status-red) { color: var(--gaeva-red); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center .text-yellow-400 { color: var(--gaeva-yellow); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.text-gray-200, .text-gray-300, .text-ink-2) { color: var(--gaeva-ink); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center .text-gray-600 { color: var(--gaeva-muted); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.border-gray-500, .border-gray-700) { border-color: var(--gaeva-border); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.border-red-500\/30, .border-red-500\/50) { border-color: color-mix(in srgb, var(--gaeva-red) 30%, transparent); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.border-emerald-500\/30) { border-color: color-mix(in srgb, var(--gaeva-green) 30%, transparent); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.border-amber-500\/30, .border-amber-600\/40, .border-orange-500\/30, .border-orange-500\/50) { border-color: color-mix(in srgb, var(--gaeva-orange) 30%, transparent); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center .border-yellow-500\/50 { border-color: color-mix(in srgb, var(--gaeva-yellow) 30%, transparent); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.border-blue-500\/20, .border-blue-500\/40) { border-color: color-mix(in srgb, var(--gaeva-blue) 30%, transparent); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center .bg-blue-600 { background: var(--gaeva-blue); color: #fff; }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.bg-emerald-500, .bg-status-green) { background: var(--gaeva-green); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.bg-orange-500, .bg-status-amber) { background: var(--gaeva-orange); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(.bg-red-500, .bg-status-red) { background: var(--gaeva-red); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center .bg-yellow-500 { background: var(--gaeva-yellow); }
+.gaeva-shell[data-appearance="dark"] :is(.gaeva-command-center, .gaeva-topbar) button:disabled { opacity: .5; }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center :is(button, a):focus-visible { outline-color: var(--gaeva-blue); }
+/* Error copy/action stays a readable label; icon, tint and border convey error. */
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center > .text-center.bg-red-500\/10 > button { color: var(--gaeva-ink); }
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center > .space-y-8 > section:first-child > .grid > a > div > .text-sm,
+.gaeva-shell[data-appearance="dark"] .gaeva-command-center > .space-y-8 > section:first-child > .grid > div > .text-sm { color: var(--gaeva-ink); }
+
+.gaeva-module-surface { min-width: 0; margin-inline: auto; width: 100%; }
+.gaeva-module-surface > nav { margin-bottom: 24px; font-size: .8125rem; }
+.gaeva-module-surface > nav[aria-label="Caminho de navegação"] {
+  --text-primary: var(--gaeva-ink);
+  --text-secondary: var(--gaeva-muted);
+  --text-muted: var(--gaeva-muted);
+}

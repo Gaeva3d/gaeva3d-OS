@@ -9,10 +9,16 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-## GAEVA OS
+Leia primeiro CONTEXT.md e apenas a spec/Task pertinente. Preserve dados, autenticação, equipe, autoria e histórico; não implemente itens futuros automaticamente. Após mudança durável, atualize a nota canônica e o changelog. Não afirmar sincronização externa sem evidência.
 
-Leia primeiro apenas `CONTEXT.md`. Ele define escopo, prioridade e a rota de recuperação seletiva.
+# Codex Instructions
 
-Abra documentos de `docs/gaeva-os` somente quando a tarefa exigir o assunto indicado no mapa. Não carregue a pasta inteira por padrão. Preserve `orders.status`, um pedido por card, autenticação, RLS, equipe, dados e histórico. Não implemente itens futuros automaticamente.
+Read and follow `AGENT_POLICY.md`. It is the shared source of truth for this
+repository.
 
-Após mudança durável, atualize a nota canônica correspondente e acrescente uma entrada curta ao changelog. Não copie documentação técnica para outra fonte nem afirme sincronização com Obsidian sem evidência.
+Codex-specific commit attribution:
+
+```text
+Co-authored-by: Codex <codex@openai.com>
+Agent-Session: [session-id]
+```

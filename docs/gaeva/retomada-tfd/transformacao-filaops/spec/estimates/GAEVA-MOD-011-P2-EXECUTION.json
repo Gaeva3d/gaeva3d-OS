@@ -1,0 +1,11 @@
+{
+  "task_id": "GAEVA-MOD-011",
+  "phase": "P2-EXECUTION",
+  "optimistic_h": 12.0,
+  "likely_h": 24.0,
+  "pessimistic_h": 48.0,
+  "confidence": "low",
+  "basis": "Julgamento de planejamento, nao medicao: Julgamento de engenharia r5; F3 12/24/48 + F5 12/24/48: publicacao/aceites e acesso a arquivos. Sem baseline; recursos/contratos existentes, QA e uma correcao limitada incluidos; espera humana/provedor e escopo novo excluidos. Reestimar se stops mudarem. Detalhes em estimates/. Fase cobre MT-02, MT-03, MT-04, MT-05. Alocacao 25% contrato / 50% execucao / 25% revisao, conforme MTs ja especificadas; revisao inclui QA e uma correcao limitada, sem contar espera humana.",
+  "updated_at": "2026-11-12",
+  "notes": "Esforco humano equivalente, nao prazo. Stops, dependencias, aprovacoes e maturidade da Task permanecem. Roadmap MOD005/007/010 estima so preparacao."
+}

@@ -1,0 +1,433 @@
+[
+  {
+    "id": "P01",
+    "location": "${DOCUMENTATION_SOURCE}\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\preparacao-autorizada.md",
+    "revision": "04053ece6755a3fd60409171af9597718e0907ee9dfe1abdff52c7b206cc418e",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura seletiva inicial e adendos finais topologia/REQ-16; hash integral; não prova runtime.",
+    "previous_consumed_revision": "9328daa68b0778240350a608dea4d731187c4039d866a7e372b9c2fdca79586e"
+  },
+  {
+    "id": "P02",
+    "location": "${DOCUMENTATION_SOURCE}\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\briefing.md",
+    "revision": "7adc16ed6bab771168f9203a1cb526c7539deedffce6ff63bede7251d7428a73",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura seletiva inicial e adendos finais topologia/REQ-16; hash integral; não prova runtime.",
+    "previous_consumed_revision": "b4774ff36553771538df927442b25f11a9467905cc0db47ced6cc14c39ac88ae"
+  },
+  {
+    "id": "P03",
+    "location": "${DOCUMENTATION_SOURCE}\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\prd-proposta.md",
+    "revision": "ad88d244847add7ff88168e5939622925fbc06f71b14e690db40e908c9ad0222",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura seletiva inicial e adendos finais topologia/REQ-16; hash integral; não prova runtime.",
+    "previous_consumed_revision": "8558ca9a9e2711e8d23a97ed6e226e79c691522077dd0ee5ba4d653852a794f9"
+  },
+  {
+    "id": "P04",
+    "location": "${DOCUMENTATION_SOURCE}\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\escopo-aprovacoes.md",
+    "revision": "10a842b4d8d675f4d72aec5c187c80f17ee071f03e7aa462065879c199f9e605",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura seletiva inicial e adendos finais topologia/REQ-16; hash integral; não prova runtime.",
+    "previous_consumed_revision": "fc6b766c57b17b3d2df08ec544f33937afd9687b3414d1c5e3d359e3dba6e2ba"
+  },
+  {
+    "id": "P05",
+    "location": "${DOCUMENTATION_SOURCE}\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\recibo-product.md",
+    "revision": "897b00aaa94ffb77288718fcc2e82ded9e6d60902a2d7777989ccd6b3b3b005f",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura seletiva inicial e adendos finais topologia/REQ-16; hash integral; não prova runtime.",
+    "previous_consumed_revision": "77c7467622244c444d39df62aca52eb95f7b248ae7617c0b78aea33955ab58fb"
+  },
+  {
+    "id": "C01",
+    "location": "${DOCUMENTATION_SOURCE}\\docs\\gaeva\\modulos\\comercial\\PRD.md",
+    "revision": "56add0bcf422439897204793add4931a7091d60982a884e528cf2f83fdcb87b2",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "C02",
+    "location": "${DOCUMENTATION_SOURCE}\\docs\\gaeva\\modulos\\comercial\\especificacao-funcional.md",
+    "revision": "648b3a428bed01b58a0046daa5cfc5e23a5f778f6ccdd1ba50eda171734bb67d",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "C03",
+    "location": "${DOCUMENTATION_SOURCE}\\docs\\gaeva\\modulos\\comercial\\matriz-funcional.md",
+    "revision": "89d2e1ddf157ed9e62d20d72c78537cbb0c25bc336c7c95dcee586b31f85a9e1",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "A01",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\app\\main.py",
+    "revision": "89b9510a45b164353ccfffeab8ca0f28a29cae607ac8670312642733754484dd",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "A02",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\app\\core\\plugin_registry.py",
+    "revision": "6735e47c9418d394dd4edd35a895d903dad09bd2f78034775932ca0ee19b1263",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "A03",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\requirements.txt",
+    "revision": "8ed7052aaf74e5cc9296998132ce64c4020459411ccf66e0fe6b6884f43daa4c",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "A04",
+    "location": "${DOCUMENTATION_SOURCE}\\frontend\\package.json",
+    "revision": "d2db9cb362f44660ee978f5dfe3238edf555a14ce0dad8c35501e99a7aa25007",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "N01",
+    "location": "${DOCUMENTATION_SOURCE}\\frontend\\src\\hooks\\useAtendimento.js",
+    "revision": "9b9eb9ca0617d53a0c1df92a1c3620ea7cf38eb6d4f3a6e20381bdf9a69af67f",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "N02",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\app\\api\\v1\\endpoints\\notifications.py",
+    "revision": "020b77ae55a937c80084e3d6bcd30634fe1369799470a8239cd3fc679da9ac32",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "N03",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\app\\services\\notification_context_service.py",
+    "revision": "fc4a85f1aaa44abb509402a80a7826b5cbe86f73db822943b7c7193771b8e07c",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "D01",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\app\\models\\production_order.py",
+    "revision": "d999ba2fe5a4229bc3bcc852c4aab7a1613d180e0707274410f0077ddcaceece",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "D02",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\app\\models\\payment.py",
+    "revision": "973f6193c79f9ad43485e97a8fadb0f0e14f69292090d66b238445793312020f",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "D03",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\app\\core\\uom_config.py",
+    "revision": "e53f68aa73c30cf0d0363a9310227e52079f76c086ab25254d00c982d6354e51",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "D04",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\app\\api\\v1\\deps.py",
+    "revision": "30257e1d9a430e7a69f10e44625e68a31844f9047f8ff7f2441d1f48bac37f28",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "D05",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\app\\api\\v1\\endpoints\\admin\\uploads.py",
+    "revision": "5b8807b6e57f22473a0360fd13b59c8645e15aaaff6e7cf8905673fdb929f047",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "T01",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\tests\\api\\v1\\test_notification_context.py",
+    "revision": "6368b713323eadb5f783d7495349f66c3559b74ad7d18417108036e946dd2a93",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "T02",
+    "location": "${DOCUMENTATION_SOURCE}\\frontend\\src\\pages\\admin\\__tests__\\AdminNotifications.test.jsx",
+    "revision": "1bdb9efc0f59d4b8385779ff29253579dad33601f74e961bcf9d51773a4ba2bc",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "T03",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\tests\\test_payment_convergence.py",
+    "revision": "6d0d8256b8b5b72a56954478a31da12823111336b03079158cd7ca5e0e7256d2",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "U01",
+    "location": "${DOCUMENTATION_SOURCE}\\docs\\design\\mockups\\comercial\\index.html",
+    "revision": "6f6fe173a69c6f9288fbc3c9aec4a1721415e499b9ed3d96280101f49d7254da",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "U02",
+    "location": "${DOCUMENTATION_SOURCE}\\docs\\design\\design-guide.md",
+    "revision": "f47ad989832218bc3a70bdaffdb3ff8d39860719d4e2153c2d77f7d6f554925c",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "U03",
+    "location": "${DOCUMENTATION_SOURCE}\\docs\\design\\index.html",
+    "revision": "e0191538141a1b89b2655d397aa9da4aeaba44dcd611288fbf0099d27998576d",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "L01",
+    "location": "${DOCUMENTATION_SOURCE}\\LICENSE",
+    "revision": "eb2e3f1c3ac376b8076e68b41d0eccb51220455514ff1010d33cd132f352b552",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "R01",
+    "location": "${DOCUMENTATION_SOURCE}\\frontend\\src\\App.jsx",
+    "revision": "3828bd7bf38cc44c9315bf2bd4a44bd4bfca84624e80337aa8ba62040c21470f",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "R02",
+    "location": "${DOCUMENTATION_SOURCE}\\frontend\\src\\components\\nav\\navConfig.js",
+    "revision": "67f6200be94d242ba915fb328126a70a3e04f93c8c6c488e59f193b2e66ce5e8",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "R03",
+    "location": "${DOCUMENTATION_SOURCE}\\frontend\\src\\components\\breadcrumbs.utils.js",
+    "revision": "96e03655c3b25e9ab3f2ce51bd3a5e10fb52f94d77a050cdeacb8e00f08f8572",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Leitura estática seletiva; hash integral. Não prova runtime."
+  },
+  {
+    "id": "W01",
+    "location": "https://github.com/ChatbotXIO/ChatbotX/blob/00d8b488074d4112e799c24fa516b46adf8f6c25/LICENSE",
+    "revision": "00d8b488074d4112e799c24fa516b46adf8f6c25",
+    "status": "verified",
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "W02",
+    "location": "https://github.com/ChatbotXIO/ChatbotX/blob/00d8b488074d4112e799c24fa516b46adf8f6c25/packages/database/src/schema/enterprise/LICENSE",
+    "revision": "00d8b488074d4112e799c24fa516b46adf8f6c25",
+    "status": "verified",
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "W03",
+    "location": "https://www.gov.br/anpd/pt-br/acesso-a-informacao/institucional/atos-normativos/regulamentacoes_anpd/resolucao-cd-anpd-no-2-de-27-de-janeiro-de-2022",
+    "revision": "Resolução 2/2022; página modificada 16/09/2026; remete alteração 15/2024",
+    "status": "verified",
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "W04",
+    "location": "https://www.gov.br/pt-br/servicos/emitir-nota-fiscal-de-servico-eletronica",
+    "revision": "página modificada 29/10/2026",
+    "status": "verified",
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "W05",
+    "location": "https://github.com/bacen/pix-api",
+    "revision": "README observado: 2.11.0-rc1; não versão PSP homologada",
+    "status": "verified",
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "W06",
+    "location": "https://chatbotx.io/channels/",
+    "revision": "publicada, versão não declarada",
+    "status": "verified",
+    "checked_at": "2026-11-10"
+  },
+  {
+    "id": "W07",
+    "location": "https://github.com/MatthewKerns/software-development-best-practices-guide/tree/efdec594ac403754baea2bb04952dd1d68da35c7",
+    "revision": "efdec594ac403754baea2bb04952dd1d68da35c7",
+    "status": "missing",
+    "checked_at": "2026-11-10",
+    "limits": "web.open: Failed to fetch restricted URL; nenhum capítulo usado como evidência. Não contornado nem incorporado."
+  },
+  {
+    "id": "W08",
+    "location": "https://www.gaeva3d.com/",
+    "revision": "Homepage sem revisao publicada; consulta 2026-11-10",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "Fonte primaria da empresa; declaracoes publicas, sem prova operacional."
+  },
+  {
+    "id": "M01",
+    "location": "${DOCUMENTATION_SOURCE}\\frontend\\src\\components\\atendimento\\AtendimentoCompose.jsx",
+    "revision": "a5ee371459899cff281afca779b90b467c4b514b504d91aebc103e8268eafe83",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "MT-D01 revision2 F-02; leitura seletiva estática, não teste runtime."
+  },
+  {
+    "id": "M02",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\app\\models\\notification.py",
+    "revision": "3ef65d50df4fdca518b18adeaa85c4a0fff7029c5df05149b0762d6af82c8398",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "MT-D01 revision2 F-02; leitura seletiva estática, não teste runtime."
+  },
+  {
+    "id": "M03",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\app\\schemas\\notification.py",
+    "revision": "c32e742928090328f8ff38bef423b7450663632efc7319490bc89bed2843ff75",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "MT-D01 revision2 F-02; leitura seletiva estática, não teste runtime."
+  },
+  {
+    "id": "M04",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\app\\services\\notification_service.py",
+    "revision": "412a807dda2d12f01a00c6bb96580571ce8da98e3f4439dc12c9c539d3ccd2a3",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "MT-D01 revision2 F-02; leitura seletiva estática, não teste runtime."
+  },
+  {
+    "id": "M05",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\app\\services\\sales_order_service.py",
+    "revision": "5d5cffed2bf79aa843370afe063d059b827bad954cf26ff8a21aaa63c251022a",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "MT-D01 revision2 F-02; leitura seletiva estática, não teste runtime."
+  },
+  {
+    "id": "M06",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\app\\api\\v1\\endpoints\\admin\\customers.py",
+    "revision": "34d81f188b73ab8b43c4aebbe99b0ed065a1c7ebfbd9d04aa7454d6d7172c99e",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "MT-D01 revision2 F-02; leitura seletiva estática, não teste runtime."
+  },
+  {
+    "id": "M07",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\app\\api\\v1\\endpoints\\admin\\dashboard.py",
+    "revision": "8920c0356eed480bce41a08f59daece7c110a79bcbb6472a1bce393ca9efe18d",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "MT-D01 revision2 F-02; leitura seletiva estática, não teste runtime."
+  },
+  {
+    "id": "M08",
+    "location": "${DOCUMENTATION_SOURCE}\\frontend\\src\\components\\nav\\GaevaTopbar.jsx",
+    "revision": "ed4dc631107c99bf2b42cd19ce0a9f6fb396e8ba7a8f94139bdf27ec5f700fd2",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "MT-D01 revision2 F-02; leitura seletiva estática, não teste runtime."
+  },
+  {
+    "id": "M09",
+    "location": "${DOCUMENTATION_SOURCE}\\frontend\\src\\pages\\admin\\AdminNotifications.jsx",
+    "revision": "dfee60b70ec42021667ac0e9c773efd49171c9e372d239741e85d3cf21b7a3b3",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "MT-D01 revision2 F-02; leitura seletiva estática, não teste runtime."
+  },
+  {
+    "id": "M10",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\tests\\api\\v1\\test_notifications.py",
+    "revision": "ba61213fe4483b9a4e55eef9df20f099588da9ebf6cdb0df045868df1fff96a5",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "MT-D01 revision2 F-02; leitura seletiva estática, não teste runtime."
+  },
+  {
+    "id": "M11",
+    "location": "${DOCUMENTATION_SOURCE}\\frontend\\src\\components\\atendimento\\CustomerContextDrawer.jsx",
+    "revision": "0c6a31f749b2b7d2f0bcbf333498c5d07b132463a74f417857d7c99c09bd67fb",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "MT-D01 revision2 F-02; leitura seletiva estática, não teste runtime."
+  },
+  {
+    "id": "M12",
+    "location": "${DOCUMENTATION_SOURCE}\\frontend\\src\\lib\\events.js",
+    "revision": "a3abb02601c80a6219673c4dc9526191108b92ca3276fec0ea3d382f2b107eff",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "MT-D01 revision2 F-02; leitura seletiva estática, não teste runtime."
+  },
+  {
+    "id": "M13",
+    "location": "${DOCUMENTATION_SOURCE}\\frontend\\src\\lib\\apiClient.js",
+    "revision": "3af77c90a73cd1c41d5acd5fb4bd51c92fad88301c7db42cfb45c45126aa089a",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "MT-D01 revision2 F-02; leitura seletiva estática, não teste runtime."
+  },
+  {
+    "id": "M14",
+    "location": "${DOCUMENTATION_SOURCE}\\frontend\\src\\components\\ApiErrorToaster.jsx",
+    "revision": "ac783b17d252f953761d07667ee4212442118dec0dca39641227c7b410651cf7",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "MT-D01 revision2 F-02; leitura seletiva estática, não teste runtime."
+  },
+  {
+    "id": "M15",
+    "location": "${DOCUMENTATION_SOURCE}\\frontend\\src\\pages\\admin\\AdminDashboard.jsx",
+    "revision": "c8f1798822cf0330d07fb1b1a78ea3ff84003f75ecb84f62d46bfe277c9960d7",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "MT-D01 revision2 F-02; leitura seletiva estática, não teste runtime."
+  },
+  {
+    "id": "M16",
+    "location": "${DOCUMENTATION_SOURCE}\\backend\\app\\api\\v1\\endpoints\\admin\\__init__.py",
+    "revision": "78115985553881d2a6857d5da1af9609f036779ddcfcade10d15ca325cd3925b",
+    "status": "verified",
+    "checked_at": "2026-11-10",
+    "scope": "MT-D01 revision2 F-02; leitura seletiva estática, não teste runtime."
+  }
+]

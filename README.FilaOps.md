@@ -1,0 +1,230 @@
+# FilaOps
+
+[![CI](https://github.com/BLB3DPrinting/filaops/actions/workflows/core-ci.yml/badge.svg?branch=main)](https://github.com/BLB3DPrinting/filaops/actions/workflows/core-ci.yml?query=branch%3Amain)
+[![CodeQL](https://github.com/BLB3DPrinting/filaops/actions/workflows/codeql.yml/badge.svg)](https://github.com/BLB3DPrinting/filaops/actions/workflows/codeql.yml)
+[![License: BSL 1.1](https://img.shields.io/badge/License-BSL_1.1-blue.svg)](LICENSE)
+[![Latest Release](https://img.shields.io/github/v/release/BLB3DPrinting/filaops)](https://github.com/BLB3DPrinting/filaops/releases/latest)
+
+Open-source ERP for 3D print farms. Manage inventory, production, sales, purchasing, MRP, and accounting in one system built specifically for additive manufacturing.
+
+**[Documentation](https://blb3dprinting.github.io/filaops/)** | **[Release Notes](https://github.com/BLB3DPrinting/filaops/releases/latest)**
+
+## Quick Start (Docker)
+
+```bash
+git clone https://github.com/BLB3DPrinting/filaops.git
+cd filaops
+cp backend/.env.example .env
+# Generate secrets (do not skip these):
+echo "SECRET_KEY=$(openssl rand -hex 32)" >> .env
+echo "DB_PASSWORD=$(openssl rand -hex 24)" >> .env
+docker compose up -d
+# Open http://localhost — create your admin account on first visit
+```
+
+**Always set `SECRET_KEY`.** It signs every login, so it must be a long random
+value that only your server knows. Generate one with `openssl rand -hex 32`, or
+with `python -c "import secrets; print(secrets.token_hex(32))"` where OpenSSL is
+not installed. `docker compose up` still starts without it, but FilaOps will not
+sign logins with an empty or placeholder key: production refuses to start, and
+any other environment uses a temporary key that changes on every restart, which
+signs everyone out each time. Upgrading? Follow
+[Upgrading FilaOps](docs/UPGRADE.md); coming from 4.1.x or earlier, it starts
+with the settings 4.2.0 needs. Each release's notes are in the
+[CHANGELOG](CHANGELOG.md).
+
+## Quick Start (Manual)
+
+### Backend
+
+```bash
+cd backend
+python -m venv venv
+# Windows: .\venv\Scripts\Activate
+# Linux/Mac: source venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env  # Set your database credentials and SECRET_KEY
+alembic upgrade head
+uvicorn app.main:app --reload
+```
+
+### Frontend
+
+Requires Node.js 24 or newer.
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+### Database
+
+FilaOps requires PostgreSQL 16+. Configure `backend/.env`:
+
+```ini
+DATABASE_URL=postgresql+psycopg://user:password@localhost:5432/filaops
+```
+
+Or use individual variables:
+
+```ini
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=filaops
+DB_USER=postgres
+DB_PASSWORD=your_password
+```
+
+## Features
+
+Core features by module:
+
+### Sales & Customers
+
+- Multi-line item quotes with per-line and customer discounts
+- Sales orders with fulfillment tracking and price level auto-apply
+- Invoice engine with PDF templates, payment recording and invoice void
+- Customer management with payment terms (COD, net-15, net-30) and credit limits
+- Customer traceability profiles
+- Suggest Prices tool for margin-based bulk pricing
+- External order ingestion with operator notification inbox
+
+### Inventory & Warehouse
+
+- Multi-location inventory with transactions
+- Spool management (filament tracking by weight)
+- Cycle counting and inventory adjustments
+- Low stock alerts with MRP-driven shortage detection
+- Negative inventory approval workflow
+
+### Manufacturing
+
+- Production orders (draft > released > in progress > complete)
+- Bill of Materials with multi-level cost rollup
+- Duplicate item with inline BOM component swap (color variants)
+- Variant matrix — bulk create color/material variants from template products
+- Copy BOM to another product
+- Routings and work centers with typed operations and operation materials
+- Machine overhead and scrap tracking
+
+### Quality
+
+- QC inspections with measurements, photos, defect reasons and waivers
+- Quality plans per product, with measured and pass/fail characteristics
+- Selectable QC rigor (off, basic, full) and an inspection gate (off, warn, block)
+- First-pass yield from each order's first inspection
+
+### Purchasing
+
+- Purchase orders with receiving workflow
+- Vendor management
+- Quick reorder from low stock alerts
+
+### MRP (Material Requirements Planning)
+
+- Demand calculation from sales orders and production
+- Supply netting against on-hand inventory
+- Planned order generation for shortages
+- Auto-trigger on order creation
+
+### Accounting
+
+- Chart of accounts and journal entries
+- GL reporting and trial balance
+- Period close
+
+### Operations
+
+- Command center dashboard
+- Security audit
+- Analytics
+- Maintenance scheduling
+- UOM conversions (12 standard units)
+
+### System
+
+- First-run setup wizard with admin account creation
+- Role-based access (admin and operator staff accounts)
+- Admin-approved password reset (via SMTP email; admins can also reset staff passwords from Team Members)
+- REST API (over 500 operations)
+- Shipping and order event tracking
+
+## Tech Stack
+
+| Layer | Technology |
+| --- | --- |
+| Backend | FastAPI, Python 3.11+, SQLAlchemy 2.0, Alembic |
+| Frontend | React 19, Vite, Tailwind CSS (built with Node.js 24+) |
+| Database | PostgreSQL 16+ |
+| Auth | httpOnly cookie-based JWT |
+| Deployment | Docker Compose (nginx + uvicorn) |
+
+## Project Structure
+
+```text
+backend/
+  app/
+    api/v1/endpoints/   # FastAPI route handlers
+    models/             # SQLAlchemy models
+    services/           # Business logic, one module per area
+    core/               # Config, security, UOM
+  alembic/              # Database migrations
+  tests/                # pytest suite
+frontend/
+  src/
+    components/         # Shared UI components + Storybook
+    hooks/              # useApi, useCRUD
+    pages/admin/        # Admin page views
+```
+
+## Testing
+
+```bash
+# Backend
+cd backend && pytest tests/ -v
+
+# Frontend component tests
+cd frontend && npm test
+```
+
+## Troubleshooting
+
+### Frontend can't connect to backend
+
+- Ensure `VITE_API_URL` matches the backend URL (default: `http://localhost:8000`)
+- If accessing remotely, set `VITE_API_URL=http://<server-ip>:8000` and rebuild
+- Check CORS: set `ALLOWED_ORIGINS` in `backend/.env`
+
+### Database connection errors
+
+- Verify PostgreSQL is running: `pg_isready -h localhost -p 5432`
+- Check credentials in `backend/.env`
+- Create the database if needed: `createdb filaops`
+
+### Migration errors
+
+- Run `alembic upgrade head` from `backend/`
+- For a fresh start: drop and recreate the database, then re-run migrations
+
+### Docker issues
+
+- Check logs: `docker compose logs backend`
+- Ensure ports 80, 8000, and 5432 are available
+- The migrate container must complete before the backend starts
+
+## Documentation
+
+- **[Full Documentation](https://blb3dprinting.github.io/filaops/)** — Deployment, configuration, and API reference
+- [User Guide](docs/user-guide/index.md) — Module-by-module usage
+- [Contributing](CONTRIBUTING.md) — Development setup and PR guidelines
+
+## FilaOps PRO
+
+Need B2B wholesale portals, advanced reporting, Shopify/QuickBooks integrations, or AI-powered scheduling? **FilaOps PRO** adds enterprise features on top of the same codebase — no migration, no separate install.
+
+Coming soon at [blb3dprinting.com](https://blb3dprinting.com)
+
+## License
+
+[Business Source License 1.1](LICENSE) — Free for non-competing use. Converts to Apache 2.0 on December 5, 2029.

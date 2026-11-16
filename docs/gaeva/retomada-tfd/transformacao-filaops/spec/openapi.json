@@ -1,0 +1,1331 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "GAEVA OS - interfaces NOVAS PROPOSTAS MT-A02r1",
+    "version": "1.0.0-draft",
+    "description": "Nao implementadas. C01r2 e spec integrada sao normativos. schema valida formato; RBAC, audiencia, estado, idempotencia e transicoes exigem checks de dominio. F1 e aprovacao humana antecedem execucao. reason obrigatorio neste novo API e semanticamente identificado. Sem parametros semanticos adicionais por query/header nao declarados."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/api/v1/gaeva/commands": {
+      "post": {
+        "operationId": "submitGaevaCommand",
+        "description": "Admite chave por instalacao/ator/acao/operation_id e identidade completa. Mesmo operation_id/acao alvo diferente conflita. Retry exato terminal retorna status/resultado original autorizado, sem novo CAS. Concorrente ou unknown202 referencia mesma operacao. Retencao/consulta conforme data-contracts/C01r2. Nunca emite efeito novo ao consultar.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Command"
+              },
+              "example": {
+                "command_schema_version": "1",
+                "operation_id": "00000000-0000-4000-8000-000000000001",
+                "action": "conversation.close.v1",
+                "target": {
+                  "type": "conversation",
+                  "id": "00000000-0000-4000-8000-000000000002"
+                },
+                "expected_version": 7,
+                "payload": {},
+                "reason": "Encerramento solicitado pelo principal autorizado"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sucesso terminal ou replay exato com resultado original e versao de commit; versao corrente pode ser maior",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Pendente/resultado desconhecido; acompanhar mesma operacao, nunca reenviar com nova chave",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sessao ausente/invalida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acao proibida sem revelar objeto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contexto/operacao fora da audiencia ou inconsistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflito de identidade/versao/capacidade/gate/politica; nenhum novo efeito",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Comando invalido nao admitido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Limite de requisicoes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Rejeicao inequivoca do provedor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Integracao indisponivel",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/gaeva/operations/{action}/{operation_id}": {
+      "get": {
+        "operationId": "readOwnOperation",
+        "description": "Somente namespace do ator/instalacao autenticados; revalidar acesso ao alvo e campos do resultado original. GET nao aplica comando. Operacao inexistente ou fora de audiencia404.",
+        "parameters": [
+          {
+            "name": "action",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "conversation.assume.v1",
+                "conversation.close.v1",
+                "conversation.return_automation.v1",
+                "collaboration.accept.v1",
+                "collaboration.decline.v1",
+                "opportunity.move.v1",
+                "order.advance.v1",
+                "quote.publish.v1",
+                "file.publish.v1",
+                "payment.confirm_manual.v1"
+              ]
+            }
+          },
+          {
+            "name": "operation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Estado autorizado persistido, nao sucesso inventado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Operation"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sessao ausente/invalida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acao proibida sem revelar objeto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contexto/operacao fora da audiencia ou inconsistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/gaeva/context/{origin_type}/{origin_id}": {
+      "get": {
+        "operationId": "resolveTypedContext",
+        "description": "Somente origem conversation/opportunity; mapa persistido, sem fallback por nome/email. Retorno minimo sem valores financeiros. Ausencia de pedido e null, nao primeiro pedido arbitrario. Contatos usa contexto proprio, nao esta nova rota.",
+        "parameters": [
+          {
+            "name": "origin_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "conversation",
+                "opportunity"
+              ]
+            }
+          },
+          {
+            "name": "origin_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Projecao minima permitida com identidade exata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Context"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Sessao ausente/invalida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Acao proibida sem revelar objeto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contexto/operacao fora da audiencia ou inconsistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "Command": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "command_schema_version": {
+                "const": "1"
+              },
+              "operation_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "action": {
+                "const": "conversation.assume.v1"
+              },
+              "target": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "const": "conversation"
+                  },
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "type",
+                  "id"
+                ]
+              },
+              "expected_version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {},
+                "required": []
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "command_schema_version",
+              "operation_id",
+              "action",
+              "target",
+              "expected_version",
+              "payload",
+              "reason"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "command_schema_version": {
+                "const": "1"
+              },
+              "operation_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "action": {
+                "const": "conversation.close.v1"
+              },
+              "target": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "const": "conversation"
+                  },
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "type",
+                  "id"
+                ]
+              },
+              "expected_version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {},
+                "required": []
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "command_schema_version",
+              "operation_id",
+              "action",
+              "target",
+              "expected_version",
+              "payload",
+              "reason"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "command_schema_version": {
+                "const": "1"
+              },
+              "operation_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "action": {
+                "const": "conversation.return_automation.v1"
+              },
+              "target": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "const": "conversation"
+                  },
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "type",
+                  "id"
+                ]
+              },
+              "expected_version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {},
+                "required": []
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "command_schema_version",
+              "operation_id",
+              "action",
+              "target",
+              "expected_version",
+              "payload",
+              "reason"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "command_schema_version": {
+                "const": "1"
+              },
+              "operation_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "action": {
+                "const": "collaboration.accept.v1"
+              },
+              "target": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "const": "collaboration_invite"
+                  },
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "type",
+                  "id"
+                ]
+              },
+              "expected_version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {},
+                "required": []
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "command_schema_version",
+              "operation_id",
+              "action",
+              "target",
+              "expected_version",
+              "payload",
+              "reason"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "command_schema_version": {
+                "const": "1"
+              },
+              "operation_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "action": {
+                "const": "collaboration.decline.v1"
+              },
+              "target": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "const": "collaboration_invite"
+                  },
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "type",
+                  "id"
+                ]
+              },
+              "expected_version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {},
+                "required": []
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "command_schema_version",
+              "operation_id",
+              "action",
+              "target",
+              "expected_version",
+              "payload",
+              "reason"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "command_schema_version": {
+                "const": "1"
+              },
+              "operation_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "action": {
+                "const": "opportunity.move.v1"
+              },
+              "target": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "const": "opportunity"
+                  },
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "type",
+                  "id"
+                ]
+              },
+              "expected_version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "to_stage": {
+                    "type": "string",
+                    "enum": [
+                      "new_contact",
+                      "qualification",
+                      "diagnosis",
+                      "proposal",
+                      "negotiation",
+                      "awaiting_financial_confirmation",
+                      "won",
+                      "lost"
+                    ]
+                  },
+                  "policy_revision": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "to_stage",
+                  "policy_revision"
+                ]
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "command_schema_version",
+              "operation_id",
+              "action",
+              "target",
+              "expected_version",
+              "payload",
+              "reason"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "command_schema_version": {
+                "const": "1"
+              },
+              "operation_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "action": {
+                "const": "order.advance.v1"
+              },
+              "target": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "const": "order"
+                  },
+                  "id": {
+                    "oneOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      {
+                        "type": "string",
+                        "pattern": "^[1-9][0-9]*$"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "type",
+                  "id"
+                ]
+              },
+              "expected_version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "to_column": {
+                    "type": "string",
+                    "enum": [
+                      "inbox",
+                      "modeling_3d",
+                      "printing",
+                      "assembly",
+                      "quality",
+                      "shipping",
+                      "sent"
+                    ]
+                  },
+                  "revision_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "policy_revision": {
+                    "type": "string"
+                  },
+                  "evidence_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "uniqueItems": true
+                  }
+                },
+                "required": [
+                  "to_column",
+                  "revision_id",
+                  "policy_revision",
+                  "evidence_ids"
+                ]
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "command_schema_version",
+              "operation_id",
+              "action",
+              "target",
+              "expected_version",
+              "payload",
+              "reason"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "command_schema_version": {
+                "const": "1"
+              },
+              "operation_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "action": {
+                "const": "quote.publish.v1"
+              },
+              "target": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "const": "quote_revision"
+                  },
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "type",
+                  "id"
+                ]
+              },
+              "expected_version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "artifact_set_hash": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  }
+                },
+                "required": [
+                  "artifact_set_hash"
+                ]
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "command_schema_version",
+              "operation_id",
+              "action",
+              "target",
+              "expected_version",
+              "payload",
+              "reason"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "command_schema_version": {
+                "const": "1"
+              },
+              "operation_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "action": {
+                "const": "file.publish.v1"
+              },
+              "target": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "const": "file_object"
+                  },
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": [
+                  "type",
+                  "id"
+                ]
+              },
+              "expected_version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "revision_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "audience": {
+                    "type": "string",
+                    "enum": [
+                      "customer_published",
+                      "internal_order"
+                    ]
+                  },
+                  "linked_type": {
+                    "type": "string",
+                    "enum": [
+                      "order",
+                      "quote_revision"
+                    ]
+                  },
+                  "linked_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "revision_id",
+                  "audience",
+                  "linked_type",
+                  "linked_id"
+                ]
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "command_schema_version",
+              "operation_id",
+              "action",
+              "target",
+              "expected_version",
+              "payload",
+              "reason"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "command_schema_version": {
+                "const": "1"
+              },
+              "operation_id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "action": {
+                "const": "payment.confirm_manual.v1"
+              },
+              "target": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "const": "order"
+                  },
+                  "id": {
+                    "oneOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      {
+                        "type": "string",
+                        "pattern": "^[1-9][0-9]*$"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "type",
+                  "id"
+                ]
+              },
+              "expected_version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "payload": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "receipt_reference": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string",
+                    "pattern": "^[0-9]+\\.[0-9]{2}$"
+                  },
+                  "currency": {
+                    "type": "string",
+                    "pattern": "^[A-Z]{3}$"
+                  },
+                  "financial_revision": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "receipt_reference",
+                  "amount",
+                  "currency",
+                  "financial_revision"
+                ]
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              }
+            },
+            "required": [
+              "command_schema_version",
+              "operation_id",
+              "action",
+              "target",
+              "expected_version",
+              "payload",
+              "reason"
+            ]
+          }
+        ]
+      },
+      "Target": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "conversation",
+              "opportunity",
+              "order",
+              "quote_revision",
+              "file_object",
+              "collaboration_invite"
+            ]
+          },
+          "id": {
+            "oneOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "string",
+                "minLength": 1
+              }
+            ]
+          }
+        },
+        "required": [
+          "type",
+          "id"
+        ]
+      },
+      "Operation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "conversation.assume.v1",
+              "conversation.close.v1",
+              "conversation.return_automation.v1",
+              "collaboration.accept.v1",
+              "collaboration.decline.v1",
+              "opportunity.move.v1",
+              "order.advance.v1",
+              "quote.publish.v1",
+              "file.publish.v1",
+              "payment.confirm_manual.v1"
+            ]
+          },
+          "operation_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "target": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "conversation",
+                  "opportunity",
+                  "order",
+                  "quote_revision",
+                  "file_object",
+                  "collaboration_invite"
+                ]
+              },
+              "id": {
+                "oneOf": [
+                  {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                ]
+              }
+            },
+            "required": [
+              "type",
+              "id"
+            ]
+          },
+          "request_expected_version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "committed_version": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "succeeded",
+              "rejected",
+              "outcome_unknown"
+            ]
+          },
+          "original_http_status": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "result": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "safe_code": {
+                    "type": "string"
+                  },
+                  "resource": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "conversation",
+                          "opportunity",
+                          "order",
+                          "quote_revision",
+                          "file_object",
+                          "collaboration_invite"
+                        ]
+                      },
+                      "id": {
+                        "oneOf": [
+                          {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "id"
+                    ]
+                  },
+                  "evidence_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "uuid"
+                    }
+                  }
+                },
+                "required": [
+                  "safe_code",
+                  "resource"
+                ]
+              },
+              {
+                "$ref": "#/components/schemas/Error"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "original_correlation_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "action",
+          "operation_id",
+          "target",
+          "request_expected_version",
+          "committed_version",
+          "state",
+          "original_http_status",
+          "result",
+          "original_correlation_id"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "UNAUTHENTICATED",
+              "ACTION_FORBIDDEN",
+              "CONTEXT_UNAVAILABLE",
+              "VERSION_CONFLICT",
+              "CAPACITY_EXCEEDED",
+              "GATE_NOT_SATISFIED",
+              "IDEMPOTENCY_CONFLICT",
+              "POLICY_UNRESOLVED",
+              "INVALID_INPUT",
+              "RATE_LIMITED",
+              "INTEGRATION_UNAVAILABLE",
+              "PROVIDER_REJECTED"
+            ]
+          },
+          "correlation_id": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "correlation_id",
+          "message"
+        ]
+      },
+      "Context": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "origin": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "conversation",
+                  "opportunity"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            "required": [
+              "type",
+              "id"
+            ]
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "customer_user_id": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "customer_organization_id": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "selected_order_id": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "opportunity_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid"
+          },
+          "conversation_id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid"
+          },
+          "available_actions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "conversation.assume.v1",
+                "conversation.close.v1",
+                "conversation.return_automation.v1",
+                "collaboration.accept.v1",
+                "collaboration.decline.v1",
+                "opportunity.move.v1",
+                "order.advance.v1",
+                "quote.publish.v1",
+                "file.publish.v1",
+                "payment.confirm_manual.v1"
+              ]
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "origin",
+          "version",
+          "customer_user_id",
+          "customer_organization_id",
+          "selected_order_id",
+          "opportunity_id",
+          "conversation_id",
+          "available_actions"
+        ]
+      }
+    }
+  }
+}

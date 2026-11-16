@@ -1,0 +1,174 @@
+site_name: FilaOps
+site_url: https://blb3dprinting.github.io/filaops/
+site_description: Open-source ERP for 3D print farm operations — inventory, production, MRP, and more.
+site_author: BLB3D Labs
+repo_url: https://github.com/BLB3DPrinting/filaops
+repo_name: BLB3DPrinting/filaops
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  logo: assets/images/logo_small_transparent.png
+  favicon: assets/images/favicon.ico
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to dark mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+    admonition:
+      tip: fontawesome/solid/lightbulb
+      warning: fontawesome/solid/triangle-exclamation
+      info: fontawesome/solid/circle-info
+      note: fontawesome/solid/pen
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.indexes
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.action.edit
+    - content.tooltips
+    - toc.follow
+    - announce.dismiss
+
+plugins:
+  - search
+  - minify:
+      minify_html: true
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.mark
+  - pymdownx.keys
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - attr_list
+  - md_in_html
+  - def_list
+  - footnotes
+  - toc:
+      permalink: true
+
+extra:
+  version:
+    provider: mike
+    default: stable
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/BLB3DPrinting/filaops
+      name: FilaOps on GitHub
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/blb3d
+      name: BLB3D Discord
+    - icon: fontawesome/solid/globe
+      link: https://blb3dprinting.com
+      name: BLB3D Printing
+  analytics:
+    provider: google
+    property: G-PLACEHOLDER
+  generator: false
+  status:
+    new: Recently added
+    deprecated: Deprecated
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+copyright: >-
+  Copyright &copy; 2025–2026 <a href="https://blb3dprinting.com" target="_blank">BLB3D Labs</a>
+  &nbsp;|&nbsp; Licensed under <a href="https://github.com/BLB3DPrinting/filaops/blob/main/LICENSE" target="_blank">BSL 1.1</a>
+
+nav:
+  - Home: index.md
+
+  - User Guide:
+    - user-guide/index.md
+    - Getting Started:
+      - Installation & Setup: user-guide/installation.md
+      - Your First Day: user-guide/first-day.md
+      - Understanding the Dashboard: user-guide/dashboard.md
+    - Daily Operations:
+      - Managing Your Product Catalog: user-guide/product-catalog.md
+      - Taking and Fulfilling Orders: user-guide/orders.md
+      - Running Production: user-guide/production.md
+      - Tracking Inventory: user-guide/inventory.md
+      - Inventory Reconciliation: user-guide/inventory-reconciliation.md
+      - Ordering Supplies: user-guide/purchasing.md
+      - Monitoring Your Printers: user-guide/printers.md
+    - Planning & Finance:
+      - Material Planning (MRP): user-guide/mrp.md
+      - Basic Accounting: user-guide/accounting.md
+    - Administration:
+      - Users & Permissions: user-guide/users-and-permissions.md
+      - System Settings: user-guide/system-settings.md
+    - Workflows & Recipes:
+      - Quote to Cash: user-guide/workflows/quote-to-cash.md
+      - New Product Launch: user-guide/workflows/new-product-launch.md
+      - Weekly Planning Cycle: user-guide/workflows/weekly-planning.md
+      - Month-End Close: user-guide/workflows/month-end-close.md
+      - Onboarding a Printer: user-guide/workflows/onboarding-a-printer.md
+    - Troubleshooting: user-guide/troubleshooting.md
+    - Glossary: user-guide/glossary.md
+
+  - Deployment:
+    - deployment/index.md
+    - Docker Compose: DEPLOYMENT.md
+    - First-Run Setup: FIRST-RUN-SETUP.md
+    - Upgrading FilaOps: UPGRADE.md
+    - 4.2.0 changes (from 4.1.x): UPGRADE-4.2.0.md
+    - Email Setup: EMAIL_CONFIGURATION.md
+    - Backup & Recovery: BACKUP-AND-RECOVERY.md
+    - Migration Safety: MIGRATION-SAFETY.md
+    - Rollback: ROLLBACK.md
+    - Versioning: VERSIONING.md
+
+  - Developer Reference:
+    - reference/index.md
+    - API Reference: API-REFERENCE.md
+    - API Conventions: API-CONVENTIONS.md
+    - Database Schema: SCHEMA-REFERENCE.md
+    - UI Components: UI-COMPONENTS.md
+    - Feature Catalog: FEATURE-CATALOG.md
+    - Migrations Log: MIGRATIONS-LOG.md

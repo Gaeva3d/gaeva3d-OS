@@ -1,0 +1,11 @@
+{
+  "task_id": "GAEVA-MOD-001",
+  "phase": "P1-CONTRACT",
+  "optimistic_h": 18,
+  "likely_h": 36,
+  "pessimistic_h": 72,
+  "confidence": "low",
+  "basis": "Julgamento de planejamento, nao medicao: Soma F1-P1/P2/P3 de spec/phase-plan.md:18/36/72 +12/24/48 +12/24/48; baixa confianca, sem baseline. Fase cobre MT-01. F1 preserva distribuicao original.",
+  "updated_at": "2026-11-12",
+  "notes": "Esforco humano equivalente, nao prazo. Stops, dependencias, aprovacoes e maturidade da Task permanecem. Roadmap MOD005/007/010 estima so preparacao."
+}

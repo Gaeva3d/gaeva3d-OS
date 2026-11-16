@@ -1,0 +1,156 @@
+/**
+ * ProductionProgressSummary - Shows overall progress across all WOs
+ * ProductionOrderStatusCard - Read-only display of WO status
+ *
+ * Extracted from OrderDetail.jsx (ARCHITECT-002)
+ */
+
+import { orderCopy, orderStatusLabel } from "./orderCopy";
+
+export function ProductionProgressSummary({ orders }) {
+  const completed = orders.filter(o => o.status === "complete").length;
+  const inProgress = orders.filter(o => o.status === "in_progress").length;
+  const short = orders.filter(o => o.status === "short").length;
+  const scrapped = orders.filter(o => o.status === "scrapped").length;
+  const total = orders.length;
+  const completionPercent = total > 0 ? (completed / total) * 100 : 0;
+
+  return (
+    <div className="bg-[var(--paper-sunk)] border border-[var(--rule-hair)] rounded-lg p-4 mb-2">
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-sm text-[var(--ink-3)]">Progresso geral</span>
+        <span className="text-sm text-[var(--ink)] font-medium">{completed}/{total} concluídas</span>
+      </div>
+      <div className="w-full bg-[var(--rule-hair)] rounded-full h-2 mb-2">
+        <div
+          className="bg-[var(--status-green)] h-2 rounded-full transition-all"
+          style={{ width: `${completionPercent}%` }}
+        />
+      </div>
+      <div className="flex gap-4 text-xs">
+        {inProgress > 0 && (
+          <span className="text-[var(--status-amber)]">{inProgress} em andamento</span>
+        )}
+        {completed > 0 && (
+          <span className="text-[var(--status-green)]">{completed} concluídas</span>
+        )}
+        {short > 0 && (
+          <span className="text-[var(--status-amber)]">{short} parciais</span>
+        )}
+        {scrapped > 0 && (
+          <span className="text-[var(--status-red)]">{scrapped} descartadas</span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+const STATUS_CONFIG = {
+  draft: { color: "bg-[var(--ink-3)]" },
+  released: { color: "bg-[var(--status-amber)]" },
+  scheduled: { color: "bg-[var(--status-amber)]" },
+  in_progress: { color: "bg-[var(--status-amber)]" },
+  short: { color: "bg-[var(--status-amber)]" },
+  qc_hold: { color: "bg-[var(--status-amber)]" },
+  on_hold: { color: "bg-[var(--status-amber)]" },
+  complete: { color: "bg-[var(--status-green)]" },
+  completed: { color: "bg-[var(--status-green)]" },
+  scrapped: { color: "bg-[var(--status-red)]" },
+  cancelled: { color: "bg-[var(--ink-4)]" },
+  closed: { color: "bg-[var(--ink-4)]" },
+};
+
+const OP_STATUS_CLASS = {
+  complete: "bg-[var(--status-green-tint)] text-[var(--status-green)]",
+  running: "bg-[var(--status-amber-tint)] text-[var(--status-amber)]",
+  queued: "bg-[var(--paper-sunk)] text-[var(--ink-3)]",
+};
+
+const PROGRESS_BAR_CLASS = {
+  complete: "bg-[var(--status-green)]",
+  scrapped: "bg-[var(--status-red)]",
+};
+
+export function ProductionOrderStatusCard({ order, onViewInProduction, onAcceptShort }) {
+  const status = STATUS_CONFIG[order.status] || { color: "bg-[var(--ink-3)]" };
+  const progressPercent = order.quantity_ordered > 0
+    ? ((order.quantity_completed || 0) / order.quantity_ordered) * 100
+    : 0;
+
+  return (
+    <div className="bg-[var(--paper-sunk)] border border-[var(--rule-hair)] rounded-lg p-4">
+      <div className="flex items-start justify-between mb-3">
+        <div>
+          <div className="flex items-center gap-2">
+            <span className="text-[var(--ink)] font-medium">{order.code || `WO-${order.id}`}</span>
+            <span className={`px-2 py-0.5 ${status.color} text-white text-xs rounded-full`}>
+              {orderStatusLabel(order.status)}
+            </span>
+          </div>
+          <p className="text-sm text-[var(--ink-3)] mt-1">
+            {order.product_name || order.product_sku || "N/A"}
+          </p>
+        </div>
+        <button
+          onClick={onViewInProduction}
+          className="text-[var(--ink-2)] hover:text-[var(--ink)] text-sm flex items-center gap-1"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+          </svg>
+          {orderCopy.viewInProduction}
+        </button>
+      </div>
+
+      {/* Accept Short action for orders stuck in "short" status */}
+      {onAcceptShort && order.status === "short" && (order.quantity_completed || 0) > 0 && (
+        <div className="mt-2 mb-1">
+          <button
+            onClick={() => onAcceptShort(order)}
+            className="px-3 py-1.5 bg-[var(--orange)] hover:bg-[var(--orange-press)] text-white text-xs rounded font-medium transition-colors"
+          >
+            Aceitar quantidade produzida ({order.quantity_completed}/{order.quantity_ordered})
+          </button>
+        </div>
+      )}
+
+      {/* Progress bar */}
+      <div className="flex items-center gap-3">
+        <div className="flex-1 bg-[var(--rule-hair)] rounded-full h-1.5">
+          <div
+            className={`h-1.5 rounded-full transition-all ${
+              PROGRESS_BAR_CLASS[order.status] || "bg-[var(--status-amber)]"
+            }`}
+            style={{ width: `${progressPercent}%` }}
+          />
+        </div>
+        <span className="text-xs text-[var(--ink-3)] w-20 text-right">
+          {order.quantity_completed || 0} / {order.quantity_ordered}
+        </span>
+      </div>
+
+      {/* Operations summary if available */}
+      {order.operations && order.operations.length > 0 && (
+        <div className="mt-3 pt-3 border-t border-[var(--rule-hair)]">
+          <div className="text-xs text-[var(--ink-4)] mb-2">Operações:</div>
+          <div className="flex flex-wrap gap-1">
+            {order.operations.slice(0, 5).map((op, idx) => (
+              <span
+                key={op.id ?? `${op.sequence}-${op.operation_code ?? op.operation_name ?? idx}`}
+                className={`px-2 py-0.5 rounded text-xs ${
+                  OP_STATUS_CLASS[op.status] || "bg-[var(--paper-sunk)] text-[var(--ink-3)]"
+                }`}
+              >
+                {op.sequence}. {op.operation_name || op.operation_code || "Operação"}
+              </span>
+            ))}
+            {order.operations.length > 5 && (
+              <span className="text-xs text-[var(--ink-4)]">+{order.operations.length - 5} a mais</span>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

@@ -1,0 +1,441 @@
+import { useState, useEffect } from "react";
+import { productionCopy, productionRequestMessage } from "./production/productionCopy";
+import { API_URL } from "../config/api";
+import { useToast } from "./Toast";
+import Modal from "./Modal";
+
+export default function CompleteOrderModal({
+  productionOrder,
+  onClose,
+  onComplete,
+}) {
+  const toast = useToast();
+  const [quantityCompleted, setQuantityCompleted] = useState(
+    productionOrder.quantity_ordered || 1
+  );
+  const [notes, setNotes] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [bomMaterials, setBomMaterials] = useState([]);
+  const [selectedSpools, setSelectedSpools] = useState({}); // { materialProductId: spoolId }
+  const [availableSpoolsByMaterial, setAvailableSpoolsByMaterial] = useState({}); // { materialProductId: [spools] }
+  const [loadingMaterials, setLoadingMaterials] = useState(false);
+
+  const [acknowledgeShort, setAcknowledgeShort] = useState(false);
+  const [createRemakeForShortfall, setCreateRemakeForShortfall] = useState(true); // Default to creating remake
+
+  const quantityOrdered = productionOrder.quantity_ordered || 1;
+  const quantityScrapped = productionOrder.quantity_scrapped || 0;
+  const isOverrun = quantityCompleted > quantityOrdered;
+
+  // Calculate if order would be closed short (fewer units than ordered)
+  const totalAccounted = quantityCompleted + quantityScrapped;
+  const shortfall = quantityOrdered - totalAccounted;
+  const isClosingShort = shortfall > 0;
+
+  // Fetch BOM materials on mount
+  useEffect(() => {
+    fetchBomMaterials();
+  }, [productionOrder.id]);
+
+  const fetchBomMaterials = async () => {
+    if (!productionOrder.product_id) return;
+    
+    setLoadingMaterials(true);
+    try {
+      // Get BOM for the product
+      const bomRes = await fetch(
+        `${API_URL}/api/v1/admin/bom/product/${productionOrder.product_id}`,
+        { credentials: "include" }
+      );
+      
+      if (bomRes.ok) {
+        const bom = await bomRes.json();
+        if (bom && bom.lines) {
+          // Filter for filament/supply materials (production stage)
+          const materials = bom.lines
+            .filter((line) => line.consume_stage === "production" && !line.is_cost_only)
+            .map((line) => ({
+              component_id: line.component_id,
+              component_sku: line.component_sku,
+              component_name: line.component_name,
+              quantity: parseFloat(line.quantity || 0),
+              unit: line.unit || "EA",
+            }));
+          
+          setBomMaterials(materials);
+          
+          // Fetch available spools for each material
+          const spoolsMap = {};
+          for (const material of materials) {
+            try {
+              const spoolsRes = await fetch(
+                `${API_URL}/api/v1/spools/product/${material.component_id}/available`,
+                { credentials: "include" }
+              );
+              if (spoolsRes.ok) {
+                const spoolsData = await spoolsRes.json();
+                spoolsMap[material.component_id] = spoolsData.spools || [];
+                // Auto-select first available spool if only one
+                if (spoolsData.spools && spoolsData.spools.length === 1) {
+                  setSelectedSpools((prev) => ({
+                    ...prev,
+                    [material.component_id]: spoolsData.spools[0].id,
+                  }));
+                }
+              } else {
+                spoolsMap[material.component_id] = [];
+              }
+            } catch {
+              // Non-critical - spool selection is optional
+              spoolsMap[material.component_id] = [];
+            }
+          }
+          setAvailableSpoolsByMaterial(spoolsMap);
+        }
+      }
+    } catch {
+      // Non-critical - spool tracking is optional
+    } finally {
+      setLoadingMaterials(false);
+    }
+  };
+
+  const handleSubmit = async () => {
+    if (quantityCompleted < 1) {
+      toast.error(productionCopy.quantityMustBeAtLeast1);
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      // The endpoint binds ProductionOrderCompleteRequest from the JSON body.
+      // quantity_completed/force_close_short were previously sent as query
+      // params, which FastAPI silently dropped — the backend then recorded a
+      // FULL-quantity completion regardless of the entered value, and closing
+      // short was impossible (the force flag never arrived).
+      const requestBody = {
+        quantity_completed: quantityCompleted,
+      };
+      if (isClosingShort && acknowledgeShort) {
+        requestBody.force_close_short = true;
+      }
+      if (notes.trim()) {
+        requestBody.notes = notes.trim();
+      }
+      // A selection cleared back to "No spool selected" is stored as null;
+      // SpoolUsage.spool_id is a required int, so a null entry would 422 the
+      // whole completion. Send only real selections.
+      const spoolsUsed = Object.entries(selectedSpools)
+        .filter(([, spoolId]) => spoolId != null)
+        .map(([productId, spoolId]) => ({
+          product_id: parseInt(productId),
+          spool_id: spoolId,
+        }));
+      if (spoolsUsed.length > 0) {
+        requestBody.spools_used = spoolsUsed;
+      }
+
+      const res = await fetch(
+        `${API_URL}/api/v1/production-orders/${productionOrder.id}/complete`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
+
+      if (res.ok) {
+        let remakeOrderCode = null;
+
+        // If closing short and user wants a remake order, create it
+        if (isClosingShort && createRemakeForShortfall && shortfall > 0) {
+          try {
+            const remakeRes = await fetch(`${API_URL}/api/v1/production-orders/`, {
+              method: "POST",
+              credentials: "include",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                product_id: productionOrder.product_id,
+                quantity_ordered: shortfall,
+                priority: Math.max(1, (productionOrder.priority || 3) - 1), // Bump priority
+                sales_order_id: productionOrder.sales_order_id || null,
+                sales_order_line_id: productionOrder.sales_order_line_id || null,
+                notes: `Remake for shortfall from ${productionOrder.code} (closed short by ${shortfall} units)`,
+                source: "remake",
+              }),
+            });
+            if (remakeRes.ok) {
+              const remakeData = await remakeRes.json();
+              remakeOrderCode = remakeData.code;
+            }
+          } catch (remakeErr) {
+            console.error("Failed to create remake order:", remakeErr);
+            // Don't block completion success, but warn user
+          }
+        }
+
+        // Show appropriate success message
+        if (isClosingShort && remakeOrderCode) {
+          toast.success(
+            <div>
+              <p>{productionCopy.completedWithShortfall(shortfall)}</p>
+              <p className="mt-1 text-[var(--status-green)]">
+                {productionCopy.remakeOrder} <strong>{remakeOrderCode}</strong> {productionCopy.createdForRemaining} {shortfall} {productionCopy.unitsWithPeriod}
+              </p>
+            </div>,
+            { duration: 6000 }
+          );
+        } else if (isClosingShort && createRemakeForShortfall) {
+          toast.success(productionCopy.orderCompletedShortFailedToCreateRemakeOrderPleaseCreateManually);
+        } else if (isClosingShort) {
+          toast.success(productionCopy.orderCompletedShortBy0UnitsNoRemakeCreated(shortfall));
+        } else if (isOverrun) {
+          toast.success(
+            productionCopy.orderCompletedWith0ExtraUnitsMtsOverrun(quantityCompleted - quantityOrdered)
+          );
+        } else {
+          toast.success(productionCopy.productionOrderCompleted);
+        }
+        onComplete();
+      } else {
+        const err = await res.json();
+        toast.error(productionRequestMessage(err, productionCopy.failedToCompleteOrder));
+      }
+    } catch {
+      toast.error(productionCopy.networkError);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <Modal isOpen={true} onClose={onClose} title={productionCopy.completeProductionOrder} variant="workbench" className="w-full max-w-lg p-6" disableClose={submitting}>
+        <div className="flex justify-between items-center mb-6">
+          <div>
+            <h2 className="text-xl font-bold text-[var(--ink)]">
+              {productionCopy.completeProductionOrder}
+            </h2>
+            <p className="text-[var(--ink-3)] text-sm mt-1">
+              {productionOrder.code} -{" "}
+              {productionOrder.product_name || productionOrder.product_sku}
+            </p>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-[var(--ink-3)] hover:text-[var(--ink)] text-xl"
+            disabled={submitting}
+          >
+            &times;
+          </button>
+        </div>
+
+        {/* Order Details */}
+        <div className="bg-[var(--paper-sunk)] border border-[var(--rule-hair)] rounded-lg p-4 mb-6">
+          <div className="flex justify-between text-sm mb-2">
+            <span className="text-[var(--ink-3)]">{productionCopy.quantityOrdered}</span>
+            <span className="text-[var(--ink)] font-medium">
+              {quantityOrdered} {productionCopy.units}
+            </span>
+          </div>
+          {productionOrder.scheduled_start && (
+            <div className="flex justify-between text-sm">
+              <span className="text-[var(--ink-3)]">{productionCopy.scheduled}</span>
+              <span className="text-[var(--ink)]">
+                {new Date(productionOrder.scheduled_start).toLocaleDateString("pt-BR")}
+              </span>
+            </div>
+          )}
+        </div>
+
+        {/* Quantity Completed */}
+        <div className="mb-4">
+          <label className="block text-sm text-[var(--ink-3)] mb-2">
+            {productionCopy.quantityCompleted}
+          </label>
+          <input
+            type="number"
+            value={quantityCompleted}
+            onChange={(e) =>
+              setQuantityCompleted(parseInt(e.target.value) || 0)
+            }
+            min="1"
+            className="w-full bg-[var(--paper)] border border-[var(--rule-hair)] rounded-lg px-4 py-3 text-[var(--ink)] text-lg"
+          />
+          <p className="text-[var(--ink-4)] text-sm mt-1">
+            {productionCopy.enterActualQuantityProducedCanExceedOrderedQtyForMtsOverruns}
+          </p>
+        </div>
+
+        {/* Spool Selection */}
+        {bomMaterials.length > 0 && (
+          <div className="mb-4">
+            <label className="block text-sm text-[var(--ink-3)] mb-2">
+              {productionCopy.materialSpoolsUsedOptional}
+            </label>
+            <div className="space-y-3 bg-[var(--paper-sunk)] border border-[var(--rule-hair)] rounded-lg p-3">
+              {loadingMaterials ? (
+                <div className="text-[var(--ink-4)] text-sm">{productionCopy.loadingMaterials}</div>
+              ) : (
+                bomMaterials.map((material) => {
+                  const availableSpools = availableSpoolsByMaterial[material.component_id] || [];
+                  const requiredWeight = material.quantity * quantityCompleted;
+                  
+                  return (
+                    <div key={material.component_id} className="border-b border-[var(--rule-hair)] pb-3 last:border-0 last:pb-0">
+                      <div className="flex justify-between items-start mb-2">
+                        <div>
+                          <div className="text-[var(--ink)] text-sm font-medium">
+                            {material.component_name || material.component_sku}
+                          </div>
+                          <div className="text-[var(--ink-4)] text-xs">
+                            {productionCopy.required} {requiredWeight.toFixed(3)} {material.unit}
+                          </div>
+                        </div>
+                      </div>
+                      {availableSpools.length > 0 ? (
+                        <select
+                          value={selectedSpools[material.component_id] || ""}
+                          onChange={(e) => {
+                            setSelectedSpools((prev) => ({
+                              ...prev,
+                              [material.component_id]: e.target.value ? parseInt(e.target.value) : null,
+                            }));
+                          }}
+                          className="w-full bg-[var(--paper)] border border-[var(--rule-hair)] rounded-lg px-3 py-2 text-[var(--ink)] text-sm"
+                        >
+                          <option value="">{productionCopy.noSpoolSelected}</option>
+                          {availableSpools.map((spool) => (
+                            <option key={spool.id} value={spool.id}>
+                              {spool.spool_number} - {spool.current_weight_kg.toFixed(3)}{productionCopy.kgRemaining}{spool.weight_remaining_percent.toFixed(1)}%)
+                            </option>
+                          ))}
+                        </select>
+                      ) : (
+                        <div className="text-[var(--ink-4)] text-xs">{productionCopy.noActiveSpoolsAvailable}</div>
+                      )}
+                    </div>
+                  );
+                })
+              )}
+            </div>
+            <p className="text-[var(--ink-4)] text-xs mt-2">
+              {productionCopy.selectSpoolsToTrackMaterialConsumptionAndWeightRemaining}
+            </p>
+          </div>
+        )}
+
+        {/* Notes */}
+        <div className="mb-4">
+          <label className="block text-sm text-[var(--ink-3)] mb-2">
+            {productionCopy.completionNotesOptional}
+          </label>
+          <textarea
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+            placeholder={productionCopy.addAnyNotesAboutTheCompletionEGQualityIssuesEarlyCompletionEtc}
+            rows={3}
+            className="w-full bg-[var(--paper)] border border-[var(--rule-hair)] rounded-lg px-4 py-3 text-[var(--ink)] placeholder-[var(--ink-4)] resize-none"
+          />
+        </div>
+
+        {/* Overrun Info Banner */}
+        {isOverrun && (
+          <div className="bg-[var(--paper-sunk)] border border-[var(--rule-hair)] rounded-lg p-4 mb-6">
+            <div className="flex gap-3">
+              <svg
+                className="w-5 h-5 text-[var(--ink-2)] flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <div>
+                <p className="text-[var(--ink-2)] font-medium">{productionCopy.mtsOverrun}</p>
+                <p className="text-[var(--ink-3)] text-sm">
+                  {productionCopy.overrunToStock(quantityCompleted - quantityOrdered)}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Closing Short Warning - requires acknowledgment */}
+        {isClosingShort && quantityCompleted > 0 && (
+          <div className="bg-[var(--status-red-tint)] border border-[var(--status-red)]/30 rounded-lg p-4 mb-6 space-y-4">
+            <label className="flex items-start gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={acknowledgeShort}
+                onChange={(e) => setAcknowledgeShort(e.target.checked)}
+                className="mt-1 w-5 h-5 rounded bg-[var(--paper)] border-[var(--rule-hair)] text-[var(--status-red)] focus:ring-[var(--status-red)] focus:ring-offset-0"
+              />
+              <div>
+                <p className="text-[var(--status-red)] font-medium">
+                  {productionCopy.closingOrderShort}{shortfall} {productionCopy.unitsUnaccounted}
+                </p>
+                <p className="text-[var(--status-red)]/80 text-sm">
+                  {productionCopy.ordered} {quantityOrdered}{productionCopy.completing} {quantityCompleted}{productionCopy.alreadyScrapped} {quantityScrapped}.
+                  <br />
+                  <strong>{shortfall} {productionCopy.units}</strong> {productionCopy.wereNeitherCompletedNorScrappedCheckThisBoxToConfirm}
+                </p>
+              </div>
+            </label>
+
+            {/* Create Remake Order Toggle */}
+            {acknowledgeShort && (
+              <div className="border-t border-[var(--status-red)]/20 pt-4">
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={createRemakeForShortfall}
+                    onChange={(e) => setCreateRemakeForShortfall(e.target.checked)}
+                    className="mt-1 w-5 h-5 rounded bg-[var(--paper)] border-[var(--rule-hair)] text-[var(--orange)] focus:ring-[var(--orange)] focus:ring-offset-0"
+                  />
+                  <div>
+                    <p className="text-[var(--ink)] font-medium">
+                      {productionCopy.createRemakeOrderFor} {shortfall} {productionCopy.units}
+                    </p>
+                    <p className="text-[var(--ink-3)] text-sm">
+                      {productionCopy.automaticallyCreateANewProductionOrderForTheShortfall}
+                      {productionOrder.sales_order_id && (
+                        <span className="text-[var(--ink-2)]"> {productionCopy.linkedToSameSalesOrder}</span>
+                      )}
+                    </p>
+                  </div>
+                </label>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Actions */}
+        <div className="flex gap-3">
+          <button
+            onClick={onClose}
+            disabled={submitting}
+            className="flex-1 px-4 py-2 bg-[var(--paper-sunk)] border border-[var(--rule-hair)] text-[var(--ink-2)] rounded-lg hover:text-[var(--ink)] disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {productionCopy.cancel}
+          </button>
+          <button
+            onClick={handleSubmit}
+            disabled={quantityCompleted < 1 || submitting || (isClosingShort && !acknowledgeShort)}
+            className="flex-1 px-4 py-2 bg-[var(--orange)] text-white rounded-lg hover:bg-[var(--orange-press)] disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {submitting ? productionCopy.processing : isClosingShort ? productionCopy.completeOrderPartially : productionCopy.completeOrder}
+          </button>
+        </div>
+    </Modal>
+  );
+}

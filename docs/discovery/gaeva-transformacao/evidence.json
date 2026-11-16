@@ -1,0 +1,261 @@
+[
+  {
+    "id": "E01",
+    "source_id": "A01",
+    "locator": "linhas 558",
+    "claim": "FastAPI carrega módulo opcional e chama register(app); falhas retornam False. Não há evidência de módulos Core removíveis a quente.",
+    "class": "OBSERVED",
+    "limits": "Inspeção estática; não executado nem homologado em runtime."
+  },
+  {
+    "id": "E02",
+    "source_id": "A02",
+    "locator": "linhas 5,9,10,14,18,19,26,27",
+    "claim": "Registro de tier/features usa estado global em processo; não representa catálogo de módulos GAEVA nem autorização por registro.",
+    "class": "OBSERVED",
+    "limits": "Inspeção estática; não executado nem homologado em runtime."
+  },
+  {
+    "id": "E03",
+    "source_id": "N01",
+    "locator": "linhas 3,26,39",
+    "claim": "Atendimento usa /api/v1/notifications, thread_id e rascunhos por thread; nomes comerciais não substituem identidades.",
+    "class": "OBSERVED",
+    "limits": "Inspeção estática; não executado nem homologado em runtime."
+  },
+  {
+    "id": "E04",
+    "source_id": "N02",
+    "locator": "linhas 13,29,42,65,76,89,100",
+    "claim": "Listagem, leitura, resposta e leitura marcada usam staff; contexto exige admin. Papéis gerais não bastam para alçadas GAEVA por conversa.",
+    "class": "OBSERVED",
+    "limits": "Inspeção estática; não executado nem homologado em runtime."
+  },
+  {
+    "id": "E05",
+    "source_id": "N03",
+    "locator": "linhas 4,44",
+    "claim": "Contexto liga Notification.thread_id -> sales_order_id -> SalesOrder.customer_id -> User.id; rejeita ausência e vínculos contraditórios. Não usar Customer organizacional ou user_id por aproximação.",
+    "class": "OBSERVED",
+    "limits": "Inspeção estática; não executado nem homologado em runtime."
+  },
+  {
+    "id": "E06",
+    "source_id": "D01",
+    "locator": "linhas 41,141",
+    "claim": "Produção possui vínculo venda/linha, pai/filha, quantidade concluída/refugada e status próprio. Candidato de reuso, não equivalência às sete colunas GAEVA.",
+    "class": "OBSERVED",
+    "limits": "Inspeção estática; não executado nem homologado em runtime."
+  },
+  {
+    "id": "E07",
+    "source_id": "D02",
+    "locator": "linhas 44",
+    "claim": "Payment tem amount decimal, método, status, referência externa e vínculo de venda; isso não demonstra Pix conciliado nem aprovação 50%.",
+    "class": "OBSERVED",
+    "limits": "Inspeção estática; não executado nem homologado em runtime."
+  },
+  {
+    "id": "E08",
+    "source_id": "D03",
+    "locator": "linhas 27,29,39,55,64,73,82,95",
+    "claim": "Estoque de filamento em G, compra/custo por KG e fator 1000; BRL não autoriza converter unidade ou reinterpretar valores antigos.",
+    "class": "OBSERVED",
+    "limits": "Inspeção estática; não executado nem homologado em runtime."
+  },
+  {
+    "id": "E09",
+    "source_id": "D05",
+    "locator": "linhas 41,59,67,109",
+    "claim": "Upload de imagem de produto é limitado a imagens e armazenamento estático. Não prova cofre de STL/3MF, revisões de arte, segregação cliente ou anexos comerciais.",
+    "class": "OBSERVED",
+    "limits": "Inspeção estática; não executado nem homologado em runtime."
+  },
+  {
+    "id": "E10",
+    "source_id": "C01",
+    "locator": "Solicitação com aceite",
+    "claim": "PRD42 exige convite pendente sem acesso/reserva, aceite com revalidação e transferência sem dois principais; regras de prazo/cancelamento permanecem pendentes.",
+    "class": "OBSERVED",
+    "limits": "Inspeção estática; não executado nem homologado em runtime."
+  },
+  {
+    "id": "E11",
+    "source_id": "C03",
+    "locator": "Harmonização SDD",
+    "claim": "Matriz11 harmoniza PRD41/spec22; delta da revisão42 não está coberto por essa declaração histórica.",
+    "class": "OBSERVED",
+    "limits": "Inspeção estática; não executado nem homologado em runtime."
+  },
+  {
+    "id": "E12",
+    "source_id": "C02",
+    "locator": "Revisão funcional 23",
+    "claim": "Spec23 declara PRD42 e referências ao relatório pré-técnico; isso não comprova backend nem recupera arquivo ausente.",
+    "class": "OBSERVED",
+    "limits": "Inspeção estática; não executado nem homologado em runtime."
+  },
+  {
+    "id": "E13",
+    "source_id": "L01",
+    "locator": "linhas 1,37,40,46,48",
+    "claim": "Base FilaOps local usa Business Source License 1.1 e grant restrito para SaaS concorrente; não presumir MIT na base inteira.",
+    "class": "OBSERVED",
+    "limits": "Inspeção estática; não executado nem homologado em runtime."
+  },
+  {
+    "id": "E14",
+    "source_id": "U01",
+    "locator": "linhas 4",
+    "claim": "HTML do Atendimento referencia recursos r38/r39. Hash do HTML não homologa todos os assets, visual ou comportamento.",
+    "class": "OBSERVED",
+    "limits": "Inspeção estática; não executado nem homologado em runtime."
+  },
+  {
+    "id": "E15",
+    "source_id": "W01",
+    "locator": "LICENSE raiz, regime de diretórios",
+    "claim": "ChatbotX distingue conteúdo MIT e Áreas comerciais; não há autorização geral de copiar todo o sistema.",
+    "class": "OBSERVED",
+    "limits": "Fonte primária aberta em 10/11/2026; aplicação específica e runtime não verificados."
+  },
+  {
+    "id": "E16",
+    "source_id": "W02",
+    "locator": "Commercial License",
+    "claim": "Schema Enterprise tem licença comercial própria; produção depende de assinatura/termos. Não recomendar dependência antes de selecionar subárvores elegíveis.",
+    "class": "OBSERVED",
+    "limits": "Fonte primária aberta em 10/11/2026; aplicação específica e runtime não verificados."
+  },
+  {
+    "id": "E17",
+    "source_id": "W03",
+    "locator": "arts. 12 e 13",
+    "claim": "ANPD exige medidas de segurança proporcionais e admite política simplificada; pequeno porte não implica dispensar segurança.",
+    "class": "OBSERVED",
+    "limits": "Fonte primária aberta em 10/11/2026; aplicação específica e runtime não verificados."
+  },
+  {
+    "id": "E18",
+    "source_id": "W04",
+    "locator": "O que é",
+    "claim": "Portal nacional descreve NFS-e para prestação de serviços. Não define enquadramento da GAEVA, tributos ou substituição universal de documentos.",
+    "class": "OBSERVED",
+    "limits": "Fonte primária aberta em 10/11/2026; aplicação específica e runtime não verificados."
+  },
+  {
+    "id": "E19",
+    "source_id": "W05",
+    "locator": "README Especificação API Pix",
+    "claim": "Bacen publica API Pix em OpenAPI; segurança remete aos manuais. README aponta release candidata, não prova contrato do PSP GAEVA.",
+    "class": "OBSERVED",
+    "limits": "Fonte primária aberta em 10/11/2026; aplicação específica e runtime não verificados."
+  },
+  {
+    "id": "Q01",
+    "claim": "Políticas de negócio ainda não fechadas",
+    "class": "UNKNOWN",
+    "limits": "C01 seção Lacunas: alçadas, transições, IA aguardando humano, escalas, métricas e agregação; main resolve apenas recorte dependente.",
+    "essential": false
+  },
+  {
+    "id": "Q02",
+    "claim": "Imagem equivale à fonte e ambientes isolados",
+    "class": "UNKNOWN",
+    "limits": "Relato main: labels backend B/frontend A; .git B inacessível. Não acessado. DevOps deve produzir build/source manifest e teste isolado antes de execução.",
+    "essential": false
+  },
+  {
+    "id": "Q03",
+    "claim": "Integração ChatbotX no mesmo banco lógico",
+    "class": "UNKNOWN",
+    "limits": "Licença/snapshot examinados não provam execução; arquitetura deve mapear identidade, schemas, migrações e ownership antes da integração.",
+    "essential": false
+  },
+  {
+    "id": "Q04",
+    "claim": "Restauração funcional",
+    "class": "UNKNOWN",
+    "limits": "Backup relatado pelo main não foi restaurado. DevOps precisa ensaio autorizado em destino isolado, reconciliação e retorno.",
+    "essential": false
+  },
+  {
+    "id": "E20",
+    "source_id": "W08",
+    "locator": "Homepage: Tecnologia e acabamento; Como funciona; Analise do projeto; FAQ. Extracao web linhas 44-49,126-158,183-223.",
+    "claim": "Site publica oferta corporativa FDM, previa aprovada antes de produzir e coleta inicial de peca, aplicacao, quantidade, data e referencia.",
+    "class": "OBSERVED",
+    "limits": "Marketing nao prova operacao interna ou implementacao. FAQ extraida apenas com titulos: sem concluir minimo, prazo, preco, pagamento, fiscal ou direitos de arquivo."
+  },
+  {
+    "id": "E21",
+    "source_id": "M01",
+    "locator": "linhas 29: /api/v1/pro/portal/admin/messages/new",
+    "claim": "Composição chama lookup administrativo de clientes e criação via portal PRO; apenas UI/callsite observados.",
+    "class": "OBSERVED",
+    "limits": "Leitura estática delimitada; autorização efetiva, persistência e integração não executadas."
+  },
+  {
+    "id": "E22",
+    "source_id": "M02",
+    "locator": "linhas 23: ondelete=\"CASCADE\"",
+    "claim": "Vínculo nullable com sales_orders declara CASCADE; planejar preservação antes de exclusão/migração. Nenhuma perda observada.",
+    "class": "OBSERVED",
+    "limits": "Leitura estática delimitada; autorização efetiva, persistência e integração não executadas."
+  },
+  {
+    "id": "E23",
+    "source_id": "M04",
+    "locator": "linhas 193: def get_unread_count",
+    "claim": "Contagem de não lidas usa read_at das mensagens, sem leitor individual neste serviço/modelo.",
+    "class": "OBSERVED",
+    "limits": "Leitura estática delimitada; autorização efetiva, persistência e integração não executadas."
+  },
+  {
+    "id": "E24",
+    "source_id": "M05",
+    "locator": "linhas 1847: notification_service.create_notification(",
+    "claim": "Confirmação de pedido externo cria aviso após commit de pedido e evento; produtor operacional deve sobreviver à troca do módulo.",
+    "class": "OBSERVED",
+    "limits": "Leitura estática delimitada; autorização efetiva, persistência e integração não executadas."
+  },
+  {
+    "id": "E25",
+    "source_id": "M07",
+    "locator": "linhas 589: \"unread\": notification_service.get_unread_count(db)",
+    "claim": "Summary produz contagem por serviço compartilhado; frontend busca summary, não prova renderização do campo.",
+    "class": "OBSERVED",
+    "limits": "Leitura estática delimitada; autorização efetiva, persistência e integração não executadas."
+  },
+  {
+    "id": "E26",
+    "source_id": "M08",
+    "locator": "linhas 59: A central de notificações ainda não está integrada.",
+    "claim": "Sino atual explicita falta de integração; não é inbox persistente homologado.",
+    "class": "OBSERVED",
+    "limits": "Leitura estática delimitada; autorização efetiva, persistência e integração não executadas."
+  },
+  {
+    "id": "E27",
+    "source_id": "M03",
+    "locator": "linhas 13: class NotificationReply",
+    "claim": "Schema de reply inspecionado possui body; modelo/response selecionados não definem anexo. Cobertura PRO permanece desconhecida.",
+    "class": "OBSERVED",
+    "limits": "Leitura estática delimitada; autorização efetiva, persistência e integração não executadas."
+  },
+  {
+    "id": "E28",
+    "source_id": "M14",
+    "locator": "linhas 57: return on(\"api:error\"",
+    "claim": "Avisos de erro da UI usam bus local e não equivalem ao histórico de notificação do domínio.",
+    "class": "OBSERVED",
+    "limits": "Leitura estática delimitada; autorização efetiva, persistência e integração não executadas."
+  },
+  {
+    "id": "Q05",
+    "claim": "Contrato PRO e preservação de anexos legados/canais",
+    "class": "UNKNOWN",
+    "essential": false,
+    "limits": "Rota é callsite comprovado M01. Busca backend/app não encontrou handler /pro/portal/admin/messages/new; plugin externo não inspecionado. Dono PRO deve fornecer contrato e fixture autorizados antes da migração; não prova ausência em runtime."
+  }
+]

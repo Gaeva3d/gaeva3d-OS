@@ -1,0 +1,691 @@
+{
+  "task_id": "GAEVA-MOD-001",
+  "goal": "Preparar e revisar Fundacao no unico GAEVA OS conforme spec integrada, com maturidade e bloqueios explicitamente preservados.",
+  "scope": [
+    "DF01-03 origem B/contexto/locks/digest; DF04 guard antes de imports com tupla efetiva e identidade; DF05-07 migrador unico/roles, API sem DDL/download e recovery isolado."
+  ],
+  "out_of_scope": [
+    "Implementacao no mandato MT-A02; draft nao autoriza codigo.",
+    "Outra empresa/produto, microservico por modulo, novo CRM/chat do zero.",
+    "Publicar/Issue/branch/commit/PR/merge/deploy/restore sem autorizacao.",
+    "Codigo de roadmap sem PRD/contrato/maturidade suficientes."
+  ],
+  "allowed_paths": [
+    "backend/scripts/**",
+    "backend/tests/**",
+    "backend/app/core/**",
+    "backend/app/main.py",
+    "backend/Dockerfile",
+    "frontend/Dockerfile",
+    "frontend/.dockerignore",
+    "backend/.dockerignore",
+    "docker-compose*.yml",
+    ".github/workflows/**",
+    "backend/requirements*.txt",
+    "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/evidence/**"
+  ],
+  "protected_paths": [
+    ".git/**",
+    ".env*",
+    "uploads/**",
+    "docs/discovery/**",
+    "docs/gaeva/retomada-tfd/transformacao-filaops/**/reviews/**",
+    "docs/gaeva/modulos/comercial/workflow.json",
+    "${LEGACY_APPLICATION_SOURCE}/**",
+    "${TFD_KNOWLEDGE_SOURCE}/**"
+  ],
+  "requirements": [
+    {
+      "id": "REQ-14",
+      "description": "Preparação técnica entrega evidência de fonte/repositório canônicos e separação desenvolvimento/testes/produção, builds Docker/Compose versionados e modelos de configuração sem segredos, estratégia de migração/backup/restauração/retorno, requisitos VPS justificados e plano de CI",
+      "source": "docs/gaeva/retomada-tfd/transformacao-filaops/prd-proposta.md; tabela Requisitos; REQ-14",
+      "priority": "MUST"
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "id": "AC-01",
+      "description": "Cada setor REQUIRED entrega evidência própria de REF-01 e TEST-01. F1-P1 demonstra proveniência/configuração. F1-P2 comprova DF04 offline com negativos sem efeito, PASS de QA Backend e PASS independente de Security na mesma revisão/configuração. F1-P3 depende dessa evidência e dos gates humanos. Aplica DF04 antes de conexão e verifica identidade DB/role/instância antes de fixture, migração ou restauração.",
+      "validation": "TEST-01",
+      "requirement_ids": [
+        "REQ-14"
+      ],
+      "microtask_ids": [
+        "MT-01",
+        "MT-02",
+        "MT-03",
+        "MT-04",
+        "MT-05",
+        "MT-06",
+        "MT-07",
+        "MT-08",
+        "MT-09",
+        "MT-10",
+        "MT-11"
+      ]
+    }
+  ],
+  "required_tests": [
+    {
+      "id": "TEST-01",
+      "type": "manual",
+      "command": "Procedimento futuro manual T07-P1–P7, após autorização por fase. F1-P1: registrar fonte B, contexto, locks, digest e configuração. F1-P2: executar o guard DF04 por ponto de entrada somente stdlib, antes de importar pytest, conftest, app, settings, SQLAlchemy ou outro driver de banco. Usar mocks de conector e instrumentação de imports/efeitos, sem carregar .env. Rejeitar ENV errado/ausente, URL prod com DB_NAME test, tupla errada, alias e opções redirecionadoras, com asserts de zero import de pytest, conftest, app, settings, SQLAlchemy ou outro driver de banco, zero tentativa de conexão, zero mkdir e nenhuma carga de fixture, migração ou restauração. Registrar os três recibos offline com comandos/exits e exigir os três recibos DF04 (MT-03, MT-09, MT-04) com PASS independente de TFD-qa_backend e o parecer PASS de TFD-security de MT-11 (evidence/df04-security.json), todos da mesma revisão e configuração efetiva. F1-P3: depois dessas evidências e dos gates humanos, aplicar DF04 antes de cada tentativa de conexão. Em cada alvo novo e isolado, primeira conexão só verifica DB/role/instância em leitura. Identidade divergente bloqueia fixture, migração ou restauração. Após confirmar identidade, comprovar migrador único, startup sem DDL/download e, com autorização operacional separada, recuperação e rollback. Registrar comandos e exits reais. NÃO EXECUTADO.",
+      "expected": "Fonte rastreável, guard stdlib comprovado offline, negativos sem imports de app/driver nem efeitos, evidência atual com PASS de QA Backend e Security antes de conexão, identidade confirmada antes de fixture, migração ou restauração, migrador único e recuperação reconciliada. Sem prova de recuperação, base não pronta."
+    }
+  ],
+  "stop_conditions": [
+    "architecture_change_required",
+    "scope_expansion_required",
+    "mandatory_reference_missing",
+    "source_of_truth_conflict",
+    "human_task_json_divergence",
+    "authorization_required",
+    "Q02 fonte-imagem e Q04 restore funcional pendentes; sem isso nao declarar development-ready.",
+    "F1-P3 bloqueada antes de qualquer tentativa de conexão real sem os três recibos DF04 (MT-03, MT-09, MT-04) com PASS independente de TFD-qa_backend e o parecer PASS de TFD-security de MT-11 (evidence/df04-security.json), todos da mesma revisão e configuração efetiva e gates humanos. Identidade divergente bloqueia fixture, migração ou restauração."
+  ],
+  "gates": {
+    "preparation": "Draft autorizado para correção documental F-01/F-02. QA independente da revisão 4 pendente. Pipeline workflow Comercial observado AWAITING_APPROVAL G0.",
+    "implementation": "NAO AUTORIZADA. Fase requer spec/Task/Discovery correntes, QA independente, gates humanos e stops resolvidos.",
+    "publication": "Issue/branch/PR inexistentes nesta entrega; publicar somente com autorizacao especifica.",
+    "merge": "Aprovacao humana explicita separada.",
+    "deploy": "Autorizacao operacional separada; recovery nao comprovado.",
+    "format": "Contrato nativo schemas/task.json; importado v2 nao rege esta Task. Vista por render_task.py; QA independente da revisão 4 pendente."
+  },
+  "contract_revision": 4,
+  "title": "DRAFT - MOD-001 Fundacao",
+  "problem": "Recorte especificado para revisao; execucao condicionada aos stops e gates humanos. Resultado alvo: DF01-03 origem B/contexto/locks/digest; DF04 guard antes de imports com tupla efetiva e identidade; DF05-07 migrador unico/roles, API sem DDL/download e recovery isolado.",
+  "complexity": "complex",
+  "spec": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001.md",
+  "status": "draft",
+  "business_rules": [
+    {
+      "id": "RULE-01",
+      "description": "Reusar uma ficha/autoridade por registro; nao trocar estado de conversa/oportunidade/OP/gate.",
+      "source": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/integrated-spec.md"
+    },
+    {
+      "id": "RULE-02",
+      "description": "50% parcial e aceites da mesma revisao/gates finais permanecem quando aplicaveis; nao inventar aprovacao humana.",
+      "source": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/approval-decisions.md"
+    }
+  ],
+  "phases": [
+    {
+      "id": "P1-CONTRACT",
+      "title": "F1-P1 — Proveniência e configuração",
+      "note": "DF01–03 e contrato de configuração precedem a prova offline de DF04."
+    },
+    {
+      "id": "P2-EXECUTION",
+      "title": "F1-P2 — Prova offline do guard DF04",
+      "note": "Backend, Database e DevOps/observabilidade produzem evidência offline com QA Backend. Security revisa os três recibos e emite parecer sobre a mesma revisão/configuração. Os quatro resultados e o gate humano precedem qualquer conexão real."
+    },
+    {
+      "id": "P3-REVIEW",
+      "title": "F1-P3 — Migração, recuperação e revisão",
+      "note": "Operações dependem da evidência DF04 e dos gates humanos. Identidade em leitura antecede efeitos. Recuperação depende de autorização operacional separada."
+    }
+  ],
+  "references": [
+    {
+      "id": "REF-01",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001.md",
+      "purpose": "Escopo/contratos/stops especificos do modulo; documento completo no recorte aplicavel"
+    },
+    {
+      "id": "REF-02",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/integrated-spec.md",
+      "purpose": "Atores, invariantes, interfaces e fronteiras; documento completo no recorte aplicavel"
+    },
+    {
+      "id": "REF-03",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/phase-plan.md",
+      "purpose": "Procedimentos de teste futuros e fases com donos; documento completo no recorte aplicavel"
+    },
+    {
+      "id": "REF-04",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/approval-decisions.md",
+      "purpose": "Politicas propostas e limites de aprovacao; documento completo no recorte aplicavel"
+    },
+    {
+      "id": "REF-05",
+      "path": "docs/discovery/gaeva-transformacao/findings.md",
+      "purpose": "Evidencia e limites Q02-Q05; documento completo no recorte aplicavel"
+    },
+    {
+      "id": "REF-06",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/arquitetura/contracts.md",
+      "purpose": "C00-C06 e F01-IDEM corrige replay tipado; documento completo no recorte aplicavel"
+    },
+    {
+      "id": "REF-07",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/ui-ux/screen-matrix.md",
+      "purpose": "U01-U09 e V01-V15, validacao visual futura; documento completo no recorte aplicavel"
+    },
+    {
+      "id": "REF-08",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/dev-foundation/environment-matrix.md",
+      "purpose": "DF04 guard antes de imports e ambientes isolados; documento completo no recorte aplicavel"
+    },
+    {
+      "id": "REF-09",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/task-registry.json",
+      "purpose": "Dependencias externas de entrada/fase e reconciliacao canonica sem alterar ledger."
+    },
+    {
+      "id": "REF-10",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/pages-components.md",
+      "purpose": "Contrato UI/DEC-UX01 e componentes, inaplicavel onde nao houver UI."
+    },
+    {
+      "id": "REF-11",
+      "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/data-contracts.md",
+      "purpose": "Tipos/transacoes/F01-IDEM e limites de interfaces propostas."
+    }
+  ],
+  "sectors": {
+    "harness": {
+      "label": "harness",
+      "owner": "TFD-harness",
+      "applicability": "REQUIRED",
+      "reason": "Responsabilidade obrigatoria do recorte/fase"
+    },
+    "database": {
+      "label": "database",
+      "owner": "TFD-database",
+      "applicability": "REQUIRED",
+      "reason": "Responsabilidade obrigatoria do recorte/fase"
+    },
+    "backend": {
+      "label": "backend",
+      "owner": "TFD-backend",
+      "applicability": "REQUIRED",
+      "reason": "Responsabilidade obrigatoria do recorte/fase"
+    },
+    "frontend": {
+      "label": "frontend",
+      "owner": "TFD-frontend",
+      "applicability": "N/A",
+      "reason": "Sem alteracao desta superficie no recorte atual"
+    },
+    "ui_ux": {
+      "label": "ui_ux",
+      "owner": "TFD-ui_ux",
+      "applicability": "N/A",
+      "reason": "Sem alteracao desta superficie no recorte atual"
+    },
+    "qa": {
+      "label": "qa",
+      "owner": "TFD-qa_backend",
+      "applicability": "REQUIRED",
+      "reason": "Responsabilidade obrigatoria do recorte/fase"
+    },
+    "security": {
+      "label": "security",
+      "owner": "TFD-security",
+      "applicability": "REQUIRED",
+      "reason": "Responsabilidade obrigatoria do recorte/fase"
+    },
+    "devops": {
+      "label": "devops",
+      "owner": "TFD-devops",
+      "applicability": "REQUIRED",
+      "reason": "Responsabilidade obrigatoria do recorte/fase"
+    },
+    "observability": {
+      "label": "observability",
+      "owner": "TFD-devops",
+      "applicability": "REQUIRED",
+      "reason": "Responsabilidade obrigatoria do recorte/fase"
+    },
+    "documentation": {
+      "label": "documentation",
+      "owner": "TFD-documentation",
+      "applicability": "REQUIRED",
+      "reason": "Responsabilidade obrigatoria do recorte/fase"
+    }
+  },
+  "microtasks": [
+    {
+      "id": "MT-01",
+      "title": "F1-P1 — Proveniência e contrato de configuração",
+      "depends_on": [],
+      "allowed_paths": [
+        "backend/scripts/**",
+        "backend/Dockerfile",
+        "frontend/Dockerfile",
+        "frontend/.dockerignore",
+        "backend/.dockerignore",
+        "docker-compose*.yml",
+        ".github/workflows/**",
+        "backend/requirements*.txt",
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/evidence/**"
+      ],
+      "checklist": [
+        "Rota preservada: plugin the-factory-developer; capability devops-scoped-delivery; preferred_tool repository-native-tooling-after-authorization. Somente apos gates, sem ampliar escopo.",
+        "Fixar DF01–03: fonte B, contexto, locks, bases/digest e contratos de configuração dev/test/prod/restore sem segredos.",
+        "Limitar T07-P1–P3 ao recorte de proveniência e configuração. Preparar registro e modelos sem provisionar, importar a aplicação, conectar, carregar fixtures, migrar ou restaurar."
+      ],
+      "deliverables": [
+        "Evidência sanitizada de proveniência, configuração e limites dos alvos em evidence/."
+      ],
+      "completion_condition": "Entregas DF01–03 de F1-P1 demonstradas e revisadas, sem etapa operacional do TEST-01.",
+      "validator": "TFD-qa_backend",
+      "owner": "TFD-devops",
+      "phase": "P1-CONTRACT",
+      "sector": "devops",
+      "reference_ids": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11"
+      ]
+    },
+    {
+      "id": "MT-03",
+      "title": "F1-P2 — Implementar e provar offline o guard DF04",
+      "depends_on": [
+        "MT-01"
+      ],
+      "allowed_paths": [
+        "backend/scripts/**",
+        "backend/tests/**",
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/evidence/**",
+        "backend/app/core/**"
+      ],
+      "checklist": [
+        "Rota preservada: plugin the-factory-developer; capability backend-scoped-delivery; preferred_tool repository-native-tooling-after-authorization. Somente apos gates, sem ampliar escopo.",
+        "Implementar DF04 em ponto de entrada somente stdlib, antes de importar pytest, conftest, app, settings, SQLAlchemy ou outro driver de banco ou abrir rede, sem carregar .env. Validar a tupla efetiva com allowlist e rejeitar ENV ausente/incorreto, URL de produção com DB_NAME de teste, tupla divergente, alias e opções redirecionadoras.",
+        "Testar offline a tupla permitida e os negativos com mocks de conector e efeitos. Nos negativos, afirmar zero import de pytest, conftest, app, settings, SQLAlchemy ou outro driver de banco, zero tentativa de conexão e zero mkdir. Nenhuma carga de fixture, migração ou restauração.",
+        "Vincular casos, comandos, exits e zero efeitos nos negativos à revisão e à configuração efetiva, sem segredos."
+      ],
+      "deliverables": [
+        "Recibo offline evidence/df04-backend.json de TEST-01/T07-P4, vinculado à revisão e configuração efetiva."
+      ],
+      "completion_condition": "Guard implementado e prova offline aprovada por TFD-qa_backend na revisão corrente.",
+      "validator": "TFD-qa_backend",
+      "owner": "TFD-backend",
+      "phase": "P2-EXECUTION",
+      "sector": "backend",
+      "reference_ids": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11"
+      ]
+    },
+    {
+      "id": "MT-09",
+      "title": "F1-P2 — Verificar allowlist e fixtures offline",
+      "depends_on": [
+        "MT-03"
+      ],
+      "allowed_paths": [
+        "backend/scripts/**",
+        "backend/tests/**",
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/evidence/**"
+      ],
+      "checklist": [
+        "Rota preservada: plugin the-factory-developer; capability database-scoped-delivery; preferred_tool repository-native-tooling-after-authorization. Somente apos gates, sem ampliar escopo.",
+        "Definir a tupla allowlisted de banco/role/instância e conferir offline que a configuração conflitante bloqueia o conector.",
+        "Preparar fixtures sintéticas e o procedimento de identidade de F1-P3. Conferir offline os asserts de REF-08 de zero import de pytest, conftest, app, settings, SQLAlchemy ou outro driver de banco, zero tentativa de conexão e zero mkdir nos negativos. Nenhuma carga de fixture, DDL ou restauração."
+      ],
+      "deliverables": [
+        "Recibo offline evidence/df04-database.json de TEST-01/T07-P4, com negativos, expectativa de identidade e comandos/exits."
+      ],
+      "completion_condition": "Allowlist, negativos e contrato de fixtures conferidos offline e revisados por TFD-qa_backend.",
+      "validator": "TFD-qa_backend",
+      "owner": "TFD-database",
+      "phase": "P2-EXECUTION",
+      "sector": "database",
+      "reference_ids": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11"
+      ]
+    },
+    {
+      "id": "MT-04",
+      "title": "F1-P2 — Isolar e instrumentar a prova do guard",
+      "depends_on": [
+        "MT-03",
+        "MT-09"
+      ],
+      "allowed_paths": [
+        "backend/scripts/**",
+        "backend/tests/**",
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/evidence/**",
+        ".github/workflows/**"
+      ],
+      "checklist": [
+        "Rota preservada: plugin the-factory-developer; capability observability-scoped-delivery; preferred_tool repository-native-tooling-after-authorization. Somente apos gates, sem ampliar escopo.",
+        "Preparar isolamento e CI de DF04 para rodar a prova offline pelo ponto de entrada somente stdlib, sem provisionar serviços ou abrir conexão real. Conferir ausência de import de pytest, conftest, app, settings, SQLAlchemy ou outro driver de banco antes do guard.",
+        "Demonstrar que falha no guard, falta de PASS de QA Backend ou ausência do parecer atual de Security impede a operação. Exigir os asserts de zero import de app/driver, zero tentativa de conexão e zero mkdir nos negativos. Registrar sinais sanitizados sem ativar fixture, migração ou recuperação."
+      ],
+      "deliverables": [
+        "Recibo offline evidence/df04-ci.json de TEST-01/T07-P4 com comando/exits, isolamento e propagação da falha."
+      ],
+      "completion_condition": "Isolamento e falha bloqueante demonstrados offline e revisados por TFD-qa_backend.",
+      "validator": "TFD-qa_backend",
+      "owner": "TFD-devops",
+      "phase": "P2-EXECUTION",
+      "sector": "observability",
+      "reference_ids": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11"
+      ]
+    },
+    {
+      "id": "MT-11",
+      "title": "F1-P2 — Revisar independentemente a prova offline do guard",
+      "depends_on": [
+        "MT-03",
+        "MT-09",
+        "MT-04"
+      ],
+      "allowed_paths": [
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/evidence/**"
+      ],
+      "checklist": [
+        "Rota preservada: plugin the-factory-developer; capability security-scoped-delivery; preferred_tool repository-native-tooling-after-authorization. Somente apos gates, sem ampliar escopo.",
+        "Conferir os três recibos DF04 de MT-03, MT-09 e MT-04 e os respectivos PASS independentes de TFD-qa_backend, todos vinculados à mesma revisão do guard e configuração efetiva.",
+        "Inspecionar T07-P4/REF-08, ponto de entrada somente stdlib e asserts de zero import de pytest, conftest, app, settings, SQLAlchemy ou outro driver de banco, zero tentativa de conexão e zero mkdir nos negativos. Confirmar allowlist, rejeição de redirecionamento e ausência de segredos. Trabalho offline, sem alterar guard/fixtures, importar a aplicação ou drivers, conectar, migrar ou restaurar.",
+        "Emitir parecer de Security com comandos/exits referenciados, identidade da revisão e da configuração efetiva sanitizada. Se faltar prova ou houver divergência, bloquear F1-P3 sem tentativa de conexão."
+      ],
+      "deliverables": [
+        "Parecer independente de TFD-security em evidence/df04-security.json, com verdict e vínculos aos três recibos DF04 da mesma revisão/configuração."
+      ],
+      "completion_condition": "Security registra PASS da prova offline atual e TFD-qa_spec valida a evidência. Ausência de PASS bloqueia qualquer tentativa de conexão real.",
+      "validator": "TFD-qa_spec",
+      "owner": "TFD-security",
+      "phase": "P2-EXECUTION",
+      "sector": "security",
+      "reference_ids": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11"
+      ]
+    },
+    {
+      "id": "MT-02",
+      "title": "F1-P3 — Confirmar identidade e aplicar migração isolada",
+      "depends_on": [
+        "MT-03",
+        "MT-09",
+        "MT-04",
+        "MT-11"
+      ],
+      "allowed_paths": [
+        "backend/scripts/**",
+        "backend/tests/**",
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/evidence/**",
+        "backend/app/core/**"
+      ],
+      "checklist": [
+        "Rota preservada: plugin the-factory-developer; capability database-scoped-delivery; preferred_tool repository-native-tooling-after-authorization. Somente apos gates, sem ampliar escopo.",
+        "Exigir os três recibos DF04 (MT-03, MT-09, MT-04) com PASS independente de TFD-qa_backend e o parecer PASS de TFD-security de MT-11 (evidence/df04-security.json), todos da mesma revisão e configuração efetiva e os gates humanos antes de qualquer tentativa de conexão real ou operação.",
+        "Reaplicar DF04 antes de cada tentativa de conexão. Em alvo novo e isolado, a primeira conexão somente lê DB, role e instância. Se a identidade divergir, parar antes de qualquer efeito.",
+        "Só após confirmar identidade, aplicar migração e constraints autorizadas por um único job/lock/role, carregar as fixtures sintéticas permitidas e conferir reconciliação. Demonstrar T07-P4 pós-conexão e T07-P5/P6 aplicáveis."
+      ],
+      "deliverables": [
+        "Recibo de identidade, precedência DF04, comandos/exits, migrador único, fixtures e reconciliação autorizadas."
+      ],
+      "completion_condition": "Guard e identidade confirmados antes de efeitos; concorrência e reconciliação de TEST-01 comprovadas e revisadas independentemente.",
+      "validator": "TFD-qa_backend",
+      "owner": "TFD-database",
+      "phase": "P3-REVIEW",
+      "sector": "database",
+      "reference_ids": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11"
+      ]
+    },
+    {
+      "id": "MT-10",
+      "title": "F1-P3 — Verificar startup e ensaiar recuperação autorizada",
+      "depends_on": [
+        "MT-03",
+        "MT-09",
+        "MT-04",
+        "MT-02",
+        "MT-11"
+      ],
+      "allowed_paths": [
+        "backend/scripts/**",
+        "backend/tests/**",
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/evidence/**",
+        "backend/app/core/**",
+        "backend/app/main.py",
+        "docker-compose*.yml",
+        ".github/workflows/**"
+      ],
+      "checklist": [
+        "Rota preservada: plugin the-factory-developer; capability devops-scoped-delivery; preferred_tool repository-native-tooling-after-authorization. Somente apos gates, sem ampliar escopo.",
+        "Exigir os três recibos DF04 (MT-03, MT-09, MT-04) com PASS independente de TFD-qa_backend e o parecer PASS de TFD-security de MT-11 (evidence/df04-security.json), todos da mesma revisão e configuração efetiva, a evidência de MT-02 e os gates humanos antes de qualquer tentativa de conexão real ou teste com serviços.",
+        "Reaplicar DF04 antes de cada tentativa de conexão. Em alvo novo e isolado, a primeira conexão somente lê DB, role e instância. Se a identidade divergir, parar antes de qualquer efeito.",
+        "Demonstrar startup da API sem DDL/download/seed e sinalizar indisponibilidade PRO sem download no startup.",
+        "Com autorização operacional separada e após comprovar identidade do alvo, ensaiar restauração e rollback somente em recurso novo isolado. Reconciliar banco, objetos, configuração e jornada sintética conforme T07-P7."
+      ],
+      "deliverables": [
+        "Recibos de startup e recuperação/rollback de TEST-01/T07-P5–P7, com comandos/exits, identidade e reconciliação."
+      ],
+      "completion_condition": "Startup sem efeitos proibidos e recuperação reconciliada em alvo novo, com evidência independente. Sem prova, base não pronta.",
+      "validator": "TFD-qa_backend",
+      "owner": "TFD-devops",
+      "phase": "P3-REVIEW",
+      "sector": "devops",
+      "reference_ids": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11"
+      ]
+    },
+    {
+      "id": "MT-05",
+      "title": "documentation - MOD-001 recorte verificavel",
+      "depends_on": [
+        "MT-10"
+      ],
+      "allowed_paths": [
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/evidence/**"
+      ],
+      "checklist": [
+        "Rota preservada: plugin the-factory-developer; capability documentation-scoped-delivery; preferred_tool repository-native-tooling-after-authorization. Somente apos gates, sem ampliar escopo.",
+        "Registrar comportamento/fonte verificados e limites no modulo sem alegar implementacao ausente.",
+        "Sincronizar spec/Task/evidencia do recorte; roadmap entrega PRD/spec antes de qualquer codigo."
+      ],
+      "deliverables": [
+        "documentation - MOD-001 recorte verificavel: resultado e evidencia propria da fase, conforme REF01/03."
+      ],
+      "completion_condition": "Escopo REF01 e TEST01 aplicaveis demonstrados; stops/gates respeitados, revisao independente atual.",
+      "validator": "TFD-qa_spec",
+      "owner": "TFD-documentation",
+      "phase": "P3-REVIEW",
+      "sector": "documentation",
+      "reference_ids": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11"
+      ]
+    },
+    {
+      "id": "MT-06",
+      "title": "qa - MOD-001 recorte verificavel",
+      "depends_on": [
+        "MT-05"
+      ],
+      "allowed_paths": [
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/evidence/**"
+      ],
+      "checklist": [
+        "Rota preservada: plugin the-factory-developer; capability qa-scoped-delivery; preferred_tool repository-native-tooling-after-authorization. Somente apos gates, sem ampliar escopo.",
+        "Inspecionar a evidência de TEST-01 independentemente. Se houver repetição operacional autorizada, exigir os três recibos DF04 (MT-03, MT-09, MT-04) com PASS independente de TFD-qa_backend e o parecer PASS de TFD-security de MT-11 (evidence/df04-security.json), todos da mesma revisão e configuração efetiva e os gates humanos antes de qualquer tentativa de conexão. Reaplicar guard e confirmar identidade em leitura antes de efeitos.",
+        "Emitir achados rastreaveis e recheck, sem autoaprovar implementacao de outro owner."
+      ],
+      "deliverables": [
+        "qa - MOD-001 recorte verificavel: resultado e evidencia propria da fase, conforme REF01/03."
+      ],
+      "completion_condition": "Escopo REF01 e TEST01 aplicaveis demonstrados; stops/gates respeitados, revisao independente atual.",
+      "validator": "TFD-qa_spec",
+      "owner": "TFD-qa_backend",
+      "phase": "P3-REVIEW",
+      "sector": "qa",
+      "reference_ids": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11"
+      ]
+    },
+    {
+      "id": "MT-07",
+      "title": "security - MOD-001 recorte verificavel",
+      "depends_on": [
+        "MT-06"
+      ],
+      "allowed_paths": [
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/evidence/**"
+      ],
+      "checklist": [
+        "Rota preservada: plugin the-factory-developer; capability security-scoped-delivery; preferred_tool repository-native-tooling-after-authorization. Somente apos gates, sem ampliar escopo.",
+        "Verificar negativos de identidade/registro/campo/evento/arquivo/segredo do TEST01 aplicavel.",
+        "Registrar limites e achados da revisao entregue, sem alterar implementacao nesta rota."
+      ],
+      "deliverables": [
+        "security - MOD-001 recorte verificavel: resultado e evidencia propria da fase, conforme REF01/03."
+      ],
+      "completion_condition": "Escopo REF01 e TEST01 aplicaveis demonstrados; stops/gates respeitados, revisao independente atual.",
+      "validator": "TFD-qa_spec",
+      "owner": "TFD-security",
+      "phase": "P3-REVIEW",
+      "sector": "security",
+      "reference_ids": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11"
+      ]
+    },
+    {
+      "id": "MT-08",
+      "title": "harness - MOD-001 recorte verificavel",
+      "depends_on": [
+        "MT-07"
+      ],
+      "allowed_paths": [
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/evidence/**"
+      ],
+      "checklist": [
+        "Rota preservada: plugin the-factory-developer; capability harness-scoped-delivery; preferred_tool repository-native-tooling-after-authorization. Somente apos gates, sem ampliar escopo.",
+        "Conferir todos REQUIRED, dependencias/stops e revisoes/evidencias atuais.",
+        "Main coordena e registra gates humanos reais; nao delega ou completa gate por mencao."
+      ],
+      "deliverables": [
+        "harness - MOD-001 recorte verificavel: resultado e evidencia propria da fase, conforme REF01/03."
+      ],
+      "completion_condition": "Escopo REF01 e TEST01 aplicaveis demonstrados; stops/gates respeitados, revisao independente atual.",
+      "validator": "TFD-qa_spec",
+      "owner": "TFD-harness",
+      "phase": "P3-REVIEW",
+      "sector": "harness",
+      "reference_ids": [
+        "REF-01",
+        "REF-02",
+        "REF-03",
+        "REF-04",
+        "REF-05",
+        "REF-06",
+        "REF-07",
+        "REF-08",
+        "REF-09",
+        "REF-10",
+        "REF-11"
+      ]
+    }
+  ],
+  "estimate": {
+    "optimistic_h": 42,
+    "likely_h": 84,
+    "pessimistic_h": 168,
+    "confidence": "low",
+    "basis": "Soma F1-P1/P2/P3 de spec/phase-plan.md:18/36/72 +12/24/48 +12/24/48; baixa confianca, sem baseline."
+  }
+}

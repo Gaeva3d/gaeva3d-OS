@@ -1,0 +1,174 @@
+"""
+Tests for app.core.paths — runtime-configurable filesystem path helpers.
+
+Coverage:
+- Each resolver returns its historical default when no override is supplied.
+- Each resolver honours a non-blank override string by returning Path(override).
+- Empty / whitespace overrides fall through to the default
+  (matches the existing settings.UPLOAD_DIR convention in file_storage.py).
+- resolve_upload_products_dir defaults to the uploads volume and follows an
+  overridden STATIC_DIR.
+
+The functions are pure: no module-level side effects, no settings dependency,
+no filesystem touches. Tests stay isolated and quick.
+"""
+from __future__ import annotations
+
+from pathlib import Path
+
+from app.core.paths import (
+    BACKEND_DIR,
+    resolve_frontend_dist,
+    resolve_legacy_product_images_dir,
+    resolve_static_dir,
+    resolve_surface_dist,
+    resolve_upload_po_docs_dir,
+    resolve_upload_products_dir,
+)
+
+
+# ---------------------------------------------------------------------------
+# resolve_static_dir
+# ---------------------------------------------------------------------------
+
+
+def test_resolve_static_dir_default_when_none():
+    assert resolve_static_dir(None) == BACKEND_DIR / "static"
+
+
+def test_resolve_static_dir_default_when_empty():
+    assert resolve_static_dir("") == BACKEND_DIR / "static"
+
+
+def test_resolve_static_dir_default_when_whitespace():
+    assert resolve_static_dir("   ") == BACKEND_DIR / "static"
+
+
+def test_resolve_static_dir_honours_override():
+    assert resolve_static_dir("/tmp/custom/static") == Path("/tmp/custom/static")
+
+
+def test_resolve_static_dir_strips_whitespace_around_override():
+    assert resolve_static_dir("  /tmp/custom/static  ") == Path("/tmp/custom/static")
+
+
+# ---------------------------------------------------------------------------
+# resolve_upload_products_dir
+# ---------------------------------------------------------------------------
+
+
+def test_resolve_upload_products_dir_default_is_on_uploads_volume():
+    """Default lives under <backend>/uploads, which is /app/uploads in Docker:
+    the persistent volume. The old default (<backend>/static/...) was inside
+    the container and lost whenever the container was recreated."""
+    assert resolve_upload_products_dir(None) == BACKEND_DIR / "uploads" / "products"
+
+
+def test_resolve_upload_products_dir_follows_overridden_static_dir():
+    """Packaged installs that move STATIC_DIR to a writable per-user location
+    keep their product images there."""
+    assert (
+        resolve_upload_products_dir(None, static_override="/srv/filaops/static")
+        == Path("/srv/filaops/static") / "uploads" / "products"
+    )
+
+
+def test_resolve_upload_products_dir_blank_static_override_uses_default():
+    assert (
+        resolve_upload_products_dir(None, static_override="  ")
+        == BACKEND_DIR / "uploads" / "products"
+    )
+
+
+def test_resolve_upload_products_dir_honours_override_ignoring_static_dir():
+    """Override takes precedence over STATIC_DIR."""
+    overridden = resolve_upload_products_dir(
+        "/var/lib/filaops/products", static_override="/srv/filaops/static"
+    )
+    assert overridden == Path("/var/lib/filaops/products")
+
+
+def test_resolve_upload_products_dir_empty_falls_through():
+    assert resolve_upload_products_dir("") == BACKEND_DIR / "uploads" / "products"
+
+
+def test_resolve_legacy_product_images_dir_is_under_static():
+    static = Path("/srv/filaops/static")
+    assert resolve_legacy_product_images_dir(static) == static / "uploads" / "products"
+
+
+# ---------------------------------------------------------------------------
+# resolve_upload_po_docs_dir
+# ---------------------------------------------------------------------------
+
+
+def test_resolve_upload_po_docs_dir_default():
+    assert resolve_upload_po_docs_dir(None) == BACKEND_DIR / "uploads" / "po_documents"
+
+
+def test_resolve_upload_po_docs_dir_honours_override():
+    assert (
+        resolve_upload_po_docs_dir("/var/lib/filaops/po_docs")
+        == Path("/var/lib/filaops/po_docs")
+    )
+
+
+def test_resolve_upload_po_docs_dir_empty_falls_through():
+    assert resolve_upload_po_docs_dir("") == BACKEND_DIR / "uploads" / "po_documents"
+
+
+# ---------------------------------------------------------------------------
+# Backend directory anchor sanity check
+# ---------------------------------------------------------------------------
+
+
+def test_backend_dir_anchor_resolves_to_backend_root():
+    """BACKEND_DIR should resolve to the backend/ root — the directory that
+    contains app/, migrations/, and pyproject.toml. Sanity-check so the
+    default paths can't silently drift if someone moves app/core/paths.py."""
+    # The anchor must be the parent of app/
+    assert (BACKEND_DIR / "app").is_dir(), (
+        f"BACKEND_DIR resolved to {BACKEND_DIR!s}, but expected the backend/ root "
+        "(parent dir of app/)."
+    )
+
+
+# ---------------------------------------------------------------------------
+# resolve_frontend_dist
+# ---------------------------------------------------------------------------
+
+
+def test_resolve_frontend_dist_returns_none_when_unset():
+    """Unlike the other resolvers, FRONTEND_DIST has no in-repo default —
+    Core only serves the SPA when explicitly told to. Empty / None /
+    whitespace all collapse to None so callers can skip mounting."""
+    assert resolve_frontend_dist(None) is None
+    assert resolve_frontend_dist("") is None
+    assert resolve_frontend_dist("   ") is None
+
+
+def test_resolve_frontend_dist_returns_path_when_set():
+    assert resolve_frontend_dist("/srv/filaops/frontend") == Path("/srv/filaops/frontend")
+
+
+def test_resolve_frontend_dist_strips_whitespace():
+    assert resolve_frontend_dist("  /srv/filaops/frontend  ") == Path("/srv/filaops/frontend")
+
+
+# ---------------------------------------------------------------------------
+# resolve_surface_dist
+# ---------------------------------------------------------------------------
+
+
+def test_resolve_surface_dist_returns_none_when_unset():
+    assert resolve_surface_dist(None) is None
+    assert resolve_surface_dist("") is None
+    assert resolve_surface_dist("   ") is None
+
+
+def test_resolve_surface_dist_returns_path_when_set():
+    assert resolve_surface_dist("/srv/filaops/quoter") == Path("/srv/filaops/quoter")
+
+
+def test_resolve_surface_dist_strips_whitespace():
+    assert resolve_surface_dist("  /srv/filaops/portal  ") == Path("/srv/filaops/portal")

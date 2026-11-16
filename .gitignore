@@ -1,39 +1,186 @@
-# Logs
-logs
-*.log
+# =============================================================================
+# FilaOps - Git Ignore
+# =============================================================================
+
+# Internal reports (not for public repo)
+docs/T-REX-Implementation-Report.md
+docs/T-REX-Implementation-Report.pdf
+docs/AI_Agent_Governance_Gap_Analysis.pdf
+
+# Binaries (ship instructions, not executables)
+*.exe
+
+# Windows artifacts
+nul
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+.env.backup
+.env.production
+backend/.env.production
+*.env
+secrets/
+credentials/
+
+# Claude Code local settings (may contain secrets)
+.claude/settings.local.json
+.claude/*.lock
+
+# Windows artifacts
+nul
+*.lnk
+
+# Sync files
+.last-sync
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+/lib/
+/lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.ruff_cache/
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# Node.js / Frontend
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
+.pnpm-store/
 
-node_modules
-dist
-dist-ssr
-.output
-.vinxi
-.tanstack/**
-.nitro
+# Build outputs
+dist/
+dist-ssr/
 *.local
+frontend/dist/
 
-# Environment and Supabase secrets
-.env
-.env.*
-!.env.example
-supabase/.env
-supabase/.env.*
-
-# Wrangler / Cloudflare
-.wrangler/
-.dev.vars
-
-# Editor directories and files
+# IDE & Editor
 .vscode/*
 !.vscode/extensions.json
-.idea
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Database
+*.db
+*.sqlite3
+
+# Uploads (user content)
+uploads/*
+!uploads/.gitkeep
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Testing
+/playwright-report/
+**/test-results/
+/coverage/
+.nyc_output/
+.playwright-mcp/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Alembic
+alembic/versions/__pycache__/
+
+# Binaries
+*.exe
+
+# Output/log files
+*_output.txt
+migration_output.txt
+tables_output.txt
+
+# Working documents
+**/ACTIVE_WORK.md
+
+# Screenshots/images
+*.png
+
+# Temporary review/API cache files
+*tmp_reviews.json
+*tmp_comments.json
+
+# Code Conclave / Review Council (runtime artifacts + local skills)
+.code-conclave/
+.review-council/
+.agents/
+.codex/
+.claude/reviews/
+.claude/skills/review-council*
+*-review-log.txt
+
+# Doc generation scripts (run locally, commit results only)
+backend/scripts/generate_api_reference.py
+backend/scripts/generate_schema_reference.py
+backend/scripts/generate_migrations_log.py
+
+# MkDocs build output
+site/
+
+# SME domain test suite (dev-only)
+frontend/tests/sme/
+
+# PRO features (never in public core — lives in private repo only)
+backend/app/pro/
+.claude/dependabot-upgrade-plan.md
+
+# Internal reports (not for public repo)
+docs/T-REX-Implementation-Report.md
+docs/T-REX-Implementation-Report.pdf
+docs/AI_Agent_Governance_Gap_Analysis.pdf
+docs/BLIND_TEST_RECOVERY.md
+.worktrees/
+
+# Documentation assets (screenshots, logos) must be tracked despite *.png above
+!docs/assets/**

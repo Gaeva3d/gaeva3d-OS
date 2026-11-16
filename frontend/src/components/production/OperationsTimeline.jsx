@@ -1,0 +1,231 @@
+/**
+ * OperationsTimeline - Visual timeline of operation progress
+ *
+ * Shows operations as connected nodes with status indicators.
+ * Provides quick visual reference for production progress.
+ */
+import { productionControlLabels } from "./productionControlLabels";
+import { formatDuration } from '../../utils/formatting';
+
+/**
+ * Parse datetime string, ensuring UTC interpretation
+ */
+function parseDateTime(datetime) {
+  if (!datetime) return null;
+  if (datetime instanceof Date) return datetime;
+
+  // If string doesn't have timezone info, assume UTC and add 'Z'
+  let dateStr = datetime;
+  if (typeof dateStr === 'string' && !dateStr.endsWith('Z') && !dateStr.includes('+') && !dateStr.includes('-', 10)) {
+    dateStr = dateStr + 'Z';
+  }
+  return new Date(dateStr);
+}
+
+/**
+ * Status configuration for visual styling
+ */
+const STATUS_CONFIG = {
+  pending: {
+    nodeClass: 'border-2 border-[var(--rule-hair)] bg-[var(--paper-sunk)]',
+    labelClass: 'text-[var(--ink-4)]',
+    icon: null
+  },
+  queued: {
+    nodeClass: 'border-2 border-[var(--ink-3)] bg-[var(--paper-sunk)]',
+    labelClass: 'text-[var(--ink-3)]',
+    icon: null
+  },
+  running: {
+    nodeClass: 'border-2 border-[var(--status-amber)] bg-[var(--status-amber-tint)] animate-pulse',
+    labelClass: 'text-[var(--status-amber)]',
+    icon: (
+      <div className="w-2 h-2 rounded-full bg-[var(--status-amber)] animate-ping" />
+    )
+  },
+  complete: {
+    nodeClass: 'border-2 border-[var(--status-green)] bg-[var(--status-green)]',
+    labelClass: 'text-[var(--status-green)]',
+    icon: (
+      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+      </svg>
+    )
+  },
+  skipped: {
+    nodeClass: 'border-2 border-[var(--status-amber)] bg-[var(--status-amber-tint)]',
+    labelClass: 'text-[var(--status-amber)] line-through',
+    icon: (
+      <svg className="w-3 h-3 text-[var(--status-amber)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    )
+  }
+};
+
+/**
+ * Single timeline node
+ */
+function TimelineNode({ operation }) {
+  const config = STATUS_CONFIG[operation.status] || STATUS_CONFIG.pending;
+
+  // Calculate timing display
+  let timingText = '';
+  if (operation.status === 'complete') {
+    const actual = (operation.actual_setup_minutes || 0) + (operation.actual_run_minutes || 0);
+    timingText = formatDuration(actual);
+  } else if (operation.status === 'running') {
+    if (operation.actual_start) {
+      // eslint-disable-next-line react-hooks/purity -- Date.now() is intentional for live elapsed time
+      const elapsed = Math.floor((Date.now() - parseDateTime(operation.actual_start).getTime()) / 60000);
+      timingText = formatDuration(elapsed);
+    } else {
+      timingText = 'Iniciando…';
+    }
+  } else if (operation.status === 'skipped') {
+    timingText = 'Ignorada';
+  } else {
+    // API returns Numeric columns as strings; use parseFloat to avoid string concatenation
+    const toMin = (v) => { const n = parseFloat(v); return Number.isFinite(n) ? n : 0; };
+    const planned = toMin(operation.planned_setup_minutes) + toMin(operation.planned_run_minutes);
+    if (planned > 0) {
+      timingText = `~${formatDuration(planned)}`;
+    }
+  }
+
+  return (
+    <div className="flex flex-col items-center flex-1 min-w-0">
+      {/* Node */}
+      <div
+        className={`
+          w-6 h-6 rounded-full flex items-center justify-center
+          ${config.nodeClass}
+          transition-all duration-300
+        `}
+      >
+        {config.icon}
+      </div>
+
+      {/* Label */}
+      <div className="mt-2 text-center">
+        <div className={`text-xs font-medium truncate max-w-[80px] ${config.labelClass}`}>
+          {operation.operation_code || `Op ${operation.sequence}`}
+        </div>
+        <div className={`text-[10px] ${config.labelClass} opacity-70`}>
+          {timingText}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Connector line between nodes
+ */
+function TimelineConnector({ prevStatus }) {
+  // Use the "more complete" status for coloring
+  const getConnectorClass = () => {
+    if (prevStatus === 'complete' || prevStatus === 'skipped') {
+      return 'bg-[var(--status-green)]';
+    }
+    if (prevStatus === 'running') {
+      return 'bg-gradient-to-r from-[var(--status-amber)] to-[var(--rule-hair)]';
+    }
+    return 'bg-[var(--rule-hair)]';
+  };
+
+  return (
+    <div className="flex-1 h-0.5 mt-3 mx-1">
+      <div className={`h-full ${getConnectorClass()} transition-all duration-300`} />
+    </div>
+  );
+}
+
+/**
+ * Progress percentage display
+ */
+function ProgressSummary({ operations }) {
+  if (!operations || operations.length === 0) return null;
+
+  const completed = operations.filter(op =>
+    ['complete', 'skipped'].includes(op.status)
+  ).length;
+  const percentage = Math.round((completed / operations.length) * 100);
+
+  return (
+    <div className="flex items-center justify-between mb-4">
+      <span className="text-sm text-[var(--ink-3)]">{productionControlLabels.progressoDasOperacoes}</span>
+      <span className="text-sm font-medium text-[var(--ink)]">{percentage}%</span>
+    </div>
+  );
+}
+
+/**
+ * Progress bar underneath timeline
+ */
+function ProgressBar({ operations }) {
+  if (!operations || operations.length === 0) return null;
+
+  const completed = operations.filter(op => op.status === 'complete').length;
+  const running = operations.filter(op => op.status === 'running').length;
+  const skipped = operations.filter(op => op.status === 'skipped').length;
+  const total = operations.length;
+
+  const completedPct = (completed / total) * 100;
+  const runningPct = (running / total) * 100;
+  const skippedPct = (skipped / total) * 100;
+
+  return (
+    <div className="mt-4">
+      <div className="h-1.5 bg-[var(--rule-hair)] rounded-full overflow-hidden flex">
+        {/* Completed */}
+        <div
+          className="bg-[var(--status-green)] transition-all duration-500"
+          style={{ width: `${completedPct}%` }}
+        />
+        {/* Running */}
+        <div
+          className="bg-[var(--status-amber)] animate-pulse transition-all duration-500"
+          style={{ width: `${runningPct}%` }}
+        />
+        {/* Skipped */}
+        <div
+          className="bg-[var(--status-amber)]/50 transition-all duration-500"
+          style={{ width: `${skippedPct}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Main component
+ */
+export default function OperationsTimeline({ operations }) {
+  if (!operations || operations.length === 0) {
+    return null;
+  }
+
+  // Sort by sequence
+  const sortedOps = [...operations].sort((a, b) => a.sequence - b.sequence);
+
+  return (
+    <div className="bg-[var(--paper)] border border-[var(--rule-hair)] rounded-xl p-6 shadow-[var(--shadow-pop)]">
+      <ProgressSummary operations={sortedOps} />
+
+      {/* Timeline */}
+      <div className="flex items-start">
+        {sortedOps.map((operation, index) => (
+          <div key={operation.id} className="flex items-start flex-1 min-w-0">
+            <TimelineNode operation={operation} />
+            {index < sortedOps.length - 1 && (
+              <TimelineConnector prevStatus={operation.status} />
+            )}
+          </div>
+        ))}
+      </div>
+
+      <ProgressBar operations={sortedOps} />
+    </div>
+  );
+}

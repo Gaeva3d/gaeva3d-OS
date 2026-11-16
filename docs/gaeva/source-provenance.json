@@ -1,0 +1,11 @@
+{
+  "upstream_pin": "bdcabe5c3b8d5f0744ac5fd91620985a43922536",
+  "frontend_inputs": 500,
+  "latest_bindings": 50,
+  "frontend_canonical": "ac3c79e9d7fadf55c20e71b595bcab10d95a0e402af5ccc64f8e98304a5a9911",
+  "runtime_image": "sha256:452f827066c9b6b7954951cdff8da7650a274d8e4b251f54cf71121d1a82f813",
+  "dist_canonical": "faae666885e877dfce1b1b18b0e620c515406539f159beddad7eae317b83602a",
+  "mode": "normal Git content update; same repository/history/Issues",
+  "runtime": "existing frontend80 applied; backend/DB unchanged",
+  "limits": "partial development base; no full integration/PRO/authenticated-system PASS"
+}

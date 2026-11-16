@@ -1,0 +1,595 @@
+/**
+ * ItemsTable - Table view for items with sorting, inline editing, bulk selection, and pagination.
+ */
+import { useFormatCurrency } from "../../hooks/useFormatCurrency";
+
+// Item type options (for display labels)
+const ITEM_TYPES = [
+  { value: "finished_good", label: "Finished Good", color: "blue" },
+  { value: "component", label: "Component", color: "purple" },
+  { value: "material", label: "Material", color: "orange" },
+  { value: "filament", label: "Filament (Legacy)", color: "orange" },
+  { value: "packaging", label: "Packaging", color: "teal" },
+  { value: "supply", label: "Supply", color: "yellow" },
+  { value: "service", label: "Service", color: "green" },
+];
+
+const getItemTypeStyle = (type, hasFilament = false) => {
+  if (hasFilament) {
+    return "bg-orange-500/20 text-orange-400";
+  }
+  const found = ITEM_TYPES.find((t) => t.value === type);
+  if (!found) return "bg-gray-500/20 text-gray-400";
+  return {
+    blue: "bg-blue-500/20 text-blue-400",
+    purple: "bg-purple-500/20 text-purple-400",
+    orange: "bg-orange-500/20 text-orange-400",
+    teal: "bg-teal-500/20 text-teal-400",
+    yellow: "bg-yellow-500/20 text-yellow-400",
+    green: "bg-green-500/20 text-green-400",
+  }[found.color];
+};
+
+/**
+ * Format a quantity value with the right unit for an item.
+ * Materials display in grams (integer); non-materials use item.unit (default
+ * "EA") and preserve fractional precision via toLocaleString.
+ *
+ * `scaleMaterial` exists because on_hand_qty is stored in grams already
+ * (raw inventory), while available_qty / allocated_qty come back in the
+ * item's purchase_uom (KG for materials) and need ×1000 to render in grams.
+ * If that backend convention ever unifies, drop the flag and the call sites
+ * become symmetric.
+ */
+function formatQtyWithUnit(item, qty, { scaleMaterial = false } = {}) {
+  if (qty == null) return null;
+  const isMaterial = !!item?.material_type_id;
+  const num = parseFloat(qty);
+  const value = isMaterial && scaleMaterial ? num * 1000 : num;
+  // Materials are always whole grams in display. Non-materials preserve any
+  // fractional EA / piece quantities entered by the user (e.g. 2.5 EA stays "2.5").
+  const display = isMaterial ? value.toFixed(0) : value.toLocaleString();
+  const unit = isMaterial ? "g" : (item?.unit || "EA");
+  return { display, unit };
+}
+
+function QtyCell({ formatted, fallback = "-" }) {
+  if (!formatted) return <>{fallback}</>;
+  return (
+    <>
+      {formatted.display}
+      <span className="text-gray-500 text-xs ml-1">{formatted.unit}</span>
+    </>
+  );
+}
+
+/**
+ * Build tooltip + aria-label copy for a variant rollup cell.
+ * `kind` is "On-hand" or "Available". Defensive: when `count` is somehow 0
+ * (shouldn't happen since the rollup cell only renders when at least one
+ * active variant exists), we fall back to neutral copy rather than the
+ * awkward "Sum across 0 variants".
+ */
+function rollupCopy(kind, count) {
+  const c = count ?? 0;
+  if (c <= 0) {
+    return {
+      title: `${kind} variant rollup`,
+      ariaLabel: `${kind} variant rollup`,
+    };
+  }
+  return {
+    title: `Sum across ${c} variants`,
+    ariaLabel: `${kind} rolled up from ${c} variants`,
+  };
+}
+
+function SortIndicator({ columnKey, sortConfig }) {
+  if (sortConfig.key !== columnKey && !(sortConfig.key === "stock_status" && columnKey === "available_qty")) {
+    return <span className="text-gray-600 ml-1">↕</span>;
+  }
+  return (
+    <span className="text-blue-400 ml-1">
+      {sortConfig.direction === "asc" ? "↑" : "↓"}
+    </span>
+  );
+}
+
+export default function ItemsTable({
+  items,
+  loading,
+  // Selection
+  selectedItems,
+  onSelectAll,
+  onSelectItem,
+  isAllSelected,
+  isIndeterminate,
+  // Sorting
+  sortConfig,
+  onSort,
+  // Inline qty editing
+  editingQtyItem,
+  editingQtyValue,
+  onEditingQtyValueChange,
+  adjustmentReason,
+  adjustingQty,
+  onStartEditQty,
+  onSaveQtyAdjustment,
+  onCancelEditQty,
+  onShowAdjustmentModal,
+  // Pagination
+  pagination,
+  onPageChange,
+  onPageSizeChange,
+  totalPages,
+  canGoPrev,
+  canGoNext,
+  // Actions
+  onEditItem,
+  onEditRouting,
+  onDuplicateItem,
+  onManageVariants,
+}) {
+  const formatCurrency = useFormatCurrency();
+
+  return (
+    <div className={`bg-gray-900 border border-gray-800 rounded-xl overflow-hidden transition-opacity ${loading ? 'opacity-60' : ''}`}>
+      <table className="w-full">
+        <thead className="bg-gray-800/50">
+          <tr>
+            <th className="text-left py-3 px-4 text-xs font-medium text-gray-400 uppercase w-12">
+              <input
+                type="checkbox"
+                checked={isAllSelected}
+                ref={(input) => {
+                  if (input) input.indeterminate = isIndeterminate;
+                }}
+                onChange={onSelectAll}
+                className="rounded"
+              />
+            </th>
+            <th
+              className="text-left py-3 px-4 text-xs font-medium text-gray-400 uppercase cursor-pointer hover:text-white select-none"
+              onClick={() => onSort("sku")}
+            >
+              SKU <SortIndicator columnKey="sku" sortConfig={sortConfig} />
+            </th>
+            <th
+              className="text-left py-3 px-4 text-xs font-medium text-gray-400 uppercase cursor-pointer hover:text-white select-none"
+              onClick={() => onSort("name")}
+            >
+              Name <SortIndicator columnKey="name" sortConfig={sortConfig} />
+            </th>
+            <th
+              className="text-left py-3 px-4 text-xs font-medium text-gray-400 uppercase cursor-pointer hover:text-white select-none"
+              onClick={() => onSort("item_type")}
+            >
+              Type <SortIndicator columnKey="item_type" sortConfig={sortConfig} />
+            </th>
+            <th
+              className="text-left py-3 px-4 text-xs font-medium text-gray-400 uppercase cursor-pointer hover:text-white select-none"
+              onClick={() => onSort("category_name")}
+            >
+              Category <SortIndicator columnKey="category_name" sortConfig={sortConfig} />
+            </th>
+            <th
+              className="text-right py-3 px-4 text-xs font-medium text-gray-400 uppercase cursor-pointer hover:text-white select-none"
+              onClick={() => onSort("standard_cost")}
+            >
+              Std Cost <SortIndicator columnKey="standard_cost" sortConfig={sortConfig} />
+            </th>
+            <th
+              className="text-right py-3 px-4 text-xs font-medium text-gray-400 uppercase cursor-pointer hover:text-white select-none"
+              onClick={() => onSort("selling_price")}
+            >
+              Price <SortIndicator columnKey="selling_price" sortConfig={sortConfig} />
+            </th>
+            <th
+              className="text-right py-3 px-4 text-xs font-medium text-gray-400 uppercase cursor-pointer hover:text-white select-none"
+              onClick={() => onSort("on_hand_qty")}
+            >
+              On Hand <SortIndicator columnKey="on_hand_qty" sortConfig={sortConfig} />
+            </th>
+            <th className="text-right py-3 px-4 text-xs font-medium text-gray-400 uppercase">
+              Reserved
+            </th>
+            <th
+              className="text-right py-3 px-4 text-xs font-medium text-gray-400 uppercase cursor-pointer hover:text-white select-none"
+              onClick={() => onSort("available_qty")}
+            >
+              Available <SortIndicator columnKey="available_qty" sortConfig={sortConfig} />
+            </th>
+            <th
+              className="text-center py-3 px-4 text-xs font-medium text-gray-400 uppercase cursor-pointer hover:text-white select-none"
+              onClick={() => onSort("stocking_policy")}
+            >
+              Policy <SortIndicator columnKey="stocking_policy" sortConfig={sortConfig} />
+            </th>
+            <th
+              className="text-right py-3 px-4 text-xs font-medium text-gray-400 uppercase cursor-pointer hover:text-white select-none"
+              onClick={() => onSort("reorder_point")}
+            >
+              Reorder Pt <SortIndicator columnKey="reorder_point" sortConfig={sortConfig} />
+            </th>
+            <th
+              className="text-center py-3 px-4 text-xs font-medium text-gray-400 uppercase cursor-pointer hover:text-white select-none"
+              onClick={() => onSort("active")}
+            >
+              Status <SortIndicator columnKey="active" sortConfig={sortConfig} />
+            </th>
+            <th className="text-right py-3 px-4 text-xs font-medium text-gray-400 uppercase">
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {items.map((item) => (
+            <tr
+              key={item.id}
+              className="border-b border-gray-800 hover:bg-gray-800/50"
+            >
+              <td className="py-3 px-4">
+                <input
+                  type="checkbox"
+                  checked={selectedItems.has(item.id)}
+                  onChange={() => onSelectItem(item.id)}
+                  className="rounded"
+                />
+              </td>
+              <td className="py-3 px-4 text-white font-mono text-sm">
+                {item.sku}
+              </td>
+              <td className="py-3 px-4 text-gray-300">
+                {item.name}
+                {item.is_template && (
+                  <span className="ml-2 px-2 py-0.5 rounded-full text-xs bg-purple-500/20 text-purple-400 border border-purple-500/30">
+                    Template · {item.variant_count ?? 0}
+                  </span>
+                )}
+              </td>
+              <td className="py-3 px-4">
+                <span
+                  className={`px-2 py-1 rounded-full text-xs ${getItemTypeStyle(
+                    item.item_type,
+                    !!item.material_type_id
+                  )}`}
+                >
+                  {item.material_type_id
+                    ? "Filament"
+                    : ITEM_TYPES.find((t) => t.value === item.item_type)
+                        ?.label || item.item_type}
+                </span>
+              </td>
+              <td className="py-3 px-4 text-gray-400">
+                {item.category_name || "-"}
+              </td>
+              <td className="py-3 px-4 text-right text-gray-400">
+                {item.standard_cost ? (
+                  item.material_type_id ? (
+                    <div className="flex flex-col items-end">
+                      <span>{formatCurrency(parseFloat(item.standard_cost))}/KG</span>
+                      <span className="text-xs text-gray-500">
+                        {formatCurrency(parseFloat(item.standard_cost) / 1000)}/g
+                      </span>
+                    </div>
+                  ) : (
+                    formatCurrency(parseFloat(item.standard_cost))
+                  )
+                ) : (
+                  "-"
+                )}
+              </td>
+              <td className="py-3 px-4 text-right text-green-400">
+                {item.material_type_id || item.item_type === "supply"
+                  ? "-"
+                  : item.selling_price
+                  ? formatCurrency(parseFloat(item.selling_price))
+                  : "-"}
+              </td>
+              {/* On Hand - Inline Editable */}
+              <td className="py-3 px-4 text-right">
+                {editingQtyItem?.id === item.id ? (
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1">
+                      <input
+                        type="number"
+                        value={editingQtyValue}
+                        onChange={(e) => onEditingQtyValueChange(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            if (!adjustmentReason.trim()) {
+                              onShowAdjustmentModal();
+                            } else {
+                              onSaveQtyAdjustment(item);
+                            }
+                          } else if (e.key === "Escape") {
+                            onCancelEditQty();
+                          }
+                        }}
+                        className="w-24 bg-gray-800 border border-blue-500 rounded px-2 py-1 text-white text-sm"
+                        autoFocus
+                        step={item.material_type_id ? "1" : "0.01"}
+                        min="0"
+                      />
+                      <span className="text-gray-400 text-xs">
+                        {item.material_type_id ? "g" : (item.unit || "EA")}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => {
+                        if (!adjustmentReason.trim()) {
+                          onShowAdjustmentModal();
+                        } else {
+                          onSaveQtyAdjustment(item);
+                        }
+                      }}
+                      disabled={adjustingQty}
+                      className="text-green-400 hover:text-green-300 text-sm disabled:opacity-50"
+                      title="Save"
+                    >
+                      ✓
+                    </button>
+                    <button
+                      onClick={onCancelEditQty}
+                      className="text-red-400 hover:text-red-300 text-sm"
+                      title="Cancel"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ) : item.is_template && item.variants_on_hand_qty != null ? (
+                  // Variant inventory rollup (Workstream A): templates currently can't
+                  // carry their own inventory, so we replace the always-zero own-qty
+                  // cell with the SUM across child variants. If templates ever gain
+                  // their own stock, revisit this — we may need to show both values.
+                  (() => {
+                    const copy = rollupCopy("On-hand", item.variant_count);
+                    return (
+                      <span className="px-2 py-1 text-gray-300" title={copy.title}>
+                        <QtyCell
+                          formatted={formatQtyWithUnit(item, item.variants_on_hand_qty)}
+                        />
+                        <span
+                          className="text-blue-400 text-xs ml-1"
+                          aria-label={copy.ariaLabel}
+                        >
+                          ↘
+                        </span>
+                      </span>
+                    );
+                  })()
+                ) : (
+                  <button
+                    onClick={() => onStartEditQty(item)}
+                    className={`text-right hover:bg-gray-800 px-2 py-1 rounded ${
+                      item.needs_reorder ? "text-red-400" : "text-gray-300"
+                    } hover:text-white`}
+                    title="Click to edit on-hand quantity"
+                  >
+                    <QtyCell
+                      formatted={formatQtyWithUnit(item, item.on_hand_qty)}
+                    />
+                  </button>
+                )}
+              </td>
+              <td className="py-3 px-4 text-right text-yellow-400">
+                {item.is_template &&
+                item.variants_on_hand_qty != null &&
+                item.variants_available_qty != null ? (
+                  // Reserved rollup: derived from on_hand − available so the row
+                  // math reconciles. variants_*_qty come back in matching units
+                  // (both already in grams for materials, no scaling), so the
+                  // subtraction preserves the convention.
+                  (() => {
+                    const reserved =
+                      parseFloat(item.variants_on_hand_qty) -
+                      parseFloat(item.variants_available_qty);
+                    const copy = rollupCopy("Reserved", item.variant_count);
+                    return (
+                      <span title={copy.title}>
+                        <QtyCell formatted={formatQtyWithUnit(item, reserved)} />
+                        <span
+                          className="text-blue-400 text-xs ml-1"
+                          aria-label={copy.ariaLabel}
+                        >
+                          ↘
+                        </span>
+                      </span>
+                    );
+                  })()
+                ) : item.allocated_qty != null &&
+                  parseFloat(item.allocated_qty) > 0 ? (
+                  <QtyCell
+                    formatted={formatQtyWithUnit(item, item.allocated_qty, { scaleMaterial: true })}
+                  />
+                ) : (
+                  "-"
+                )}
+              </td>
+              <td className="py-3 px-4 text-right">
+                {item.is_template && item.variants_available_qty != null ? (
+                  (() => {
+                    const copy = rollupCopy("Available", item.variant_count);
+                    return (
+                      <span
+                        className={
+                          parseFloat(item.variants_available_qty) <= 0
+                            ? "text-red-400"
+                            : "text-green-400"
+                        }
+                        title={copy.title}
+                      >
+                        <QtyCell
+                          formatted={formatQtyWithUnit(item, item.variants_available_qty)}
+                        />
+                        <span
+                          className="text-blue-400 text-xs ml-1"
+                          aria-label={copy.ariaLabel}
+                        >
+                          ↘
+                        </span>
+                      </span>
+                    );
+                  })()
+                ) : (
+                <span
+                  className={
+                    item.available_qty != null &&
+                    parseFloat(item.available_qty) <= 0
+                      ? "text-red-400"
+                      : item.needs_reorder
+                      ? "text-yellow-400"
+                      : "text-green-400"
+                  }
+                >
+                  <QtyCell
+                    formatted={formatQtyWithUnit(item, item.available_qty, { scaleMaterial: true })}
+                  />
+                </span>
+                )}
+              </td>
+              <td className="py-3 px-4 text-center">
+                <span
+                  className={`px-2 py-0.5 rounded text-xs ${
+                    item.stocking_policy === "stocked"
+                      ? "bg-purple-500/20 text-purple-400"
+                      : "text-gray-500"
+                  }`}
+                >
+                  {item.stocking_policy === "stocked" ? "Stocked" : "MRP"}
+                </span>
+              </td>
+              <td className="py-3 px-4 text-right text-gray-400">
+                {item.stocking_policy === "stocked" && item.reorder_point != null ? (
+                  <>
+                    {parseFloat(item.reorder_point).toLocaleString()}
+                    <span className="text-gray-500 text-xs ml-1">
+                      {item.material_type_id ? "g" : (item.unit || "EA")}
+                    </span>
+                  </>
+                ) : (
+                  "-"
+                )}
+              </td>
+              <td className="py-3 px-4 text-center">
+                <span
+                  className={`px-2 py-1 rounded-full text-xs ${
+                    item.active
+                      ? "bg-green-500/20 text-green-400"
+                      : "bg-gray-500/20 text-gray-400"
+                  }`}
+                >
+                  {item.active ? "Active" : "Inactive"}
+                </span>
+              </td>
+              <td className="py-3 px-4 text-right">
+                <div className="flex gap-2 justify-end">
+                  <button
+                    onClick={() => onEditItem(item)}
+                    className="text-blue-400 hover:text-blue-300 text-sm"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => onDuplicateItem?.(item)}
+                    className="text-amber-400 hover:text-amber-300 text-sm"
+                    title="Duplicate item with optional BOM component swap"
+                  >
+                    Duplicate
+                  </button>
+                  {!item.parent_product_id && (
+                    <button
+                      onClick={() => onManageVariants?.(item)}
+                      title="Manage Variants"
+                      aria-label="Manage Variants"
+                      className="p-1.5 rounded text-gray-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"
+                    >
+                      {/* 2×2 grid icon */}
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="3" width="7" height="7" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                        <rect x="14" y="3" width="7" height="7" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                        <rect x="3" y="14" width="7" height="7" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                        <rect x="14" y="14" width="7" height="7" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </button>
+                  )}
+                  {(item.procurement_type === "make" ||
+                    item.procurement_type === "make_or_buy") && (
+                    <>
+                      <button
+                        onClick={() => onEditRouting(item)}
+                        className="text-green-400 hover:text-green-300 text-sm"
+                        title="Edit Routing & Materials (BOM is now integrated into Routing)"
+                      >
+                        Route/BOM
+                      </button>
+                    </>
+                  )}
+                </div>
+              </td>
+            </tr>
+          ))}
+          {items.length === 0 && (
+            <tr>
+              <td
+                colSpan={14}
+                className="py-12 text-center text-gray-500"
+              >
+                No items found
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+
+      {/* Pagination Controls */}
+      <div className="flex items-center justify-between px-4 py-3 border-t border-gray-700">
+        <div className="text-sm text-gray-400">
+          {(() => {
+            const start =
+              pagination.total === 0
+                ? 0
+                : (pagination.page - 1) * pagination.pageSize + 1;
+            const end =
+              pagination.total === 0
+                ? 0
+                : Math.min(
+                    pagination.page * pagination.pageSize,
+                    pagination.total
+                  );
+            return `Showing ${start} - ${end} of ${pagination.total} items`;
+          })()}
+        </div>
+        <div className="flex items-center gap-2">
+          <select
+            value={pagination.pageSize}
+            onChange={(e) => onPageSizeChange(parseInt(e.target.value))}
+            className="bg-gray-700 border border-gray-600 rounded px-2 py-1 text-sm"
+          >
+            <option value={25}>25 per page</option>
+            <option value={50}>50 per page</option>
+            <option value={100}>100 per page</option>
+            <option value={200}>200 per page</option>
+          </select>
+          <button
+            onClick={() => onPageChange(pagination.page - 1)}
+            disabled={!canGoPrev}
+            className="px-3 py-1 bg-gray-700 border border-gray-600 rounded text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600"
+          >
+            Previous
+          </button>
+          <span className="text-sm text-gray-400">
+            Page {pagination.page} of {totalPages || 1}
+          </span>
+          <button
+            onClick={() => onPageChange(pagination.page + 1)}
+            disabled={!canGoNext}
+            className="px-3 py-1 bg-gray-700 border border-gray-600 rounded text-sm disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-600"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

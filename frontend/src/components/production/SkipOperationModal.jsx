@@ -1,0 +1,150 @@
+import { productionControlLabels } from "./productionControlLabels";
+import { productionCopy, productionErrorMessage } from "./productionControlsCopy";
+/**
+ * SkipOperationModal - Confirmation modal for skipping an operation
+ *
+ * Requires a reason before skipping.
+ */
+import { useState } from 'react';
+import { API_URL } from '../../config/api';
+import Modal from '../Modal';
+
+export default function SkipOperationModal({
+  isOpen,
+  onClose,
+  operation,
+  productionOrderId,
+  onSkipped
+}) {
+  const [reason, setReason] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!reason.trim()) {
+      setError('Informe o motivo para pular a operação');
+      return;
+    }
+
+    setSubmitting(true);
+    setError(null);
+
+    try {
+      const res = await fetch(
+        `${API_URL}/api/v1/production-orders/${productionOrderId}/operations/${operation.id}/skip`,
+        {
+          method: 'POST',
+          credentials: "include",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ reason: reason.trim() })
+        }
+      );
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.detail || 'Não foi possível pular a operação');
+      }
+
+      onSkipped?.();
+      handleClose();
+    } catch (err) {
+      setError(productionErrorMessage(err, "Não foi possível pular a operação"));
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleClose = () => {
+    setReason('');
+    setError(null);
+    onClose();
+  };
+
+  if (!isOpen || !operation) return null;
+
+  return (
+    <Modal isOpen={isOpen} onClose={handleClose} title={productionCopy.skipOperation} variant="workbench" disableClose={submitting} className="w-full max-w-md mx-4">
+        {/* Header */}
+        <div className="flex items-center justify-between p-6 border-b border-[var(--rule-hair)]">
+          <h2 className="text-xl font-semibold text-[var(--ink)]">{productionCopy.skipOperation}</h2>
+          <button
+            onClick={handleClose}
+            aria-label={productionCopy.close}
+            className="text-[var(--ink-3)] hover:text-[var(--ink)] transition-colors"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Content */}
+        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          <p className="text-[var(--ink-2)]">
+            {productionControlLabels.pularEstaOperacao}
+          </p>
+
+          {/* Operation info */}
+          <div className="bg-[var(--paper-sunk)] rounded-lg p-4">
+            <div className="text-[var(--ink)] font-medium">
+              {operation.sequence}: {operation.operation_code}
+            </div>
+            {operation.operation_name && (
+              <div className="text-[var(--ink-3)] text-sm">{operation.operation_name}</div>
+            )}
+          </div>
+
+          {/* Reason input */}
+          <div>
+            <label className="block text-sm font-medium text-[var(--ink-3)] mb-2">
+              {productionControlLabels.motivoParaPularAOperacao}<span className="text-[var(--status-red)]">*</span>
+            </label>
+            <textarea
+              value={reason}
+              onChange={(e) => setReason(e.target.value)}
+              rows={3}
+              placeholder={productionControlLabels.exEntregaUrgenteOuOperacaoDesnecessariaParaAOrdem}
+              className="w-full bg-[var(--paper)] border border-[var(--rule-hair)] rounded-lg px-4 py-2.5 text-[var(--ink)] placeholder-[var(--ink-4)] focus:ring-2 focus:ring-[var(--orange)] focus:border-transparent resize-none"
+            />
+          </div>
+
+          {/* Warning */}
+          <div className="flex items-start gap-2 text-[var(--status-amber)]/70 text-sm">
+            <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <span>{productionControlLabels.aposPularAOperacaoEssaAcaoNaoPodeSer}</span>
+          </div>
+
+          {/* Error */}
+          {error && (
+            <div className="bg-[var(--status-red-tint)] border border-[var(--status-red)]/30 rounded-lg p-3">
+              <p className="text-[var(--status-red)] text-sm">{error}</p>
+            </div>
+          )}
+
+          {/* Actions */}
+          <div className="flex justify-end gap-3 pt-2">
+            <button
+              type="button"
+              onClick={handleClose}
+              className="px-4 py-2 text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors"
+            >
+              {productionCopy.cancel}
+            </button>
+            <button
+              type="submit"
+              disabled={submitting || !reason.trim()}
+              className="px-6 py-2 bg-[var(--orange)] text-white rounded-lg hover:bg-[var(--orange-press)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              {submitting ? 'Pulando…' : productionCopy.skipOperation}
+            </button>
+          </div>
+        </form>
+    </Modal>
+  );
+}

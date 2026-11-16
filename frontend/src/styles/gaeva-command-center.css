@@ -1,0 +1,47 @@
+/* Only the real /admin dashboard adopts the new canvas. No mock data or new API. */
+.gaeva-main:has(> .gaeva-command-center) { background: var(--gaeva-background); color: var(--gaeva-ink); }
+.gaeva-command-center {
+  --color-surface-raised: #fff;
+  --color-surface-hover: #e8e8ef;
+  --color-text-muted: #6c6c72;
+  color: var(--gaeva-ink);
+  max-width: 1480px;
+  margin-inline: auto;
+  font-size: clamp(.875rem, .825rem + .2vw, 1rem);
+}
+.gaeva-command-center > div:first-child { flex-wrap: wrap; gap: 16px; }
+.gaeva-command-center h1 { color: var(--gaeva-ink); font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); letter-spacing: -.7px; }
+.gaeva-command-center h2, .gaeva-command-center h3, .gaeva-command-center .text-white { color: var(--gaeva-ink); }
+.gaeva-command-center .text-gray-400, .gaeva-command-center .text-gray-500 { color: var(--gaeva-muted); }
+.gaeva-command-center .text-blue-400, .gaeva-command-center .text-blue-300 { color: #0064d2; }
+.gaeva-command-center .text-emerald-400, .gaeva-command-center .text-emerald-300 { color: #18743a; }
+.gaeva-command-center .text-amber-400, .gaeva-command-center .text-amber-300 { color: #9a5700; }
+.gaeva-command-center .text-red-400, .gaeva-command-center .text-red-300 { color: #b42329; }
+.gaeva-command-center > .space-y-8 > section { padding: 16px; border: 1px solid var(--gaeva-border); border-radius: 18px; background: white; box-shadow: 0 2px 6px rgba(0,0,0,.025); }
+.gaeva-command-center section h2 { margin-bottom: 12px; font-size: 16px; }
+.gaeva-command-center .grid { gap: 12px; }
+.gaeva-command-center .bg-gray-800 { background: #f2f2f7; }
+.gaeva-command-center .border-gray-700 { border-color: var(--gaeva-border); }
+.gaeva-command-center button { border-radius: 100px; min-height: 36px; font-size: inherit; }
+.gaeva-command-center button:focus-visible, .gaeva-command-center a:focus-visible { outline: 2px solid #007aff; outline-offset: 3px; }
+.gaeva-command-center .space-y-8 > :not(:last-child) { margin-bottom: 20px; }
+.gaeva-command-center > .gaeva-refresh-indicator { position: static; text-align: right; padding-block: 8px; }
+@media(max-width: 767px) {
+  .gaeva-command-center > .space-y-8 > section { padding: 12px; }
+}
+@media(any-pointer: coarse) {
+  .gaeva-command-center button { min-height: 44px; }
+}
+/* Status variants stay semantic on the light dashboard canvas. */
+.gaeva-command-center .bg-emerald-900\/30 { background: #e9f7ee; }
+.gaeva-command-center .bg-blue-900\/30 { background: #eaf3ff; }
+.gaeva-command-center .bg-amber-900\/30 { background: #fff4e3; }
+.gaeva-command-center .bg-red-900\/30 { background: #fff0f0; }
+.gaeva-command-center > .space-y-8 > section:first-child > .grid { align-items: stretch; }
+.gaeva-command-center > .space-y-8 > section:first-child > .grid > a { display: block; height: 100%; }
+.gaeva-command-center > .space-y-8 > section:first-child > .grid > a > div { height: 100%; }
+/* Existing empty/error states, not scheduler dialog content. */
+.gaeva-command-center > .text-center.p-8,
+.gaeva-command-center > .space-y-8 > section > .text-center.p-8 { padding: 16px; }
+.gaeva-command-center > .text-center.p-8 > svg,
+.gaeva-command-center > .space-y-8 > section > .text-center.p-8 > svg { width: 32px; height: 32px; margin-bottom: 8px; }

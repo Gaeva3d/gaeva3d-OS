@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FilaOps | Gestão da produção</title>
+
+    <!--
+      Three families, each with a job:
+        IBM Plex Sans  — body and headings, app-wide. index.css asked for Inter
+                         and nothing ever loaded it, so every screen silently
+                         fell back to system-ui.
+        JetBrains Mono — the data face behind .font-mono-data: quantities,
+                         durations, IDs, money. Tabular figures matter when
+                         numbers are compared down a column.
+        Rajdhani       — display face for the PRO fleet HUD only
+                         (components/printers/hud/tokens.js).
+      Declared here so they are cached before AdminPrinters mounts in HUD mode,
+      and so no component injects <link> tags at runtime. Replaces PR #546's
+      useFonts() side-effect approach.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="/config.js" vite-ignore></script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
