@@ -1,0 +1,1261 @@
+--- /dev/null
++++ b/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/schedule-acceptance-bindings.json
+@@ -0,0 +1,1258 @@
++{
++  "locators": [
++    "ACAT-8-SCHEDULE",
++    "ACAT-8-ORACLE",
++    "ACT-ConfigureSchedule",
++    "ACT-GetBackupConfiguration",
++    "ACT-GetOutcome"
++  ],
++  "cases": [
++    {
++      "case": "DAILY/disabled",
++      "expected_valid": true,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/0"
++    },
++    {
++      "case": "DAILY/enabled",
++      "expected_valid": true,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/1"
++    },
++    {
++      "case": "WEEKLY/disabled",
++      "expected_valid": true,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/2"
++    },
++    {
++      "case": "WEEKLY/enabled",
++      "expected_valid": true,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/3"
++    },
++    {
++      "case": "MONTHLY/disabled",
++      "expected_valid": true,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/4"
++    },
++    {
++      "case": "MONTHLY/enabled",
++      "expected_valid": true,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/5"
++    },
++    {
++      "case": "INTERVAL/disabled",
++      "expected_valid": true,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/6"
++    },
++    {
++      "case": "INTERVAL/enabled",
++      "expected_valid": true,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/7"
++    },
++    {
++      "case": "unconfigured-no-invented-enabled-or-timezone",
++      "expected_valid": true,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/8"
++    },
++    {
++      "case": "configured-missing-schedule",
++      "expected_valid": false,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/9"
++    },
++    {
++      "case": "configured-missing-dst_overlap",
++      "expected_valid": false,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/10"
++    },
++    {
++      "case": "configured-missing-dst_gap",
++      "expected_valid": false,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/11"
++    },
++    {
++      "case": "configured-missing-timezone",
++      "expected_valid": false,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/12"
++    },
++    {
++      "case": "configured-missing-enabled",
++      "expected_valid": false,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/13"
++    },
++    {
++      "case": "unconfigured-extra-timezone",
++      "expected_valid": false,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/14"
++    },
++    {
++      "case": "disabled-state-enabled-mismatch",
++      "expected_valid": false,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/15"
++    },
++    {
++      "case": "reload-after-conflict-preserves-draft-separately",
++      "expected_valid": true,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/16"
++    },
++    {
++      "case": "field-redacted-not-unconfigured",
++      "expected_valid": true,
++      "saved_fixture": "schedule-roundtrip-examples.json#/cases/17"
++    }
++  ],
++  "existing_bindings": [
++    {
++      "action": "ConfigureSchedule",
++      "locator": "action-fields.md#act-configureschedule",
++      "request_schema_pointer": "/actions/12/request_schema",
++      "existing_bindings": [
++        {
++          "flow": "FLOW-BACKUPS",
++          "scenario": "positive",
++          "acceptance_id": "AC-165",
++          "test_id": "TEST-165",
++          "microtask_ids": [
++            "MT-17",
++            "MT-18",
++            "MT-19",
++            "MT-20",
++            "MT-22"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-ConfigureSchedule"
++        },
++        {
++          "flow": "FLOW-BACKUPS",
++          "scenario": "negative",
++          "acceptance_id": "AC-166",
++          "test_id": "TEST-166",
++          "microtask_ids": [
++            "MT-17",
++            "MT-18",
++            "MT-19",
++            "MT-20",
++            "MT-22"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-ConfigureSchedule"
++        },
++        {
++          "flow": "FLOW-BACKUPS",
++          "scenario": "concurrent",
++          "acceptance_id": "AC-167",
++          "test_id": "TEST-167",
++          "microtask_ids": [
++            "MT-17",
++            "MT-18",
++            "MT-19",
++            "MT-20",
++            "MT-22"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-ConfigureSchedule"
++        },
++        {
++          "flow": "FLOW-BACKUPS",
++          "scenario": "recovery",
++          "acceptance_id": "AC-168",
++          "test_id": "TEST-168",
++          "microtask_ids": [
++            "MT-17",
++            "MT-18",
++            "MT-19",
++            "MT-20",
++            "MT-22"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-ConfigureSchedule"
++        },
++        {
++          "flow": "FLOW-UIBACKUP",
++          "scenario": "positive",
++          "acceptance_id": "AC-169",
++          "test_id": "TEST-169",
++          "microtask_ids": [
++            "MT-12",
++            "MT-13",
++            "MT-18",
++            "MT-21"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-ConfigureSchedule"
++        },
++        {
++          "flow": "FLOW-UIBACKUP",
++          "scenario": "negative",
++          "acceptance_id": "AC-170",
++          "test_id": "TEST-170",
++          "microtask_ids": [
++            "MT-12",
++            "MT-13",
++            "MT-18",
++            "MT-21"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-ConfigureSchedule"
++        },
++        {
++          "flow": "FLOW-UIBACKUP",
++          "scenario": "concurrent",
++          "acceptance_id": "AC-171",
++          "test_id": "TEST-171",
++          "microtask_ids": [
++            "MT-12",
++            "MT-13",
++            "MT-18",
++            "MT-21"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-ConfigureSchedule"
++        },
++        {
++          "flow": "FLOW-UIBACKUP",
++          "scenario": "recovery",
++          "acceptance_id": "AC-172",
++          "test_id": "TEST-172",
++          "microtask_ids": [
++            "MT-12",
++            "MT-13",
++            "MT-18",
++            "MT-21"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-ConfigureSchedule"
++        }
++      ],
++      "field_acceptance_cases": [
++        "positive typed payload",
++        "missing required",
++        "extra field",
++        "wrong type/null",
++        "forged context rejected"
++      ],
++      "future_semantic_oracles": [
++        "stale CAS -> CONFLICT, no write",
++        "no grant/field permission -> denied safely",
++        "domain invariant/admin-only extras -> no bypass",
++        "same operation/digest -> same result; changed digest -> conflict",
++        "concurrent last-admin/policy/config/hold ordering according to applicable action",
++        "restore/restart -> fresh head, no resurrected grant/duplicate effect"
++      ],
++      "execution": "structural document checks executed; semantic/runtime oracles NOT_EXECUTED"
++    },
++    {
++      "action": "GetBackupConfiguration",
++      "locator": "action-fields.md#act-getbackupconfiguration",
++      "request_schema_pointer": "/actions/17/request_schema",
++      "existing_bindings": [
++        {
++          "flow": "FLOW-BACKUPS",
++          "scenario": "positive",
++          "acceptance_id": "AC-165",
++          "test_id": "TEST-165",
++          "microtask_ids": [
++            "MT-17",
++            "MT-18",
++            "MT-19",
++            "MT-20",
++            "MT-22"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-GetBackupConfiguration"
++        },
++        {
++          "flow": "FLOW-BACKUPS",
++          "scenario": "negative",
++          "acceptance_id": "AC-166",
++          "test_id": "TEST-166",
++          "microtask_ids": [
++            "MT-17",
++            "MT-18",
++            "MT-19",
++            "MT-20",
++            "MT-22"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-GetBackupConfiguration"
++        },
++        {
++          "flow": "FLOW-BACKUPS",
++          "scenario": "concurrent",
++          "acceptance_id": "AC-167",
++          "test_id": "TEST-167",
++          "microtask_ids": [
++            "MT-17",
++            "MT-18",
++            "MT-19",
++            "MT-20",
++            "MT-22"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-GetBackupConfiguration"
++        },
++        {
++          "flow": "FLOW-BACKUPS",
++          "scenario": "recovery",
++          "acceptance_id": "AC-168",
++          "test_id": "TEST-168",
++          "microtask_ids": [
++            "MT-17",
++            "MT-18",
++            "MT-19",
++            "MT-20",
++            "MT-22"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-GetBackupConfiguration"
++        },
++        {
++          "flow": "FLOW-UIBACKUP",
++          "scenario": "positive",
++          "acceptance_id": "AC-169",
++          "test_id": "TEST-169",
++          "microtask_ids": [
++            "MT-12",
++            "MT-13",
++            "MT-18",
++            "MT-21"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-GetBackupConfiguration"
++        },
++        {
++          "flow": "FLOW-UIBACKUP",
++          "scenario": "negative",
++          "acceptance_id": "AC-170",
++          "test_id": "TEST-170",
++          "microtask_ids": [
++            "MT-12",
++            "MT-13",
++            "MT-18",
++            "MT-21"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-GetBackupConfiguration"
++        },
++        {
++          "flow": "FLOW-UIBACKUP",
++          "scenario": "concurrent",
++          "acceptance_id": "AC-171",
++          "test_id": "TEST-171",
++          "microtask_ids": [
++            "MT-12",
++            "MT-13",
++            "MT-18",
++            "MT-21"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-GetBackupConfiguration"
++        },
++        {
++          "flow": "FLOW-UIBACKUP",
++          "scenario": "recovery",
++          "acceptance_id": "AC-172",
++          "test_id": "TEST-172",
++          "microtask_ids": [
++            "MT-12",
++            "MT-13",
++            "MT-18",
++            "MT-21"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-GetBackupConfiguration"
++        }
++      ],
++      "field_acceptance_cases": [
++        "positive typed payload",
++        "missing required",
++        "extra field",
++        "wrong type/null",
++        "forged context rejected"
++      ],
++      "future_semantic_oracles": [
++        "stale CAS -> CONFLICT, no write",
++        "no grant/field permission -> denied safely",
++        "domain invariant/admin-only extras -> no bypass",
++        "same operation/digest -> same result; changed digest -> conflict",
++        "concurrent last-admin/policy/config/hold ordering according to applicable action",
++        "restore/restart -> fresh head, no resurrected grant/duplicate effect"
++      ],
++      "execution": "structural document checks executed; semantic/runtime oracles NOT_EXECUTED"
++    },
++    {
++      "action": "GetOutcome",
++      "locator": "action-fields.md#act-getoutcome",
++      "request_schema_pointer": "/actions/38/request_schema",
++      "existing_bindings": [
++        {
++          "flow": "FLOW-BACKUPS",
++          "scenario": "positive",
++          "acceptance_id": "AC-165",
++          "test_id": "TEST-165",
++          "microtask_ids": [
++            "MT-17",
++            "MT-18",
++            "MT-19",
++            "MT-20",
++            "MT-22"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-GetOutcome"
++        },
++        {
++          "flow": "FLOW-BACKUPS",
++          "scenario": "negative",
++          "acceptance_id": "AC-166",
++          "test_id": "TEST-166",
++          "microtask_ids": [
++            "MT-17",
++            "MT-18",
++            "MT-19",
++            "MT-20",
++            "MT-22"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-GetOutcome"
++        },
++        {
++          "flow": "FLOW-BACKUPS",
++          "scenario": "concurrent",
++          "acceptance_id": "AC-167",
++          "test_id": "TEST-167",
++          "microtask_ids": [
++            "MT-17",
++            "MT-18",
++            "MT-19",
++            "MT-20",
++            "MT-22"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-GetOutcome"
++        },
++        {
++          "flow": "FLOW-BACKUPS",
++          "scenario": "recovery",
++          "acceptance_id": "AC-168",
++          "test_id": "TEST-168",
++          "microtask_ids": [
++            "MT-17",
++            "MT-18",
++            "MT-19",
++            "MT-20",
++            "MT-22"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-GetOutcome"
++        },
++        {
++          "flow": "FLOW-UIBACKUP",
++          "scenario": "positive",
++          "acceptance_id": "AC-169",
++          "test_id": "TEST-169",
++          "microtask_ids": [
++            "MT-12",
++            "MT-13",
++            "MT-18",
++            "MT-21"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-GetOutcome"
++        },
++        {
++          "flow": "FLOW-UIBACKUP",
++          "scenario": "negative",
++          "acceptance_id": "AC-170",
++          "test_id": "TEST-170",
++          "microtask_ids": [
++            "MT-12",
++            "MT-13",
++            "MT-18",
++            "MT-21"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-GetOutcome"
++        },
++        {
++          "flow": "FLOW-UIBACKUP",
++          "scenario": "concurrent",
++          "acceptance_id": "AC-171",
++          "test_id": "TEST-171",
++          "microtask_ids": [
++            "MT-12",
++            "MT-13",
++            "MT-18",
++            "MT-21"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-GetOutcome"
++        },
++        {
++          "flow": "FLOW-UIBACKUP",
++          "scenario": "recovery",
++          "acceptance_id": "AC-172",
++          "test_id": "TEST-172",
++          "microtask_ids": [
++            "MT-12",
++            "MT-13",
++            "MT-18",
++            "MT-21"
++          ],
++          "requirement_ids": [
++            "REQ-114",
++            "REQ-115",
++            "REQ-116",
++            "REQ-117",
++            "REQ-118",
++            "REQ-119",
++            "REQ-120",
++            "REQ-121"
++          ],
++          "rule_ids": [
++            "RULE-214",
++            "RULE-215",
++            "RULE-216",
++            "RULE-217",
++            "RULE-218",
++            "RULE-219",
++            "RULE-220",
++            "RULE-221"
++          ],
++          "contract_locator": "ACT-GetOutcome"
++        },
++        {
++          "flow": "FLOW-PERMS",
++          "scenario": "positive",
++          "acceptance_id": "AC-173",
++          "test_id": "TEST-173",
++          "microtask_ids": [
++            "MT-14",
++            "MT-16",
++            "MT-20",
++            "MT-22"
++          ],
++          "requirement_ids": [
++            "REQ-122",
++            "REQ-123",
++            "REQ-124",
++            "REQ-125",
++            "REQ-126",
++            "REQ-127",
++            "REQ-128",
++            "REQ-129",
++            "REQ-130"
++          ],
++          "rule_ids": [
++            "RULE-222",
++            "RULE-223",
++            "RULE-224",
++            "RULE-225",
++            "RULE-226",
++            "RULE-227",
++            "RULE-228",
++            "RULE-229",
++            "RULE-230"
++          ],
++          "contract_locator": "ACT-GetOutcome"
++        },
++        {
++          "flow": "FLOW-PERMS",
++          "scenario": "negative",
++          "acceptance_id": "AC-174",
++          "test_id": "TEST-174",
++          "microtask_ids": [
++            "MT-14",
++            "MT-16",
++            "MT-20",
++            "MT-22"
++          ],
++          "requirement_ids": [
++            "REQ-122",
++            "REQ-123",
++            "REQ-124",
++            "REQ-125",
++            "REQ-126",
++            "REQ-127",
++            "REQ-128",
++            "REQ-129",
++            "REQ-130"
++          ],
++          "rule_ids": [
++            "RULE-222",
++            "RULE-223",
++            "RULE-224",
++            "RULE-225",
++            "RULE-226",
++            "RULE-227",
++            "RULE-228",
++            "RULE-229",
++            "RULE-230"
++          ],
++          "contract_locator": "ACT-GetOutcome"
++        },
++        {
++          "flow": "FLOW-PERMS",
++          "scenario": "concurrent",
++          "acceptance_id": "AC-175",
++          "test_id": "TEST-175",
++          "microtask_ids": [
++            "MT-14",
++            "MT-16",
++            "MT-20",
++            "MT-22"
++          ],
++          "requirement_ids": [
++            "REQ-122",
++            "REQ-123",
++            "REQ-124",
++            "REQ-125",
++            "REQ-126",
++            "REQ-127",
++            "REQ-128",
++            "REQ-129",
++            "REQ-130"
++          ],
++          "rule_ids": [
++            "RULE-222",
++            "RULE-223",
++            "RULE-224",
++            "RULE-225",
++            "RULE-226",
++            "RULE-227",
++            "RULE-228",
++            "RULE-229",
++            "RULE-230"
++          ],
++          "contract_locator": "ACT-GetOutcome"
++        },
++        {
++          "flow": "FLOW-PERMS",
++          "scenario": "recovery",
++          "acceptance_id": "AC-176",
++          "test_id": "TEST-176",
++          "microtask_ids": [
++            "MT-14",
++            "MT-16",
++            "MT-20",
++            "MT-22"
++          ],
++          "requirement_ids": [
++            "REQ-122",
++            "REQ-123",
++            "REQ-124",
++            "REQ-125",
++            "REQ-126",
++            "REQ-127",
++            "REQ-128",
++            "REQ-129",
++            "REQ-130"
++          ],
++          "rule_ids": [
++            "RULE-222",
++            "RULE-223",
++            "RULE-224",
++            "RULE-225",
++            "RULE-226",
++            "RULE-227",
++            "RULE-228",
++            "RULE-229",
++            "RULE-230"
++          ],
++          "contract_locator": "ACT-GetOutcome"
++        },
++        {
++          "flow": "FLOW-UIPERMS",
++          "scenario": "positive",
++          "acceptance_id": "AC-177",
++          "test_id": "TEST-177",
++          "microtask_ids": [
++            "MT-12",
++            "MT-13",
++            "MT-16",
++            "MT-21"
++          ],
++          "requirement_ids": [
++            "REQ-123",
++            "REQ-124",
++            "REQ-125",
++            "REQ-126",
++            "REQ-127",
++            "REQ-128",
++            "REQ-129",
++            "REQ-130"
++          ],
++          "rule_ids": [
++            "RULE-223",
++            "RULE-224",
++            "RULE-225",
++            "RULE-226",
++            "RULE-227",
++            "RULE-228",
++            "RULE-229",
++            "RULE-230"
++          ],
++          "contract_locator": "ACT-GetOutcome"
++        },
++        {
++          "flow": "FLOW-UIPERMS",
++          "scenario": "negative",
++          "acceptance_id": "AC-178",
++          "test_id": "TEST-178",
++          "microtask_ids": [
++            "MT-12",
++            "MT-13",
++            "MT-16",
++            "MT-21"
++          ],
++          "requirement_ids": [
++            "REQ-123",
++            "REQ-124",
++            "REQ-125",
++            "REQ-126",
++            "REQ-127",
++            "REQ-128",
++            "REQ-129",
++            "REQ-130"
++          ],
++          "rule_ids": [
++            "RULE-223",
++            "RULE-224",
++            "RULE-225",
++            "RULE-226",
++            "RULE-227",
++            "RULE-228",
++            "RULE-229",
++            "RULE-230"
++          ],
++          "contract_locator": "ACT-GetOutcome"
++        },
++        {
++          "flow": "FLOW-UIPERMS",
++          "scenario": "concurrent",
++          "acceptance_id": "AC-179",
++          "test_id": "TEST-179",
++          "microtask_ids": [
++            "MT-12",
++            "MT-13",
++            "MT-16",
++            "MT-21"
++          ],
++          "requirement_ids": [
++            "REQ-123",
++            "REQ-124",
++            "REQ-125",
++            "REQ-126",
++            "REQ-127",
++            "REQ-128",
++            "REQ-129",
++            "REQ-130"
++          ],
++          "rule_ids": [
++            "RULE-223",
++            "RULE-224",
++            "RULE-225",
++            "RULE-226",
++            "RULE-227",
++            "RULE-228",
++            "RULE-229",
++            "RULE-230"
++          ],
++          "contract_locator": "ACT-GetOutcome"
++        },
++        {
++          "flow": "FLOW-UIPERMS",
++          "scenario": "recovery",
++          "acceptance_id": "AC-180",
++          "test_id": "TEST-180",
++          "microtask_ids": [
++            "MT-12",
++            "MT-13",
++            "MT-16",
++            "MT-21"
++          ],
++          "requirement_ids": [
++            "REQ-123",
++            "REQ-124",
++            "REQ-125",
++            "REQ-126",
++            "REQ-127",
++            "REQ-128",
++            "REQ-129",
++            "REQ-130"
++          ],
++          "rule_ids": [
++            "RULE-223",
++            "RULE-224",
++            "RULE-225",
++            "RULE-226",
++            "RULE-227",
++            "RULE-228",
++            "RULE-229",
++            "RULE-230"
++          ],
++          "contract_locator": "ACT-GetOutcome"
++        }
++      ],
++      "field_acceptance_cases": [
++        "positive typed payload",
++        "missing required",
++        "extra field",
++        "wrong type/null",
++        "forged context rejected"
++      ],
++      "future_semantic_oracles": [
++        "stale CAS -> CONFLICT, no write",
++        "no grant/field permission -> denied safely",
++        "domain invariant/admin-only extras -> no bypass",
++        "same operation/digest -> same result; changed digest -> conflict",
++        "concurrent last-admin/policy/config/hold ordering according to applicable action",
++        "restore/restart -> fresh head, no resurrected grant/duplicate effect"
++      ],
++      "execution": "structural document checks executed; semantic/runtime oracles NOT_EXECUTED"
++    }
++  ],
++  "runtime_oracle": "configure->fresh authorized query->edit with returned version; preserve unsaved draft on conflict; no redaction/default reset; scheduler/CAS/auth not executed",
++  "r3_relational_addendum": {
++    "finding": "QAUI-FINAL3-01",
++    "locator": "ACAT-9",
++    "fixture": "schedule-roundtrip-examples.json cases0..7 + conflict case16",
++    "checker": "verify_roundtrip.py (read only)",
++    "positive_chains": 8,
++    "negatives": "relational-negative-examples.json16labelledvectors",
++    "preserve": "existing AC/TEST/MT/flow/rule bindings; no new action"
++  }
++}

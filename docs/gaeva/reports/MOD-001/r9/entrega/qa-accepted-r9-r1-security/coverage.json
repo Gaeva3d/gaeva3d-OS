@@ -1,0 +1,74 @@
+[
+  {
+    "id": "SEC-R9-01",
+    "surface": "Conta/empresa/ficha/anexos",
+    "evidence": "phase-spec:85-95; LC07/08",
+    "observation": "Contexto autenticado e chave por versão; outra conta autorizada à ficha ainda é recusada. Contexto local não prova permissão; projeção allowlisted e anexos limitados.",
+    "status": "REVIEWED",
+    "assurance": "DOCUMENTARY_ONLY",
+    "runtime": "NOT_VALIDATED"
+  },
+  {
+    "id": "SEC-R9-02",
+    "surface": "Custódia/rotação/perda",
+    "evidence": "phase-spec:93-95; LC09/10",
+    "observation": "Chave privada no ERP autorizado, conteúdo/chaves abertas não persistidos; nova autorização online do titular antes de recuperar. Rotação não pode inutilizar cópias silenciosamente. Primitivas/parâmetros e recuperação real ainda sujeitos a revisão e ensaio.",
+    "status": "REVIEWED",
+    "assurance": "DOCUMENTARY_ONLY",
+    "runtime": "NOT_VALIDATED"
+  },
+  {
+    "id": "SEC-R9-03",
+    "surface": "Logout/revogação e abas",
+    "evidence": "phase-spec:90; LC08; product-behavior decisões abertas",
+    "observation": "Bloqueio imediato quando conhecido, liberação de referências abertas e revalidação no servidor. Origem/sessão comprometida fora da garantia. Abandono e destino após logout OPEN, com opções e recomendação não aprovada; dependências não habilitáveis em produção.",
+    "status": "REVIEWED",
+    "assurance": "DOCUMENTARY_ONLY",
+    "runtime": "NOT_VALIDATED"
+  },
+  {
+    "id": "SEC-R9-04",
+    "surface": "Fila/replay/ACK",
+    "evidence": "phase-spec:85-114; SQ01-08; saved fixture checks",
+    "observation": "Somente snapshot recuperável confirmado; rascunho e intenção separados. Consulta original e autorização corrente precedem retry elegível. ID/versão/conteúdo preservados; ACK alheio não remove cópia; limpeza falha após PROTECTED não reenvia gravação.",
+    "status": "REVIEWED",
+    "assurance": "DOCUMENTARY_ONLY",
+    "runtime": "NOT_VALIDATED"
+  },
+  {
+    "id": "SEC-R9-05",
+    "surface": "Falhas/visibilidade",
+    "evidence": "save-failure-catalog completo",
+    "observation": "1103 não promete fila; 1102 conserva incerteza inclusive sem fila/consulta; 1105 restringe leitura/consulta sem revelar existência. Código não substitui reason seguro/autorização. Sem HTTP ou token bruto como mensagem.",
+    "status": "REVIEWED",
+    "assurance": "DOCUMENTARY_ONLY",
+    "runtime": "NOT_VALIDATED"
+  },
+  {
+    "id": "SEC-R9-06",
+    "surface": "U5/U6 leitura/autoridade/efeitos",
+    "evidence": "contracts C1-C7; authority AP0-AP6; hashes preservados",
+    "observation": "Política atual antes de liberação; REVOKING nega; todos PSC drenados/cercados; restore fechado e invalidação de sessões antigas. Sem canal direto, credencial alternativa, replay externo ambíguo ou recuperação de todas histórias/chaves destruídas.",
+    "status": "REVIEWED",
+    "assurance": "DOCUMENTARY_ONLY",
+    "runtime": "NOT_VALIDATED"
+  },
+  {
+    "id": "SEC-R9-07",
+    "surface": "39 ações/permissões/internas",
+    "evidence": "action-catalog; save-action-bindings; action-checks.json",
+    "observation": "Permissões distintas mantidas; alçada não decorre de configurar; callback OAuth e scheduler internos não viram Salvar. Catálogo não habilita fila/replay. 195 extras de contexto rejeitados no subconjunto; isso não executa autorização.",
+    "status": "REVIEWED",
+    "assurance": "DOCUMENTARY_ONLY",
+    "runtime": "NOT_VALIDATED"
+  },
+  {
+    "id": "SEC-R9-08",
+    "surface": "Integridade/escopo",
+    "evidence": "input-verification; documentary-invariants; no-input-drift",
+    "observation": "157 membros e tuple íntegros; 45 propostas, 7 preimages, 7 contexto; reconstrução de diff local exit0. Sem aplicação nem escolha da raiz; ausência futura de adições ainda deve ser verificada no alvo.",
+    "status": "REVIEWED",
+    "assurance": "DOCUMENTARY_ONLY",
+    "runtime": "NOT_VALIDATED"
+  }
+]

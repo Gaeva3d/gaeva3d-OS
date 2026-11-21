@@ -1,0 +1,236 @@
+[
+  {
+    "action": "AssignProfile",
+    "permission": "users.policy.manage",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "SetIndividualAllow",
+    "permission": "users.policy.manage",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "SetIndividualDeny",
+    "permission": "users.policy.manage",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "ResetIndividualOverride",
+    "permission": "users.policy.manage",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "ActivateUser",
+    "permission": "users.policy.manage",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "DeactivateUser",
+    "permission": "users.policy.manage",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "DelegateApproval",
+    "permission": "approvals.delegate",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "RevokeApprovalDelegation",
+    "permission": "approvals.delegate",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "GetPermissionCatalog",
+    "permission": "users.policy.read",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "ListProfiles",
+    "permission": "users.policy.read",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "GetUserPermissions",
+    "permission": "users.policy.read",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "ListPolicyAudit",
+    "permission": "users.policy.audit",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "ConfigureSchedule",
+    "permission": "backups.configure",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "ApproveRetentionChange",
+    "permission": "approvals.retention.approve",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "ConfigureRetention",
+    "permission": "backups.configure",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "ConfigureDestination",
+    "permission": "backups.integrations.configure",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "RunManualBackup",
+    "permission": "backups.execute",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "GetBackupConfiguration",
+    "permission": "backups.read",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "ListBackupHistory",
+    "permission": "backups.read",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "GetBackupPoint",
+    "permission": "backups.read",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "GetBackupJob",
+    "permission": "backups.read",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "BeginProviderLink",
+    "permission": "backups.integrations.configure",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "CancelProviderLink",
+    "permission": "backups.integrations.configure",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "CompleteProviderLink",
+    "permission": "internal.oauth.callback",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "GetProviderLink",
+    "permission": "backups.integrations.read",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "DisconnectProvider",
+    "permission": "backups.integrations.configure",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "PreviewCleanup",
+    "permission": "backups.cleanup.read",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "RequestCleanup",
+    "permission": "backups.cleanup.execute",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "RequestHold",
+    "permission": "backups.holds.manage",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "ReleaseHold",
+    "permission": "backups.holds.release",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "GetHold",
+    "permission": "backups.read",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "GetCleanup",
+    "permission": "backups.read",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "ReconcileCleanup",
+    "permission": "backups.cleanup.reconcile",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "SuspendCleanup",
+    "permission": "backups.cleanup.manage",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "ResumeCleanup",
+    "permission": "backups.cleanup.manage",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "ListDestinationFolders",
+    "permission": "backups.integrations.read",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "ListApprovalDelegations",
+    "permission": "users.policy.read",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "RunScheduledBackup",
+    "permission": "internal.backup.scheduler",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  },
+  {
+    "action": "GetOutcome",
+    "permission": "operation.read_authorized",
+    "forged_context_vectors_rejected": 5,
+    "runtime_authorization_tested": false
+  }
+]

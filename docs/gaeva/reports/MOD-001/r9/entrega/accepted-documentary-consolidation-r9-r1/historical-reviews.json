@@ -1,0 +1,49 @@
+{
+  "r7": [
+    {
+      "role": "spec",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\qa-final-candidate-r4-spec\\findings.json",
+      "sha256": "e59f921dd0483b726c4e3865f2c3334c51c5375a353f005d4e1a6edfcb024ee7",
+      "verdict": "PASS",
+      "scope": "historical r7/final candidate r5 only, not automatic r9 PASS"
+    },
+    {
+      "role": "backend",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\qa-final-candidate-r4-backend\\findings.json",
+      "sha256": "89a8bec98c323b43ae281c8a34becd77890e34b21c42c60a8b71c8278dee97da",
+      "verdict": "PASS",
+      "scope": "historical r7/final candidate r5 only, not automatic r9 PASS"
+    },
+    {
+      "role": "ui",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\qa-final-candidate-r4-ui\\findings.json",
+      "sha256": "f77375d9b5da94deaa852374e8d03378b48bf64153679effd03c4a03af742f83",
+      "verdict": "PASS",
+      "scope": "historical r7/final candidate r5 only, not automatic r9 PASS"
+    },
+    {
+      "role": "security",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\qa-final-candidate-r4-security\\findings.json",
+      "sha256": "5d4fe76aeeda1534cbcc1f89b5ddaca7b480100d25bc2062549e31446388152c",
+      "verdict": "PASS",
+      "scope": "historical r7/final candidate r5 only, not automatic r9 PASS"
+    }
+  ],
+  "r8_r9": [
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\qa-architecture-draft-save-r1\\attempt-2\\findings.json",
+      "sha256": "a8c7c2999e6146a03d43eddecbf04f484875fee660760021103b3b6aee08a557",
+      "manifest_sha256": "1ebee7f8b15ea16d7223570d99d27306a82a6be3eb095c7e1c5ebaf89bdb9cfa",
+      "observed_verdict": "PASS",
+      "actor_consultation": "UNVERIFIED in supplied findings; no dispatch receipt recovered in scoped directories/history search; new independent reviewer must establish current consultation"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\qa-architecture-save-queue-r1\\attempt-2\\findings.json",
+      "sha256": "cbd40cb28f1ed23d4dd06082b878c48501b739ed982ef22828cb83db1e50a21b",
+      "manifest_sha256": "358aeee9bb08d00985ba098b0617ddbbef0b21d87512c8a34e290ca58988ff2f",
+      "observed_verdict": "PASS",
+      "actor_consultation": "UNVERIFIED in supplied findings; no dispatch receipt recovered in scoped directories/history search; new independent reviewer must establish current consultation"
+    }
+  ],
+  "current_consolidation": "PENDING"
+}

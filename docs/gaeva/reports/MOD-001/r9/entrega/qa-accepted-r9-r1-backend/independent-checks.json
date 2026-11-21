@@ -1,0 +1,38 @@
+{
+  "manifest_members": 157,
+  "requests": 39,
+  "request_negatives_rejected": 735,
+  "response_positives": 238,
+  "response_negatives": 238,
+  "added_response_extra_negatives": 238,
+  "saved_schedule_cases": 18,
+  "positive_chains": 8,
+  "structural_valid_relational_rejections": {
+    "WRITE_ID_SWAPPED": 8,
+    "ORIGINAL_ID_SWAPPED": 8
+  },
+  "preserved_files": [
+    "typed-actions-v1\\acceptance-bindings.json",
+    "typed-actions-v1\\action-catalog.json",
+    "typed-actions-v1\\action-contracts.md",
+    "typed-actions-v1\\action-fields.md",
+    "typed-actions-v1\\examples.json",
+    "typed-actions-v1\\field-vectors.json",
+    "typed-actions-v1\\negative-response-examples.json",
+    "typed-actions-v1\\relational-negative-examples.json",
+    "typed-actions-v1\\request-union.schema.json",
+    "typed-actions-v1\\response-examples.json",
+    "typed-actions-v1\\schedule-acceptance-bindings.json",
+    "typed-actions-v1\\schedule-roundtrip-examples.json",
+    "typed-actions-v1\\timezone-vectors.json",
+    "authority-protocol.md",
+    "retention-protocol.md",
+    "retention-validation.md",
+    "surface-contract-map.json",
+    "id-crosswalk.json",
+    "approved-decisions.md"
+  ],
+  "supplemental_bindings": 18,
+  "runtime_tested": false,
+  "schema_engine": "independent explicit keyword subset; not full JSON Schema 2020-12 certification"
+}

@@ -1,0 +1,516 @@
+--- /dev/null
++++ b/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/examples.json
+@@ -0,0 +1,513 @@
++{
++  "fictitious": true,
++  "requests": [
++    {
++      "envelope_version": 1,
++      "action": "AssignProfile",
++      "operation_id": "fictional-op-1",
++      "target": {
++        "kind": "user_policy",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {
++        "profile_id": "fictional-profile"
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "SetIndividualAllow",
++      "operation_id": "fictional-op-2",
++      "target": {
++        "kind": "user_policy",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {
++        "permission": {
++          "module_id": "fictional-module",
++          "action_id": "fictional-consult"
++        }
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "SetIndividualDeny",
++      "operation_id": "fictional-op-3",
++      "target": {
++        "kind": "user_policy",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {
++        "permission": {
++          "module_id": "fictional-module",
++          "action_id": "fictional-export"
++        }
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ResetIndividualOverride",
++      "operation_id": "fictional-op-4",
++      "target": {
++        "kind": "user_policy",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {
++        "permission": {
++          "module_id": "fictional-module",
++          "action_id": "fictional-edit"
++        },
++        "remove": "BOTH"
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ActivateUser",
++      "operation_id": "fictional-op-5",
++      "target": {
++        "kind": "user_policy",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {}
++    },
++    {
++      "envelope_version": 1,
++      "action": "DeactivateUser",
++      "operation_id": "fictional-op-6",
++      "target": {
++        "kind": "user_policy",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {}
++    },
++    {
++      "envelope_version": 1,
++      "action": "DelegateApproval",
++      "operation_id": "fictional-op-7",
++      "target": {
++        "kind": "approval_authority",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {
++        "delegate_user_id": "fictional-delegate",
++        "scopes": [
++          "RETENTION_POLICY"
++        ],
++        "valid_from_utc": "2030-01-01T00:00:00Z"
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "RevokeApprovalDelegation",
++      "operation_id": "fictional-op-8",
++      "target": {
++        "kind": "approval_delegation",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {}
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetPermissionCatalog",
++      "operation_id": "fictional-op-9",
++      "target": {
++        "kind": "permission_catalog",
++        "id": "fictional-target"
++      },
++      "payload": {
++        "page": {
++          "page_size": 20
++        }
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListProfiles",
++      "operation_id": "fictional-op-10",
++      "target": {
++        "kind": "profile_catalog",
++        "id": "fictional-target"
++      },
++      "payload": {
++        "page": {
++          "page_size": 20
++        }
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetUserPermissions",
++      "operation_id": "fictional-op-11",
++      "target": {
++        "kind": "user_policy",
++        "id": "fictional-target"
++      },
++      "payload": {}
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListPolicyAudit",
++      "operation_id": "fictional-op-12",
++      "target": {
++        "kind": "policy_audit",
++        "id": "fictional-target"
++      },
++      "payload": {
++        "page": {
++          "page_size": 20
++        }
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureSchedule",
++      "operation_id": "fictional-op-13",
++      "target": {
++        "kind": "backup_config",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {
++        "enabled": true,
++        "timezone": "America/Sao_Paulo",
++        "schedule": {
++          "frequency": "DAILY",
++          "local_time": "03:15"
++        },
++        "dst_overlap": "FIRST",
++        "dst_gap": "SKIP_AND_REPORT"
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ApproveRetentionChange",
++      "operation_id": "fictional-op-14",
++      "target": {
++        "kind": "backup_config",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {
++        "counts": {
++          "daily_count": 30,
++          "monthly_count": 12
++        }
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureRetention",
++      "operation_id": "fictional-op-15",
++      "target": {
++        "kind": "backup_config",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {
++        "counts": {
++          "daily_count": 30,
++          "monthly_count": 12
++        },
++        "approval_ref": "fictional-approval"
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureDestination",
++      "operation_id": "fictional-op-16",
++      "target": {
++        "kind": "backup_config",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {
++        "provider_link_id": "fictional-provider-link",
++        "folder_id": "fictional-drive-folder"
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "RunManualBackup",
++      "operation_id": "fictional-op-17",
++      "target": {
++        "kind": "backup_config",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {
++        "classification": "UNCLASSIFIED"
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupConfiguration",
++      "operation_id": "fictional-op-18",
++      "target": {
++        "kind": "backup_config",
++        "id": "fictional-target"
++      },
++      "payload": {}
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListBackupHistory",
++      "operation_id": "fictional-op-19",
++      "target": {
++        "kind": "backup_history",
++        "id": "fictional-target"
++      },
++      "payload": {
++        "page": {
++          "page_size": 20
++        }
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupPoint",
++      "operation_id": "fictional-op-20",
++      "target": {
++        "kind": "backup_point",
++        "id": "fictional-target"
++      },
++      "payload": {}
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupJob",
++      "operation_id": "fictional-op-21",
++      "target": {
++        "kind": "backup_job",
++        "id": "fictional-target"
++      },
++      "payload": {}
++    },
++    {
++      "envelope_version": 1,
++      "action": "BeginProviderLink",
++      "operation_id": "fictional-op-22",
++      "target": {
++        "kind": "backup_integration",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {
++        "purpose": "CONNECT",
++        "return_route_id": "BACKUP_SETTINGS"
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "CancelProviderLink",
++      "operation_id": "fictional-op-23",
++      "target": {
++        "kind": "provider_flow",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {}
++    },
++    {
++      "envelope_version": 1,
++      "action": "CompleteProviderLink",
++      "operation_id": "fictional-op-24",
++      "target": {
++        "kind": "provider_flow",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {
++        "callback_ref": "fictional-consumed-callback"
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetProviderLink",
++      "operation_id": "fictional-op-25",
++      "target": {
++        "kind": "backup_integration",
++        "id": "fictional-target"
++      },
++      "payload": {}
++    },
++    {
++      "envelope_version": 1,
++      "action": "DisconnectProvider",
++      "operation_id": "fictional-op-26",
++      "target": {
++        "kind": "backup_integration",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {}
++    },
++    {
++      "envelope_version": 1,
++      "action": "PreviewCleanup",
++      "operation_id": "fictional-op-27",
++      "target": {
++        "kind": "backup_config",
++        "id": "fictional-target"
++      },
++      "payload": {}
++    },
++    {
++      "envelope_version": 1,
++      "action": "RequestCleanup",
++      "operation_id": "fictional-op-28",
++      "target": {
++        "kind": "cleanup_plan",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {}
++    },
++    {
++      "envelope_version": 1,
++      "action": "RequestHold",
++      "operation_id": "fictional-op-29",
++      "target": {
++        "kind": "recovery_family",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {
++        "point_ids": [
++          "fictional-point"
++        ],
++        "reason": "Exemplo fictício de preservação"
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ReleaseHold",
++      "operation_id": "fictional-op-30",
++      "target": {
++        "kind": "backup_hold",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {
++        "reason": "Exemplo fictício de liberação"
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetHold",
++      "operation_id": "fictional-op-31",
++      "target": {
++        "kind": "backup_hold",
++        "id": "fictional-target"
++      },
++      "payload": {}
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetCleanup",
++      "operation_id": "fictional-op-32",
++      "target": {
++        "kind": "cleanup_task",
++        "id": "fictional-target"
++      },
++      "payload": {}
++    },
++    {
++      "envelope_version": 1,
++      "action": "ReconcileCleanup",
++      "operation_id": "fictional-op-33",
++      "target": {
++        "kind": "cleanup_task",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {}
++    },
++    {
++      "envelope_version": 1,
++      "action": "SuspendCleanup",
++      "operation_id": "fictional-op-34",
++      "target": {
++        "kind": "backup_config",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {
++        "reason": "Exemplo fictício de controle"
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ResumeCleanup",
++      "operation_id": "fictional-op-35",
++      "target": {
++        "kind": "backup_config",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {
++        "reason": "Exemplo fictício de controle"
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListDestinationFolders",
++      "operation_id": "fictional-op-36",
++      "target": {
++        "kind": "backup_integration",
++        "id": "fictional-target"
++      },
++      "payload": {
++        "page": {
++          "page_size": 20
++        }
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListApprovalDelegations",
++      "operation_id": "fictional-op-37",
++      "target": {
++        "kind": "approval_authority",
++        "id": "fictional-target"
++      },
++      "payload": {
++        "page": {
++          "page_size": 20
++        }
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "RunScheduledBackup",
++      "operation_id": "fictional-op-38",
++      "target": {
++        "kind": "backup_config",
++        "id": "fictional-target",
++        "expected_version": 4
++      },
++      "payload": {
++        "occurrence_ref": "fictional-server-occurrence"
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetOutcome",
++      "operation_id": "fictional-op-39",
++      "target": {
++        "kind": "operation",
++        "id": "fictional-target"
++      },
++      "payload": {
++        "original_action": "AssignProfile",
++        "original_digest": "0000000000000000000000000000000000000000000000000000000000000000"
++      }
++    }
++  ]
++}

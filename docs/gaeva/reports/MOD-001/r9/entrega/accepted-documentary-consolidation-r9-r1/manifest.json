@@ -1,0 +1,799 @@
+{
+  "packet_revision": "accepted-documentary-consolidation-r9-r1",
+  "task_id": "GAEVA-MOD-001",
+  "contract_revision": 9,
+  "formal_gate": "UNKNOWN",
+  "author": "agent-65a76b70-79bc-4539-b8b9-840998b76a10",
+  "human_scope_acceptance": "DOCUMENTARY r8/r9",
+  "current_independent_QA": "PENDING",
+  "files": [
+    {
+      "path": "candidate/docs/discovery/gaeva-transformacao/findings.md",
+      "sha256": "833b01f3f3ba5ed337e9fee2ee062e0a0f79f19d3cc04a3b300898bb09a846b7",
+      "bytes": 33265
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/arquitetura/contracts.md",
+      "sha256": "52e76a39d98935842f6d02acaebcd14595ac09e03b7b1bd8b46ab09a0c124096",
+      "bytes": 21719
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/dev-foundation/environment-matrix.md",
+      "sha256": "f625ec08830a5f93579ca327c455aad6b83bdc91b61771c30dd069480b01c4b4",
+      "bytes": 10875
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/approval-decisions.md",
+      "sha256": "a71dba099a97516639db8a71a5fafed2a002469711d130a9a104c6c64b6ebe1e",
+      "bytes": 4026
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/data-contracts.md",
+      "sha256": "3f789d7f815efcaa8de54d9beb3ebf9771062cbd64ee0b2d4107f3e8eba89aca",
+      "bytes": 9458
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/estimates/GAEVA-MOD-001-P4-CONTROLS.json",
+      "sha256": "cd7bd3d05e5f56e05fe348eb9338ada9f473628f9e4a2278fa32382f6b2f0344",
+      "bytes": 574
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/estimates/GAEVA-MOD-001-P5-BACKUPS.json",
+      "sha256": "567380c880526cdc74ff5ecb098703e1d7ac00c575407837f96f83ef06f52833",
+      "bytes": 573
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/estimates/GAEVA-MOD-001-P6-ASSURANCE.json",
+      "sha256": "b6d7f749717a72463429c86316e63a97351c19e3589daec808e193530068f200",
+      "bytes": 575
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/integrated-spec.md",
+      "sha256": "af20242a074809f47a4414aaed4d048313f9969d8a812b9af5829c57a2c736ad",
+      "bytes": 12571
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/action-changelog.md",
+      "sha256": "3cd6dbb68d2ff9177f258864addc5daa3ad6902ac70858bb4ee70734b9058906",
+      "bytes": 1180
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/approved-decisions.md",
+      "sha256": "a24f1ee49a4201fd98a98d8ea61c882b94fa00fbfd0afa8f6ac8d0b3b96ec0cf",
+      "bytes": 8137
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/authority-protocol.md",
+      "sha256": "753a8778ca86eff2969352f2d3423654deb4968e5fcc92817aa6c69477c9c401",
+      "bytes": 15100
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/contracts.md",
+      "sha256": "18db8214bcb3daefa4ca3945f63155a44ab81c0d782b093de188931d4f1d418c",
+      "bytes": 14520
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/human-acceptance-r9.json",
+      "sha256": "f09c1eb93622f41a25d8f571c900c928b6d32103c0a772465a8ad94e5c8ab2ed",
+      "bytes": 5959
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/id-crosswalk.json",
+      "sha256": "b2a5a045b375a4c39c93d166dee70185d029f2b1b9c04a82581c23747720090f",
+      "bytes": 2752
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-plan.json",
+      "sha256": "bad0748210e8624ca7e69952ce35e71142911e4db027290ac2238d8d8dfea959",
+      "bytes": 6513
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-plan.md",
+      "sha256": "1005333602d1ca4e06488af6e39f299b6e7565adaf4c84cc2c023505e8718eec",
+      "bytes": 1900
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-spec.md",
+      "sha256": "fea8e3735e540068976459e9ab52f8fdba7213bd6cb8e17e409748cf80736e38",
+      "bytes": 36455
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/product-behavior-r9.md",
+      "sha256": "04a643c15363c2724f819a440762254a3174715055239fbce8a96338a94b7249",
+      "bytes": 3478
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/reference-hashes.json",
+      "sha256": "c53cd2af8e325fd72d57e39a484b1d821caa21e58b89c2f06a10853627e5a5d4",
+      "bytes": 9875
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/research-binding.json",
+      "sha256": "7e6adedfc89fad6daaf94bb28ccb84c2671a241cafd3217f16bdc475f4e793b6",
+      "bytes": 2813
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/retention-protocol.md",
+      "sha256": "ccce06cd8b9f1012212cb25aed01ae10ac0a9a47985759db854aed5b39baf8a3",
+      "bytes": 13080
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/retention-validation.md",
+      "sha256": "d24abc2c9a22b7bf03f870e35242e0d4edbfd2f96d042d34945f26798358b10a",
+      "bytes": 4862
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-acceptance-r9.json",
+      "sha256": "bfe0076d3350b5850bda766b8a4b8f6932b2a183f89f4e08a72d86a52d953408",
+      "bytes": 15640
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-action-bindings-r9.json",
+      "sha256": "cf2bd896e7abe5a32e41ba00d60b19a50a744619b7c7cb454f180754ca839e28",
+      "bytes": 43574
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-failure-catalog.md",
+      "sha256": "58870b6f96856651676656b0dc9cee16ccb915079117418a8dea751fbfdcc907",
+      "bytes": 6058
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/schema-compatibility.md",
+      "sha256": "7fc858af015548624560e56b3f40d1076272bfcf427a6f5c83e209c3caed1acd",
+      "bytes": 1334
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/source-claims.md",
+      "sha256": "2c965ed18c81372c759006c336fd4bcfbef6a06e123de356c458d5ed245d4ae9",
+      "bytes": 2854
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/surface-contract-map.json",
+      "sha256": "f28bdf92ae3b2aaa0b879ee87f830265f30590330ec5d1a7d1617baee50a1580",
+      "bytes": 1210903
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/traceability.json",
+      "sha256": "e007bb9c90d71f2f32e8bf2bf04f5444abf777cf5a38effe8a61f84c52028b5e",
+      "bytes": 190477
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/acceptance-bindings.json",
+      "sha256": "abe1a0998a51b1d90fa61bc323bc559e3e576e841959122118b24bd8485b32c5",
+      "bytes": 283322
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/action-catalog.json",
+      "sha256": "f6a579ad9e57016a5d35ae327042d8370e06aec448bf7dc4d05ecc10f3c3814e",
+      "bytes": 1721684
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/action-contracts.md",
+      "sha256": "1a2f72ba03e82c505f1a8d79aed90cb330ca2f1d7817438036a3e65de93f7027",
+      "bytes": 29074
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/action-fields.md",
+      "sha256": "85257480e26f1970c730eb81b4786cdd484f020c711fa76eae3af6faa747ec7e",
+      "bytes": 213617
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/examples.json",
+      "sha256": "f5e50ee743be49d0f071964382563d664a31250271e98371f113e3ce95290d5b",
+      "bytes": 12627
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/field-vectors.json",
+      "sha256": "276b5b7b8058d6b938e2423d8c757fc9ac0a7a4e17512e48e812f6b4d6f345a4",
+      "bytes": 1913
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/negative-response-examples.json",
+      "sha256": "60ba8a17a5e967d5a82c4f2885e0912219e3aa69841872e76c1a41a2c2fd9cc4",
+      "bytes": 132109
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/relational-negative-examples.json",
+      "sha256": "0eecde9e3e921da0a07d0c83781034892d38abc09c0993f7413b64055dedc86e",
+      "bytes": 93632
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/request-union.schema.json",
+      "sha256": "107d41ee4a962c72b014cf4bda2cfadadbdd7e74518743d5c7a50d6cf81b8030",
+      "bytes": 66386
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/response-examples.json",
+      "sha256": "70022f196020ccf91783cbbaee443038de04bb4bd7c86902287e8fdc973845a9",
+      "bytes": 77097
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/schedule-acceptance-bindings.json",
+      "sha256": "7148df9940a18555f4d482a737b955813de34bd0ae813c64bf397c647c8b23bf",
+      "bytes": 33363
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/schedule-roundtrip-examples.json",
+      "sha256": "8805cd703a69d9bdf9e40a063f957b1930120896a40438a04c73a7c478aed164",
+      "bytes": 55077
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/timezone-vectors.json",
+      "sha256": "46c9ef611d177810296805fbb373ceceb40b63c915899616b5ce7858b16c39f9",
+      "bytes": 306
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/validation-plan.md",
+      "sha256": "e0e34adf38e9c42c6380ee9a73aadb16c39e950bd2df29e40fa388c55643c430",
+      "bytes": 5434
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001.md",
+      "sha256": "a90050a94af72beaab6c687187ed1d67b8f79601ee154f5398faecba9d07b8d7",
+      "bytes": 5083
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/pages-components.md",
+      "sha256": "4c689e2cba2ec3815352544913542bc79edd9f1accce8d265d2141f48d3fc43c",
+      "bytes": 5199
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/phase-plan.md",
+      "sha256": "affd9b62b7f21dfd4a768868a9fa7ffe46f833212b57880872bbee7e97dc7094",
+      "bytes": 11703
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/README.md",
+      "sha256": "a6a09d94db674029e01d6af5f77bebd121739d0cc5a737af7db760a48372c20a",
+      "bytes": 6941
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/task-registry.json",
+      "sha256": "68d37afe40226dfde8ae163e552721d561e050661a33188c3a52f23f3743bede",
+      "bytes": 27260
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.json",
+      "sha256": "526251998527ab041df85093d0eb32243b6c88289d64b62415f192f448cdda51",
+      "bytes": 204830
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.md",
+      "sha256": "fa7d66455d4e2ca92a8b12ec1da524941bc65fd9fb01ec6ca1a40349bf26d146",
+      "bytes": 197645
+    },
+    {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/ui-ux/screen-matrix.md",
+      "sha256": "1a29adcb6b9ea210d4bf797a6584e51151451d8d9e9751f625a5b27e4a1edddf",
+      "bytes": 5994
+    },
+    {
+      "path": "candidate-delta.json",
+      "sha256": "87a05c3de15211475b5a5af1f74c12c72962def0dcd58724104730aea6af2113",
+      "bytes": 5408
+    },
+    {
+      "path": "changed-paths.json",
+      "sha256": "4f2bfb564936b78146301d85ec6e2cfba7794c449d41f6a26a003a2aae634f25",
+      "bytes": 21084
+    },
+    {
+      "path": "check_all.py",
+      "sha256": "c22a05045c42090c59da11c8544219622d5bc07ec5f629b5cd221660a8fc8ae2",
+      "bytes": 2375
+    },
+    {
+      "path": "checker-source.py",
+      "sha256": "3acece6c9e4cdcc355f8253417933e5b1fe4e4b83573ad84e756582f89006f8a",
+      "bytes": 7589
+    },
+    {
+      "path": "combined.patch",
+      "sha256": "c4a73ecae5db6f0ec346f0100148f61e111bb1ca07fe20f4f94e12084a12792d",
+      "bytes": 4714769
+    },
+    {
+      "path": "commands.json",
+      "sha256": "ce5a2db8ae7964c482a1e65ccb97fb4b0f2381bed229c9613495f79f82c3c218",
+      "bytes": 13683
+    },
+    {
+      "path": "consultation.json",
+      "sha256": "6fce60efd6dd6c656fc788b04378bb57aebc07976cd5d2d182b4399f75823ae9",
+      "bytes": 6957
+    },
+    {
+      "path": "delivery-report.md",
+      "sha256": "888cf36bc95e676dae68b356c41dfe078c466237653ef22972ff2bb4cbd3edfb",
+      "bytes": 8616
+    },
+    {
+      "path": "documentary-invariants.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "documentary-invariants.stdout",
+      "sha256": "ba1b91ddcc14710b7091521023e7ffe32fdba1235f79e4abd060e05f06175068",
+      "bytes": 349
+    },
+    {
+      "path": "estimate-P4-CONTROLS.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "estimate-P4-CONTROLS.stdout",
+      "sha256": "95c86992d0ba72223ce26d1857634395771d0cfd85d639700abf0f481b4d079c",
+      "bytes": 25
+    },
+    {
+      "path": "estimate-P5-BACKUPS.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "estimate-P5-BACKUPS.stdout",
+      "sha256": "95c86992d0ba72223ce26d1857634395771d0cfd85d639700abf0f481b4d079c",
+      "bytes": 25
+    },
+    {
+      "path": "estimate-P6-ASSURANCE.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "estimate-P6-ASSURANCE.stdout",
+      "sha256": "95c86992d0ba72223ce26d1857634395771d0cfd85d639700abf0f481b4d079c",
+      "bytes": 25
+    },
+    {
+      "path": "final-documentary-check.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "final-documentary-check.stdout",
+      "sha256": "ba1b91ddcc14710b7091521023e7ffe32fdba1235f79e4abd060e05f06175068",
+      "bytes": 349
+    },
+    {
+      "path": "finalize.py",
+      "sha256": "2a1c2e4c4954636b5cbea3fc14ea8dd6107c9d981c002ea91ab8427d3471af7d",
+      "bytes": 7803
+    },
+    {
+      "path": "graphify.stdout",
+      "sha256": "25b1e34b751d9fc001a1fca515b7594dcdb8c97c6c495656befbc89fd0c791ed",
+      "bytes": 6686
+    },
+    {
+      "path": "historical-reviews.json",
+      "sha256": "753442c8621b08a322dd5bad1b5cd6560effb3585b5a69e5d857c13b1702f5b9",
+      "bytes": 2748
+    },
+    {
+      "path": "human-source-comments.json",
+      "sha256": "a7a221dce4a82eebebf34d108db7351c397b5ac94b600ee30b58e05c79277813",
+      "bytes": 5534
+    },
+    {
+      "path": "input-hashes.json",
+      "sha256": "f92c445de916717b0a557883acc7c8e9fa7548633155b599eff89a7fd6539168",
+      "bytes": 46708
+    },
+    {
+      "path": "integrate.py",
+      "sha256": "96793b7ed5d4be8259fc40c8ed856aef6916c9c8ae32782cb6eba9dfeeb5c775",
+      "bytes": 28683
+    },
+    {
+      "path": "internal-governance.md",
+      "sha256": "4cd8a46bcf828be9b47e3f8fb77d12b7c502cd6312d02936f5d8cfc202372371",
+      "bytes": 3257
+    },
+    {
+      "path": "local-formal-inventory.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "local-formal-inventory.stdout",
+      "sha256": "6c152a1f297e584c06d53d1e1bc1d1e235459e13a1ed647e785a12a3f85dfa68",
+      "bytes": 94
+    },
+    {
+      "path": "navigation.json",
+      "sha256": "088fa77855b0711740185ede104d815ffcdc247fb4455323df4f2232c540c210",
+      "bytes": 883
+    },
+    {
+      "path": "negative-original-id.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "negative-original-id.stdout",
+      "sha256": "60c9a181d2a6b744e2b181202f35cec46cd75baa63580c3250ea36eae4c23636",
+      "bytes": 1116
+    },
+    {
+      "path": "negative-write-id.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "negative-write-id.stdout",
+      "sha256": "527124c0393cd63c65233a92432e4ec7adb1333198d923b77cd105a83f139a78",
+      "bytes": 1028
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/estimates/GAEVA-MOD-001-P4-CONTROLS.json.patch",
+      "sha256": "f4385d69b9bbebc813e1386883ca9354bdb109a9a0549aa0d0e0ec15cd2ed914",
+      "bytes": 703
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/estimates/GAEVA-MOD-001-P5-BACKUPS.json.patch",
+      "sha256": "e1553816fe4cb114ff7e18b96b20846ecfd9a8f50f7616988b869b48a2290252",
+      "bytes": 701
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/estimates/GAEVA-MOD-001-P6-ASSURANCE.json.patch",
+      "sha256": "3d31156a21fd33310c9e43942803a3043984aa412070ad7796027842f8b44227",
+      "bytes": 705
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/integrated-spec.md.patch",
+      "sha256": "b4b337ddb623c9b0a63b1e41f80a39dfdb2695cbd6720476930cddd258fb2f9b",
+      "bytes": 1403
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/action-changelog.md.patch",
+      "sha256": "e60f0cdabaec3986aad11025555557d10f7f6a3fa4f950986420710a06db7acd",
+      "bytes": 1314
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/approved-decisions.md.patch",
+      "sha256": "8083c79db5c4241a81675989b401c26529031dbe2247d348ce51f9310973f5ed",
+      "bytes": 8263
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/authority-protocol.md.patch",
+      "sha256": "c70a6fcca288851e1cf1004ee11aa2d79d7606d0b295305996966d9ed05661ad",
+      "bytes": 15226
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/contracts.md.patch",
+      "sha256": "564256088f21012edf32b134b0dfe4f21a990c2bcd36be93d38584254545b72f",
+      "bytes": 14708
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/human-acceptance-r9.json.patch",
+      "sha256": "4d6f3ecb21c5a44772225bcc503cd33484deea4d0800a08c6769b660cb97a7a5",
+      "bytes": 6137
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/id-crosswalk.json.patch",
+      "sha256": "e5b594caf09f25cc6399d774edd257637eb4c82da8def2a99aaca14d853ff484",
+      "bytes": 2874
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-plan.json.patch",
+      "sha256": "eeaced523d9552f0deb826dc2b7df9df3e9e6c2791ce1d2cbee83cd43dde3dad",
+      "bytes": 6907
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-plan.md.patch",
+      "sha256": "10a9574f535dfb2e3808333db290dcb95defc6defd0fb5511d6eff9c3470fab1",
+      "bytes": 2032
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-spec.md.patch",
+      "sha256": "61bc8e4b86f0cc0526f485bc9ff98021b26656ca774a0a9baf3a84512c58cff8",
+      "bytes": 36740
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/product-behavior-r9.md.patch",
+      "sha256": "6e04d5d3c6ec381d843772be81fa36dd99c11ca5dfad6ecadbc7a5cde8d2e57a",
+      "bytes": 3626
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/reference-hashes.json.patch",
+      "sha256": "ed8e4471647c6f1e44a7a6227994156b83dcf15296df3591fdc00c1eaff7489c",
+      "bytes": 10200
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/research-binding.json.patch",
+      "sha256": "14b5c7928030f3c54c8e369a1e90580d1c96b7c01f476308c4e87fdf06959544",
+      "bytes": 2984
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/retention-protocol.md.patch",
+      "sha256": "0d17f9ebe25e63205417e44e55b9b1a4e6a3a72b4558c710875a6d3b6ec6d710",
+      "bytes": 13270
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/retention-validation.md.patch",
+      "sha256": "fe6574c3f76ea68a218bb655d9ae421fc4dfa5e5e246d3f74cbe3991bcb2121e",
+      "bytes": 5009
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-acceptance-r9.json.patch",
+      "sha256": "dbf36fd66a166690dc616236a385e7182707e3645e09b901ab5913e3e3314cf7",
+      "bytes": 16312
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-action-bindings-r9.json.patch",
+      "sha256": "4fe6e8e9e79441212b284562577c24823940c1503f18defafc37560680944954",
+      "bytes": 44511
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-failure-catalog.md.patch",
+      "sha256": "80cb3b6aaa0c603cbb397bd8c3863d4f95126d3d42d2386768652fdd46f50c97",
+      "bytes": 6206
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/schema-compatibility.md.patch",
+      "sha256": "ae9a14e53236c22d207ec5dc21c5ff78a8a76784ab8dcb940ea04151557d8ae5",
+      "bytes": 1461
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/source-claims.md.patch",
+      "sha256": "d8a4494feb5a888342f74e8c72453c1f537ecb04a077079f5ce15a00a668eb1f",
+      "bytes": 2975
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/surface-contract-map.json.patch",
+      "sha256": "e33dd5e98049b2c53cb273a972da13dc35c7fa848ce6f4dc32cffd560c1047ba",
+      "bytes": 1211036
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/traceability.json.patch",
+      "sha256": "e1ecdf0d7b4e4faecc76b943dad581b2730801399c32672b7385a04a628a7e29",
+      "bytes": 197668
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/acceptance-bindings.json.patch",
+      "sha256": "157d504f511b49d2f31b901630e6822b6d8a4d92d7fa2a27d179c0f8fa8691f4",
+      "bytes": 283472
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/action-catalog.json.patch",
+      "sha256": "9bf3bae056a8adaa4cfe19f7cfa66d77a62553c03a89dbee41f81e03e8b2e9ad",
+      "bytes": 1721829
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/action-contracts.md.patch",
+      "sha256": "6d1520e0b8bbf306ae85ac801250fff0f26c1355e811499314354f7ba7f3f929",
+      "bytes": 29216
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/action-fields.md.patch",
+      "sha256": "b5edd78a9a0925236499506cdbda3d45a4f059e3fd1a868fab6e9e25a115641e",
+      "bytes": 213757
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/examples.json.patch",
+      "sha256": "a9d0f7a7a0c00fd68e431a4d1cf8ae1a68ca07295c3e4b17d175e2b1e8d29817",
+      "bytes": 12764
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/field-vectors.json.patch",
+      "sha256": "6e240f2a9e6ebe834955cbb9cdb2b3419338df81ff7c5d1cead70cf6f2f236a3",
+      "bytes": 2054
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/negative-response-examples.json.patch",
+      "sha256": "b766e7b58ec868ce59d6b54eeae79961be5805212a339463e37cd2b9a977ad0a",
+      "bytes": 132265
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/relational-negative-examples.json.patch",
+      "sha256": "576732ee88a8e4b49d8da600d4252660f7d3e034f7e9aaec94974c9b8783e490",
+      "bytes": 93790
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/request-union.schema.json.patch",
+      "sha256": "1b327186b823a436b064159b89612eaad858521cc5965a57f30b3e7384b76291",
+      "bytes": 66536
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/response-examples.json.patch",
+      "sha256": "7d37e4f5b49ddb5275b789da80e1dac47a288626258ae99b218739522dc625fb",
+      "bytes": 77244
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/schedule-acceptance-bindings.json.patch",
+      "sha256": "4fed8e64ad52fee0cba26f7bc3e493147ac336964a81c28340d5c08fda43edc7",
+      "bytes": 33521
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/schedule-roundtrip-examples.json.patch",
+      "sha256": "0427edb73428dd3572a2d20f600af488b2bfe8073bd5c1714dcc8abe399c4a76",
+      "bytes": 55234
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/timezone-vectors.json.patch",
+      "sha256": "267ab518bc214af11ccc1965234ef5e0ea00ec7d1cc1b028f9dd7b109689ab7e",
+      "bytes": 463
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/validation-plan.md.patch",
+      "sha256": "7e4c108fc9788f8ed44d6ac4170089ca825257f88d95eec2648159cbf44cbbbd",
+      "bytes": 5584
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001.md.patch",
+      "sha256": "6f8452809e8044d70a2e39b5d1d9552871a57a9330fd9bdbc8ebb3ef5d69933b",
+      "bytes": 1210
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/phase-plan.md.patch",
+      "sha256": "4afa3996649799bb49ddf3bebf40e880d8090b17d20a85cd3ca1834bb4e6dc65",
+      "bytes": 1519
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/README.md.patch",
+      "sha256": "ab637730e85b9bb004e27e11676dcff3a7e9e815dcd774aae22e4abb959c5d8a",
+      "bytes": 4193
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/task-registry.json.patch",
+      "sha256": "0d50a90afce39844e0831583cf5158aa3b8ff6047a5bd212c66b6bffd6815b3b",
+      "bytes": 2931
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.json.patch",
+      "sha256": "cfe3c597ac28c9c1dd8a3f4bfa1ac1a0796a0c827d4209feef820ee5dc5ed6c1",
+      "bytes": 180091
+    },
+    {
+      "path": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.md.patch",
+      "sha256": "23029d06f9d1e6baa64c39d63152fab91491d329b3b32c5704bd3d4231ec0198",
+      "bytes": 184125
+    },
+    {
+      "path": "preimages/docs/gaeva/retomada-tfd/transformacao-filaops/spec/integrated-spec.md",
+      "sha256": "2e74138fe945a41d56b5ab901d4c1a62429a44e9a0ee01e0e82a20e20cec35e3",
+      "bytes": 11919
+    },
+    {
+      "path": "preimages/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001.md",
+      "sha256": "a2efd01109e3305ace78c021dc3e6b253c8c5c3deead480f6e2fb357edf88485",
+      "bytes": 4542
+    },
+    {
+      "path": "preimages/docs/gaeva/retomada-tfd/transformacao-filaops/spec/phase-plan.md",
+      "sha256": "178045ad7a2f37b90ad5b2b4e11d42e7172e2d955bc39ffbf7d7bf515b5afb46",
+      "bytes": 11474
+    },
+    {
+      "path": "preimages/docs/gaeva/retomada-tfd/transformacao-filaops/spec/README.md",
+      "sha256": "e0e197c45f4583f9f649da7863362130e21d48ac15ccd6f5ff8fe3438ed40e11",
+      "bytes": 4023
+    },
+    {
+      "path": "preimages/docs/gaeva/retomada-tfd/transformacao-filaops/spec/task-registry.json",
+      "sha256": "b27f9c7724513b79d4a3ea821ced8c32044889eb59a31b83ff807f4719cdc443",
+      "bytes": 26806
+    },
+    {
+      "path": "preimages/docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.json",
+      "sha256": "f139fc1e677347085c7f992e62d475d28933b3c6d068165beab8ec43174d2c6c",
+      "bytes": 41856
+    },
+    {
+      "path": "preimages/docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.md",
+      "sha256": "edfad6ebc6577e490908f518dea3801c5e731648190f47dd6d24c136e3b26f85",
+      "bytes": 27557
+    },
+    {
+      "path": "README.md",
+      "sha256": "d73b099842c298a255e1d7f1b9f9c2eab924fbaf11e1f287b2ac2f5a58dcf8f2",
+      "bytes": 3680
+    },
+    {
+      "path": "render-task.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "render-task.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "review-input.json",
+      "sha256": "e1ca7d28e10801fde590975765502fbb8d646d2648c1330fc06dd80968840961",
+      "bytes": 3479
+    },
+    {
+      "path": "revision-register.json",
+      "sha256": "cd0ffbc1d0349a98a80a2a342ffa0979f330f965a711698159fcb3c89cce596a",
+      "bytes": 1420
+    },
+    {
+      "path": "saved-response-fixtures.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "saved-response-fixtures.stdout",
+      "sha256": "40ed30e81fa1d9d32108ee80b5cb10765e71915395ef4f08ba0164dbf309ea88",
+      "bytes": 65
+    },
+    {
+      "path": "saved-schedule-relations.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "saved-schedule-relations.stdout",
+      "sha256": "46efb6d334166fff33a6a0d913b31c446541ab461f5dca3ffb3dab84673f435c",
+      "bytes": 95
+    },
+    {
+      "path": "self-check.json",
+      "sha256": "ac1afb42a76f251a25a498b00651e448e230e8b47e61c5267889bb4e960fafb0",
+      "bytes": 1731
+    },
+    {
+      "path": "source-map.json",
+      "sha256": "454bffd29e6f923eb2708d7c2aa2b8e426ce851e6a0d2317033194f4a6c06351",
+      "bytes": 31912
+    },
+    {
+      "path": "stage_receipt.json",
+      "sha256": "a7adff69c0a63032682e8fe6014f7a531ee2079e09f1fe5d08d3fa719b6954bd",
+      "bytes": 15333
+    },
+    {
+      "path": "task-schema.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "task-schema.stdout",
+      "sha256": "6d1f5eae21b45f0f9ae627a31d0b1a78e03faf7c5593d049db3ed7e65a7fdb53",
+      "bytes": 23
+    },
+    {
+      "path": "token-reader.stderr",
+      "sha256": "426686260f2855a598f65bda2694633ce2c2cef1f64a8c825de3a55ab7aec112",
+      "bytes": 404
+    },
+    {
+      "path": "token-reader.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "typed-request-subset.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "typed-request-subset.stdout",
+      "sha256": "312f3aa9bb4635162cba5b69d0ca3ffe596d346fe97deea0eda730d8c5b314e3",
+      "bytes": 123
+    },
+    {
+      "path": "verify.py",
+      "sha256": "50e5c67c9369fff513d8aed4fd3b302d552398f93abd83abab436d221529fb2a",
+      "bytes": 9270
+    },
+    {
+      "path": "verify_relations.py",
+      "sha256": "5bafaf02ede4e35ddcfaf4570d8368fcc122be6cb6b750b95d95fd8b1ef0afc5",
+      "bytes": 4837
+    },
+    {
+      "path": "verify_saved.py",
+      "sha256": "b25a5409e8a457af24ed570698c68b93d4316f0a2a791c02d5a1ca277e051217",
+      "bytes": 1749
+    }
+  ],
+  "member_count": 157,
+  "apply_allowlist": "changed-paths.json",
+  "not_applied": true
+}

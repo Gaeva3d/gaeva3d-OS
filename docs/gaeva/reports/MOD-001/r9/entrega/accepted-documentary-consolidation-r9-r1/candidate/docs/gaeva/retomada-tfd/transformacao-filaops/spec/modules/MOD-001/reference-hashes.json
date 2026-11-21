@@ -1,0 +1,198 @@
+[
+  {
+    "id": "REF-01",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001.md",
+    "purpose": "Escopo/contratos/stops especificos do modulo; documento completo no recorte aplicavel",
+    "sha256": "a90050a94af72beaab6c687187ed1d67b8f79601ee154f5398faecba9d07b8d7"
+  },
+  {
+    "id": "REF-02",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/integrated-spec.md",
+    "purpose": "Atores, invariantes, interfaces e fronteiras; documento completo no recorte aplicavel",
+    "sha256": "af20242a074809f47a4414aaed4d048313f9969d8a812b9af5829c57a2c736ad"
+  },
+  {
+    "id": "REF-03",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/phase-plan.md",
+    "purpose": "Procedimentos de teste futuros e fases com donos; documento completo no recorte aplicavel",
+    "sha256": "affd9b62b7f21dfd4a768868a9fa7ffe46f833212b57880872bbee7e97dc7094"
+  },
+  {
+    "id": "REF-04",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/approval-decisions.md",
+    "purpose": "Politicas propostas e limites de aprovacao; documento completo no recorte aplicavel",
+    "sha256": "a71dba099a97516639db8a71a5fafed2a002469711d130a9a104c6c64b6ebe1e"
+  },
+  {
+    "id": "REF-05",
+    "path": "docs/discovery/gaeva-transformacao/findings.md",
+    "purpose": "Evidencia e limites Q02-Q05; documento completo no recorte aplicavel",
+    "sha256": "833b01f3f3ba5ed337e9fee2ee062e0a0f79f19d3cc04a3b300898bb09a846b7"
+  },
+  {
+    "id": "REF-06",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/arquitetura/contracts.md",
+    "purpose": "C00-C06 e F01-IDEM corrige replay tipado; documento completo no recorte aplicavel",
+    "sha256": "52e76a39d98935842f6d02acaebcd14595ac09e03b7b1bd8b46ab09a0c124096"
+  },
+  {
+    "id": "REF-07",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/ui-ux/screen-matrix.md",
+    "purpose": "U01-U09 e V01-V15, validacao visual futura; documento completo no recorte aplicavel",
+    "sha256": "1a29adcb6b9ea210d4bf797a6584e51151451d8d9e9751f625a5b27e4a1edddf"
+  },
+  {
+    "id": "REF-08",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/dev-foundation/environment-matrix.md",
+    "purpose": "DF04 guard antes de imports e ambientes isolados; documento completo no recorte aplicavel",
+    "sha256": "f625ec08830a5f93579ca327c455aad6b83bdc91b61771c30dd069480b01c4b4"
+  },
+  {
+    "id": "REF-09",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/task-registry.json",
+    "purpose": "Dependencias externas de entrada/fase e reconciliacao canonica sem alterar ledger.",
+    "sha256": "68d37afe40226dfde8ae163e552721d561e050661a33188c3a52f23f3743bede"
+  },
+  {
+    "id": "REF-10",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/pages-components.md",
+    "purpose": "Contrato UI/DEC-UX01 e componentes, inaplicavel onde nao houver UI.",
+    "sha256": "4c689e2cba2ec3815352544913542bc79edd9f1accce8d265d2141f48d3fc43c"
+  },
+  {
+    "id": "REF-11",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/data-contracts.md",
+    "purpose": "Tipos/transacoes/F01-IDEM e limites de interfaces propostas.",
+    "sha256": "3f789d7f815efcaa8de54d9beb3ebf9771062cbd64ee0b2d4107f3e8eba89aca"
+  },
+  {
+    "id": "REF-12",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-spec.md",
+    "purpose": "Contrato proposto completo r6, interfaces/estados, autorização e riscos; ler integralmente",
+    "sha256": "fea8e3735e540068976459e9ab52f8fdba7213bd6cb8e17e409748cf80736e38"
+  },
+  {
+    "id": "REF-13",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/authority-protocol.md",
+    "purpose": "AP0-AP6 com C1-C7, provas/policy/fencing/cortes externos obrigatórios",
+    "sha256": "753a8778ca86eff2969352f2d3423654deb4968e5fcc92817aa6c69477c9c401"
+  },
+  {
+    "id": "REF-14",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/retention-protocol.md",
+    "purpose": "RP1-RP6, limpeza NORMAL, hold e resultados incertos por arquivo/ponto",
+    "sha256": "ccce06cd8b9f1012212cb25aed01ae10ac0a9a47985759db854aed5b39baf8a3"
+  },
+  {
+    "id": "REF-15",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/traceability.json",
+    "purpose": "Toda ação Discovery ligada a contrato fase MT aceite e teste proposto",
+    "sha256": "e007bb9c90d71f2f32e8bf2bf04f5444abf777cf5a38effe8a61f84c52028b5e"
+  },
+  {
+    "id": "REF-16",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/research-binding.json",
+    "purpose": "Tupla de pesquisa PASS qualificada, novos documentos ainda sem PASS",
+    "sha256": "7e6adedfc89fad6daaf94bb28ccb84c2671a241cafd3217f16bdc475f4e793b6"
+  },
+  {
+    "id": "REF-17",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-plan.md",
+    "purpose": "Fases ordenadas, donos/dependências/estimativas julgadas sem medição",
+    "sha256": "1005333602d1ca4e06488af6e39f299b6e7565adaf4c84cc2c023505e8718eec"
+  },
+  {
+    "id": "REF-18",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/contracts.md",
+    "purpose": "C1-C7 completos e interfaces de fronteira modular Fundação/Plataforma",
+    "sha256": "18db8214bcb3daefa4ca3945f63155a44ab81c0d782b093de188931d4f1d418c"
+  },
+  {
+    "id": "REF-19",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/retention-validation.md",
+    "purpose": "Oracles futuros incluindo DELETE elegível e hold anterior/posterior",
+    "sha256": "d24abc2c9a22b7bf03f870e35242e0d4edbfd2f96d042d34945f26798358b10a"
+  },
+  {
+    "id": "REF-20",
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/validation-plan.md",
+    "purpose": "Oracles futuros U5/U6 e critérios de reviewer independente",
+    "sha256": "e0e34adf38e9c42c6380ee9a73aadb16c39e950bd2df29e40fa388c55643c430"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/action-contracts.md",
+    "sha256": "1a2f72ba03e82c505f1a8d79aed90cb330ca2f1d7817438036a3e65de93f7027"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/action-fields.md",
+    "sha256": "85257480e26f1970c730eb81b4786cdd484f020c711fa76eae3af6faa747ec7e"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/action-catalog.json",
+    "sha256": "f6a579ad9e57016a5d35ae327042d8370e06aec448bf7dc4d05ecc10f3c3814e"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/request-union.schema.json",
+    "sha256": "107d41ee4a962c72b014cf4bda2cfadadbdd7e74518743d5c7a50d6cf81b8030"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/examples.json",
+    "sha256": "f5e50ee743be49d0f071964382563d664a31250271e98371f113e3ce95290d5b"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/response-examples.json",
+    "sha256": "70022f196020ccf91783cbbaee443038de04bb4bd7c86902287e8fdc973845a9"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/acceptance-bindings.json",
+    "sha256": "abe1a0998a51b1d90fa61bc323bc559e3e576e841959122118b24bd8485b32c5"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/field-vectors.json",
+    "sha256": "276b5b7b8058d6b938e2423d8c757fc9ac0a7a4e17512e48e812f6b4d6f345a4"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/timezone-vectors.json",
+    "sha256": "46c9ef611d177810296805fbb373ceceb40b63c915899616b5ce7858b16c39f9"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/action-changelog.md",
+    "sha256": "3cd6dbb68d2ff9177f258864addc5daa3ad6902ac70858bb4ee70734b9058906"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/negative-response-examples.json",
+    "sha256": "60ba8a17a5e967d5a82c4f2885e0912219e3aa69841872e76c1a41a2c2fd9cc4"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/schedule-roundtrip-examples.json",
+    "sha256": "8805cd703a69d9bdf9e40a063f957b1930120896a40438a04c73a7c478aed164"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/schedule-acceptance-bindings.json",
+    "sha256": "7148df9940a18555f4d482a737b955813de34bd0ae813c64bf397c647c8b23bf"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/relational-negative-examples.json",
+    "sha256": "0eecde9e3e921da0a07d0c83781034892d38abc09c0993f7413b64055dedc86e"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-failure-catalog.md",
+    "sha256": "58870b6f96856651676656b0dc9cee16ccb915079117418a8dea751fbfdcc907"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/human-acceptance-r9.json",
+    "sha256": "f09c1eb93622f41a25d8f571c900c928b6d32103c0a772465a8ad94e5c8ab2ed"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/product-behavior-r9.md",
+    "sha256": "04a643c15363c2724f819a440762254a3174715055239fbce8a96338a94b7249"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-action-bindings-r9.json",
+    "sha256": "cf2bd896e7abe5a32e41ba00d60b19a50a744619b7c7cb454f180754ca839e28"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-acceptance-r9.json",
+    "sha256": "bfe0076d3350b5850bda766b8a4b8f6932b2a183f89f4e08a72d86a52d953408"
+  }
+]

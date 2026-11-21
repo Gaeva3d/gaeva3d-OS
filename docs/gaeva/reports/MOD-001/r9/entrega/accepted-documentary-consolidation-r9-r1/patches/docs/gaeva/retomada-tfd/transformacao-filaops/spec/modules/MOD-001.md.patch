@@ -1,0 +1,10 @@
+--- a/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001.md
++++ b/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001.md
+@@ -31,3 +31,7 @@
+ ## Rastreabilidade, validacao e stops
+ 
+ REQ-14 Product -> referencias exatas no Task/source-manifest -> AC/TEST/MT no JSON. Todos testes sao propostos e nao executados. Phase-plan descreve procedimentos futuros concretos/negativos; executor associa comando real ao teste criado apos F1 guard seguro. QA independente e aprovacao humana antes da fase; sem isso nao executar allowed_paths. Fonte/revisao/audiencia conflitante, expansao de escopo ou segredo/dado real inesperado: parar o recorte.
++
++## Contrato documental r9 — consolidação atual para QA
++
++Mesmo TaskID, revision9 draft; escopo documental r8/r9 aceito conforme fontes humanas, nova consolidação aguarda QA. Texto histórico acima preservado e não é revisão corrente. A ampliação aprovada18/11 passa a [phase-spec](MOD-001/phase-spec.md), contratos C/AP/RP e [traceability](MOD-001/traceability.json). Novos planos não liberam P1/P2/P3; frontend/UX são dependências documentais#2, não N/A global. Gate histórico UNKNOWN, sem ledger Comercial como evidência.

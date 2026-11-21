@@ -1,0 +1,32 @@
+{
+  "verdict": "AUTHOR_DOCUMENTARY_CHECKS_OK_NOT_INDEPENDENT_PASS",
+  "counts": {
+    "documentary_checks": "OK",
+    "task_revision": 9,
+    "task_and_view_byte_exact_r9": true,
+    "requirements": 31,
+    "rules": 38,
+    "flows": 22,
+    "original_scenarios": 88,
+    "supplemental_vectors": 18,
+    "typed_actions_unchanged": 39,
+    "apply_proposals": 45,
+    "original_preimage_guards": 7,
+    "context_only": 7,
+    "new_independent_QA": "PENDING",
+    "runtime_tested": false
+  },
+  "command_receipts": "commands.json",
+  "review_input_sha256": "e1ca7d28e10801fde590975765502fbb8d646d2648c1330fc06dd80968840961",
+  "limits": [
+    "Produto e runtime n?o executados: autoriza??o/CAS/browser/cust?dia/chaves/provider/scheduler/AEP/DDE/PSC/RPO/RTO n?o comprovados.",
+    "Subset local n?o certifica JSON Schema integral; vetores de fuso mantidos como evid?ncia hist?rica, n?o nova medi??o de TZDB.",
+    "Pareceres r8/r9 vinculam manifests corretos, mas autoria/consulta n?o verificadas nesta entrega; QA independente atual PENDING.",
+    "Pol?ticas de abandono e destino ap?s logout/revoga??o OPEN; recomenda??es n?o s?o decis?es aprovadas.",
+    "Task/vista r9 preservadas byte a byte. REF-12 conserva texto hist?rico r6; revis?o corrente ? 9 no contrato/spec/mapa, ressalva expl?cita para QA.",
+    "Estimativas s?o hist?ricas de baixa confian?a, sem medi??o; reestimar antes de liberar as fases afetadas.",
+    "Raiz can?nica UNKNOWN: nenhum pacote aplicado. A0FAILED/P1OPEN/P2P3unreleased e contadores 3/3,2/3 preservados."
+  ],
+  "written": "Only this new output folder; no product/Git/library/config/network mutation",
+  "tokens": "indispon?veis (Python reader exit2; recibo ausente)"
+}

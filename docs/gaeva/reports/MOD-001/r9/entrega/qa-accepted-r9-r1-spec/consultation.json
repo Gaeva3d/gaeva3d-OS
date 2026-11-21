@@ -1,0 +1,739 @@
+{
+  "version": 1,
+  "reviewed_by": "agent-13677c2e-fb09-41ac-b29b-2f30a6c7cbe7",
+  "artifact": "accepted-documentary-consolidation-r9-r1/candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-spec.md",
+  "revision": "GAEVA-MOD-001/contract_revision9/accepted-documentary-consolidation-r9-r1",
+  "findings_sha256": "30eb35a859a96d8347fee574fea07e1c1e06a7f6bdf5f84723e228bc72adf2a7",
+  "coverage_findings_sha256": "f1accbaf17ce17faa8dadce6e21b5d720205ac7dada751c1db29ba3653a89265",
+  "gate": "UNKNOWN",
+  "formal_G3_G6_event": false,
+  "references": [
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-qa_spec\\SKILL.md",
+      "sha256": "1866ad7dc4a1744cd24ab8923994b50d8985d20fc69cc732a8c4d326839ff3b0",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Review dimensions, independence, coverage and documentary gate limits; actual read",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-qa_spec\\references\\review-checklist.md",
+      "sha256": "1fd27201a1005647f9994d2b74b083402a7a0f6ed3d5dcf10c98ec81ae9ecec6",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Review dimensions, independence, coverage and documentary gate limits; actual read",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-qa_spec\\references\\independent-review.md",
+      "sha256": "6133cedbdd4418fbf175d1133310e5a18f85aca04c978c970a381c74557d8546",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Review dimensions, independence, coverage and documentary gate limits; actual read",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\docs\\discovery-coverage.md",
+      "sha256": "309a4742146e976fd9a8263f71164e45446eb55cd615225ffd7c9ad1a803ea54",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Review dimensions, independence, coverage and documentary gate limits; actual read",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-harness\\references\\stage-loop.md",
+      "sha256": "7a585a68f914eecccfd941b1d34552d80a290be36a9b08360970e48a07e27485",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Review dimensions, independence, coverage and documentary gate limits; actual read",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\docs\\stage-loop.md",
+      "sha256": "4bb5fdaf95b9699ba8457b80ae0c4406f61cf290f8895baffcc556d718d56206",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Review dimensions, independence, coverage and documentary gate limits; actual read",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\library\\architecture\\technical-decision-procedure.md",
+      "sha256": "2e6cf7a4974f955d1ecd07520a5da4ca5318422bee10f979202f4e133e4e360d",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Review dimensions, independence, coverage and documentary gate limits; actual read",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\skills\\TFD-qa_spec\\references\\independent-review.md",
+      "sha256": "6133cedbdd4418fbf175d1133310e5a18f85aca04c978c970a381c74557d8546",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Selected canonical source after Graphify; no changes to bundle",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\docs\\discovery-coverage.md",
+      "sha256": "309a4742146e976fd9a8263f71164e45446eb55cd615225ffd7c9ad1a803ea54",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Selected canonical source after Graphify; no changes to bundle",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\library\\architecture\\technical-decision-procedure.md",
+      "sha256": "2e6cf7a4974f955d1ecd07520a5da4ca5318422bee10f979202f4e133e4e360d",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Selected canonical source after Graphify; no changes to bundle",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\skills\\TFD-harness\\references\\stage-loop.md",
+      "sha256": "7a585a68f914eecccfd941b1d34552d80a290be36a9b08360970e48a07e27485",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Selected canonical source after Graphify; no changes to bundle",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\skills\\tfd-token-usage\\SKILL.md",
+      "sha256": "9ccc4db7194f7e885b6762886fc9d0e1a1582d9fed3111cf4cfbcb67b69f7b5c",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Selected canonical source after Graphify; no changes to bundle",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\router.md",
+      "sha256": "18cf2d300b5a8e3e642ad830efe8b0c0acaa44bd3076bba56a20ca3554cfc1d4",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Native host authorization, actor/correlation and unavailable OpenBot counters",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\review-input.json",
+      "sha256": "e1ca7d28e10801fde590975765502fbb8d646d2648c1330fc06dd80968840961",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\internal-governance.md",
+      "sha256": "4cd8a46bcf828be9b47e3f8fb77d12b7c502cd6312d02936f5d8cfc202372371",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\delivery-report.md",
+      "sha256": "888cf36bc95e676dae68b356c41dfe078c466237653ef22972ff2bb4cbd3edfb",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\human-source-comments.json",
+      "sha256": "a7a221dce4a82eebebf34d108db7351c397b5ac94b600ee30b58e05c79277813",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\source-map.json",
+      "sha256": "454bffd29e6f923eb2708d7c2aa2b8e426ce851e6a0d2317033194f4a6c06351",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\changed-paths.json",
+      "sha256": "4f2bfb564936b78146301d85ec6e2cfba7794c449d41f6a26a003a2aae634f25",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\phase-spec.md",
+      "sha256": "fea8e3735e540068976459e9ab52f8fdba7213bd6cb8e17e409748cf80736e38",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\product-behavior-r9.md",
+      "sha256": "04a643c15363c2724f819a440762254a3174715055239fbce8a96338a94b7249",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\save-failure-catalog.md",
+      "sha256": "58870b6f96856651676656b0dc9cee16ccb915079117418a8dea751fbfdcc907",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\save-acceptance-r9.json",
+      "sha256": "bfe0076d3350b5850bda766b8a4b8f6932b2a183f89f4e08a72d86a52d953408",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\human-acceptance-r9.json",
+      "sha256": "f09c1eb93622f41a25d8f571c900c928b6d32103c0a772465a8ad94e5c8ab2ed",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\approved-decisions.md",
+      "sha256": "a24f1ee49a4201fd98a98d8ea61c882b94fa00fbfd0afa8f6ac8d0b3b96ec0cf",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\research-binding.json",
+      "sha256": "7e6adedfc89fad6daaf94bb28ccb84c2671a241cafd3217f16bdc475f4e793b6",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\validation-plan.md",
+      "sha256": "e0e34adf38e9c42c6380ee9a73aadb16c39e950bd2df29e40fa388c55643c430",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\phase-plan.md",
+      "sha256": "1005333602d1ca4e06488af6e39f299b6e7565adaf4c84cc2c023505e8718eec",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\discovery-r7\\coverage.json",
+      "sha256": "4ed53f08488c4d466ad2c9194cfe51357f0c61689bc6dfa1e370f0b8ec6a372a",
+      "revision": "actual current bytes read",
+      "locator": "Inventory and areas; historical-only binding",
+      "observation": "Not coverage of r8/r9 additions",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\discovery-guide-review-r1\\findings.md",
+      "sha256": "34263201afb71490c81c70e64d6ed99ec5114770d3bad40ae82626e4ce2eb0b6",
+      "revision": "actual current bytes read",
+      "locator": "S1–S8 and LC01–03",
+      "observation": "Browser research context; current independent primary consultation below",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\tasks\\MOD-001\\task.json",
+      "sha256": "526251998527ab041df85093d0eb32243b6c88289d64b62415f192f448cdda51",
+      "revision": "actual current bytes read",
+      "locator": "Current metadata, requirements/rules, first 11 MT preservation; MT13/14/16/20/21/22/23 and AC/TEST154/155/156/178/180",
+      "observation": "Current Task checked against human additions and renderer; no implementation approval",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\tasks\\MOD-001\\task.md",
+      "sha256": "fa7d66455d4e2ca92a8b12ec1da524941bc65fd9fb01ec6ca1a40349bf26d146",
+      "revision": "actual current bytes read",
+      "locator": "Generated view equality checked using existing render_task function",
+      "observation": "Exact Task/view identity; no authoring renderer executed",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "remote",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\qa-accepted-r9-r1-spec\\remote-consultation.json",
+      "sha256": "21c93fe554063972835be6cba099ac6fbc64cb474622faeefc20247556de58f7",
+      "revision": "current independent consultation",
+      "locator": "sources; actual read via web open/find",
+      "origin": "https://www.w3.org/",
+      "status": "VERIFIED",
+      "observation": "Metadata records sections actually consulted; not proof of product execution"
+    }
+  ],
+  "approved_inventory": {
+    "requirement_ids": [
+      "REQ-14",
+      "REQ-101",
+      "REQ-102",
+      "REQ-103",
+      "REQ-104",
+      "REQ-105",
+      "REQ-106",
+      "REQ-107",
+      "REQ-108",
+      "REQ-109",
+      "REQ-110",
+      "REQ-111",
+      "REQ-112",
+      "REQ-113",
+      "REQ-114",
+      "REQ-115",
+      "REQ-116",
+      "REQ-117",
+      "REQ-118",
+      "REQ-119",
+      "REQ-120",
+      "REQ-121",
+      "REQ-122",
+      "REQ-123",
+      "REQ-124",
+      "REQ-125",
+      "REQ-126",
+      "REQ-127",
+      "REQ-128",
+      "REQ-129",
+      "REQ-130"
+    ],
+    "business_rule_ids": [
+      "RULE-01",
+      "RULE-02",
+      "RULE-101",
+      "RULE-102",
+      "RULE-103",
+      "RULE-104",
+      "RULE-105",
+      "RULE-106",
+      "RULE-201",
+      "RULE-202",
+      "RULE-203",
+      "RULE-204",
+      "RULE-205",
+      "RULE-206",
+      "RULE-207",
+      "RULE-208",
+      "RULE-209",
+      "RULE-210",
+      "RULE-211",
+      "RULE-212",
+      "RULE-213",
+      "RULE-214",
+      "RULE-215",
+      "RULE-216",
+      "RULE-217",
+      "RULE-218",
+      "RULE-219",
+      "RULE-220",
+      "RULE-221",
+      "RULE-222",
+      "RULE-223",
+      "RULE-224",
+      "RULE-225",
+      "RULE-226",
+      "RULE-227",
+      "RULE-228",
+      "RULE-229",
+      "RULE-230"
+    ],
+    "basis": "Preserved historical inventory checked against source literals by verify.py; current additions independently derived from entire human source comments, not represented as a fresh G1/G3 approval"
+  },
+  "comparison": {
+    "omitted_ids": [],
+    "extra_ids": [],
+    "contradicted_ids": [],
+    "observation": "See coverage-report.md for each LC/SQ source obligation and report.md for eight dimensions; 18 new vectors supplement historical inventory. Two OPEN decisions remain production preconditions."
+  },
+  "checks": [
+    {
+      "kind": "primary",
+      "source": "https://www.w3.org/TR/2026/WD-IndexedDB-3-20261030/",
+      "revision": "WD 2026-10-30",
+      "locator": "2.7, 2.7.1; 4.10",
+      "status": "VERIFIED",
+      "observation": "Transaction completion is the commit boundary; durability modes differ. Contract requires confirmed persistence, no mere put-success guarantee. Device behavior remains untested."
+    },
+    {
+      "kind": "primary",
+      "source": "https://storage.spec.whatwg.org/",
+      "revision": "Living Standard 2026-10-19",
+      "locator": "4.2; 5–7",
+      "status": "VERIFIED",
+      "observation": "Storage scope is origin, not ERP account. Quotas and clearing constrain recovery. Gaeva must provide account/company isolation and cannot promise recovery after clearing."
+    },
+    {
+      "kind": "primary",
+      "source": "https://www.w3.org/TR/2025/WD-webcrypto-2-20250422/",
+      "revision": "WD 2025-04-22",
+      "locator": "5.2; 6.1–6.2",
+      "status": "VERIFIED",
+      "observation": "API supplies cryptographic operations, not account authorization or guaranteed protected key storage. Custody and compromised-origin limitations remain contract/test obligations."
+    },
+    {
+      "kind": "guide",
+      "source": "https://raw.githubusercontent.com/MatthewKerns/software-development-best-practices-guide/efdec594ac403754baea2bb04952dd1d68da35c7/04-quality-through-testing/TEST_DESIGN_PATTERNS.md",
+      "revision": "efdec594ac403754baea2bb04952dd1d68da35c7",
+      "locator": "Test Fixture Setup; Parameterized Test; Isolation Patterns/Test Double; Assertion Patterns",
+      "status": "VERIFIED",
+      "observation": "Use independent fixtures and explicit assertions; local vectors cannot demonstrate external effects. Consultative guide only; no numerical target, new dependency or blanket parallelism adopted."
+    },
+    {
+      "kind": "business_decision",
+      "source": "github-current.json",
+      "revision": "comments 7026601969 / 7027205182",
+      "locator": "complete bodies, current provider actor",
+      "status": "VERIFIED",
+      "observation": "Exact local/remote source equality checked; documentary scope only. Chat words are reported by coordinator, not independently authenticated."
+    }
+  ],
+  "sources": [
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-qa_spec\\SKILL.md",
+      "sha256": "1866ad7dc4a1744cd24ab8923994b50d8985d20fc69cc732a8c4d326839ff3b0",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Review dimensions, independence, coverage and documentary gate limits; actual read",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-qa_spec\\references\\review-checklist.md",
+      "sha256": "1fd27201a1005647f9994d2b74b083402a7a0f6ed3d5dcf10c98ec81ae9ecec6",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Review dimensions, independence, coverage and documentary gate limits; actual read",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-qa_spec\\references\\independent-review.md",
+      "sha256": "6133cedbdd4418fbf175d1133310e5a18f85aca04c978c970a381c74557d8546",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Review dimensions, independence, coverage and documentary gate limits; actual read",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\docs\\discovery-coverage.md",
+      "sha256": "309a4742146e976fd9a8263f71164e45446eb55cd615225ffd7c9ad1a803ea54",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Review dimensions, independence, coverage and documentary gate limits; actual read",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-harness\\references\\stage-loop.md",
+      "sha256": "7a585a68f914eecccfd941b1d34552d80a290be36a9b08360970e48a07e27485",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Review dimensions, independence, coverage and documentary gate limits; actual read",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\docs\\stage-loop.md",
+      "sha256": "4bb5fdaf95b9699ba8457b80ae0c4406f61cf290f8895baffcc556d718d56206",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Review dimensions, independence, coverage and documentary gate limits; actual read",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\library\\architecture\\technical-decision-procedure.md",
+      "sha256": "2e6cf7a4974f955d1ecd07520a5da4ca5318422bee10f979202f4e133e4e360d",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Review dimensions, independence, coverage and documentary gate limits; actual read",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\skills\\TFD-qa_spec\\references\\independent-review.md",
+      "sha256": "6133cedbdd4418fbf175d1133310e5a18f85aca04c978c970a381c74557d8546",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Selected canonical source after Graphify; no changes to bundle",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\docs\\discovery-coverage.md",
+      "sha256": "309a4742146e976fd9a8263f71164e45446eb55cd615225ffd7c9ad1a803ea54",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Selected canonical source after Graphify; no changes to bundle",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\library\\architecture\\technical-decision-procedure.md",
+      "sha256": "2e6cf7a4974f955d1ecd07520a5da4ca5318422bee10f979202f4e133e4e360d",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Selected canonical source after Graphify; no changes to bundle",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\skills\\TFD-harness\\references\\stage-loop.md",
+      "sha256": "7a585a68f914eecccfd941b1d34552d80a290be36a9b08360970e48a07e27485",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Selected canonical source after Graphify; no changes to bundle",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\skills\\tfd-token-usage\\SKILL.md",
+      "sha256": "9ccc4db7194f7e885b6762886fc9d0e1a1582d9fed3111cf4cfbcb67b69f7b5c",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Selected canonical source after Graphify; no changes to bundle",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\router.md",
+      "sha256": "18cf2d300b5a8e3e642ad830efe8b0c0acaa44bd3076bba56a20ca3554cfc1d4",
+      "revision": "actual current bytes read",
+      "locator": "full file",
+      "observation": "Native host authorization, actor/correlation and unavailable OpenBot counters",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\review-input.json",
+      "sha256": "e1ca7d28e10801fde590975765502fbb8d646d2648c1330fc06dd80968840961",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\internal-governance.md",
+      "sha256": "4cd8a46bcf828be9b47e3f8fb77d12b7c502cd6312d02936f5d8cfc202372371",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\delivery-report.md",
+      "sha256": "888cf36bc95e676dae68b356c41dfe078c466237653ef22972ff2bb4cbd3edfb",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\human-source-comments.json",
+      "sha256": "a7a221dce4a82eebebf34d108db7351c397b5ac94b600ee30b58e05c79277813",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\source-map.json",
+      "sha256": "454bffd29e6f923eb2708d7c2aa2b8e426ce851e6a0d2317033194f4a6c06351",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\changed-paths.json",
+      "sha256": "4f2bfb564936b78146301d85ec6e2cfba7794c449d41f6a26a003a2aae634f25",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\phase-spec.md",
+      "sha256": "fea8e3735e540068976459e9ab52f8fdba7213bd6cb8e17e409748cf80736e38",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\product-behavior-r9.md",
+      "sha256": "04a643c15363c2724f819a440762254a3174715055239fbce8a96338a94b7249",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\save-failure-catalog.md",
+      "sha256": "58870b6f96856651676656b0dc9cee16ccb915079117418a8dea751fbfdcc907",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\save-acceptance-r9.json",
+      "sha256": "bfe0076d3350b5850bda766b8a4b8f6932b2a183f89f4e08a72d86a52d953408",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\human-acceptance-r9.json",
+      "sha256": "f09c1eb93622f41a25d8f571c900c928b6d32103c0a772465a8ad94e5c8ab2ed",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\approved-decisions.md",
+      "sha256": "a24f1ee49a4201fd98a98d8ea61c882b94fa00fbfd0afa8f6ac8d0b3b96ec0cf",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\research-binding.json",
+      "sha256": "7e6adedfc89fad6daaf94bb28ccb84c2671a241cafd3217f16bdc475f4e793b6",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\validation-plan.md",
+      "sha256": "e0e34adf38e9c42c6380ee9a73aadb16c39e950bd2df29e40fa388c55643c430",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\phase-plan.md",
+      "sha256": "1005333602d1ca4e06488af6e39f299b6e7565adaf4c84cc2c023505e8718eec",
+      "revision": "actual current bytes read",
+      "locator": "Full content, or structured relevant entries for maps; see reports",
+      "observation": "Current submission binding and human additions; inherited claims not promoted to runtime",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\discovery-r7\\coverage.json",
+      "sha256": "4ed53f08488c4d466ad2c9194cfe51357f0c61689bc6dfa1e370f0b8ec6a372a",
+      "revision": "actual current bytes read",
+      "locator": "Inventory and areas; historical-only binding",
+      "observation": "Not coverage of r8/r9 additions",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\discovery-guide-review-r1\\findings.md",
+      "sha256": "34263201afb71490c81c70e64d6ed99ec5114770d3bad40ae82626e4ce2eb0b6",
+      "revision": "actual current bytes read",
+      "locator": "S1–S8 and LC01–03",
+      "observation": "Browser research context; current independent primary consultation below",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\tasks\\MOD-001\\task.json",
+      "sha256": "526251998527ab041df85093d0eb32243b6c88289d64b62415f192f448cdda51",
+      "revision": "actual current bytes read",
+      "locator": "Current metadata, requirements/rules, first 11 MT preservation; MT13/14/16/20/21/22/23 and AC/TEST154/155/156/178/180",
+      "observation": "Current Task checked against human additions and renderer; no implementation approval",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\tasks\\MOD-001\\task.md",
+      "sha256": "fa7d66455d4e2ca92a8b12ec1da524941bc65fd9fb01ec6ca1a40349bf26d146",
+      "revision": "actual current bytes read",
+      "locator": "Generated view equality checked using existing render_task function",
+      "observation": "Exact Task/view identity; no authoring renderer executed",
+      "status": "VERIFIED"
+    },
+    {
+      "kind": "remote",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\qa-accepted-r9-r1-spec\\remote-consultation.json",
+      "sha256": "21c93fe554063972835be6cba099ac6fbc64cb474622faeefc20247556de58f7",
+      "revision": "current independent consultation",
+      "locator": "sources; actual read via web open/find",
+      "origin": "https://www.w3.org/",
+      "status": "VERIFIED",
+      "observation": "Metadata records sections actually consulted; not proof of product execution"
+    }
+  ],
+  "limitations": [
+    "No full pipeline: canonical workflow not routed; local require_task_context only",
+    "No browser/product/security runtime",
+    "No implicit approval from historical PASS or human documentary scope"
+  ]
+}

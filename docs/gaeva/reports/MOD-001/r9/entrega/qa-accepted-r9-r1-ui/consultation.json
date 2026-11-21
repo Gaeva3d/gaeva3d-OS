@@ -1,0 +1,260 @@
+{
+  "actor": "agent-93ed66c5-84b7-4158-bf46-1edbe1c27055",
+  "role": "qa_ui",
+  "task_id": "GAEVA-MOD-001",
+  "contract_revision": 9,
+  "microtask": "DOC-R9-QA-01",
+  "gate": "UNKNOWN",
+  "independence": {
+    "author_actor": "agent-65a76b70-79bc-4539-b8b9-840998b76a10",
+    "no_authorship_of_reviewed_contract": true,
+    "prior_QA_authorship_is_review_only": true,
+    "peer_verdicts_consulted": false
+  },
+  "navigation": {
+    "method": "graphify",
+    "status": "GRAPHIFY",
+    "query": "qa_ui documentary review user flows errors local durable queue recovery stage loop consultation evidence",
+    "evidence": "navigation.json",
+    "sha256": "4794e7c1cae18cec035948a9039b7b3cdde4f895a57b5a0f12d65b48186a3d4c"
+  },
+  "sources": [
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-qa_ui\\SKILL.md",
+      "sha256": "22cc9ad940a12a7c1b77894987ec57087eef5f05ff731e7500a9a6bdeb67dc26",
+      "revision": "actual bytes read 2026-11-20",
+      "locator": "full file",
+      "status": "VERIFIED",
+      "observation": "Independent sector scope, evidence procedure and no runtime certification from documentary checks."
+    },
+    {
+      "kind": "host",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\router.md",
+      "sha256": "18cf2d300b5a8e3e642ad830efe8b0c0acaa44bd3076bba56a20ca3554cfc1d4",
+      "revision": "actual bytes read 2026-11-20",
+      "locator": "full file",
+      "status": "VERIFIED",
+      "observation": "Independent sector scope, evidence procedure and no runtime certification from documentary checks."
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-harness\\references\\stage-loop.md",
+      "sha256": "7a585a68f914eecccfd941b1d34552d80a290be36a9b08360970e48a07e27485",
+      "revision": "actual bytes read 2026-11-20",
+      "locator": "full file",
+      "status": "VERIFIED",
+      "observation": "Independent sector scope, evidence procedure and no runtime certification from documentary checks."
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\library\\architecture\\technical-decision-procedure.md",
+      "sha256": "2e6cf7a4974f955d1ecd07520a5da4ca5318422bee10f979202f4e133e4e360d",
+      "revision": "actual bytes read 2026-11-20",
+      "locator": "full file",
+      "status": "VERIFIED",
+      "observation": "Independent sector scope, evidence procedure and no runtime certification from documentary checks."
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\docs\\stage-loop.md",
+      "sha256": "4bb5fdaf95b9699ba8457b80ae0c4406f61cf290f8895baffcc556d718d56206",
+      "revision": "actual bytes read 2026-11-20",
+      "locator": "full file",
+      "status": "VERIFIED",
+      "observation": "Independent sector scope, evidence procedure and no runtime certification from documentary checks."
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\skills\\TFD-harness\\references\\stage-loop.md",
+      "sha256": "7a585a68f914eecccfd941b1d34552d80a290be36a9b08360970e48a07e27485",
+      "revision": "actual bytes read 2026-11-20",
+      "locator": "full file",
+      "status": "VERIFIED",
+      "observation": "Independent sector scope, evidence procedure and no runtime certification from documentary checks."
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\docs\\stage-loop.md",
+      "sha256": "4bb5fdaf95b9699ba8457b80ae0c4406f61cf290f8895baffcc556d718d56206",
+      "revision": "actual bytes read 2026-11-20",
+      "locator": "full file",
+      "status": "VERIFIED",
+      "observation": "Independent sector scope, evidence procedure and no runtime certification from documentary checks."
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\library\\architecture\\technical-decision-procedure.md",
+      "sha256": "2e6cf7a4974f955d1ecd07520a5da4ca5318422bee10f979202f4e133e4e360d",
+      "revision": "actual bytes read 2026-11-20",
+      "locator": "full file",
+      "status": "VERIFIED",
+      "observation": "Independent sector scope, evidence procedure and no runtime certification from documentary checks."
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\library\\plugins\\ui-ux-standard\\skills\\ui-ux-standard\\SKILL.md",
+      "sha256": "b300b3c3904feeb6ec333526e2bacadb1a76ed1a0e999e63e0629a448aa31eb4",
+      "revision": "actual bytes read 2026-11-20",
+      "locator": "full file",
+      "status": "VERIFIED",
+      "observation": "Independent sector scope, evidence procedure and no runtime certification from documentary checks."
+    },
+    {
+      "kind": "bundle",
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\skills\\tfd-token-usage\\SKILL.md",
+      "sha256": "9ccc4db7194f7e885b6762886fc9d0e1a1582d9fed3111cf4cfbcb67b69f7b5c",
+      "revision": "actual bytes read 2026-11-20",
+      "locator": "full file",
+      "status": "VERIFIED",
+      "observation": "Independent sector scope, evidence procedure and no runtime certification from documentary checks."
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\phase-spec.md",
+      "sha256": "fea8e3735e540068976459e9ab52f8fdba7213bd6cb8e17e409748cf80736e38",
+      "revision": "accepted-documentary-consolidation-r9-r1",
+      "locator": "full file",
+      "status": "VERIFIED",
+      "observation": "Read current documentary contract; findings and per-criterion observations in report.md."
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\contracts.md",
+      "sha256": "18db8214bcb3daefa4ca3945f63155a44ab81c0d782b093de188931d4f1d418c",
+      "revision": "accepted-documentary-consolidation-r9-r1",
+      "locator": "C1/C2/C5/C7 and r8/r9 addendum",
+      "status": "VERIFIED",
+      "observation": "Read current documentary contract; findings and per-criterion observations in report.md."
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\authority-protocol.md",
+      "sha256": "753a8778ca86eff2969352f2d3423654deb4968e5fcc92817aa6c69477c9c401",
+      "revision": "accepted-documentary-consolidation-r9-r1",
+      "locator": "AP3; current authority/reconciliation and AP5 projections",
+      "status": "VERIFIED",
+      "observation": "Read current documentary contract; findings and per-criterion observations in report.md."
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\retention-protocol.md",
+      "sha256": "ccce06cd8b9f1012212cb25aed01ae10ac0a9a47985759db854aed5b39baf8a3",
+      "revision": "accepted-documentary-consolidation-r9-r1",
+      "locator": "RP5 UI states",
+      "status": "VERIFIED",
+      "observation": "Read current documentary contract; findings and per-criterion observations in report.md."
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\save-failure-catalog.md",
+      "sha256": "58870b6f96856651676656b0dc9cee16ccb915079117418a8dea751fbfdcc907",
+      "revision": "accepted-documentary-consolidation-r9-r1",
+      "locator": "full file",
+      "status": "VERIFIED",
+      "observation": "Read current documentary contract; findings and per-criterion observations in report.md."
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\product-behavior-r9.md",
+      "sha256": "04a643c15363c2724f819a440762254a3174715055239fbce8a96338a94b7249",
+      "revision": "accepted-documentary-consolidation-r9-r1",
+      "locator": "full file",
+      "status": "VERIFIED",
+      "observation": "Read current documentary contract; findings and per-criterion observations in report.md."
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\save-acceptance-r9.json",
+      "sha256": "bfe0076d3350b5850bda766b8a4b8f6932b2a183f89f4e08a72d86a52d953408",
+      "revision": "accepted-documentary-consolidation-r9-r1",
+      "locator": "all 18 vectors",
+      "status": "VERIFIED",
+      "observation": "Read current documentary contract; findings and per-criterion observations in report.md."
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\save-action-bindings-r9.json",
+      "sha256": "cf2bd896e7abe5a32e41ba00d60b19a50a744619b7c7cb454f180754ca839e28",
+      "revision": "accepted-documentary-consolidation-r9-r1",
+      "locator": "all 39 action classifications; eligibility and no replay grant",
+      "status": "VERIFIED",
+      "observation": "Read current documentary contract; findings and per-criterion observations in report.md."
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\typed-actions-v1\\action-contracts.md",
+      "sha256": "1a2f72ba03e82c505f1a8d79aed90cb330ca2f1d7817438036a3e65de93f7027",
+      "revision": "accepted-documentary-consolidation-r9-r1",
+      "locator": "ACAT8/9 and saved schedule relation oracles",
+      "status": "VERIFIED",
+      "observation": "Read current documentary contract; findings and per-criterion observations in report.md."
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\review-input.json",
+      "sha256": "e1ca7d28e10801fde590975765502fbb8d646d2648c1330fc06dd80968840961",
+      "revision": "accepted-documentary-consolidation-r9-r1",
+      "locator": "current routed material; source-map hash/source projections",
+      "status": "VERIFIED",
+      "observation": "Saved inputs verified; human comments inspected locally, no fresh GitHub authentication assertion."
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\internal-governance.md",
+      "sha256": "4cd8a46bcf828be9b47e3f8fb77d12b7c502cd6312d02936f5d8cfc202372371",
+      "revision": "accepted-documentary-consolidation-r9-r1",
+      "locator": "current routed material; source-map hash/source projections",
+      "status": "VERIFIED",
+      "observation": "Saved inputs verified; human comments inspected locally, no fresh GitHub authentication assertion."
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\delivery-report.md",
+      "sha256": "888cf36bc95e676dae68b356c41dfe078c466237653ef22972ff2bb4cbd3edfb",
+      "revision": "accepted-documentary-consolidation-r9-r1",
+      "locator": "current routed material; source-map hash/source projections",
+      "status": "VERIFIED",
+      "observation": "Saved inputs verified; human comments inspected locally, no fresh GitHub authentication assertion."
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\human-source-comments.json",
+      "sha256": "a7a221dce4a82eebebf34d108db7351c397b5ac94b600ee30b58e05c79277813",
+      "revision": "accepted-documentary-consolidation-r9-r1",
+      "locator": "current routed material; source-map hash/source projections",
+      "status": "VERIFIED",
+      "observation": "Saved inputs verified; human comments inspected locally, no fresh GitHub authentication assertion."
+    },
+    {
+      "kind": "project",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\source-map.json",
+      "sha256": "454bffd29e6f923eb2708d7c2aa2b8e426ce851e6a0d2317033194f4a6c06351",
+      "revision": "accepted-documentary-consolidation-r9-r1",
+      "locator": "current routed material; source-map hash/source projections",
+      "status": "VERIFIED",
+      "observation": "Saved inputs verified; human comments inspected locally, no fresh GitHub authentication assertion."
+    },
+    {
+      "origin": "https://www.w3.org/TR/2024/REC-WCAG22-20241212/",
+      "revision": "WCAG 2.2 Recommendation 2024-12-12",
+      "locator": "1.4.1, 3.3.1, 3.3.3, 4.1.3",
+      "observation": "Status changes require programmatic exposure; input error text identifies the field, with safe correction guidance. Contract requires announcements, keyboard/focus and non-color communication. Documentary alignment only; no conformance test.",
+      "kind": "remote",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\qa-accepted-r9-r1-ui\\primary-source-notes.json",
+      "sha256": "fbc2d498fe1ca01447f52836381dfe24f6f0a012044cfa797d4d380dc9fbe184",
+      "status": "VERIFIED"
+    },
+    {
+      "origin": "https://www.w3.org/TR/2026/WD-IndexedDB-3-20261030/",
+      "revision": "IndexedDB 3.0 Working Draft 2026-10-30",
+      "locator": "2.7 durability hints; 3 exceptions; 5.4 commit; 9.4 persistence risks",
+      "observation": "Request acceptance is insufficient to establish transaction commit; quota/write failures are possible and durability settings are hints. No guarantee of browser compatibility or survival of all local data loss. Contract distinguishes confirmed local state from server protection and explicitly treats loss as 1103.",
+      "kind": "remote",
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\qa-accepted-r9-r1-ui\\primary-source-notes.json",
+      "sha256": "fbc2d498fe1ca01447f52836381dfe24f6f0a012044cfa797d4d380dc9fbe184",
+      "status": "VERIFIED"
+    }
+  ],
+  "scope": "Independent documentary UI contract review only. No implementation, live help/role navigation, browser, DOM, keyboard, screen reader or visual testing. Root project UNKNOWN; no unrelated root AGENTS search/mutation."
+}

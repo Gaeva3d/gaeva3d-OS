@@ -1,0 +1,9 @@
+{
+  "exit": 0,
+  "result": "PASS",
+  "input_members": 157,
+  "input_no_drift": true,
+  "findings_receipt_binding": true,
+  "authored_files_only_in_own_folder": true,
+  "no_gate_event": true
+}

@@ -1,0 +1,238 @@
+{
+  "actor": "agent-6b9f3e9e-8ea7-4483-a52c-63129f849a5a",
+  "role": "independent operational security assurance",
+  "task_id": "GAEVA-MOD-001",
+  "contract_revision": 9,
+  "gate": "UNKNOWN",
+  "navigation": {
+    "method": "graphify",
+    "query": "security review local encrypted drafts queued intents recovery authorization revocation key loss",
+    "evidence": "navigation.json",
+    "sha256": "8dbe384ccc3d1aac4750b2fa89d4518b19beac6eac580926f0b44957bd2e9c97",
+    "status": "GRAPHIFY"
+  },
+  "sources": [
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-devops\\SKILL.md",
+      "sha256": "5da69bae81cd27af0539a44c3def0a3d5215b9a689981e28da39dc18080bff16",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-security\\SKILL.md",
+      "sha256": "05dd645556f3093c98ce552ef60ad355acb4a09aa08b1c65a7d29e78c0ad1372",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-devops\\references\\github-readiness.md",
+      "sha256": "713816714caa0e3f012345829631d78411dfbe083764d22173f36197781c6c3c",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-devops\\references\\project-governance.md",
+      "sha256": "29c6641af0e25b6a675d1a71eaedae1a47b68b9d5876c866b581675f7f00f4ee",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-harness\\references\\stage-loop.md",
+      "sha256": "7a585a68f914eecccfd941b1d34552d80a290be36a9b08360970e48a07e27485",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\library\\architecture\\technical-decision-procedure.md",
+      "sha256": "2e6cf7a4974f955d1ecd07520a5da4ca5318422bee10f979202f4e133e4e360d",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\router.md",
+      "sha256": "18cf2d300b5a8e3e642ad830efe8b0c0acaa44bd3076bba56a20ca3554cfc1d4",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\docs\\stage-loop.md",
+      "sha256": "4bb5fdaf95b9699ba8457b80ae0c4406f61cf290f8895baffcc556d718d56206",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\library\\plugins\\security-standard\\skills\\security-standard\\SKILL.md",
+      "sha256": "310335e60c5ced35e58118237b289ce6ab830723721308874203a9059d1e5020",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\library\\plugins\\security-standard\\skills\\security-standard\\references\\preventive-security-research.md",
+      "sha256": "57fd6923d3f2383510927d2c4484e177a80cd148a635963af2045c1e80f1497e",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\library\\plugins\\security-standard\\skills\\security-standard\\references\\false-positive-validation.md",
+      "sha256": "d62e021a12bc5ecb8ec26a3b1613bf21543ec354b9fd8680fa91cd0c60670f08",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\library\\plugins\\security-standard\\skills\\security-standard\\references\\coverage-model.md",
+      "sha256": "1f19128e6410fdc185744c4bb96d7427b3f819b1dad426f5dc95afb9b14f6221",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\library\\plugins\\security-standard\\skills\\security-standard\\references\\finding-standard.md",
+      "sha256": "a6f85d62ac637e391d0eac30d56322d78071f0dd807e40ca3109f5b07eaa43d5",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\review-input.json",
+      "sha256": "e1ca7d28e10801fde590975765502fbb8d646d2648c1330fc06dd80968840961",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\internal-governance.md",
+      "sha256": "4cd8a46bcf828be9b47e3f8fb77d12b7c502cd6312d02936f5d8cfc202372371",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\delivery-report.md",
+      "sha256": "888cf36bc95e676dae68b356c41dfe078c466237653ef22972ff2bb4cbd3edfb",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\human-source-comments.json",
+      "sha256": "a7a221dce4a82eebebf34d108db7351c397b5ac94b600ee30b58e05c79277813",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\source-map.json",
+      "sha256": "454bffd29e6f923eb2708d7c2aa2b8e426ce851e6a0d2317033194f4a6c06351",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\changed-paths.json",
+      "sha256": "4f2bfb564936b78146301d85ec6e2cfba7794c449d41f6a26a003a2aae634f25",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify.py",
+      "sha256": "50e5c67c9369fff513d8aed4fd3b302d552398f93abd83abab436d221529fb2a",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify_saved.py",
+      "sha256": "b25a5409e8a457af24ed570698c68b93d4316f0a2a791c02d5a1ca277e051217",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify_relations.py",
+      "sha256": "5bafaf02ede4e35ddcfaf4570d8368fcc122be6cb6b750b95d95fd8b1ef0afc5",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\checker-source.py",
+      "sha256": "3acece6c9e4cdcc355f8253417933e5b1fe4e4b83573ad84e756582f89006f8a",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\phase-spec.md",
+      "sha256": "fea8e3735e540068976459e9ab52f8fdba7213bd6cb8e17e409748cf80736e38",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\contracts.md",
+      "sha256": "18db8214bcb3daefa4ca3945f63155a44ab81c0d782b093de188931d4f1d418c",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\authority-protocol.md",
+      "sha256": "753a8778ca86eff2969352f2d3423654deb4968e5fcc92817aa6c69477c9c401",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\product-behavior-r9.md",
+      "sha256": "04a643c15363c2724f819a440762254a3174715055239fbce8a96338a94b7249",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\save-failure-catalog.md",
+      "sha256": "58870b6f96856651676656b0dc9cee16ccb915079117418a8dea751fbfdcc907",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\save-acceptance-r9.json",
+      "sha256": "bfe0076d3350b5850bda766b8a4b8f6932b2a183f89f4e08a72d86a52d953408",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\save-action-bindings-r9.json",
+      "sha256": "cf2bd896e7abe5a32e41ba00d60b19a50a744619b7c7cb454f180754ca839e28",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    },
+    {
+      "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\typed-actions-v1\\action-catalog.json",
+      "sha256": "f6a579ad9e57016a5d35ae327042d8370e06aec448bf7dc4d05ecc10f3c3814e",
+      "revision": "bytes consulted in current r9 review",
+      "locator": "full file or scoped security sections as recorded in review.md",
+      "status": "VERIFIED"
+    }
+  ],
+  "primary_sources_evidence": {
+    "path": "primary-source-consultation.json",
+    "sha256": "3139ec00ccb1ff3b71c248e30c4e06d918fde61e95bf7f8cfd2d8764e8774a73"
+  },
+  "scope": "documentary only; no inherited peer or author PASS"
+}

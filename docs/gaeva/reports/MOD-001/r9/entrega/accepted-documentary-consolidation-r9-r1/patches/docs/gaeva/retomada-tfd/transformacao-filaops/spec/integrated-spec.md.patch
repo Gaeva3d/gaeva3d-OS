@@ -1,0 +1,10 @@
+--- a/docs/gaeva/retomada-tfd/transformacao-filaops/spec/integrated-spec.md
++++ b/docs/gaeva/retomada-tfd/transformacao-filaops/spec/integrated-spec.md
+@@ -61,3 +61,7 @@
+ ## Prontidão e bloqueios por recorte
+ 
+ F1 está especificada para futura implementação e prova T07-P1–7; não provisionada. Plataforma depende de F1 e matriz de autorização; canal/PRO/ChatbotX dependem contratos/artefatos reais; produção agregada depende D05; fiscal/folha avançados dependem PRD/aplicabilidade. A spec permite aprovar recortes independentes mantendo stops; não declara todo módulo final executável apesar de UNKNOWN. [Plano](phase-plan.md) e specs dos módulos explicitam alcance e exclusões. Nenhum gate humano é completado por estes documentos.
++
++## Adendo proposto Fundação r6 — prevalência delimitada
++
++Somente MOD001: [contrato r6](modules/MOD-001/phase-spec.md) com C/AP/RP prevalece na ampliação18/11. RPO0/300s são metas aprovadas NÃO MEDIDAS, substituem a antiga ausência de meta para este escopo. Chave idempotente Fundação é instalação/tenant/tipo/op, ator auditado sem escapar dedupe; política AEP canônica, PG projeção. Autoridades/réplicas HA não são microserviços de negócio/segundo produto. Deny/invariantes/alçada e admin-only extras aprovados preservados; D06 antigo não reabre essa decisão. Texto de outros módulos e decisões não afetadas intacto.

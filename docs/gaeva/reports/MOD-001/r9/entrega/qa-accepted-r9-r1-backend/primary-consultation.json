@@ -1,0 +1,31 @@
+{
+  "actor": "agent-d25ca98a-0e3f-47f1-8d1e-712fc437fba3",
+  "method": "web open/find actually executed in current review",
+  "sources": [
+    {
+      "origin": "https://www.w3.org/TR/IndexedDB-3/",
+      "revision": "W3C WD 2026-10-30",
+      "locator": "2.7 transaction lifecycle/durability",
+      "observation": "Atomic transaction boundary; strict/relaxed/default are durability hints; not universal loss-proof storage."
+    },
+    {
+      "origin": "https://storage.spec.whatwg.org/",
+      "revision": "Living Standard 2026-10-19",
+      "locator": "5, 7.1, 7.2",
+      "observation": "Persistence and clearing policies; explicit user removal still possible."
+    },
+    {
+      "origin": "https://www.w3.org/TR/webcrypto/",
+      "revision": "W3C FPWD 2025-04-22",
+      "locator": "4.3, 5.2",
+      "observation": "Crypto primitives do not independently establish ERP account authorization or key provisioning."
+    },
+    {
+      "origin": "https://json-schema.org/draft/2020-12/json-schema-validation",
+      "revision": "2020-12 / published 2022-06-16",
+      "locator": "6.1, 6.5, 7",
+      "observation": "Typed structural validation and optional format behavior; local subset is not complete dialect certification."
+    }
+  ],
+  "limits": "Observations are consultation notes, not a downloaded complete standard or runtime proof."
+}

@@ -1,0 +1,14 @@
+{
+  "method": "graphify",
+  "status": "GRAPHIFY",
+  "command": "graphify.py query \"qa_ui documentary review user flows errors local durable queue recovery stage loop consultation evidence\" --bundle C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6 --config C:/Users/teste/.codex/tfd-graphify.json --index C:/Users/teste/.codex/tfd-graphify/index.json",
+  "exit": 0,
+  "observed_fingerprint": "dff0bc3490683596efbdd2291dcabe03ab39f35c9cb59b3b808c90f523d52ce5",
+  "selected_sources": [
+    "docs/stage-loop.md",
+    "skills/TFD-harness/references/stage-loop.md",
+    "library/architecture/technical-decision-procedure.md",
+    "library/plugins/ui-ux-standard/skills/ui-ux-standard/SKILL.md"
+  ],
+  "limit": "278 pointers; bounded 37-node response. Canonical selected sources read; no whole library load."
+}

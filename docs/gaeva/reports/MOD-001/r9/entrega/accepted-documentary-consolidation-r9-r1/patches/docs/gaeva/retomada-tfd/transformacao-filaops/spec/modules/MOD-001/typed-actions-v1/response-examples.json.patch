@@ -1,0 +1,2698 @@
+--- /dev/null
++++ b/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/response-examples.json
+@@ -0,0 +1,2695 @@
++{
++  "fictitious": true,
++  "responses": [
++    {
++      "envelope_version": 1,
++      "action": "AssignProfile",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "AssignProfile",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "AssignProfile",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "AssignProfile",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "AssignProfile",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "AssignProfile",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "subject_id": "fictional-value",
++        "policy_version": 0,
++        "effective_changed": false,
++        "revocation_state": "NOT_REQUIRED"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "SetIndividualAllow",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "SetIndividualAllow",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "SetIndividualAllow",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "SetIndividualAllow",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "SetIndividualAllow",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "SetIndividualAllow",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "subject_id": "fictional-value",
++        "policy_version": 0,
++        "effective_changed": false,
++        "revocation_state": "NOT_REQUIRED"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "SetIndividualDeny",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "SetIndividualDeny",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "SetIndividualDeny",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "SetIndividualDeny",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "SetIndividualDeny",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "SetIndividualDeny",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "subject_id": "fictional-value",
++        "policy_version": 0,
++        "effective_changed": false,
++        "revocation_state": "NOT_REQUIRED"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ResetIndividualOverride",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ResetIndividualOverride",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ResetIndividualOverride",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ResetIndividualOverride",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ResetIndividualOverride",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ResetIndividualOverride",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "subject_id": "fictional-value",
++        "policy_version": 0,
++        "effective_changed": false,
++        "revocation_state": "NOT_REQUIRED"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ActivateUser",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ActivateUser",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ActivateUser",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ActivateUser",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ActivateUser",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ActivateUser",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "subject_id": "fictional-value",
++        "policy_version": 0,
++        "effective_changed": false,
++        "revocation_state": "NOT_REQUIRED"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "DeactivateUser",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "DeactivateUser",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "DeactivateUser",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "DeactivateUser",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "DeactivateUser",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "DeactivateUser",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "subject_id": "fictional-value",
++        "policy_version": 0,
++        "effective_changed": false,
++        "revocation_state": "NOT_REQUIRED"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "DelegateApproval",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "DelegateApproval",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "DelegateApproval",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "DelegateApproval",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "DelegateApproval",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "DelegateApproval",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "delegation_id": "fictional-value",
++        "authority_version": 0
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "RevokeApprovalDelegation",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "RevokeApprovalDelegation",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "RevokeApprovalDelegation",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "RevokeApprovalDelegation",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "RevokeApprovalDelegation",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "RevokeApprovalDelegation",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "delegation_id": "fictional-value",
++        "authority_version": 0,
++        "revocation_state": "REVOKING"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetPermissionCatalog",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetPermissionCatalog",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetPermissionCatalog",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetPermissionCatalog",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetPermissionCatalog",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetPermissionCatalog",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "items": []
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListProfiles",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListProfiles",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListProfiles",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListProfiles",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListProfiles",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListProfiles",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "items": []
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetUserPermissions",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetUserPermissions",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetUserPermissions",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetUserPermissions",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetUserPermissions",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetUserPermissions",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "subject_id": "fictional-value",
++        "profile_id": "fictional-value",
++        "inherited": [],
++        "individual_allow": [],
++        "individual_deny": [],
++        "effective": [],
++        "approval_scopes": [],
++        "policy_version": 0,
++        "active": false
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListPolicyAudit",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListPolicyAudit",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListPolicyAudit",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListPolicyAudit",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListPolicyAudit",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListPolicyAudit",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "items": []
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureSchedule",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureSchedule",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureSchedule",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureSchedule",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureSchedule",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureSchedule",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "config_version": 0,
++        "stored_schedule": {
++          "schema_version": 1,
++          "state": "CONFIGURED_DISABLED",
++          "enabled": false,
++          "timezone": "America/Sao_Paulo",
++          "schedule": {
++            "frequency": "DAILY",
++            "local_time": "03:15"
++          },
++          "dst_overlap": "FIRST",
++          "dst_gap": "SKIP_AND_REPORT"
++        }
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ApproveRetentionChange",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ApproveRetentionChange",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ApproveRetentionChange",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ApproveRetentionChange",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ApproveRetentionChange",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ApproveRetentionChange",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "approval_ref": "fictional-value",
++        "approved_config_version": 0,
++        "approved_counts": {
++          "daily_count": 1,
++          "monthly_count": 1
++        }
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureRetention",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureRetention",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureRetention",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureRetention",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureRetention",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureRetention",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "config_version": 0,
++        "counts": {
++          "daily_count": 1,
++          "monthly_count": 1
++        },
++        "cleanup_mode": "NORMAL"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureDestination",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureDestination",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureDestination",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureDestination",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureDestination",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ConfigureDestination",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "config_version": 0,
++        "destination_ref": "fictional-value"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "RunManualBackup",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "RunManualBackup",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "RunManualBackup",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "RunManualBackup",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "RunManualBackup",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "RunManualBackup",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "job_id": "fictional-value",
++        "job_state": "QUEUED"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "RunManualBackup",
++      "operation_id": "fictional-value",
++      "status": "ACCEPTED_JOB",
++      "reason_code": "JOB_ACCEPTED",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "job_id": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupConfiguration",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupConfiguration",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupConfiguration",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupConfiguration",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupConfiguration",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupConfiguration",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "config_version": 0,
++        "stored_schedule": {
++          "schema_version": 1,
++          "state": "UNCONFIGURED"
++        },
++        "counts": {
++          "daily_count": 1,
++          "monthly_count": 1
++        },
++        "provider_link_state": "UNLINKED",
++        "cleanup_mode": "NORMAL"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListBackupHistory",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListBackupHistory",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListBackupHistory",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListBackupHistory",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListBackupHistory",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListBackupHistory",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "items": []
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupPoint",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupPoint",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupPoint",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupPoint",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupPoint",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupPoint",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "point_id": "fictional-value",
++        "classification": "DAILY",
++        "state": "UPLOAD_VERIFIED",
++        "created_utc": "2030-01-01T00:00:00Z",
++        "component_ids": []
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupJob",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupJob",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupJob",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupJob",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupJob",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetBackupJob",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "job_id": "fictional-value",
++        "job_state": "QUEUED"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "BeginProviderLink",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "BeginProviderLink",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "BeginProviderLink",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "BeginProviderLink",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "BeginProviderLink",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "BeginProviderLink",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "provider_link_id": "fictional-value",
++        "state": "AWAITING_PROVIDER"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "CancelProviderLink",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "CancelProviderLink",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "CancelProviderLink",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "CancelProviderLink",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "CancelProviderLink",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "CancelProviderLink",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "provider_link_id": "fictional-value",
++        "state": "AWAITING_PROVIDER"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "CompleteProviderLink",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "CompleteProviderLink",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "CompleteProviderLink",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "CompleteProviderLink",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "CompleteProviderLink",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "CompleteProviderLink",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "provider_link_id": "fictional-value",
++        "state": "AWAITING_PROVIDER"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetProviderLink",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetProviderLink",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetProviderLink",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetProviderLink",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetProviderLink",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetProviderLink",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "provider_link_id": "fictional-value",
++        "state": "AWAITING_PROVIDER"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "DisconnectProvider",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "DisconnectProvider",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "DisconnectProvider",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "DisconnectProvider",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "DisconnectProvider",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "DisconnectProvider",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "provider_link_id": "fictional-value",
++        "state": "AWAITING_PROVIDER"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "PreviewCleanup",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "PreviewCleanup",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "PreviewCleanup",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "PreviewCleanup",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "PreviewCleanup",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "PreviewCleanup",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "plan_id": "fictional-value",
++        "plan_version": 0,
++        "eligible_point_ids": [],
++        "protected_point_ids": [],
++        "blocker_codes": []
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "RequestCleanup",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "RequestCleanup",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "RequestCleanup",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "RequestCleanup",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "RequestCleanup",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "RequestCleanup",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "task_id": "fictional-value",
++        "state": "PENDING",
++        "point_ids": [],
++        "component_results": [],
++        "preservation_status": "UNASSESSED",
++        "blocker_codes": []
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "RequestCleanup",
++      "operation_id": "fictional-value",
++      "status": "ACCEPTED_JOB",
++      "reason_code": "JOB_ACCEPTED",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "job_id": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "RequestHold",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "RequestHold",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "RequestHold",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "RequestHold",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "RequestHold",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "RequestHold",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "hold_id": "fictional-value",
++        "state": "HOLD_REQUESTED",
++        "active_point_ids": [],
++        "unguaranteed_point_ids": [],
++        "blocker_codes": []
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ReleaseHold",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ReleaseHold",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ReleaseHold",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ReleaseHold",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ReleaseHold",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ReleaseHold",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "hold_id": "fictional-value",
++        "state": "HOLD_REQUESTED",
++        "active_point_ids": [],
++        "unguaranteed_point_ids": [],
++        "blocker_codes": []
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetHold",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetHold",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetHold",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetHold",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetHold",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetHold",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "hold_id": "fictional-value",
++        "state": "HOLD_REQUESTED",
++        "active_point_ids": [],
++        "unguaranteed_point_ids": [],
++        "blocker_codes": []
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetCleanup",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetCleanup",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetCleanup",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetCleanup",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetCleanup",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetCleanup",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "task_id": "fictional-value",
++        "state": "PENDING",
++        "point_ids": [],
++        "component_results": [],
++        "preservation_status": "UNASSESSED",
++        "blocker_codes": []
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ReconcileCleanup",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ReconcileCleanup",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ReconcileCleanup",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ReconcileCleanup",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ReconcileCleanup",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ReconcileCleanup",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "task_id": "fictional-value",
++        "state": "PENDING",
++        "point_ids": [],
++        "component_results": [],
++        "preservation_status": "UNASSESSED",
++        "blocker_codes": []
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ReconcileCleanup",
++      "operation_id": "fictional-value",
++      "status": "ACCEPTED_JOB",
++      "reason_code": "JOB_ACCEPTED",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "job_id": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "SuspendCleanup",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "SuspendCleanup",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "SuspendCleanup",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "SuspendCleanup",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "SuspendCleanup",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "SuspendCleanup",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "config_version": 0,
++        "cleanup_mode": "SUSPENDED"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ResumeCleanup",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ResumeCleanup",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ResumeCleanup",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ResumeCleanup",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ResumeCleanup",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ResumeCleanup",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "config_version": 0,
++        "cleanup_mode": "NORMAL"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListDestinationFolders",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListDestinationFolders",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListDestinationFolders",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListDestinationFolders",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListDestinationFolders",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListDestinationFolders",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "items": []
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListApprovalDelegations",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListApprovalDelegations",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListApprovalDelegations",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListApprovalDelegations",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListApprovalDelegations",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "ListApprovalDelegations",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "items": []
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "RunScheduledBackup",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "RunScheduledBackup",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "RunScheduledBackup",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "RunScheduledBackup",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "RunScheduledBackup",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "RunScheduledBackup",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "job_id": "fictional-value",
++        "job_state": "QUEUED"
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    },
++    {
++      "envelope_version": 1,
++      "action": "RunScheduledBackup",
++      "operation_id": "fictional-value",
++      "status": "ACCEPTED_JOB",
++      "reason_code": "JOB_ACCEPTED",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "job_id": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetOutcome",
++      "operation_id": "fictional-value",
++      "status": "REJECTED",
++      "reason_code": "VALIDATION_FAILED",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetOutcome",
++      "operation_id": "fictional-value",
++      "status": "CONFLICT",
++      "reason_code": "STALE_VERSION",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetOutcome",
++      "operation_id": "fictional-value",
++      "status": "PENDING",
++      "reason_code": "PROTECTION_PENDING",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetOutcome",
++      "operation_id": "fictional-value",
++      "status": "UNKNOWN",
++      "reason_code": "COMMIT_UNKNOWN",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "pending_ref": "fictional-value"
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetOutcome",
++      "operation_id": "fictional-value",
++      "status": "UNAVAILABLE",
++      "reason_code": "AUTHORITY_UNAVAILABLE",
++      "retry_kind": "QUERY",
++      "allowed_actions": []
++    },
++    {
++      "envelope_version": 1,
++      "action": "GetOutcome",
++      "operation_id": "fictional-value",
++      "status": "PROTECTED",
++      "reason_code": "OK",
++      "retry_kind": "QUERY",
++      "allowed_actions": [],
++      "result": {
++        "original_response": {
++          "envelope_version": 1,
++          "action": "AssignProfile",
++          "operation_id": "fictional-value",
++          "status": "REJECTED",
++          "reason_code": "VALIDATION_FAILED",
++          "retry_kind": "QUERY",
++          "allowed_actions": []
++        }
++      },
++      "result_version": 0,
++      "current_authority_head": {
++        "authority_id": "fictional-value",
++        "incarnation": "fictional-value",
++        "generation": 0
++      }
++    }
++  ]
++}

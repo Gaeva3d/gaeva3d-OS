@@ -1,0 +1,7 @@
+{
+  "manifest_sha256": "e89c43ed3af0feece37fcfbba6688d3668798988d46649568b9d03b8cc7ebfaf",
+  "members": 157,
+  "all_hashes_and_sizes_unchanged": true,
+  "upstream_check": "manifest-and-upstream-drift.stdout",
+  "runtime_tested": false
+}

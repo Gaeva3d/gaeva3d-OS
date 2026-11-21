@@ -1,0 +1,1 @@
+{"documentary_checks": "OK", "task_revision": 9, "task_and_view_byte_exact_r9": true, "requirements": 31, "rules": 38, "flows": 22, "original_scenarios": 88, "supplemental_vectors": 18, "typed_actions_unchanged": 39, "apply_proposals": 45, "original_preimage_guards": 7, "context_only": 7, "new_independent_QA": "PENDING", "runtime_tested": false}

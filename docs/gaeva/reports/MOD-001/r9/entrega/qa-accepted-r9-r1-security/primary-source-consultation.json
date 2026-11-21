@@ -1,0 +1,25 @@
+{
+  "consulted_by": "agent-6b9f3e9e-8ea7-4483-a52c-63129f849a5a",
+  "method": "actual web open/find during this review",
+  "sources": [
+    {
+      "origin": "https://www.w3.org/TR/2017/REC-WebCryptoAPI-20170126/",
+      "revision": "Recommendation 2017; generic TR redirected to Level 2 draft, not selected for implementation",
+      "locator": "sections 5-6; key storage and author security considerations",
+      "observation": "API primitives do not establish safe application key custody or protection against compromised same-origin scripts."
+    },
+    {
+      "origin": "https://www.w3.org/TR/2026/WD-IndexedDB-3-20261030/",
+      "revision": "Working Draft 2026-10-30",
+      "locator": "2.7 Transactions; durability hints",
+      "observation": "Transaction completion and durability hint require actual browser/capability verification; no browser durability certified."
+    },
+    {
+      "origin": "https://storage.spec.whatwg.org/",
+      "revision": "Living Standard 2026-10-19",
+      "locator": "4.2 storage keys; 7 management",
+      "observation": "Storage key based on origin, not ERP account; storage loss remains possible. Account isolation must be enforced by application."
+    }
+  ],
+  "scope": "independent conceptual verification; no selected crypto parameters, no compatibility assertion"
+}

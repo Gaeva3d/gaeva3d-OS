@@ -1,0 +1,13 @@
+{
+  "review_script_exit": 0,
+  "independence": true,
+  "author": "agent-65a76b70-79bc-4539-b8b9-840998b76a10",
+  "reviewer": "agent-d25ca98a-0e3f-47f1-8d1e-712fc437fba3",
+  "verdict": "PASS",
+  "input_members_unchanged": 157,
+  "only_own_review_folder_written": true,
+  "formal_gate": "UNKNOWN",
+  "unexpected_failures": [],
+  "token_reader_exit": 2,
+  "tokens": "unavailable; OpenBot receipt absent; open turn partial"
+}

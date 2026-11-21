@@ -1,0 +1,95 @@
+[
+  {
+    "name": "saved-fixtures",
+    "argv": [
+      "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify_saved.py"
+    ],
+    "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify_saved.py",
+    "exit": 0,
+    "expected_exit": 0,
+    "result": "PASS"
+  },
+  {
+    "name": "relations",
+    "argv": [
+      "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify_relations.py"
+    ],
+    "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify_relations.py",
+    "exit": 0,
+    "expected_exit": 0,
+    "result": "PASS"
+  },
+  {
+    "name": "negative-write",
+    "argv": [
+      "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify_relations.py",
+      "--negative",
+      "WRITE_ID_SWAPPED"
+    ],
+    "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify_relations.py --negative WRITE_ID_SWAPPED",
+    "exit": 1,
+    "expected_exit": 1,
+    "result": "EXPECTED_REJECTION"
+  },
+  {
+    "name": "negative-original",
+    "argv": [
+      "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify_relations.py",
+      "--negative",
+      "ORIGINAL_ID_SWAPPED"
+    ],
+    "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify_relations.py --negative ORIGINAL_ID_SWAPPED",
+    "exit": 1,
+    "expected_exit": 1,
+    "result": "EXPECTED_REJECTION"
+  },
+  {
+    "name": "documentary-invariants",
+    "argv": [
+      "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify.py"
+    ],
+    "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify.py",
+    "exit": 0,
+    "expected_exit": 0,
+    "result": "PASS"
+  },
+  {
+    "name": "manifest-readback",
+    "argv": [
+      "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify.py",
+      "--manifest"
+    ],
+    "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify.py --manifest",
+    "exit": 0,
+    "expected_exit": 0,
+    "result": "PASS"
+  },
+  {
+    "name": "token-reader",
+    "argv": [
+      "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\scripts\\token_usage.py",
+      "--task",
+      "GAEVA-MOD-001",
+      "--stage",
+      "DOC-R9-QA-01"
+    ],
+    "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\scripts\\token_usage.py --task GAEVA-MOD-001 --stage DOC-R9-QA-01",
+    "exit": 2,
+    "expected_exit": 2,
+    "result": "UNAVAILABLE"
+  }
+]

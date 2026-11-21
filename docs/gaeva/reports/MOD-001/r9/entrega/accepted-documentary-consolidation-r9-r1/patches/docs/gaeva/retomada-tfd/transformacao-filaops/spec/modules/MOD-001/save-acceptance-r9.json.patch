@@ -1,0 +1,546 @@
+--- /dev/null
++++ b/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-acceptance-r9.json
+@@ -0,0 +1,543 @@
++{
++  "contract_revision": 9,
++  "supplemental_not_renumbering": true,
++  "existing_scenarios": 88,
++  "source_comment_ids": [
++    7026601969,
++    7027205182
++  ],
++  "test_method": "After implementation, fault injection at specified boundary, inspect encrypted store/queue + authorized outcome and count actual effects; contrast wrong actor/version/ID; UI announce status without color-only meaning. Include two or more domains and concurrent tabs.",
++  "vectors": [
++    {
++      "id": "LC-01",
++      "source_comment_id": 7026601969,
++      "scenario": "before_save",
++      "acceptance_id": "AC-156",
++      "test_id": "TEST-156",
++      "microtask_ids": [
++        "MT-14",
++        "MT-16",
++        "MT-20"
++      ],
++      "requirement_ids": [
++        "REQ-107",
++        "REQ-108",
++        "REQ-109",
++        "REQ-110"
++      ],
++      "rule_ids": [
++        "RULE-207",
++        "RULE-208",
++        "RULE-209",
++        "RULE-210"
++      ],
++      "expected": "Rascunho cifrado confirmado; zero mutação e zero intenção na fila.",
++      "failure_code": null,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    },
++    {
++      "id": "LC-02",
++      "source_comment_id": 7026601969,
++      "scenario": "after_save_before_send",
++      "acceptance_id": "AC-156",
++      "test_id": "TEST-156",
++      "microtask_ids": [
++        "MT-14",
++        "MT-16",
++        "MT-20"
++      ],
++      "requirement_ids": [
++        "REQ-107",
++        "REQ-108",
++        "REQ-109",
++        "REQ-110"
++      ],
++      "rule_ids": [
++        "RULE-207",
++        "RULE-208",
++        "RULE-209",
++        "RULE-210"
++      ],
++      "expected": "Intenção imutável e cópia confirmada; revalidar/consultar antes de retry seguro mesmo ID/versão/conteúdo.",
++      "failure_code": 1101,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    },
++    {
++      "id": "LC-03",
++      "source_comment_id": 7026601969,
++      "scenario": "after_send_before_commit",
++      "acceptance_id": "AC-156",
++      "test_id": "TEST-156",
++      "microtask_ids": [
++        "MT-14",
++        "MT-16",
++        "MT-20"
++      ],
++      "requirement_ids": [
++        "REQ-107",
++        "REQ-108",
++        "REQ-109",
++        "REQ-110"
++      ],
++      "rule_ids": [
++        "RULE-207",
++        "RULE-208",
++        "RULE-209",
++        "RULE-210"
++      ],
++      "expected": "Consultar autoridade corrente; ausência só autoriza retry conforme contrato, mesmo ID/versão/conteúdo e único efeito.",
++      "failure_code": 1102,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    },
++    {
++      "id": "LC-04",
++      "source_comment_id": 7026601969,
++      "scenario": "commit_without_confirmation",
++      "acceptance_id": "AC-156",
++      "test_id": "TEST-156",
++      "microtask_ids": [
++        "MT-14",
++        "MT-16",
++        "MT-20"
++      ],
++      "requirement_ids": [
++        "REQ-107",
++        "REQ-108",
++        "REQ-109",
++        "REQ-110"
++      ],
++      "rule_ids": [
++        "RULE-207",
++        "RULE-208",
++        "RULE-209",
++        "RULE-210"
++      ],
++      "expected": "GetOutcome recupera confirmação protegida original; não repetir efeito.",
++      "failure_code": 1102,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    },
++    {
++      "id": "LC-05",
++      "source_comment_id": 7026601969,
++      "scenario": "new_edits_during_pending",
++      "acceptance_id": "AC-155",
++      "test_id": "TEST-155",
++      "microtask_ids": [
++        "MT-14",
++        "MT-16",
++        "MT-20"
++      ],
++      "requirement_ids": [
++        "REQ-107",
++        "REQ-108",
++        "REQ-109",
++        "REQ-110"
++      ],
++      "rule_ids": [
++        "RULE-207",
++        "RULE-208",
++        "RULE-209",
++        "RULE-210"
++      ],
++      "expected": "Confirmar v1 remove só v1; v2 e anexos ainda referenciados permanecem.",
++      "failure_code": null,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    },
++    {
++      "id": "LC-06",
++      "source_comment_id": 7026601969,
++      "scenario": "version_conflict",
++      "acceptance_id": "AC-155",
++      "test_id": "TEST-155",
++      "microtask_ids": [
++        "MT-14",
++        "MT-16",
++        "MT-20"
++      ],
++      "requirement_ids": [
++        "REQ-107",
++        "REQ-108",
++        "REQ-109",
++        "REQ-110"
++      ],
++      "rule_ids": [
++        "RULE-207",
++        "RULE-208",
++        "RULE-209",
++        "RULE-210"
++      ],
++      "expected": "Rascunho preservado; revisão explícita; nova intenção usa novo ID e versão corrente.",
++      "failure_code": 1104,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    },
++    {
++      "id": "LC-07",
++      "source_comment_id": 7026601969,
++      "scenario": "actor_company_record_isolation",
++      "acceptance_id": "AC-178",
++      "test_id": "TEST-178",
++      "microtask_ids": [
++        "MT-12",
++        "MT-13",
++        "MT-16",
++        "MT-21"
++      ],
++      "requirement_ids": [
++        "REQ-123",
++        "REQ-124",
++        "REQ-125",
++        "REQ-126",
++        "REQ-127",
++        "REQ-128",
++        "REQ-129",
++        "REQ-130"
++      ],
++      "rule_ids": [
++        "RULE-223",
++        "RULE-224",
++        "RULE-225",
++        "RULE-226",
++        "RULE-227",
++        "RULE-228",
++        "RULE-229",
++        "RULE-230"
++      ],
++      "expected": "Outra conta/empresa ou vínculo adulterado não lê/recupera chave/envia; não revelar existência alheia.",
++      "failure_code": 1105,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    },
++    {
++      "id": "LC-08",
++      "source_comment_id": 7026601969,
++      "scenario": "logout_multitab_revocation",
++      "acceptance_id": "AC-180",
++      "test_id": "TEST-180",
++      "microtask_ids": [
++        "MT-12",
++        "MT-13",
++        "MT-16",
++        "MT-21"
++      ],
++      "requirement_ids": [
++        "REQ-123",
++        "REQ-124",
++        "REQ-125",
++        "REQ-126",
++        "REQ-127",
++        "REQ-128",
++        "REQ-129",
++        "REQ-130"
++      ],
++      "rule_ids": [
++        "RULE-223",
++        "RULE-224",
++        "RULE-225",
++        "RULE-226",
++        "RULE-227",
++        "RULE-228",
++        "RULE-229",
++        "RULE-230"
++      ],
++      "expected": "Invalidade conhecida bloqueia imediatamente; retomada/reabertura exige acesso atual online.",
++      "failure_code": 1105,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    },
++    {
++      "id": "LC-09",
++      "source_comment_id": 7026601969,
++      "scenario": "quota_crypto_transaction_failure",
++      "acceptance_id": "AC-156",
++      "test_id": "TEST-156",
++      "microtask_ids": [
++        "MT-14",
++        "MT-16",
++        "MT-20"
++      ],
++      "requirement_ids": [
++        "REQ-107",
++        "REQ-108",
++        "REQ-109",
++        "REQ-110"
++      ],
++      "rule_ids": [
++        "RULE-207",
++        "RULE-208",
++        "RULE-209",
++        "RULE-210"
++      ],
++      "expected": "Não gravar em claro nem prometer fila; manter memória autorizada, online permitido se autorizado.",
++      "failure_code": 1103,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    },
++    {
++      "id": "LC-10",
++      "source_comment_id": 7026601969,
++      "scenario": "key_rotation_unavailable",
++      "acceptance_id": "AC-178",
++      "test_id": "TEST-178",
++      "microtask_ids": [
++        "MT-12",
++        "MT-13",
++        "MT-16",
++        "MT-21"
++      ],
++      "requirement_ids": [
++        "REQ-123",
++        "REQ-124",
++        "REQ-125",
++        "REQ-126",
++        "REQ-127",
++        "REQ-128",
++        "REQ-129",
++        "REQ-130"
++      ],
++      "rule_ids": [
++        "RULE-223",
++        "RULE-224",
++        "RULE-225",
++        "RULE-226",
++        "RULE-227",
++        "RULE-228",
++        "RULE-229",
++        "RULE-230"
++      ],
++      "expected": "Rotação mantém recuperação autorizada ou sinaliza bloqueio; nenhuma perda silenciosa.",
++      "failure_code": 1103,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    },
++    {
++      "id": "SQ-01",
++      "source_comment_id": 7027205182,
++      "scenario": "durable_shared_queue_multitab",
++      "acceptance_id": "AC-156",
++      "test_id": "TEST-156",
++      "microtask_ids": [
++        "MT-14",
++        "MT-16",
++        "MT-20"
++      ],
++      "requirement_ids": [
++        "REQ-107",
++        "REQ-108",
++        "REQ-109",
++        "REQ-110"
++      ],
++      "rule_ids": [
++        "RULE-207",
++        "RULE-208",
++        "RULE-209",
++        "RULE-210"
++      ],
++      "expected": "Só cópias elegíveis confirmadas; mesma intenção não cria nova operação; servidor deduplica.",
++      "failure_code": 1101,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    },
++    {
++      "id": "SQ-02",
++      "source_comment_id": 7027205182,
++      "scenario": "local_guard_loss_and_unknown",
++      "acceptance_id": "AC-156",
++      "test_id": "TEST-156",
++      "microtask_ids": [
++        "MT-14",
++        "MT-16",
++        "MT-20"
++      ],
++      "requirement_ids": [
++        "REQ-107",
++        "REQ-108",
++        "REQ-109",
++        "REQ-110"
++      ],
++      "rule_ids": [
++        "RULE-207",
++        "RULE-208",
++        "RULE-209",
++        "RULE-210"
++      ],
++      "expected": "1103 prevalece sobre promessa de fila e explicita resultado incerto/consulta original.",
++      "failure_code": 1103,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    },
++    {
++      "id": "SQ-03",
++      "source_comment_id": 7027205182,
++      "scenario": "no_queue_contract_unknown_query_supported",
++      "acceptance_id": "AC-156",
++      "test_id": "TEST-156",
++      "microtask_ids": [
++        "MT-14",
++        "MT-16",
++        "MT-20"
++      ],
++      "requirement_ids": [
++        "REQ-107",
++        "REQ-108",
++        "REQ-109",
++        "REQ-110"
++      ],
++      "rule_ids": [
++        "RULE-207",
++        "RULE-208",
++        "RULE-209",
++        "RULE-210"
++      ],
++      "expected": "1102, consulta autorizada original; sem promessa de cópia e sem replay automático.",
++      "failure_code": 1102,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    },
++    {
++      "id": "SQ-04",
++      "source_comment_id": 7027205182,
++      "scenario": "no_queue_contract_unknown_no_query",
++      "acceptance_id": "AC-156",
++      "test_id": "TEST-156",
++      "microtask_ids": [
++        "MT-14",
++        "MT-16",
++        "MT-20"
++      ],
++      "requirement_ids": [
++        "REQ-107",
++        "REQ-108",
++        "REQ-109",
++        "REQ-110"
++      ],
++      "rule_ids": [
++        "RULE-207",
++        "RULE-208",
++        "RULE-209",
++        "RULE-210"
++      ],
++      "expected": "1102, manter incerteza e orientar fluxo autorizado; nenhum reenvio cego.",
++      "failure_code": 1102,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    },
++    {
++      "id": "SQ-05",
++      "source_comment_id": 7027205182,
++      "scenario": "invalid_fields",
++      "acceptance_id": "AC-154",
++      "test_id": "TEST-154",
++      "microtask_ids": [
++        "MT-14",
++        "MT-16",
++        "MT-20"
++      ],
++      "requirement_ids": [
++        "REQ-107",
++        "REQ-108",
++        "REQ-109",
++        "REQ-110"
++      ],
++      "rule_ids": [
++        "RULE-207",
++        "RULE-208",
++        "RULE-209",
++        "RULE-210"
++      ],
++      "expected": "1106 sinaliza campos autorizados; corrigir e criar intenção nova; sem retry do inválido.",
++      "failure_code": 1106,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    },
++    {
++      "id": "SQ-06",
++      "source_comment_id": 7027205182,
++      "scenario": "protected_then_cleanup_failure",
++      "acceptance_id": "AC-156",
++      "test_id": "TEST-156",
++      "microtask_ids": [
++        "MT-14",
++        "MT-16",
++        "MT-20"
++      ],
++      "requirement_ids": [
++        "REQ-107",
++        "REQ-108",
++        "REQ-109",
++        "REQ-110"
++      ],
++      "rule_ids": [
++        "RULE-207",
++        "RULE-208",
++        "RULE-209",
++        "RULE-210"
++      ],
++      "expected": "Salvo continua; repetir só limpeza correspondente, jamais gravação.",
++      "failure_code": null,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    },
++    {
++      "id": "SQ-07",
++      "source_comment_id": 7027205182,
++      "scenario": "wrong_ack_id_version",
++      "acceptance_id": "AC-155",
++      "test_id": "TEST-155",
++      "microtask_ids": [
++        "MT-14",
++        "MT-16",
++        "MT-20"
++      ],
++      "requirement_ids": [
++        "REQ-107",
++        "REQ-108",
++        "REQ-109",
++        "REQ-110"
++      ],
++      "rule_ids": [
++        "RULE-207",
++        "RULE-208",
++        "RULE-209",
++        "RULE-210"
++      ],
++      "expected": "ACK de outro ID/versão não confirma nem apaga; manter intenção e novas edições.",
++      "failure_code": null,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    },
++    {
++      "id": "SQ-08",
++      "source_comment_id": 7027205182,
++      "scenario": "reopen_same_actor_current_access",
++      "acceptance_id": "AC-156",
++      "test_id": "TEST-156",
++      "microtask_ids": [
++        "MT-14",
++        "MT-16",
++        "MT-20"
++      ],
++      "requirement_ids": [
++        "REQ-107",
++        "REQ-108",
++        "REQ-109",
++        "REQ-110"
++      ],
++      "rule_ids": [
++        "RULE-207",
++        "RULE-208",
++        "RULE-209",
++        "RULE-210"
++      ],
++      "expected": "Consultar operação original após autorização online; mesmo ID/versão/conteúdo quando permitido; uma gravação.",
++      "failure_code": null,
++      "status": "PLANNED_NOT_EXECUTED",
++      "oracle": "future authorized isolated product test; sanitized ID/digest/version/state and observed writes/denials; no fixture proves runtime"
++    }
++  ]
++}
