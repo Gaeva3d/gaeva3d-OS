@@ -1,0 +1,55 @@
+{
+  "retrieval": "GitHub MCP issue_read get_comments; 2026-11-20",
+  "comments": [
+    {
+      "id": 7026601969,
+      "body": "## Fundação — ajuste documental da spec e dos critérios de aceite\n\nTask GAEVA-MOD-001, revisão proposta 8. A Fundação define o contrato e as regras de teste.\n\n- Enquanto digita, o ERP guarda no IndexedDB uma versão temporária criptografada dos dados elegíveis da ficha. Só a conta que criou o rascunho pode abri-lo, no contexto da empresa e da ficha, com as permissões necessárias. Anexos só são guardados se a política e os limites permitirem. Antes do clique em **Salvar**, o rascunho fica no dispositivo.\n- Ao clicar em **Salvar**, o ERP separa uma versão imutável para envio e mostra **Salvamento pendente** até a confirmação protegida do servidor. Quando o serviço volta, o servidor revalida o acesso. O ERP consulta a tentativa pelo ID original e a retoma, quando permitido, com o mesmo ID e o mesmo conteúdo. Repetir o clique ou perder a confirmação não duplica gravações.\n- A confirmação apaga só a versão correspondente e preserva edições novas. Se a ficha mudou no servidor, o ERP mantém o rascunho e pede revisão antes de qualquer reaplicação. Logout, troca de conta e revogação bloqueiam acesso e retomada conforme o estado conhecido. Recuperar o rascunho ao reabrir depende de nova autorização online. Prazo de abandono e destino da cópia após logout ou revogação aguardam definição.\n- Critérios de aceite para execução após o código: testar queda antes de clicar em **Salvar**, queda após o clique antes do primeiro envio ou da gravação no servidor, perda de confirmação depois da gravação, retorno com o mesmo ID, troca de conta ou empresa, logout e revogação, falha de armazenamento ou chave indisponível, rotação de chave sem perda silenciosa, conflito e descarte só da versão confirmada. Cada cenário comprova o indicador correto e a ausência de escrita indevida.\n\nRevisão documental. A execução dos testes de produto fica para depois da implementação.\n",
+      "html_url": "https://github.com/Gaeva3d/gaeva3d-OS/issues/1#issuecomment-7026601969",
+      "user": {
+        "login": "guilhermedemorais-dev",
+        "id": 33355649,
+        "profile_url": "https://github.com/guilhermedemorais-dev",
+        "avatar_url": "https://avatars.githubusercontent.com/u/33355649?v=4"
+      },
+      "author_association": "COLLABORATOR",
+      "reactions": {
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "confused": 0,
+        "heart": 0,
+        "hooray": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "created_at": "2026-11-20T00:40:11Z",
+      "updated_at": "2026-11-20T00:40:11Z"
+    },
+    {
+      "id": 7027205182,
+      "body": "## Fundação — fila compartilhada de salvamento e códigos de falha\n\nTask GAEVA-MOD-001, revisão documental proposta 9. Toda ação **Salvar** do ERP segue o mesmo contrato. O rascunho enquanto a pessoa digita fica cifrado no navegador e só a conta autorizada pode abri-lo. O clique em **Salvar** cria a intenção de envio. Só entram na fila durável e cifrada as intenções cuja cópia ficou confirmada neste dispositivo e pode ser retomada com segurança. A fila isola conta e empresa. Na retomada, o ERP revalida o acesso, consulta a operação original e repete apenas quando permitido, usando o mesmo ID, a mesma versão e o mesmo conteúdo. A confirmação protegida remove só a versão reconhecida e preserva edições mais novas.\n\nA interface mostra **Falha**, o número e uma ação clara. O número identifica a condição e tem significado estável entre os módulos.\n\n- **Falha 1101** — falha temporária e cópia confirmada na fila. O ERP retoma quando o serviço voltar e o acesso for validado.\n- **Falha 1102** — o ERP ficou sem confirmação. Quando possível, consulta a tentativa original e nunca reenvia às cegas. Isso também vale para ações sem fila por contrato.\n- **Falha 1103** — a guarda local esperada falhou ou a cópia se perdeu. Mantenha a ficha aberta se possível. Se o resultado no servidor estiver incerto, o ERP informa isso e consulta a tentativa quando houver suporte.\n- **Falha 1104** — a versão da ficha mudou. Revise a versão atual antes de reaplicar suas mudanças.\n- **Falha 1105** — falta permissão ou a sessão está inválida. Entre novamente ou confirme o acesso antes de retomar.\n- **Falha 1106** — há dados inválidos. Corrija os campos sinalizados e salve novamente.\n\nA spec prevê catálogo técnico com condição, mensagem, possibilidade de fila ou reenvio e ação indicada para cada código. A comprovação das seis falhas, da recuperação, do isolamento e da ausência de gravação duplicada fica para depois que o código estiver pronto.\n",
+      "html_url": "https://github.com/Gaeva3d/gaeva3d-OS/issues/1#issuecomment-7027205182",
+      "user": {
+        "login": "guilhermedemorais-dev",
+        "id": 33355649,
+        "profile_url": "https://github.com/guilhermedemorais-dev",
+        "avatar_url": "https://avatars.githubusercontent.com/u/33355649?v=4"
+      },
+      "author_association": "COLLABORATOR",
+      "reactions": {
+        "total_count": 0,
+        "+1": 0,
+        "-1": 0,
+        "laugh": 0,
+        "confused": 0,
+        "heart": 0,
+        "hooray": 0,
+        "rocket": 0,
+        "eyes": 0
+      },
+      "created_at": "2026-11-20T01:10:13Z",
+      "updated_at": "2026-11-20T01:10:13Z"
+    }
+  ]
+}

@@ -1,0 +1,2769 @@
+{
+  "fictitious": true,
+  "examples": [
+    {
+      "kind": "WRITE_ID_SWAPPED",
+      "fictitious": true,
+      "expected_structural_valid": true,
+      "expected_relational_valid": false,
+      "payload": {
+        "case": "DAILY/disabled",
+        "expected_valid": true,
+        "request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 4
+          },
+          "payload": {
+            "enabled": false,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "DAILY",
+              "local_time": "03:15"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "write_response": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-swapped-write",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "CONFIGURED_DISABLED",
+              "enabled": false,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "DAILY",
+                "local_time": "03:15"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "reload_response": {
+          "envelope_version": 1,
+          "action": "GetBackupConfiguration",
+          "operation_id": "fictional-query-GetBackupConfiguration",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "CONFIGURED_DISABLED",
+              "enabled": false,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "DAILY",
+                "local_time": "03:15"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            },
+            "counts": {
+              "daily_count": 30,
+              "monthly_count": 12
+            },
+            "provider_link_state": "LINKED",
+            "cleanup_mode": "NORMAL"
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "outcome_response": {
+          "envelope_version": 1,
+          "action": "GetOutcome",
+          "operation_id": "fictional-query-GetOutcome",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "original_response": {
+              "envelope_version": 1,
+              "action": "ConfigureSchedule",
+              "operation_id": "fictional-op-13",
+              "status": "PROTECTED",
+              "reason_code": "OK",
+              "retry_kind": "NONE",
+              "allowed_actions": [],
+              "result": {
+                "config_version": 5,
+                "stored_schedule": {
+                  "schema_version": 1,
+                  "state": "CONFIGURED_DISABLED",
+                  "enabled": false,
+                  "timezone": "America/Sao_Paulo",
+                  "schedule": {
+                    "frequency": "DAILY",
+                    "local_time": "03:15"
+                  },
+                  "dst_overlap": "SECOND",
+                  "dst_gap": "SKIP_AND_REPORT"
+                }
+              },
+              "result_version": 5,
+              "current_authority_head": {
+                "authority_id": "fictional-authority",
+                "incarnation": "fictional-incarnation",
+                "generation": 19
+              }
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "edit_request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-new-edit",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 5
+          },
+          "payload": {
+            "enabled": false,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "DAILY",
+              "local_time": "03:15"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "oracle": "all accepted schedule fields preserved byte-for-typed-value; current config version used; no defaults"
+      }
+    },
+    {
+      "kind": "ORIGINAL_ID_SWAPPED",
+      "fictitious": true,
+      "expected_structural_valid": true,
+      "expected_relational_valid": false,
+      "payload": {
+        "case": "DAILY/disabled",
+        "expected_valid": true,
+        "request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 4
+          },
+          "payload": {
+            "enabled": false,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "DAILY",
+              "local_time": "03:15"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "write_response": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "CONFIGURED_DISABLED",
+              "enabled": false,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "DAILY",
+                "local_time": "03:15"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "reload_response": {
+          "envelope_version": 1,
+          "action": "GetBackupConfiguration",
+          "operation_id": "fictional-query-GetBackupConfiguration",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "CONFIGURED_DISABLED",
+              "enabled": false,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "DAILY",
+                "local_time": "03:15"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            },
+            "counts": {
+              "daily_count": 30,
+              "monthly_count": 12
+            },
+            "provider_link_state": "LINKED",
+            "cleanup_mode": "NORMAL"
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "outcome_response": {
+          "envelope_version": 1,
+          "action": "GetOutcome",
+          "operation_id": "fictional-query-GetOutcome",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "original_response": {
+              "envelope_version": 1,
+              "action": "ConfigureSchedule",
+              "operation_id": "fictional-swapped-original",
+              "status": "PROTECTED",
+              "reason_code": "OK",
+              "retry_kind": "NONE",
+              "allowed_actions": [],
+              "result": {
+                "config_version": 5,
+                "stored_schedule": {
+                  "schema_version": 1,
+                  "state": "CONFIGURED_DISABLED",
+                  "enabled": false,
+                  "timezone": "America/Sao_Paulo",
+                  "schedule": {
+                    "frequency": "DAILY",
+                    "local_time": "03:15"
+                  },
+                  "dst_overlap": "SECOND",
+                  "dst_gap": "SKIP_AND_REPORT"
+                }
+              },
+              "result_version": 5,
+              "current_authority_head": {
+                "authority_id": "fictional-authority",
+                "incarnation": "fictional-incarnation",
+                "generation": 19
+              }
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "edit_request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-new-edit",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 5
+          },
+          "payload": {
+            "enabled": false,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "DAILY",
+              "local_time": "03:15"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "oracle": "all accepted schedule fields preserved byte-for-typed-value; current config version used; no defaults"
+      }
+    },
+    {
+      "kind": "WRITE_ID_SWAPPED",
+      "fictitious": true,
+      "expected_structural_valid": true,
+      "expected_relational_valid": false,
+      "payload": {
+        "case": "DAILY/enabled",
+        "expected_valid": true,
+        "request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 4
+          },
+          "payload": {
+            "enabled": true,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "DAILY",
+              "local_time": "03:15"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "write_response": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-swapped-write",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "ENABLED",
+              "enabled": true,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "DAILY",
+                "local_time": "03:15"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "reload_response": {
+          "envelope_version": 1,
+          "action": "GetBackupConfiguration",
+          "operation_id": "fictional-query-GetBackupConfiguration",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "ENABLED",
+              "enabled": true,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "DAILY",
+                "local_time": "03:15"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            },
+            "counts": {
+              "daily_count": 30,
+              "monthly_count": 12
+            },
+            "provider_link_state": "LINKED",
+            "cleanup_mode": "NORMAL"
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "outcome_response": {
+          "envelope_version": 1,
+          "action": "GetOutcome",
+          "operation_id": "fictional-query-GetOutcome",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "original_response": {
+              "envelope_version": 1,
+              "action": "ConfigureSchedule",
+              "operation_id": "fictional-op-13",
+              "status": "PROTECTED",
+              "reason_code": "OK",
+              "retry_kind": "NONE",
+              "allowed_actions": [],
+              "result": {
+                "config_version": 5,
+                "stored_schedule": {
+                  "schema_version": 1,
+                  "state": "ENABLED",
+                  "enabled": true,
+                  "timezone": "America/Sao_Paulo",
+                  "schedule": {
+                    "frequency": "DAILY",
+                    "local_time": "03:15"
+                  },
+                  "dst_overlap": "SECOND",
+                  "dst_gap": "SKIP_AND_REPORT"
+                }
+              },
+              "result_version": 5,
+              "current_authority_head": {
+                "authority_id": "fictional-authority",
+                "incarnation": "fictional-incarnation",
+                "generation": 19
+              }
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "edit_request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-new-edit",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 5
+          },
+          "payload": {
+            "enabled": true,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "DAILY",
+              "local_time": "03:15"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "oracle": "all accepted schedule fields preserved byte-for-typed-value; current config version used; no defaults"
+      }
+    },
+    {
+      "kind": "ORIGINAL_ID_SWAPPED",
+      "fictitious": true,
+      "expected_structural_valid": true,
+      "expected_relational_valid": false,
+      "payload": {
+        "case": "DAILY/enabled",
+        "expected_valid": true,
+        "request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 4
+          },
+          "payload": {
+            "enabled": true,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "DAILY",
+              "local_time": "03:15"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "write_response": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "ENABLED",
+              "enabled": true,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "DAILY",
+                "local_time": "03:15"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "reload_response": {
+          "envelope_version": 1,
+          "action": "GetBackupConfiguration",
+          "operation_id": "fictional-query-GetBackupConfiguration",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "ENABLED",
+              "enabled": true,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "DAILY",
+                "local_time": "03:15"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            },
+            "counts": {
+              "daily_count": 30,
+              "monthly_count": 12
+            },
+            "provider_link_state": "LINKED",
+            "cleanup_mode": "NORMAL"
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "outcome_response": {
+          "envelope_version": 1,
+          "action": "GetOutcome",
+          "operation_id": "fictional-query-GetOutcome",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "original_response": {
+              "envelope_version": 1,
+              "action": "ConfigureSchedule",
+              "operation_id": "fictional-swapped-original",
+              "status": "PROTECTED",
+              "reason_code": "OK",
+              "retry_kind": "NONE",
+              "allowed_actions": [],
+              "result": {
+                "config_version": 5,
+                "stored_schedule": {
+                  "schema_version": 1,
+                  "state": "ENABLED",
+                  "enabled": true,
+                  "timezone": "America/Sao_Paulo",
+                  "schedule": {
+                    "frequency": "DAILY",
+                    "local_time": "03:15"
+                  },
+                  "dst_overlap": "SECOND",
+                  "dst_gap": "SKIP_AND_REPORT"
+                }
+              },
+              "result_version": 5,
+              "current_authority_head": {
+                "authority_id": "fictional-authority",
+                "incarnation": "fictional-incarnation",
+                "generation": 19
+              }
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "edit_request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-new-edit",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 5
+          },
+          "payload": {
+            "enabled": true,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "DAILY",
+              "local_time": "03:15"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "oracle": "all accepted schedule fields preserved byte-for-typed-value; current config version used; no defaults"
+      }
+    },
+    {
+      "kind": "WRITE_ID_SWAPPED",
+      "fictitious": true,
+      "expected_structural_valid": true,
+      "expected_relational_valid": false,
+      "payload": {
+        "case": "WEEKLY/disabled",
+        "expected_valid": true,
+        "request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 4
+          },
+          "payload": {
+            "enabled": false,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "WEEKLY",
+              "weekdays": [
+                2,
+                6
+              ],
+              "local_time": "04:20"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "write_response": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-swapped-write",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "CONFIGURED_DISABLED",
+              "enabled": false,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "WEEKLY",
+                "weekdays": [
+                  2,
+                  6
+                ],
+                "local_time": "04:20"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "reload_response": {
+          "envelope_version": 1,
+          "action": "GetBackupConfiguration",
+          "operation_id": "fictional-query-GetBackupConfiguration",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "CONFIGURED_DISABLED",
+              "enabled": false,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "WEEKLY",
+                "weekdays": [
+                  2,
+                  6
+                ],
+                "local_time": "04:20"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            },
+            "counts": {
+              "daily_count": 30,
+              "monthly_count": 12
+            },
+            "provider_link_state": "LINKED",
+            "cleanup_mode": "NORMAL"
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "outcome_response": {
+          "envelope_version": 1,
+          "action": "GetOutcome",
+          "operation_id": "fictional-query-GetOutcome",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "original_response": {
+              "envelope_version": 1,
+              "action": "ConfigureSchedule",
+              "operation_id": "fictional-op-13",
+              "status": "PROTECTED",
+              "reason_code": "OK",
+              "retry_kind": "NONE",
+              "allowed_actions": [],
+              "result": {
+                "config_version": 5,
+                "stored_schedule": {
+                  "schema_version": 1,
+                  "state": "CONFIGURED_DISABLED",
+                  "enabled": false,
+                  "timezone": "America/Sao_Paulo",
+                  "schedule": {
+                    "frequency": "WEEKLY",
+                    "weekdays": [
+                      2,
+                      6
+                    ],
+                    "local_time": "04:20"
+                  },
+                  "dst_overlap": "SECOND",
+                  "dst_gap": "SKIP_AND_REPORT"
+                }
+              },
+              "result_version": 5,
+              "current_authority_head": {
+                "authority_id": "fictional-authority",
+                "incarnation": "fictional-incarnation",
+                "generation": 19
+              }
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "edit_request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-new-edit",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 5
+          },
+          "payload": {
+            "enabled": false,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "WEEKLY",
+              "weekdays": [
+                2,
+                6
+              ],
+              "local_time": "04:20"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "oracle": "all accepted schedule fields preserved byte-for-typed-value; current config version used; no defaults"
+      }
+    },
+    {
+      "kind": "ORIGINAL_ID_SWAPPED",
+      "fictitious": true,
+      "expected_structural_valid": true,
+      "expected_relational_valid": false,
+      "payload": {
+        "case": "WEEKLY/disabled",
+        "expected_valid": true,
+        "request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 4
+          },
+          "payload": {
+            "enabled": false,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "WEEKLY",
+              "weekdays": [
+                2,
+                6
+              ],
+              "local_time": "04:20"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "write_response": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "CONFIGURED_DISABLED",
+              "enabled": false,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "WEEKLY",
+                "weekdays": [
+                  2,
+                  6
+                ],
+                "local_time": "04:20"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "reload_response": {
+          "envelope_version": 1,
+          "action": "GetBackupConfiguration",
+          "operation_id": "fictional-query-GetBackupConfiguration",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "CONFIGURED_DISABLED",
+              "enabled": false,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "WEEKLY",
+                "weekdays": [
+                  2,
+                  6
+                ],
+                "local_time": "04:20"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            },
+            "counts": {
+              "daily_count": 30,
+              "monthly_count": 12
+            },
+            "provider_link_state": "LINKED",
+            "cleanup_mode": "NORMAL"
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "outcome_response": {
+          "envelope_version": 1,
+          "action": "GetOutcome",
+          "operation_id": "fictional-query-GetOutcome",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "original_response": {
+              "envelope_version": 1,
+              "action": "ConfigureSchedule",
+              "operation_id": "fictional-swapped-original",
+              "status": "PROTECTED",
+              "reason_code": "OK",
+              "retry_kind": "NONE",
+              "allowed_actions": [],
+              "result": {
+                "config_version": 5,
+                "stored_schedule": {
+                  "schema_version": 1,
+                  "state": "CONFIGURED_DISABLED",
+                  "enabled": false,
+                  "timezone": "America/Sao_Paulo",
+                  "schedule": {
+                    "frequency": "WEEKLY",
+                    "weekdays": [
+                      2,
+                      6
+                    ],
+                    "local_time": "04:20"
+                  },
+                  "dst_overlap": "SECOND",
+                  "dst_gap": "SKIP_AND_REPORT"
+                }
+              },
+              "result_version": 5,
+              "current_authority_head": {
+                "authority_id": "fictional-authority",
+                "incarnation": "fictional-incarnation",
+                "generation": 19
+              }
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "edit_request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-new-edit",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 5
+          },
+          "payload": {
+            "enabled": false,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "WEEKLY",
+              "weekdays": [
+                2,
+                6
+              ],
+              "local_time": "04:20"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "oracle": "all accepted schedule fields preserved byte-for-typed-value; current config version used; no defaults"
+      }
+    },
+    {
+      "kind": "WRITE_ID_SWAPPED",
+      "fictitious": true,
+      "expected_structural_valid": true,
+      "expected_relational_valid": false,
+      "payload": {
+        "case": "WEEKLY/enabled",
+        "expected_valid": true,
+        "request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 4
+          },
+          "payload": {
+            "enabled": true,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "WEEKLY",
+              "weekdays": [
+                2,
+                6
+              ],
+              "local_time": "04:20"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "write_response": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-swapped-write",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "ENABLED",
+              "enabled": true,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "WEEKLY",
+                "weekdays": [
+                  2,
+                  6
+                ],
+                "local_time": "04:20"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "reload_response": {
+          "envelope_version": 1,
+          "action": "GetBackupConfiguration",
+          "operation_id": "fictional-query-GetBackupConfiguration",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "ENABLED",
+              "enabled": true,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "WEEKLY",
+                "weekdays": [
+                  2,
+                  6
+                ],
+                "local_time": "04:20"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            },
+            "counts": {
+              "daily_count": 30,
+              "monthly_count": 12
+            },
+            "provider_link_state": "LINKED",
+            "cleanup_mode": "NORMAL"
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "outcome_response": {
+          "envelope_version": 1,
+          "action": "GetOutcome",
+          "operation_id": "fictional-query-GetOutcome",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "original_response": {
+              "envelope_version": 1,
+              "action": "ConfigureSchedule",
+              "operation_id": "fictional-op-13",
+              "status": "PROTECTED",
+              "reason_code": "OK",
+              "retry_kind": "NONE",
+              "allowed_actions": [],
+              "result": {
+                "config_version": 5,
+                "stored_schedule": {
+                  "schema_version": 1,
+                  "state": "ENABLED",
+                  "enabled": true,
+                  "timezone": "America/Sao_Paulo",
+                  "schedule": {
+                    "frequency": "WEEKLY",
+                    "weekdays": [
+                      2,
+                      6
+                    ],
+                    "local_time": "04:20"
+                  },
+                  "dst_overlap": "SECOND",
+                  "dst_gap": "SKIP_AND_REPORT"
+                }
+              },
+              "result_version": 5,
+              "current_authority_head": {
+                "authority_id": "fictional-authority",
+                "incarnation": "fictional-incarnation",
+                "generation": 19
+              }
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "edit_request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-new-edit",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 5
+          },
+          "payload": {
+            "enabled": true,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "WEEKLY",
+              "weekdays": [
+                2,
+                6
+              ],
+              "local_time": "04:20"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "oracle": "all accepted schedule fields preserved byte-for-typed-value; current config version used; no defaults"
+      }
+    },
+    {
+      "kind": "ORIGINAL_ID_SWAPPED",
+      "fictitious": true,
+      "expected_structural_valid": true,
+      "expected_relational_valid": false,
+      "payload": {
+        "case": "WEEKLY/enabled",
+        "expected_valid": true,
+        "request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 4
+          },
+          "payload": {
+            "enabled": true,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "WEEKLY",
+              "weekdays": [
+                2,
+                6
+              ],
+              "local_time": "04:20"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "write_response": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "ENABLED",
+              "enabled": true,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "WEEKLY",
+                "weekdays": [
+                  2,
+                  6
+                ],
+                "local_time": "04:20"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "reload_response": {
+          "envelope_version": 1,
+          "action": "GetBackupConfiguration",
+          "operation_id": "fictional-query-GetBackupConfiguration",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "ENABLED",
+              "enabled": true,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "WEEKLY",
+                "weekdays": [
+                  2,
+                  6
+                ],
+                "local_time": "04:20"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            },
+            "counts": {
+              "daily_count": 30,
+              "monthly_count": 12
+            },
+            "provider_link_state": "LINKED",
+            "cleanup_mode": "NORMAL"
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "outcome_response": {
+          "envelope_version": 1,
+          "action": "GetOutcome",
+          "operation_id": "fictional-query-GetOutcome",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "original_response": {
+              "envelope_version": 1,
+              "action": "ConfigureSchedule",
+              "operation_id": "fictional-swapped-original",
+              "status": "PROTECTED",
+              "reason_code": "OK",
+              "retry_kind": "NONE",
+              "allowed_actions": [],
+              "result": {
+                "config_version": 5,
+                "stored_schedule": {
+                  "schema_version": 1,
+                  "state": "ENABLED",
+                  "enabled": true,
+                  "timezone": "America/Sao_Paulo",
+                  "schedule": {
+                    "frequency": "WEEKLY",
+                    "weekdays": [
+                      2,
+                      6
+                    ],
+                    "local_time": "04:20"
+                  },
+                  "dst_overlap": "SECOND",
+                  "dst_gap": "SKIP_AND_REPORT"
+                }
+              },
+              "result_version": 5,
+              "current_authority_head": {
+                "authority_id": "fictional-authority",
+                "incarnation": "fictional-incarnation",
+                "generation": 19
+              }
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "edit_request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-new-edit",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 5
+          },
+          "payload": {
+            "enabled": true,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "WEEKLY",
+              "weekdays": [
+                2,
+                6
+              ],
+              "local_time": "04:20"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "oracle": "all accepted schedule fields preserved byte-for-typed-value; current config version used; no defaults"
+      }
+    },
+    {
+      "kind": "WRITE_ID_SWAPPED",
+      "fictitious": true,
+      "expected_structural_valid": true,
+      "expected_relational_valid": false,
+      "payload": {
+        "case": "MONTHLY/disabled",
+        "expected_valid": true,
+        "request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 4
+          },
+          "payload": {
+            "enabled": false,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "MONTHLY",
+              "day_of_month": 31,
+              "local_time": "05:25",
+              "missing_day": "SKIP_AND_REPORT"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "write_response": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-swapped-write",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "CONFIGURED_DISABLED",
+              "enabled": false,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "MONTHLY",
+                "day_of_month": 31,
+                "local_time": "05:25",
+                "missing_day": "SKIP_AND_REPORT"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "reload_response": {
+          "envelope_version": 1,
+          "action": "GetBackupConfiguration",
+          "operation_id": "fictional-query-GetBackupConfiguration",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "CONFIGURED_DISABLED",
+              "enabled": false,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "MONTHLY",
+                "day_of_month": 31,
+                "local_time": "05:25",
+                "missing_day": "SKIP_AND_REPORT"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            },
+            "counts": {
+              "daily_count": 30,
+              "monthly_count": 12
+            },
+            "provider_link_state": "LINKED",
+            "cleanup_mode": "NORMAL"
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "outcome_response": {
+          "envelope_version": 1,
+          "action": "GetOutcome",
+          "operation_id": "fictional-query-GetOutcome",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "original_response": {
+              "envelope_version": 1,
+              "action": "ConfigureSchedule",
+              "operation_id": "fictional-op-13",
+              "status": "PROTECTED",
+              "reason_code": "OK",
+              "retry_kind": "NONE",
+              "allowed_actions": [],
+              "result": {
+                "config_version": 5,
+                "stored_schedule": {
+                  "schema_version": 1,
+                  "state": "CONFIGURED_DISABLED",
+                  "enabled": false,
+                  "timezone": "America/Sao_Paulo",
+                  "schedule": {
+                    "frequency": "MONTHLY",
+                    "day_of_month": 31,
+                    "local_time": "05:25",
+                    "missing_day": "SKIP_AND_REPORT"
+                  },
+                  "dst_overlap": "SECOND",
+                  "dst_gap": "SKIP_AND_REPORT"
+                }
+              },
+              "result_version": 5,
+              "current_authority_head": {
+                "authority_id": "fictional-authority",
+                "incarnation": "fictional-incarnation",
+                "generation": 19
+              }
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "edit_request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-new-edit",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 5
+          },
+          "payload": {
+            "enabled": false,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "MONTHLY",
+              "day_of_month": 31,
+              "local_time": "05:25",
+              "missing_day": "SKIP_AND_REPORT"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "oracle": "all accepted schedule fields preserved byte-for-typed-value; current config version used; no defaults"
+      }
+    },
+    {
+      "kind": "ORIGINAL_ID_SWAPPED",
+      "fictitious": true,
+      "expected_structural_valid": true,
+      "expected_relational_valid": false,
+      "payload": {
+        "case": "MONTHLY/disabled",
+        "expected_valid": true,
+        "request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 4
+          },
+          "payload": {
+            "enabled": false,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "MONTHLY",
+              "day_of_month": 31,
+              "local_time": "05:25",
+              "missing_day": "SKIP_AND_REPORT"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "write_response": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "CONFIGURED_DISABLED",
+              "enabled": false,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "MONTHLY",
+                "day_of_month": 31,
+                "local_time": "05:25",
+                "missing_day": "SKIP_AND_REPORT"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "reload_response": {
+          "envelope_version": 1,
+          "action": "GetBackupConfiguration",
+          "operation_id": "fictional-query-GetBackupConfiguration",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "CONFIGURED_DISABLED",
+              "enabled": false,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "MONTHLY",
+                "day_of_month": 31,
+                "local_time": "05:25",
+                "missing_day": "SKIP_AND_REPORT"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            },
+            "counts": {
+              "daily_count": 30,
+              "monthly_count": 12
+            },
+            "provider_link_state": "LINKED",
+            "cleanup_mode": "NORMAL"
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "outcome_response": {
+          "envelope_version": 1,
+          "action": "GetOutcome",
+          "operation_id": "fictional-query-GetOutcome",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "original_response": {
+              "envelope_version": 1,
+              "action": "ConfigureSchedule",
+              "operation_id": "fictional-swapped-original",
+              "status": "PROTECTED",
+              "reason_code": "OK",
+              "retry_kind": "NONE",
+              "allowed_actions": [],
+              "result": {
+                "config_version": 5,
+                "stored_schedule": {
+                  "schema_version": 1,
+                  "state": "CONFIGURED_DISABLED",
+                  "enabled": false,
+                  "timezone": "America/Sao_Paulo",
+                  "schedule": {
+                    "frequency": "MONTHLY",
+                    "day_of_month": 31,
+                    "local_time": "05:25",
+                    "missing_day": "SKIP_AND_REPORT"
+                  },
+                  "dst_overlap": "SECOND",
+                  "dst_gap": "SKIP_AND_REPORT"
+                }
+              },
+              "result_version": 5,
+              "current_authority_head": {
+                "authority_id": "fictional-authority",
+                "incarnation": "fictional-incarnation",
+                "generation": 19
+              }
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "edit_request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-new-edit",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 5
+          },
+          "payload": {
+            "enabled": false,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "MONTHLY",
+              "day_of_month": 31,
+              "local_time": "05:25",
+              "missing_day": "SKIP_AND_REPORT"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "oracle": "all accepted schedule fields preserved byte-for-typed-value; current config version used; no defaults"
+      }
+    },
+    {
+      "kind": "WRITE_ID_SWAPPED",
+      "fictitious": true,
+      "expected_structural_valid": true,
+      "expected_relational_valid": false,
+      "payload": {
+        "case": "MONTHLY/enabled",
+        "expected_valid": true,
+        "request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 4
+          },
+          "payload": {
+            "enabled": true,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "MONTHLY",
+              "day_of_month": 31,
+              "local_time": "05:25",
+              "missing_day": "SKIP_AND_REPORT"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "write_response": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-swapped-write",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "ENABLED",
+              "enabled": true,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "MONTHLY",
+                "day_of_month": 31,
+                "local_time": "05:25",
+                "missing_day": "SKIP_AND_REPORT"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "reload_response": {
+          "envelope_version": 1,
+          "action": "GetBackupConfiguration",
+          "operation_id": "fictional-query-GetBackupConfiguration",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "ENABLED",
+              "enabled": true,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "MONTHLY",
+                "day_of_month": 31,
+                "local_time": "05:25",
+                "missing_day": "SKIP_AND_REPORT"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            },
+            "counts": {
+              "daily_count": 30,
+              "monthly_count": 12
+            },
+            "provider_link_state": "LINKED",
+            "cleanup_mode": "NORMAL"
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "outcome_response": {
+          "envelope_version": 1,
+          "action": "GetOutcome",
+          "operation_id": "fictional-query-GetOutcome",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "original_response": {
+              "envelope_version": 1,
+              "action": "ConfigureSchedule",
+              "operation_id": "fictional-op-13",
+              "status": "PROTECTED",
+              "reason_code": "OK",
+              "retry_kind": "NONE",
+              "allowed_actions": [],
+              "result": {
+                "config_version": 5,
+                "stored_schedule": {
+                  "schema_version": 1,
+                  "state": "ENABLED",
+                  "enabled": true,
+                  "timezone": "America/Sao_Paulo",
+                  "schedule": {
+                    "frequency": "MONTHLY",
+                    "day_of_month": 31,
+                    "local_time": "05:25",
+                    "missing_day": "SKIP_AND_REPORT"
+                  },
+                  "dst_overlap": "SECOND",
+                  "dst_gap": "SKIP_AND_REPORT"
+                }
+              },
+              "result_version": 5,
+              "current_authority_head": {
+                "authority_id": "fictional-authority",
+                "incarnation": "fictional-incarnation",
+                "generation": 19
+              }
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "edit_request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-new-edit",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 5
+          },
+          "payload": {
+            "enabled": true,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "MONTHLY",
+              "day_of_month": 31,
+              "local_time": "05:25",
+              "missing_day": "SKIP_AND_REPORT"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "oracle": "all accepted schedule fields preserved byte-for-typed-value; current config version used; no defaults"
+      }
+    },
+    {
+      "kind": "ORIGINAL_ID_SWAPPED",
+      "fictitious": true,
+      "expected_structural_valid": true,
+      "expected_relational_valid": false,
+      "payload": {
+        "case": "MONTHLY/enabled",
+        "expected_valid": true,
+        "request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 4
+          },
+          "payload": {
+            "enabled": true,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "MONTHLY",
+              "day_of_month": 31,
+              "local_time": "05:25",
+              "missing_day": "SKIP_AND_REPORT"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "write_response": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "ENABLED",
+              "enabled": true,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "MONTHLY",
+                "day_of_month": 31,
+                "local_time": "05:25",
+                "missing_day": "SKIP_AND_REPORT"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "reload_response": {
+          "envelope_version": 1,
+          "action": "GetBackupConfiguration",
+          "operation_id": "fictional-query-GetBackupConfiguration",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "ENABLED",
+              "enabled": true,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "MONTHLY",
+                "day_of_month": 31,
+                "local_time": "05:25",
+                "missing_day": "SKIP_AND_REPORT"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            },
+            "counts": {
+              "daily_count": 30,
+              "monthly_count": 12
+            },
+            "provider_link_state": "LINKED",
+            "cleanup_mode": "NORMAL"
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "outcome_response": {
+          "envelope_version": 1,
+          "action": "GetOutcome",
+          "operation_id": "fictional-query-GetOutcome",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "original_response": {
+              "envelope_version": 1,
+              "action": "ConfigureSchedule",
+              "operation_id": "fictional-swapped-original",
+              "status": "PROTECTED",
+              "reason_code": "OK",
+              "retry_kind": "NONE",
+              "allowed_actions": [],
+              "result": {
+                "config_version": 5,
+                "stored_schedule": {
+                  "schema_version": 1,
+                  "state": "ENABLED",
+                  "enabled": true,
+                  "timezone": "America/Sao_Paulo",
+                  "schedule": {
+                    "frequency": "MONTHLY",
+                    "day_of_month": 31,
+                    "local_time": "05:25",
+                    "missing_day": "SKIP_AND_REPORT"
+                  },
+                  "dst_overlap": "SECOND",
+                  "dst_gap": "SKIP_AND_REPORT"
+                }
+              },
+              "result_version": 5,
+              "current_authority_head": {
+                "authority_id": "fictional-authority",
+                "incarnation": "fictional-incarnation",
+                "generation": 19
+              }
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "edit_request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-new-edit",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 5
+          },
+          "payload": {
+            "enabled": true,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "MONTHLY",
+              "day_of_month": 31,
+              "local_time": "05:25",
+              "missing_day": "SKIP_AND_REPORT"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "oracle": "all accepted schedule fields preserved byte-for-typed-value; current config version used; no defaults"
+      }
+    },
+    {
+      "kind": "WRITE_ID_SWAPPED",
+      "fictitious": true,
+      "expected_structural_valid": true,
+      "expected_relational_valid": false,
+      "payload": {
+        "case": "INTERVAL/disabled",
+        "expected_valid": true,
+        "request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 4
+          },
+          "payload": {
+            "enabled": false,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "INTERVAL",
+              "interval_seconds": 7200,
+              "anchor_utc": "2030-01-01T00:00:00Z"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "write_response": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-swapped-write",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "CONFIGURED_DISABLED",
+              "enabled": false,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "INTERVAL",
+                "interval_seconds": 7200,
+                "anchor_utc": "2030-01-01T00:00:00Z"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "reload_response": {
+          "envelope_version": 1,
+          "action": "GetBackupConfiguration",
+          "operation_id": "fictional-query-GetBackupConfiguration",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "CONFIGURED_DISABLED",
+              "enabled": false,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "INTERVAL",
+                "interval_seconds": 7200,
+                "anchor_utc": "2030-01-01T00:00:00Z"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            },
+            "counts": {
+              "daily_count": 30,
+              "monthly_count": 12
+            },
+            "provider_link_state": "LINKED",
+            "cleanup_mode": "NORMAL"
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "outcome_response": {
+          "envelope_version": 1,
+          "action": "GetOutcome",
+          "operation_id": "fictional-query-GetOutcome",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "original_response": {
+              "envelope_version": 1,
+              "action": "ConfigureSchedule",
+              "operation_id": "fictional-op-13",
+              "status": "PROTECTED",
+              "reason_code": "OK",
+              "retry_kind": "NONE",
+              "allowed_actions": [],
+              "result": {
+                "config_version": 5,
+                "stored_schedule": {
+                  "schema_version": 1,
+                  "state": "CONFIGURED_DISABLED",
+                  "enabled": false,
+                  "timezone": "America/Sao_Paulo",
+                  "schedule": {
+                    "frequency": "INTERVAL",
+                    "interval_seconds": 7200,
+                    "anchor_utc": "2030-01-01T00:00:00Z"
+                  },
+                  "dst_overlap": "SECOND",
+                  "dst_gap": "SKIP_AND_REPORT"
+                }
+              },
+              "result_version": 5,
+              "current_authority_head": {
+                "authority_id": "fictional-authority",
+                "incarnation": "fictional-incarnation",
+                "generation": 19
+              }
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "edit_request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-new-edit",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 5
+          },
+          "payload": {
+            "enabled": false,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "INTERVAL",
+              "interval_seconds": 7200,
+              "anchor_utc": "2030-01-01T00:00:00Z"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "oracle": "all accepted schedule fields preserved byte-for-typed-value; current config version used; no defaults"
+      }
+    },
+    {
+      "kind": "ORIGINAL_ID_SWAPPED",
+      "fictitious": true,
+      "expected_structural_valid": true,
+      "expected_relational_valid": false,
+      "payload": {
+        "case": "INTERVAL/disabled",
+        "expected_valid": true,
+        "request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 4
+          },
+          "payload": {
+            "enabled": false,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "INTERVAL",
+              "interval_seconds": 7200,
+              "anchor_utc": "2030-01-01T00:00:00Z"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "write_response": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "CONFIGURED_DISABLED",
+              "enabled": false,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "INTERVAL",
+                "interval_seconds": 7200,
+                "anchor_utc": "2030-01-01T00:00:00Z"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "reload_response": {
+          "envelope_version": 1,
+          "action": "GetBackupConfiguration",
+          "operation_id": "fictional-query-GetBackupConfiguration",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "CONFIGURED_DISABLED",
+              "enabled": false,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "INTERVAL",
+                "interval_seconds": 7200,
+                "anchor_utc": "2030-01-01T00:00:00Z"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            },
+            "counts": {
+              "daily_count": 30,
+              "monthly_count": 12
+            },
+            "provider_link_state": "LINKED",
+            "cleanup_mode": "NORMAL"
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "outcome_response": {
+          "envelope_version": 1,
+          "action": "GetOutcome",
+          "operation_id": "fictional-query-GetOutcome",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "original_response": {
+              "envelope_version": 1,
+              "action": "ConfigureSchedule",
+              "operation_id": "fictional-swapped-original",
+              "status": "PROTECTED",
+              "reason_code": "OK",
+              "retry_kind": "NONE",
+              "allowed_actions": [],
+              "result": {
+                "config_version": 5,
+                "stored_schedule": {
+                  "schema_version": 1,
+                  "state": "CONFIGURED_DISABLED",
+                  "enabled": false,
+                  "timezone": "America/Sao_Paulo",
+                  "schedule": {
+                    "frequency": "INTERVAL",
+                    "interval_seconds": 7200,
+                    "anchor_utc": "2030-01-01T00:00:00Z"
+                  },
+                  "dst_overlap": "SECOND",
+                  "dst_gap": "SKIP_AND_REPORT"
+                }
+              },
+              "result_version": 5,
+              "current_authority_head": {
+                "authority_id": "fictional-authority",
+                "incarnation": "fictional-incarnation",
+                "generation": 19
+              }
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "edit_request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-new-edit",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 5
+          },
+          "payload": {
+            "enabled": false,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "INTERVAL",
+              "interval_seconds": 7200,
+              "anchor_utc": "2030-01-01T00:00:00Z"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "oracle": "all accepted schedule fields preserved byte-for-typed-value; current config version used; no defaults"
+      }
+    },
+    {
+      "kind": "WRITE_ID_SWAPPED",
+      "fictitious": true,
+      "expected_structural_valid": true,
+      "expected_relational_valid": false,
+      "payload": {
+        "case": "INTERVAL/enabled",
+        "expected_valid": true,
+        "request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 4
+          },
+          "payload": {
+            "enabled": true,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "INTERVAL",
+              "interval_seconds": 7200,
+              "anchor_utc": "2030-01-01T00:00:00Z"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "write_response": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-swapped-write",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "ENABLED",
+              "enabled": true,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "INTERVAL",
+                "interval_seconds": 7200,
+                "anchor_utc": "2030-01-01T00:00:00Z"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "reload_response": {
+          "envelope_version": 1,
+          "action": "GetBackupConfiguration",
+          "operation_id": "fictional-query-GetBackupConfiguration",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "ENABLED",
+              "enabled": true,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "INTERVAL",
+                "interval_seconds": 7200,
+                "anchor_utc": "2030-01-01T00:00:00Z"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            },
+            "counts": {
+              "daily_count": 30,
+              "monthly_count": 12
+            },
+            "provider_link_state": "LINKED",
+            "cleanup_mode": "NORMAL"
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "outcome_response": {
+          "envelope_version": 1,
+          "action": "GetOutcome",
+          "operation_id": "fictional-query-GetOutcome",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "original_response": {
+              "envelope_version": 1,
+              "action": "ConfigureSchedule",
+              "operation_id": "fictional-op-13",
+              "status": "PROTECTED",
+              "reason_code": "OK",
+              "retry_kind": "NONE",
+              "allowed_actions": [],
+              "result": {
+                "config_version": 5,
+                "stored_schedule": {
+                  "schema_version": 1,
+                  "state": "ENABLED",
+                  "enabled": true,
+                  "timezone": "America/Sao_Paulo",
+                  "schedule": {
+                    "frequency": "INTERVAL",
+                    "interval_seconds": 7200,
+                    "anchor_utc": "2030-01-01T00:00:00Z"
+                  },
+                  "dst_overlap": "SECOND",
+                  "dst_gap": "SKIP_AND_REPORT"
+                }
+              },
+              "result_version": 5,
+              "current_authority_head": {
+                "authority_id": "fictional-authority",
+                "incarnation": "fictional-incarnation",
+                "generation": 19
+              }
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "edit_request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-new-edit",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 5
+          },
+          "payload": {
+            "enabled": true,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "INTERVAL",
+              "interval_seconds": 7200,
+              "anchor_utc": "2030-01-01T00:00:00Z"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "oracle": "all accepted schedule fields preserved byte-for-typed-value; current config version used; no defaults"
+      }
+    },
+    {
+      "kind": "ORIGINAL_ID_SWAPPED",
+      "fictitious": true,
+      "expected_structural_valid": true,
+      "expected_relational_valid": false,
+      "payload": {
+        "case": "INTERVAL/enabled",
+        "expected_valid": true,
+        "request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 4
+          },
+          "payload": {
+            "enabled": true,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "INTERVAL",
+              "interval_seconds": 7200,
+              "anchor_utc": "2030-01-01T00:00:00Z"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "write_response": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-op-13",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "ENABLED",
+              "enabled": true,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "INTERVAL",
+                "interval_seconds": 7200,
+                "anchor_utc": "2030-01-01T00:00:00Z"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "reload_response": {
+          "envelope_version": 1,
+          "action": "GetBackupConfiguration",
+          "operation_id": "fictional-query-GetBackupConfiguration",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "config_version": 5,
+            "stored_schedule": {
+              "schema_version": 1,
+              "state": "ENABLED",
+              "enabled": true,
+              "timezone": "America/Sao_Paulo",
+              "schedule": {
+                "frequency": "INTERVAL",
+                "interval_seconds": 7200,
+                "anchor_utc": "2030-01-01T00:00:00Z"
+              },
+              "dst_overlap": "SECOND",
+              "dst_gap": "SKIP_AND_REPORT"
+            },
+            "counts": {
+              "daily_count": 30,
+              "monthly_count": 12
+            },
+            "provider_link_state": "LINKED",
+            "cleanup_mode": "NORMAL"
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "outcome_response": {
+          "envelope_version": 1,
+          "action": "GetOutcome",
+          "operation_id": "fictional-query-GetOutcome",
+          "status": "PROTECTED",
+          "reason_code": "OK",
+          "retry_kind": "NONE",
+          "allowed_actions": [],
+          "result": {
+            "original_response": {
+              "envelope_version": 1,
+              "action": "ConfigureSchedule",
+              "operation_id": "fictional-swapped-original",
+              "status": "PROTECTED",
+              "reason_code": "OK",
+              "retry_kind": "NONE",
+              "allowed_actions": [],
+              "result": {
+                "config_version": 5,
+                "stored_schedule": {
+                  "schema_version": 1,
+                  "state": "ENABLED",
+                  "enabled": true,
+                  "timezone": "America/Sao_Paulo",
+                  "schedule": {
+                    "frequency": "INTERVAL",
+                    "interval_seconds": 7200,
+                    "anchor_utc": "2030-01-01T00:00:00Z"
+                  },
+                  "dst_overlap": "SECOND",
+                  "dst_gap": "SKIP_AND_REPORT"
+                }
+              },
+              "result_version": 5,
+              "current_authority_head": {
+                "authority_id": "fictional-authority",
+                "incarnation": "fictional-incarnation",
+                "generation": 19
+              }
+            }
+          },
+          "result_version": 5,
+          "current_authority_head": {
+            "authority_id": "fictional-authority",
+            "incarnation": "fictional-incarnation",
+            "generation": 19
+          }
+        },
+        "edit_request": {
+          "envelope_version": 1,
+          "action": "ConfigureSchedule",
+          "operation_id": "fictional-new-edit",
+          "target": {
+            "kind": "backup_config",
+            "id": "fictional-target",
+            "expected_version": 5
+          },
+          "payload": {
+            "enabled": true,
+            "timezone": "America/Sao_Paulo",
+            "schedule": {
+              "frequency": "INTERVAL",
+              "interval_seconds": 7200,
+              "anchor_utc": "2030-01-01T00:00:00Z"
+            },
+            "dst_overlap": "SECOND",
+            "dst_gap": "SKIP_AND_REPORT"
+          }
+        },
+        "oracle": "all accepted schedule fields preserved byte-for-typed-value; current config version used; no defaults"
+      }
+    }
+  ]
+}

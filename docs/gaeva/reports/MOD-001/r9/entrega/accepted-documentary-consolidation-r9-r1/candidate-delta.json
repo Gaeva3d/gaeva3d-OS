@@ -1,0 +1,102 @@
+[
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/README.md",
+    "r7_candidate_sha256": "39c73ff5a1cd872ec393fbec11b34ca046d74c8c797f6da5338c83e135550357",
+    "new_sha256": "a6a09d94db674029e01d6af5f77bebd121739d0cc5a737af7db760a48372c20a"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001.md",
+    "r7_candidate_sha256": "021579fe6812ebdd06550aa03ffbc12971bf5556dcc66eb0b57de27639f73ad4",
+    "new_sha256": "a90050a94af72beaab6c687187ed1d67b8f79601ee154f5398faecba9d07b8d7"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/action-changelog.md",
+    "r7_candidate_sha256": "bc4291b81cf800999332cdb366d1d6f51c90e9f8f061cdffdc216c4e52688a7c",
+    "new_sha256": "3cd6dbb68d2ff9177f258864addc5daa3ad6902ac70858bb4ee70734b9058906"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/contracts.md",
+    "r7_candidate_sha256": "f27e9736d9cf9903d26fc9883aaa19af73e6f080a01ce19c9bcaae8847b66d30",
+    "new_sha256": "18db8214bcb3daefa4ca3945f63155a44ab81c0d782b093de188931d4f1d418c"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/human-acceptance-r9.json",
+    "r7_candidate_sha256": null,
+    "new_sha256": "f09c1eb93622f41a25d8f571c900c928b6d32103c0a772465a8ad94e5c8ab2ed"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-plan.json",
+    "r7_candidate_sha256": "7b7d4bfbe876e20aad592f235296ebfd63b16ece718e877fba27484d0867b971",
+    "new_sha256": "bad0748210e8624ca7e69952ce35e71142911e4db027290ac2238d8d8dfea959"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-plan.md",
+    "r7_candidate_sha256": "de3903d4eae4d73d9dfab85dfbb8d9808dd36ee23978df538ddf89828d84132c",
+    "new_sha256": "1005333602d1ca4e06488af6e39f299b6e7565adaf4c84cc2c023505e8718eec"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-spec.md",
+    "r7_candidate_sha256": "f24b5fac80d9e2cfa15d9d696174f80d0aee308de3d0a2b42e376b5bf18a7b34",
+    "new_sha256": "fea8e3735e540068976459e9ab52f8fdba7213bd6cb8e17e409748cf80736e38"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/product-behavior-r9.md",
+    "r7_candidate_sha256": null,
+    "new_sha256": "04a643c15363c2724f819a440762254a3174715055239fbce8a96338a94b7249"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/reference-hashes.json",
+    "r7_candidate_sha256": "11f60b0fa87da44bd44768601d3b17eee2266c39d968223676947bd44f6d9c7a",
+    "new_sha256": "c53cd2af8e325fd72d57e39a484b1d821caa21e58b89c2f06a10853627e5a5d4"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/research-binding.json",
+    "r7_candidate_sha256": "73e4b6f2d45f2bbb892038dd37085f3755c7e06beb2368e1e5d410844df79a59",
+    "new_sha256": "7e6adedfc89fad6daaf94bb28ccb84c2671a241cafd3217f16bdc475f4e793b6"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-acceptance-r9.json",
+    "r7_candidate_sha256": null,
+    "new_sha256": "bfe0076d3350b5850bda766b8a4b8f6932b2a183f89f4e08a72d86a52d953408"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-action-bindings-r9.json",
+    "r7_candidate_sha256": null,
+    "new_sha256": "cf2bd896e7abe5a32e41ba00d60b19a50a744619b7c7cb454f180754ca839e28"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-failure-catalog.md",
+    "r7_candidate_sha256": null,
+    "new_sha256": "58870b6f96856651676656b0dc9cee16ccb915079117418a8dea751fbfdcc907"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/traceability.json",
+    "r7_candidate_sha256": "887acfeaed3e28d0b3ad89adeed609072d773a9062fc0856660754a2baed0614",
+    "new_sha256": "e007bb9c90d71f2f32e8bf2bf04f5444abf777cf5a38effe8a61f84c52028b5e"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/validation-plan.md",
+    "r7_candidate_sha256": "3607ccfa319cc52e3fe7aa66a0445dd149b87b649483ab2c5e8245f39a199557",
+    "new_sha256": "e0e34adf38e9c42c6380ee9a73aadb16c39e950bd2df29e40fa388c55643c430"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/phase-plan.md",
+    "r7_candidate_sha256": "13432d8a7af1a8196dc5dc3e3d5cc4c17b2b21c4f7e28b45194e86c77e3b00d1",
+    "new_sha256": "affd9b62b7f21dfd4a768868a9fa7ffe46f833212b57880872bbee7e97dc7094"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/task-registry.json",
+    "r7_candidate_sha256": "4deac1c372d93b3a2f89c7e37ef82a645369695d46050482bb326917ee66f228",
+    "new_sha256": "68d37afe40226dfde8ae163e552721d561e050661a33188c3a52f23f3743bede"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.json",
+    "r7_candidate_sha256": "930e9c41fc68676b371b1b3fb53af1bfcd96ac9b1f954f7708b91c0edef14415",
+    "new_sha256": "526251998527ab041df85093d0eb32243b6c88289d64b62415f192f448cdda51"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.md",
+    "r7_candidate_sha256": "f6c20b39d00cfa4533f52bcac7742b1424cdee9440c22a77e7ec591feef53e4e",
+    "new_sha256": "fa7d66455d4e2ca92a8b12ec1da524941bc65fd9fb01ec6ca1a40349bf26d146"
+  }
+]

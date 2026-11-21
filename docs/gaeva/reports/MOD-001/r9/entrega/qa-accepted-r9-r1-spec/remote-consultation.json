@@ -1,0 +1,40 @@
+{
+  "actor": "agent-13677c2e-fb09-41ac-b29b-2f30a6c7cbe7",
+  "transport": "web__run open/find; GitHub MCP issue_read",
+  "sources": [
+    {
+      "kind": "primary",
+      "source": "https://www.w3.org/TR/2026/WD-IndexedDB-3-20261030/",
+      "revision": "WD 2026-10-30",
+      "locator": "2.7, 2.7.1; 4.10",
+      "status": "VERIFIED",
+      "observation": "Transaction completion is the commit boundary; durability modes differ. Contract requires confirmed persistence, no mere put-success guarantee. Device behavior remains untested."
+    },
+    {
+      "kind": "primary",
+      "source": "https://storage.spec.whatwg.org/",
+      "revision": "Living Standard 2026-10-19",
+      "locator": "4.2; 5–7",
+      "status": "VERIFIED",
+      "observation": "Storage scope is origin, not ERP account. Quotas and clearing constrain recovery. Gaeva must provide account/company isolation and cannot promise recovery after clearing."
+    },
+    {
+      "kind": "primary",
+      "source": "https://www.w3.org/TR/2025/WD-webcrypto-2-20250422/",
+      "revision": "WD 2025-04-22",
+      "locator": "5.2; 6.1–6.2",
+      "status": "VERIFIED",
+      "observation": "API supplies cryptographic operations, not account authorization or guaranteed protected key storage. Custody and compromised-origin limitations remain contract/test obligations."
+    },
+    {
+      "kind": "guide",
+      "source": "https://raw.githubusercontent.com/MatthewKerns/software-development-best-practices-guide/efdec594ac403754baea2bb04952dd1d68da35c7/04-quality-through-testing/TEST_DESIGN_PATTERNS.md",
+      "revision": "efdec594ac403754baea2bb04952dd1d68da35c7",
+      "locator": "Test Fixture Setup; Parameterized Test; Isolation Patterns/Test Double; Assertion Patterns",
+      "status": "VERIFIED",
+      "observation": "Use independent fixtures and explicit assertions; local vectors cannot demonstrate external effects. Consultative guide only; no numerical target, new dependency or blanket parallelism adopted."
+    }
+  ],
+  "github_current": "github-current.json",
+  "failed_route": "Guide GitHub tree fetch returned restricted URL; raw same pinned README and selected chapter subsequently read. No repository vendoring."
+}

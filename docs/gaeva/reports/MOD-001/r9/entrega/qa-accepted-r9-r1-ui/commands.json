@@ -1,0 +1,56 @@
+[
+  {
+    "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify_saved.py",
+    "exit": 0,
+    "expected_exit": 0,
+    "result": "PASS",
+    "observation": "SAVED_FIXTURES_VALID 238 positive 238 negative; disk bytes only\n",
+    "stderr": "",
+    "scope": "documentary only; expected exit 1 is negative rejection"
+  },
+  {
+    "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify_relations.py",
+    "exit": 0,
+    "expected_exit": 0,
+    "result": "PASS",
+    "observation": "{\"saved_cases\": 18, \"positive_chains\": 8, \"relational_failures\": [], \"runtime_tested\": false}\n",
+    "stderr": "",
+    "scope": "documentary only; expected exit 1 is negative rejection"
+  },
+  {
+    "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify_relations.py --negative WRITE_ID_SWAPPED",
+    "exit": 1,
+    "expected_exit": 1,
+    "result": "PASS",
+    "observation": "{\"saved_cases\": 8, \"positive_chains\": 8, \"relational_failures\": [{\"index\": 0, \"case\": \"DAILY/disabled\", \"failures\": [\"mutation_id!=write_id\", \"original_response!=write_response\"]}, {\"index\": 1, \"case\": \"DAILY/enabled\", \"failures\": [\"mutation_id!=write_id\", \"original_response!=write_response\"]}, {\"index\": 2, \"case\": \"WEEKLY/disabled\", \"failures\": [\"mutation_id!=write_id\", \"original_response!=write_response\"]}, {\"index\": 3, \"case\": \"WEEKLY/enabled\", \"failures\": [\"mutation_id!=write_id\", \"original_response!=write_response\"]}, {\"index\": 4, \"case\": \"MONTHLY/disabled\", \"failures\": [\"mutation_id!=write_id\", \"original_response!=write_response\"]}, {\"index\": 5, \"case\": \"MONTHLY/enabled\", \"failures\": [\"mutation_id!=write_id\", \"original_response!=write_response\"]}, {\"index\": 6, \"case\": \"INTERVAL/disabled\", \"failures\": [\"mutation_id!=write_id\", \"original_response!=write_response\"]}, {\"index\": 7, \"case\": \"INTERVAL/enabled\", \"failures\": [\"mutation_id!=write_id\", \"original_response!=write_response\"]}], \"runtime_tested\": false}\n",
+    "stderr": "",
+    "scope": "documentary only; expected exit 1 is negative rejection"
+  },
+  {
+    "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify_relations.py --negative ORIGINAL_ID_SWAPPED",
+    "exit": 1,
+    "expected_exit": 1,
+    "result": "PASS",
+    "observation": "{\"saved_cases\": 8, \"positive_chains\": 8, \"relational_failures\": [{\"index\": 0, \"case\": \"DAILY/disabled\", \"failures\": [\"mutation_id!=outcome_original_id\", \"original_response!=write_response\"]}, {\"index\": 1, \"case\": \"DAILY/enabled\", \"failures\": [\"mutation_id!=outcome_original_id\", \"original_response!=write_response\"]}, {\"index\": 2, \"case\": \"WEEKLY/disabled\", \"failures\": [\"mutation_id!=outcome_original_id\", \"original_response!=write_response\"]}, {\"index\": 3, \"case\": \"WEEKLY/enabled\", \"failures\": [\"mutation_id!=outcome_original_id\", \"original_response!=write_response\"]}, {\"index\": 4, \"case\": \"MONTHLY/disabled\", \"failures\": [\"mutation_id!=outcome_original_id\", \"original_response!=write_response\"]}, {\"index\": 5, \"case\": \"MONTHLY/enabled\", \"failures\": [\"mutation_id!=outcome_original_id\", \"original_response!=write_response\"]}, {\"index\": 6, \"case\": \"INTERVAL/disabled\", \"failures\": [\"mutation_id!=outcome_original_id\", \"original_response!=write_response\"]}, {\"index\": 7, \"case\": \"INTERVAL/enabled\", \"failures\": [\"mutation_id!=outcome_original_id\", \"original_response!=write_response\"]}], \"runtime_tested\": false}\n",
+    "stderr": "",
+    "scope": "documentary only; expected exit 1 is negative rejection"
+  },
+  {
+    "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify.py --requests",
+    "exit": 0,
+    "expected_exit": 0,
+    "result": "PASS",
+    "observation": "REQUEST_SUBSET_OK 39 saved positives; 117 direct extra/null/missing negatives rejected; not full JSONSchema certification\n",
+    "stderr": "",
+    "scope": "documentary only; expected exit 1 is negative rejection"
+  },
+  {
+    "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify.py",
+    "exit": 0,
+    "expected_exit": 0,
+    "result": "PASS",
+    "observation": "{\"documentary_checks\": \"OK\", \"task_revision\": 9, \"task_and_view_byte_exact_r9\": true, \"requirements\": 31, \"rules\": 38, \"flows\": 22, \"original_scenarios\": 88, \"supplemental_vectors\": 18, \"typed_actions_unchanged\": 39, \"apply_proposals\": 45, \"original_preimage_guards\": 7, \"context_only\": 7, \"new_independent_QA\": \"PENDING\", \"runtime_tested\": false}\n",
+    "stderr": "",
+    "scope": "documentary only; expected exit 1 is negative rejection"
+  }
+]

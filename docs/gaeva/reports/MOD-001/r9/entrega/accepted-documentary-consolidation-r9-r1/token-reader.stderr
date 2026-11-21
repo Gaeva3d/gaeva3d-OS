@@ -1,0 +1,7 @@
+usage: token_usage.py [-h] [--task TASK] [--stage STAGE] [--attempt ATTEMPT]
+                      [--turn-id TURN_ID]
+                      [--compact-threshold-percent COMPACT_THRESHOLD_PERCENT]
+                      [--list-turns] [--quota] [--quota-reader QUOTA_READER]
+                      [--live]
+                      [events]
+token_usage.py: error: provide an events file or use --quota

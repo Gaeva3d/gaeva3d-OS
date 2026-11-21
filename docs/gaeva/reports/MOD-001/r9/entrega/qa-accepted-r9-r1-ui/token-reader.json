@@ -1,0 +1,7 @@
+{
+  "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\scripts\\token_usage.py --task GAEVA-MOD-001 --stage DOC-R9-QA-01",
+  "exit": 2,
+  "stdout": "",
+  "stderr": "usage: token_usage.py [-h] [--task TASK] [--stage STAGE] [--attempt ATTEMPT]\n                      [--turn-id TURN_ID]\n                      [--compact-threshold-percent COMPACT_THRESHOLD_PERCENT]\n                      [--list-turns] [--quota] [--quota-reader QUOTA_READER]\n                      [--live]\n                      [events]\ntoken_usage.py: error: provide an events file or use --quota\n",
+  "observation": "OpenBot counters unavailable; no raw Codex private session inspected. Not an OpenBot measurement."
+}

@@ -1,0 +1,17 @@
+--- /dev/null
++++ b/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/timezone-vectors.json
+@@ -0,0 +1,14 @@
++{
++  "document_only": true,
++  "node": "v24.22.3",
++  "icu": "78.3",
++  "tzdb": "2026e",
++  "valid_zone": "America/Sao_Paulo",
++  "invalid_zone_rejected": true,
++  "overlap_FIRST_SECOND": [
++    "2020-11-01T08:30:00.000Z",
++    "2020-11-01T09:30:00.000Z"
++  ],
++  "gap_no_instant": true,
++  "scheduler_tested": false
++}

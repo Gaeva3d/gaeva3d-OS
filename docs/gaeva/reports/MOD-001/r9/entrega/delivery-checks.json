@@ -1,0 +1,21 @@
+{
+  "status": "PASS_ASSEMBLY_ONLY",
+  "input_manifests_verified": 5,
+  "input_manifest_members_verified": 278,
+  "independent_review_count": 4,
+  "current_coverage_pass": true,
+  "zip_members": 288,
+  "zip_crc_and_exact_readback": true,
+  "source_no_drift": true,
+  "zip_sha256": "8ddcf729004102323f4bd8fd8631e18a9d8617fe44926b0eff2377faf354b300",
+  "zip_bytes": 1309214,
+  "product_or_runtime_tested": false,
+  "command": "python -B build_r9_delivery.py",
+  "exit_code": 0,
+  "previous_attempt": {
+    "folder": "delivery-accepted-r9-r1",
+    "exit_code": 1,
+    "reason": "Windows path length while copying unchanged artifacts",
+    "resolution": "New output r2 with Windows extended paths; partial r1 preserved"
+  }
+}

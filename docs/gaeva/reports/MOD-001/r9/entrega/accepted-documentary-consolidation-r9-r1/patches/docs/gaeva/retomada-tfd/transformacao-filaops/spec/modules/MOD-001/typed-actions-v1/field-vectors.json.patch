@@ -1,0 +1,75 @@
+--- /dev/null
++++ b/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/field-vectors.json
+@@ -0,0 +1,72 @@
++[
++  {
++    "action": "ConfigureSchedule",
++    "case": "positive DAILY",
++    "schema_accepted": true
++  },
++  {
++    "action": "ConfigureSchedule",
++    "case": "positive WEEKLY",
++    "schema_accepted": true
++  },
++  {
++    "action": "ConfigureSchedule",
++    "case": "positive MONTHLY",
++    "schema_accepted": true
++  },
++  {
++    "action": "ConfigureSchedule",
++    "case": "positive INTERVAL",
++    "schema_accepted": true
++  },
++  {
++    "action": "ConfigureSchedule",
++    "case": "negative {'frequency': 'DAILY', 'local_time': '24:00'}",
++    "schema_accepted": false
++  },
++  {
++    "action": "ConfigureSchedule",
++    "case": "negative {'frequency': 'WEEKLY', 'weekdays': [0], 'local_time': '03:00'}",
++    "schema_accepted": false
++  },
++  {
++    "action": "ConfigureSchedule",
++    "case": "negative {'frequency': 'MONTHLY', 'day_of_month': 32, 'local_time': '03:00', 'missing_day': 'SKIP_AND_REPORT'}",
++    "schema_accepted": false
++  },
++  {
++    "action": "ConfigureSchedule",
++    "case": "negative {'frequency': 'INTERVAL', 'interval_seconds': 0, 'anchor_utc': '2030-01-01T00:00:00Z'}",
++    "schema_accepted": false
++  },
++  {
++    "action": "ConfigureSchedule",
++    "case": "negative {'frequency': 'INTERVAL', 'interval_seconds': 3600, 'anchor_utc': '2030-02-30T00:00:00Z'}",
++    "schema_accepted": false
++  },
++  {
++    "action": "ConfigureSchedule",
++    "case": "overlap SECOND explicit",
++    "schema_accepted": true
++  },
++  {
++    "action": "ConfigureRetention",
++    "case": "zero daily rejected",
++    "schema_accepted": false
++  },
++  {
++    "action": "ConfigureRetention",
++    "case": "positive configurable1/1",
++    "schema_accepted": true
++  },
++  {
++    "action": "DelegateApproval",
++    "case": "valid optional expiry",
++    "schema_accepted": true
++  },
++  {
++    "action": "SetIndividualDeny",
++    "case": "typed field-level scope",
++    "schema_accepted": true
++  }
++]

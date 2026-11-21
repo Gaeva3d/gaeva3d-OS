@@ -1,0 +1,695 @@
+{
+  "task": "GAEVA-TRANSFORM-001",
+  "revision": "MT-A02 spec-finalization-r5",
+  "state": "DRAFT_REGISTRY_NOT_GATE_LEDGER",
+  "canonicals": [
+    {
+      "module_id": "MOD-001",
+      "title": "Fundacao",
+      "task_id": "GAEVA-MOD-001",
+      "contract_revision": 5,
+      "canonical_draft": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.json",
+      "human_view": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.md",
+      "module_spec": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001.md",
+      "maturity": "Recorte especificado para revisao; execucao condicionada aos stops e gates humanos.",
+      "entry_dependencies": [],
+      "product_requirements": [
+        "REQ-14"
+      ],
+      "proposed_phases": "F1-P1/P2/P3",
+      "scope": [
+        "DF01-03 origem S1 Gaeva3d/gaeva3d-OS@a32e81b13e6d1fe5a4008ceeea253aaec10461ff, sem overlay local adicional/contexto/locks/digest; DF04 guard antes de imports com tupla efetiva e identidade; DF05-07 migrador unico/roles, API sem DDL/download e recovery isolado."
+      ],
+      "stops": [
+        "Q02 fonte-imagem e Q04 restore funcional pendentes; sem isso nao declarar development-ready."
+      ],
+      "future_allowed_paths": [
+        "backend/scripts/**",
+        "backend/tests/**",
+        "backend/app/core/**",
+        "backend/app/main.py",
+        "backend/Dockerfile",
+        "frontend/Dockerfile",
+        "frontend/.dockerignore",
+        "backend/.dockerignore",
+        "docker-compose*.yml",
+        ".github/workflows/**",
+        "backend/requirements*.txt",
+        "C:/Users/teste/OpenBot/Shared/tfd-native-adaptation/gaeva-foundation-prospective-baseline-r1/**"
+      ],
+      "implementation_sectors": [
+        "devops",
+        "database",
+        "backend",
+        "observability"
+      ],
+      "implementation_authorized": false,
+      "previous_plan_task_id": "A_VINCULAR_MOD-001",
+      "plan_reconciliation": {
+        "current_path": "docs/planejamento/plano-de-execucao.json",
+        "field": "modules[id=MOD-001].task_id + prompt.contract_path",
+        "proposed_task_id": "GAEVA-MOD-001",
+        "proposed_contract_path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.json",
+        "applied": false
+      },
+      "human_view_status": "GENERATED_NATIVE_RENDERER",
+      "validation_mode": "normal"
+    },
+    {
+      "module_id": "MOD-002",
+      "title": "Plataforma",
+      "task_id": "GAEVA-MOD-002",
+      "contract_revision": 3,
+      "canonical_draft": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-002/task.json",
+      "human_view": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-002/task.md",
+      "module_spec": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-002.md",
+      "maturity": "Recorte especificado para revisao; execucao condicionada aos stops e gates humanos.",
+      "entry_dependencies": [
+        "MOD-001"
+      ],
+      "product_requirements": [
+        "REQ-01",
+        "REQ-06",
+        "REQ-07",
+        "REQ-10",
+        "REQ-11"
+      ],
+      "proposed_phases": "F2-P1/P2",
+      "scope": [
+        "Identidade tipada/mapa/RBAC por acao-registro-campo; ultimo Admin concorrente; arquivo privado/publicacao/auditoria; shell/contexto e preview modeless."
+      ],
+      "stops": [
+        "D06/D07: alcadas, retencao e convite dependem decisao do recorte."
+      ],
+      "future_allowed_paths": [
+        "backend/app/**",
+        "backend/tests/**",
+        "backend/alembic/**",
+        "frontend/src/**"
+      ],
+      "implementation_sectors": [
+        "database",
+        "backend",
+        "ui_ux",
+        "frontend",
+        "observability"
+      ],
+      "implementation_authorized": false,
+      "previous_plan_task_id": "A_VINCULAR_MOD-002",
+      "plan_reconciliation": {
+        "current_path": "docs/planejamento/plano-de-execucao.json",
+        "field": "modules[id=MOD-002].task_id + prompt.contract_path",
+        "proposed_task_id": "GAEVA-MOD-002",
+        "proposed_contract_path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-002/task.json",
+        "applied": false
+      },
+      "human_view_status": "GENERATED_NATIVE_RENDERER",
+      "validation_mode": "normal"
+    },
+    {
+      "module_id": "MOD-003",
+      "title": "Venda Pedido Producao",
+      "task_id": "GAEVA-MOD-003",
+      "contract_revision": 3,
+      "canonical_draft": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-003/task.json",
+      "human_view": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-003/task.md",
+      "module_spec": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-003.md",
+      "maturity": "Recorte especificado para revisao; execucao condicionada aos stops e gates humanos.",
+      "entry_dependencies": [
+        "MOD-002"
+      ],
+      "product_requirements": [
+        "REQ-01",
+        "REQ-02",
+        "REQ-03",
+        "REQ-08",
+        "REQ-09",
+        "REQ-15"
+      ],
+      "proposed_phases": "F3-P1/P2 e F5",
+      "scope": [
+        "Catalogo antes personalizacao; revisao aceita imutavel; publicacao vendedor;2D/proposta/recebimento elegivel;50% parcial;3D cliente E tecnico; material/capacidade/QC/foto final/saldo/postagem; OP filha sem nova venda."
+      ],
+      "stops": [
+        "D05 agregacao/inicio/tempos pendentes; contratos MOD008/011/009 antes dos gates reais."
+      ],
+      "future_allowed_paths": [
+        "backend/app/**",
+        "backend/tests/**",
+        "backend/alembic/**",
+        "frontend/src/**"
+      ],
+      "implementation_sectors": [
+        "database",
+        "backend",
+        "ui_ux",
+        "frontend",
+        "observability"
+      ],
+      "implementation_authorized": false,
+      "previous_plan_task_id": "A_VINCULAR_MOD-003",
+      "plan_reconciliation": {
+        "current_path": "docs/planejamento/plano-de-execucao.json",
+        "field": "modules[id=MOD-003].task_id + prompt.contract_path",
+        "proposed_task_id": "GAEVA-MOD-003",
+        "proposed_contract_path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-003/task.json",
+        "applied": false
+      },
+      "human_view_status": "GENERATED_NATIVE_RENDERER",
+      "validation_mode": "normal"
+    },
+    {
+      "module_id": "MOD-004",
+      "title": "Comercial",
+      "task_id": "GAEVA-MOD-004",
+      "contract_revision": 2,
+      "canonical_draft": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-004/task.json",
+      "human_view": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-004/task.md",
+      "module_spec": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-004.md",
+      "maturity": "Recorte especificado para revisao; execucao condicionada aos stops e gates humanos.",
+      "entry_dependencies": [
+        "MOD-002",
+        "MOD-003",
+        "MOD-006",
+        "MOD-008",
+        "MOD-011"
+      ],
+      "product_requirements": [
+        "REQ-01",
+        "REQ-03",
+        "REQ-04",
+        "REQ-05",
+        "REQ-06",
+        "REQ-07",
+        "REQ-11",
+        "REQ-12",
+        "REQ-13",
+        "REQ-15"
+      ],
+      "proposed_phases": "F4-P1/P2",
+      "scope": [
+        "ChatbotX base escolhida; fila/posse/bot fence/convite; C01r2; U01-06/U09; funil separado; preservar DEP01-13 e retirar entrada Mensagens gradualmente."
+      ],
+      "stops": [
+        "Q03/Q05 adapter/licenca/anexos e D01/02/03/04/06 por comando, sem mock em producao."
+      ],
+      "future_allowed_paths": [
+        "backend/app/**",
+        "backend/tests/**",
+        "backend/alembic/**",
+        "frontend/src/**"
+      ],
+      "implementation_sectors": [
+        "database",
+        "backend",
+        "ui_ux",
+        "frontend",
+        "observability"
+      ],
+      "implementation_authorized": false,
+      "previous_plan_task_id": "A_VINCULAR_MOD-004",
+      "plan_reconciliation": {
+        "current_path": "docs/planejamento/plano-de-execucao.json",
+        "field": "modules[id=MOD-004].task_id + prompt.contract_path",
+        "proposed_task_id": "GAEVA-MOD-004",
+        "proposed_contract_path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-004/task.json",
+        "applied": false
+      },
+      "human_view_status": "GENERATED_NATIVE_RENDERER",
+      "validation_mode": "normal"
+    },
+    {
+      "module_id": "MOD-005",
+      "title": "Acoes Comerciais",
+      "task_id": "GAEVA-MOD-005",
+      "contract_revision": 3,
+      "canonical_draft": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-005/task.json",
+      "human_view": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-005/task.md",
+      "module_spec": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-005.md",
+      "maturity": "ROADMAP: somente PRD/spec; nenhuma implementacao pronta.",
+      "entry_dependencies": [
+        "MOD-004"
+      ],
+      "product_requirements": [
+        "REQ-03",
+        "REQ-07",
+        "REQ-10"
+      ],
+      "proposed_phases": "F6-PREP",
+      "scope": [
+        "Preparar PRD/recorte de campanhas, atribuicao, origem dos fatos/coortes/metricas e opt-in sem CRM paralelo."
+      ],
+      "stops": [
+        "D08/PRD: nenhuma formula ou automacao de fornecedor presumida."
+      ],
+      "future_allowed_paths": [
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-005.md",
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-005/**"
+      ],
+      "implementation_sectors": [],
+      "implementation_authorized": false,
+      "previous_plan_task_id": "A_VINCULAR_MOD-005",
+      "plan_reconciliation": {
+        "current_path": "docs/planejamento/plano-de-execucao.json",
+        "field": "modules[id=MOD-005].task_id + prompt.contract_path",
+        "proposed_task_id": "GAEVA-MOD-005",
+        "proposed_contract_path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-005/task.json",
+        "applied": false
+      },
+      "human_view_status": "GENERATED_NATIVE_RENDERER",
+      "validation_mode": "normal"
+    },
+    {
+      "module_id": "MOD-006",
+      "title": "Canais",
+      "task_id": "GAEVA-MOD-006",
+      "contract_revision": 3,
+      "canonical_draft": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-006/task.json",
+      "human_view": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-006/task.md",
+      "module_spec": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-006.md",
+      "maturity": "Recorte especificado para revisao; execucao condicionada aos stops e gates humanos.",
+      "entry_dependencies": [
+        "MOD-002"
+      ],
+      "product_requirements": [
+        "REQ-04",
+        "REQ-05",
+        "REQ-07",
+        "REQ-11",
+        "REQ-12"
+      ],
+      "proposed_phases": "F3-P1 e F6",
+      "scope": [
+        "Adapter autentica webhook/conta; dedup externo e mapa tipado; envio com tentativa duravel/unknown; capacidade real de canal, sem habilitar voz/Calling/Flows por icone."
+      ],
+      "stops": [
+        "Q03/Q05 contrato/fixtures/artefato elegivel e capacidades do canal antes de integrar/enviar."
+      ],
+      "future_allowed_paths": [
+        "backend/app/**",
+        "backend/tests/**",
+        "backend/alembic/**"
+      ],
+      "implementation_sectors": [
+        "database",
+        "backend",
+        "observability"
+      ],
+      "implementation_authorized": false,
+      "previous_plan_task_id": "A_VINCULAR_MOD-006",
+      "plan_reconciliation": {
+        "current_path": "docs/planejamento/plano-de-execucao.json",
+        "field": "modules[id=MOD-006].task_id + prompt.contract_path",
+        "proposed_task_id": "GAEVA-MOD-006",
+        "proposed_contract_path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-006/task.json",
+        "applied": false
+      },
+      "human_view_status": "GENERATED_NATIVE_RENDERER",
+      "validation_mode": "normal"
+    },
+    {
+      "module_id": "MOD-007",
+      "title": "Fiscal",
+      "task_id": "GAEVA-MOD-007",
+      "contract_revision": 3,
+      "canonical_draft": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-007/task.json",
+      "human_view": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-007/task.md",
+      "module_spec": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-007.md",
+      "maturity": "ROADMAP: somente PRD/spec; nenhuma implementacao pronta.",
+      "entry_dependencies": [
+        "MOD-003",
+        "MOD-008"
+      ],
+      "product_requirements": [
+        "REQ-07",
+        "REQ-09"
+      ],
+      "proposed_phases": "F6-PREP",
+      "scope": [
+        "Preparar matriz de operacao/enquadramento/documento e contrato fiscal para expedicao; Invoice nao e NF-e/NFS-e."
+      ],
+      "stops": [
+        "PRD/responsavel fiscal/aplicabilidade/contrato ainda ausentes; sem emissao pronta."
+      ],
+      "future_allowed_paths": [
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-007.md",
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-007/**"
+      ],
+      "implementation_sectors": [],
+      "implementation_authorized": false,
+      "previous_plan_task_id": "A_VINCULAR_MOD-007",
+      "plan_reconciliation": {
+        "current_path": "docs/planejamento/plano-de-execucao.json",
+        "field": "modules[id=MOD-007].task_id + prompt.contract_path",
+        "proposed_task_id": "GAEVA-MOD-007",
+        "proposed_contract_path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-007/task.json",
+        "applied": false
+      },
+      "human_view_status": "GENERATED_NATIVE_RENDERER",
+      "validation_mode": "normal"
+    },
+    {
+      "module_id": "MOD-008",
+      "title": "Financeiro",
+      "task_id": "GAEVA-MOD-008",
+      "contract_revision": 3,
+      "canonical_draft": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-008/task.json",
+      "human_view": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-008/task.md",
+      "module_spec": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-008.md",
+      "maturity": "Recorte especificado para revisao; execucao condicionada aos stops e gates humanos.",
+      "entry_dependencies": [
+        "MOD-002"
+      ],
+      "product_requirements": [
+        "REQ-08",
+        "REQ-09"
+      ],
+      "proposed_phases": "F3-P1/P2 e F6",
+      "scope": [
+        "Payment/ledger e vinculo proposta sem pedido artificial; confirmacao idempotente por provider/conta/transacao/evento; Decimal/moeda; entrada50% e saldo/gates; estorno proprio."
+      ],
+      "stops": [
+        "PSP/captura/fixture e migration proposta/pedido nao comprovados; D06/D07 por recorte."
+      ],
+      "future_allowed_paths": [
+        "backend/app/**",
+        "backend/tests/**",
+        "backend/alembic/**",
+        "frontend/src/**"
+      ],
+      "implementation_sectors": [
+        "database",
+        "backend",
+        "ui_ux",
+        "frontend",
+        "observability"
+      ],
+      "implementation_authorized": false,
+      "previous_plan_task_id": "A_VINCULAR_MOD-008",
+      "plan_reconciliation": {
+        "current_path": "docs/planejamento/plano-de-execucao.json",
+        "field": "modules[id=MOD-008].task_id + prompt.contract_path",
+        "proposed_task_id": "GAEVA-MOD-008",
+        "proposed_contract_path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-008/task.json",
+        "applied": false
+      },
+      "human_view_status": "GENERATED_NATIVE_RENDERER",
+      "validation_mode": "normal"
+    },
+    {
+      "module_id": "MOD-009",
+      "title": "Estoque Compras",
+      "task_id": "GAEVA-MOD-009",
+      "contract_revision": 3,
+      "canonical_draft": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-009/task.json",
+      "human_view": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-009/task.md",
+      "module_spec": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-009.md",
+      "maturity": "Recorte especificado para revisao; execucao condicionada aos stops e gates humanos.",
+      "entry_dependencies": [
+        "MOD-002"
+      ],
+      "product_requirements": [
+        "REQ-02",
+        "REQ-09",
+        "REQ-15",
+        "REQ-16"
+      ],
+      "proposed_phases": "F3-CONTRATO e F5",
+      "scope": [
+        "Reusar inventory/BOM/routing/recursos/OP/UOM; material/capacidade e print table sao projecoes; ampliacao MRP/perdas/custos sem formula inventada."
+      ],
+      "stops": [
+        "D05 dispatch/ordenacao/agregacao pendentes; custo/unidade legado nao converter silenciosamente."
+      ],
+      "future_allowed_paths": [
+        "backend/app/**",
+        "backend/tests/**",
+        "backend/alembic/**",
+        "frontend/src/**"
+      ],
+      "implementation_sectors": [
+        "database",
+        "backend",
+        "ui_ux",
+        "frontend",
+        "observability"
+      ],
+      "implementation_authorized": false,
+      "previous_plan_task_id": "A_VINCULAR_MOD-009",
+      "plan_reconciliation": {
+        "current_path": "docs/planejamento/plano-de-execucao.json",
+        "field": "modules[id=MOD-009].task_id + prompt.contract_path",
+        "proposed_task_id": "GAEVA-MOD-009",
+        "proposed_contract_path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-009/task.json",
+        "applied": false
+      },
+      "human_view_status": "GENERATED_NATIVE_RENDERER",
+      "validation_mode": "normal"
+    },
+    {
+      "module_id": "MOD-010",
+      "title": "Folha",
+      "task_id": "GAEVA-MOD-010",
+      "contract_revision": 3,
+      "canonical_draft": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-010/task.json",
+      "human_view": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-010/task.md",
+      "module_spec": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-010.md",
+      "maturity": "ROADMAP: somente PRD/spec; nenhuma implementacao pronta.",
+      "entry_dependencies": [],
+      "product_requirements": [
+        "REQ-07",
+        "REQ-10"
+      ],
+      "proposed_phases": "F6-PREP",
+      "scope": [
+        "Preparar PRD/cobertura/aplicabilidade/prioridade de Folha; sem inferir funcionalidades, formulas legais ou uso de dados reais."
+      ],
+      "stops": [
+        "PRD/fonte normativa/responsavel e autorizacao do recorte ausentes."
+      ],
+      "future_allowed_paths": [
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-010.md",
+        "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-010/**"
+      ],
+      "implementation_sectors": [],
+      "implementation_authorized": false,
+      "previous_plan_task_id": "A_VINCULAR_MOD-010",
+      "plan_reconciliation": {
+        "current_path": "docs/planejamento/plano-de-execucao.json",
+        "field": "modules[id=MOD-010].task_id + prompt.contract_path",
+        "proposed_task_id": "GAEVA-MOD-010",
+        "proposed_contract_path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-010/task.json",
+        "applied": false
+      },
+      "human_view_status": "GENERATED_NATIVE_RENDERER",
+      "validation_mode": "normal"
+    },
+    {
+      "module_id": "MOD-011",
+      "title": "Portal",
+      "task_id": "GAEVA-MOD-011",
+      "contract_revision": 3,
+      "canonical_draft": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-011/task.json",
+      "human_view": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-011/task.md",
+      "module_spec": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-011.md",
+      "maturity": "Recorte especificado para revisao; execucao condicionada aos stops e gates humanos.",
+      "entry_dependencies": [
+        "MOD-002"
+      ],
+      "product_requirements": [
+        "REQ-01",
+        "REQ-02",
+        "REQ-06",
+        "REQ-07",
+        "REQ-08",
+        "REQ-09"
+      ],
+      "proposed_phases": "F3-P1/P2 e F5",
+      "scope": [
+        "Cadastro nao concede conta; convite portal uso unico/identidade confirmado distinto colaboracao; mesmos registros publicados; aceites2D/3D/foto por revisao e arquivo autorizado."
+      ],
+      "stops": [
+        "Q05/D07 mecanismo/TTL/handler PRO/anexos nao comprovados; silencio nao aceita."
+      ],
+      "future_allowed_paths": [
+        "backend/app/**",
+        "backend/tests/**",
+        "backend/alembic/**",
+        "frontend/src/**"
+      ],
+      "implementation_sectors": [
+        "database",
+        "backend",
+        "ui_ux",
+        "frontend",
+        "observability"
+      ],
+      "implementation_authorized": false,
+      "previous_plan_task_id": "A_VINCULAR_MOD-011",
+      "plan_reconciliation": {
+        "current_path": "docs/planejamento/plano-de-execucao.json",
+        "field": "modules[id=MOD-011].task_id + prompt.contract_path",
+        "proposed_task_id": "GAEVA-MOD-011",
+        "proposed_contract_path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-011/task.json",
+        "applied": false
+      },
+      "human_view_status": "GENERATED_NATIVE_RENDERER",
+      "validation_mode": "normal"
+    }
+  ],
+  "historical_tasks": [
+    {
+      "task_id": "TASK-GUIDE-BENTO-001",
+      "path": "docs/execution/TASK-GUIDE-BENTO-001.json",
+      "mirror": "docs/tasks/TASK-GUIDE-BENTO-001.md",
+      "relation": "historical UI/shell/guide, retained; not full module canonical",
+      "specs": [
+        "docs/specs/guia-editable-bento/module-spec.md"
+      ]
+    },
+    {
+      "task_id": "TASK-GUIDE-CATALOGUE-001",
+      "path": "docs/execution/TASK-GUIDE-CATALOGUE-001.json",
+      "mirror": "docs/tasks/TASK-GUIDE-CATALOGUE-001.md",
+      "relation": "historical UI/shell/guide, retained; not full module canonical",
+      "specs": [
+        "docs/specs/guia-product-catalogue/module-spec.md"
+      ]
+    },
+    {
+      "task_id": "TASK-GUIDE-CHAT-001",
+      "path": "docs/execution/TASK-GUIDE-CHAT-001.json",
+      "mirror": "docs/tasks/TASK-GUIDE-CHAT-001-atendimento-responsivo-guia.md",
+      "relation": "historical UI/shell/guide, retained; not full module canonical",
+      "specs": [
+        "docs/specs/guia-atendimento/module-spec.md"
+      ]
+    },
+    {
+      "task_id": "TASK-GUIDE-HISTORY-001",
+      "path": "docs/execution/TASK-GUIDE-HISTORY-001.json",
+      "mirror": "docs/tasks/TASK-GUIDE-HISTORY-001.md",
+      "relation": "historical UI/shell/guide, retained; not full module canonical",
+      "specs": [
+        "docs/specs/guia-history-disclosure/module-spec.md"
+      ]
+    },
+    {
+      "task_id": "TASK-GUIDE-MOTION-001",
+      "path": "docs/execution/TASK-GUIDE-MOTION-001.json",
+      "mirror": "docs/tasks/TASK-GUIDE-MOTION-001.md",
+      "relation": "historical UI/shell/guide, retained; not full module canonical",
+      "specs": [
+        "docs/specs/guia-overlay-motion/module-spec.md"
+      ]
+    },
+    {
+      "task_id": "TASK-GUIDE-PRINTER-001",
+      "path": "docs/execution/TASK-GUIDE-PRINTER-001.json",
+      "mirror": "docs/tasks/TASK-GUIDE-PRINTER-001.md",
+      "relation": "historical UI/shell/guide, retained; not full module canonical",
+      "specs": [
+        "docs/specs/guia-printer-loading/module-spec.md"
+      ]
+    },
+    {
+      "task_id": "TASK-GUIDE-REF-001",
+      "path": "docs/execution/TASK-GUIDE-REF-001.json",
+      "mirror": "docs/tasks/TASK-GUIDE-REF-001-copiar-referencia-guia.md",
+      "relation": "historical UI/shell/guide, retained; not full module canonical",
+      "specs": [
+        "docs/specs/guia-copiar-referencia/module-spec.md"
+      ]
+    },
+    {
+      "task_id": "TASK-MVP-NAV-001",
+      "path": "docs/execution/TASK-MVP-NAV-001.json",
+      "mirror": "docs/tasks/TASK-MVP-NAV-001.md",
+      "relation": "historical UI/shell/guide, retained; not full module canonical",
+      "specs": [
+        "docs/specs/prototipo-mvp/navigation.md"
+      ]
+    },
+    {
+      "task_id": "TASK-PANEL-401-001",
+      "path": "docs/execution/TASK-PANEL-401-001.json",
+      "mirror": "docs/tasks/TASK-PANEL-401-001-painel-http401.md",
+      "relation": "historical UI/shell/guide, retained; not full module canonical",
+      "specs": [
+        "docs/specs/painel-http401/module-spec.md"
+      ]
+    },
+    {
+      "task_id": "TASK-UI-SHELL-001",
+      "path": "docs/execution/TASK-UI-SHELL-001.json",
+      "mirror": "docs/tasks/TASK-UI-SHELL-001-layout-principal.md",
+      "relation": "historical UI/shell/guide, retained; not full module canonical",
+      "specs": [
+        "docs/specs/layout-principal/module-spec.md"
+      ]
+    }
+  ],
+  "reconciliation": "A_VINCULAR do plano e placeholder historico, nao segunda Task ativa de modulo. Registro e cada canonical_draft indicam unica proposta por modulo. Patch exato de task_id/contract_path proposto por item, nao aplicado por ausencia de check/gerador de mapeamento historico confirmado. Historico nao apagado/substituido.",
+  "tooling_status": "RESOLVED_BY_USER_INSTRUCTION: canonical native schema and generic example; library v2 is a separate workflow. No tooling/library code edited.",
+  "phase_dependencies": [
+    {
+      "phase": "MOD-001:F1",
+      "requires": []
+    },
+    {
+      "phase": "MOD-002:F2",
+      "requires": [
+        "MOD-001:F1"
+      ]
+    },
+    {
+      "phase": "MOD-008:F3-CONTRACT",
+      "requires": [
+        "MOD-002:F2"
+      ]
+    },
+    {
+      "phase": "MOD-011:F3-CONTRACT",
+      "requires": [
+        "MOD-002:F2"
+      ]
+    },
+    {
+      "phase": "MOD-006:F3-CONTRACT",
+      "requires": [
+        "MOD-002:F2"
+      ]
+    },
+    {
+      "phase": "MOD-009:F3-CONTRACT",
+      "requires": [
+        "MOD-002:F2"
+      ]
+    },
+    {
+      "phase": "MOD-003:F3",
+      "requires": [
+        "MOD-002:F2",
+        "MOD-008:F3-CONTRACT",
+        "MOD-011:F3-CONTRACT",
+        "MOD-009:F3-CONTRACT"
+      ]
+    },
+    {
+      "phase": "MOD-004:F4",
+      "requires": [
+        "MOD-003:F3",
+        "MOD-006:F3-CONTRACT",
+        "MOD-008:F3-CONTRACT",
+        "MOD-011:F3-CONTRACT"
+      ]
+    },
+    {
+      "phase": "MOD-003:F5",
+      "requires": [
+        "MOD-004:F4",
+        "MOD-009:F3-CONTRACT"
+      ]
+    }
+  ]
+}

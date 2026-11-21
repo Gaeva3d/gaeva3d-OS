@@ -1,0 +1,10 @@
+{
+  "method": "graphify",
+  "query": "architecture phase specification task revision governance stage loop coverage",
+  "status": "GRAPHIFY",
+  "command": "\"C:/Users/teste/Documents/deepseek-harness/default-workspace/.venv-tfd/Scripts/python.exe\" -B \"C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\scripts\\graphify.py\" query \"architecture phase specification task revision governance stage loop coverage\" --bundle \"C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\" --config \"C:/Users/teste/.codex/tfd-graphify.json\" --index \"C:/Users/teste/.codex/tfd-graphify/index.json\"",
+  "exit": 0,
+  "evidence": "graphify.stdout",
+  "sha256": "25b1e34b751d9fc001a1fca515b7594dcdb8c97c6c495656befbc89fd0c791ed",
+  "observation": "Canonical pointers only, mandatory sources actually read separately; no rebuild"
+}

@@ -1,0 +1,45 @@
+[
+  {
+    "name": "input_integrity_before",
+    "result": {
+      "members": 157,
+      "upstream_no_drift": true
+    }
+  },
+  {
+    "name": "supplemental_bindings",
+    "vectors": 18,
+    "codes": [
+      1101,
+      1102,
+      1103,
+      1104,
+      1105,
+      1106
+    ],
+    "runtime_tested": false
+  },
+  {
+    "name": "action_policy",
+    "actions": 39,
+    "kinds": {
+      "EXPLICIT_SAVE_IF_FORM_MAPPED": 22,
+      "QUERY_NOT_SAVE": 15,
+      "INTERNAL_NOT_UI_SAVE": 2
+    }
+  },
+  {
+    "name": "independent_saved_relations",
+    "chains": 8,
+    "single_id_swap_negatives": 16,
+    "preserved_typed_files": 13,
+    "runtime_tested": false
+  },
+  {
+    "name": "input_integrity_after",
+    "result": {
+      "members": 157,
+      "upstream_no_drift": true
+    }
+  }
+]

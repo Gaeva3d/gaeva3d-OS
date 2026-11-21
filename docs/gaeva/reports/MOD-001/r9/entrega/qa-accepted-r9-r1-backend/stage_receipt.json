@@ -1,0 +1,327 @@
+{
+  "version": 1,
+  "actor": "agent-d25ca98a-0e3f-47f1-8d1e-712fc437fba3",
+  "role": "qa_backend",
+  "task_id": "GAEVA-MOD-001",
+  "gate": "UNKNOWN",
+  "phase": null,
+  "revision": 9,
+  "microtask": "DOC-R9-QA-01",
+  "packet_revision": "accepted-documentary-consolidation-r9-r1",
+  "correlation": "ddd80af6-c02a-4ef0-b946-2d6cd3509ae8",
+  "input_manifest_sha256": "e89c43ed3af0feece37fcfbba6688d3668798988d46649568b9d03b8cc7ebfaf",
+  "artifacts": {
+    "task": {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.json",
+      "sha256": "526251998527ab041df85093d0eb32243b6c88289d64b62415f192f448cdda51"
+    },
+    "view": {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.md",
+      "sha256": "fa7d66455d4e2ca92a8b12ec1da524941bc65fd9fb01ec6ca1a40349bf26d146"
+    },
+    "spec": {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-spec.md",
+      "sha256": "fea8e3735e540068976459e9ab52f8fdba7213bd6cb8e17e409748cf80736e38"
+    },
+    "catalog": {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/action-catalog.json",
+      "sha256": "f6a579ad9e57016a5d35ae327042d8370e06aec448bf7dc4d05ecc10f3c3814e"
+    },
+    "errors": {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-failure-catalog.md",
+      "sha256": "58870b6f96856651676656b0dc9cee16ccb915079117418a8dea751fbfdcc907"
+    },
+    "acceptance": {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-acceptance-r9.json",
+      "sha256": "bfe0076d3350b5850bda766b8a4b8f6932b2a183f89f4e08a72d86a52d953408"
+    },
+    "patch": {
+      "path": "combined.patch",
+      "sha256": "c4a73ecae5db6f0ec346f0100148f61e111bb1ca07fe20f4f94e12084a12792d"
+    },
+    "source_map": {
+      "path": "source-map.json",
+      "sha256": "454bffd29e6f923eb2708d7c2aa2b8e426ce851e6a0d2317033194f4a6c06351"
+    },
+    "allowlist": {
+      "path": "changed-paths.json",
+      "sha256": "4f2bfb564936b78146301d85ec6e2cfba7794c449d41f6a26a003a2aae634f25"
+    },
+    "consultation": {
+      "path": "consultation.json",
+      "sha256": "6fce60efd6dd6c656fc788b04378bb57aebc07976cd5d2d182b4399f75823ae9"
+    }
+  },
+  "knowledge": {
+    "navigation": {
+      "method": "graphify",
+      "query": "qa_backend documentary review persistence idempotency recovery queue stage loop consultation",
+      "evidence": "navigation.json",
+      "sha256": "ec188befb8f14e146b52f6fa22f55123f172ec6866a5bab2f88646e8c9d03b53",
+      "status": "GRAPHIFY"
+    },
+    "sources": [
+      {
+        "kind": "host",
+        "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-qa_backend\\SKILL.md",
+        "sha256": "c28d1a2a6f691626b94d7210b07dc84d55ea7650674a216b128a59634cf0758c",
+        "revision": "actual bytes read during DOC-R9-QA-01",
+        "locator": "full file",
+        "observation": "Independent exact revision review; no author repairs",
+        "status": "VERIFIED"
+      },
+      {
+        "kind": "host",
+        "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\router.md",
+        "sha256": "18cf2d300b5a8e3e642ad830efe8b0c0acaa44bd3076bba56a20ca3554cfc1d4",
+        "revision": "actual bytes read during DOC-R9-QA-01",
+        "locator": "full file",
+        "observation": "Native routing, readonly scope and metering",
+        "status": "VERIFIED"
+      },
+      {
+        "kind": "bundle",
+        "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\skills\\TFD-harness\\references\\stage-loop.md",
+        "sha256": "7a585a68f914eecccfd941b1d34552d80a290be36a9b08360970e48a07e27485",
+        "revision": "actual bytes read during DOC-R9-QA-01",
+        "locator": "full file",
+        "observation": "Own consultation, immutable actor/revision receipts",
+        "status": "VERIFIED"
+      },
+      {
+        "kind": "bundle",
+        "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\docs\\stage-loop.md",
+        "sha256": "4bb5fdaf95b9699ba8457b80ae0c4406f61cf290f8895baffcc556d718d56206",
+        "revision": "actual bytes read during DOC-R9-QA-01",
+        "locator": "full file",
+        "observation": "Receipt contract; no pipeline event fabricated",
+        "status": "VERIFIED"
+      },
+      {
+        "kind": "bundle",
+        "path": "C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\library\\architecture\\technical-decision-procedure.md",
+        "sha256": "2e6cf7a4974f955d1ecd07520a5da4ca5318422bee10f979202f4e133e4e360d",
+        "revision": "actual bytes read during DOC-R9-QA-01",
+        "locator": "full file",
+        "observation": "Primary sources and explicit limits",
+        "status": "VERIFIED"
+      },
+      {
+        "kind": "project",
+        "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\internal-governance.md",
+        "sha256": "4cd8a46bcf828be9b47e3f8fb77d12b7c502cd6312d02936f5d8cfc202372371",
+        "revision": "actual bytes read during DOC-R9-QA-01",
+        "locator": "full file",
+        "observation": "Authorship and boundaries",
+        "status": "VERIFIED"
+      },
+      {
+        "kind": "project",
+        "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\review-input.json",
+        "sha256": "e1ca7d28e10801fde590975765502fbb8d646d2648c1330fc06dd80968840961",
+        "revision": "actual bytes read during DOC-R9-QA-01",
+        "locator": "full file",
+        "observation": "Exact current tuple",
+        "status": "VERIFIED"
+      },
+      {
+        "kind": "project",
+        "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\human-source-comments.json",
+        "sha256": "a7a221dce4a82eebebf34d108db7351c397b5ac94b600ee30b58e05c79277813",
+        "revision": "actual bytes read during DOC-R9-QA-01",
+        "locator": "comments 7026601969 and 7027205182",
+        "observation": "Local sealed exact bodies; remote identity not reauthenticated",
+        "status": "VERIFIED"
+      },
+      {
+        "kind": "project",
+        "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\phase-spec.md",
+        "sha256": "fea8e3735e540068976459e9ab52f8fdba7213bd6cb8e17e409748cf80736e38",
+        "revision": "contract_revision9 / preserved typed origin",
+        "locator": "P4/P6 and current bindings",
+        "observation": "Current documentary semantic review and independent byte checks, see report.md",
+        "status": "VERIFIED"
+      },
+      {
+        "kind": "project",
+        "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\contracts.md",
+        "sha256": "18db8214bcb3daefa4ca3945f63155a44ab81c0d782b093de188931d4f1d418c",
+        "revision": "contract_revision9 / preserved typed origin",
+        "locator": "C1/C2/C3/C5/C6/C7 and human addendum",
+        "observation": "Current documentary semantic review and independent byte checks, see report.md",
+        "status": "VERIFIED"
+      },
+      {
+        "kind": "project",
+        "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\authority-protocol.md",
+        "sha256": "753a8778ca86eff2969352f2d3423654deb4968e5fcc92817aa6c69477c9c401",
+        "revision": "contract_revision9 / preserved typed origin",
+        "locator": "AP1/AP2/AP3/AP4/AP5",
+        "observation": "Current documentary semantic review and independent byte checks, see report.md",
+        "status": "VERIFIED"
+      },
+      {
+        "kind": "project",
+        "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\retention-protocol.md",
+        "sha256": "ccce06cd8b9f1012212cb25aed01ae10ac0a9a47985759db854aed5b39baf8a3",
+        "revision": "contract_revision9 / preserved typed origin",
+        "locator": "RP1–RP4",
+        "observation": "Current documentary semantic review and independent byte checks, see report.md",
+        "status": "VERIFIED"
+      },
+      {
+        "kind": "project",
+        "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\save-failure-catalog.md",
+        "sha256": "58870b6f96856651676656b0dc9cee16ccb915079117418a8dea751fbfdcc907",
+        "revision": "contract_revision9 / preserved typed origin",
+        "locator": "all rows and precedence",
+        "observation": "Current documentary semantic review and independent byte checks, see report.md",
+        "status": "VERIFIED"
+      },
+      {
+        "kind": "project",
+        "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\product-behavior-r9.md",
+        "sha256": "04a643c15363c2724f819a440762254a3174715055239fbce8a96338a94b7249",
+        "revision": "contract_revision9 / preserved typed origin",
+        "locator": "full file",
+        "observation": "Current documentary semantic review and independent byte checks, see report.md",
+        "status": "VERIFIED"
+      },
+      {
+        "kind": "project",
+        "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\save-action-bindings-r9.json",
+        "sha256": "cf2bd896e7abe5a32e41ba00d60b19a50a744619b7c7cb454f180754ca839e28",
+        "revision": "contract_revision9 / preserved typed origin",
+        "locator": "all 39 metadata entries",
+        "observation": "Current documentary semantic review and independent byte checks, see report.md",
+        "status": "VERIFIED"
+      },
+      {
+        "kind": "project",
+        "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\save-acceptance-r9.json",
+        "sha256": "bfe0076d3350b5850bda766b8a4b8f6932b2a183f89f4e08a72d86a52d953408",
+        "revision": "contract_revision9 / preserved typed origin",
+        "locator": "all 18 planned vectors",
+        "observation": "Current documentary semantic review and independent byte checks, see report.md",
+        "status": "VERIFIED"
+      },
+      {
+        "kind": "project",
+        "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\typed-actions-v1\\action-contracts.md",
+        "sha256": "1a2f72ba03e82c505f1a8d79aed90cb330ca2f1d7817438036a3e65de93f7027",
+        "revision": "contract_revision9 / preserved typed origin",
+        "locator": "ACAT1–4/8/9",
+        "observation": "Current documentary semantic review and independent byte checks, see report.md",
+        "status": "VERIFIED"
+      },
+      {
+        "kind": "project",
+        "path": "C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\typed-actions-v1\\action-catalog.json",
+        "sha256": "f6a579ad9e57016a5d35ae327042d8370e06aec448bf7dc4d05ecc10f3c3814e",
+        "revision": "contract_revision9 / preserved typed origin",
+        "locator": "all saved schemas evaluated; normatively preserved",
+        "observation": "Current documentary semantic review and independent byte checks, see report.md",
+        "status": "VERIFIED"
+      },
+      {
+        "origin": "https://www.w3.org/TR/IndexedDB-3/",
+        "revision": "W3C WD 2026-10-30",
+        "locator": "2.7 transaction lifecycle/durability",
+        "observation": "Atomic transaction boundary; strict/relaxed/default are durability hints; not universal loss-proof storage.",
+        "kind": "remote",
+        "path": "primary-consultation.json",
+        "sha256": "38cfecf3fcf98cc8e2030262aa3fed28eecc3bb7e91b8d62b6610f7924d81adf",
+        "status": "VERIFIED"
+      },
+      {
+        "origin": "https://storage.spec.whatwg.org/",
+        "revision": "Living Standard 2026-10-19",
+        "locator": "5, 7.1, 7.2",
+        "observation": "Persistence and clearing policies; explicit user removal still possible.",
+        "kind": "remote",
+        "path": "primary-consultation.json",
+        "sha256": "38cfecf3fcf98cc8e2030262aa3fed28eecc3bb7e91b8d62b6610f7924d81adf",
+        "status": "VERIFIED"
+      },
+      {
+        "origin": "https://www.w3.org/TR/webcrypto/",
+        "revision": "W3C FPWD 2025-04-22",
+        "locator": "4.3, 5.2",
+        "observation": "Crypto primitives do not independently establish ERP account authorization or key provisioning.",
+        "kind": "remote",
+        "path": "primary-consultation.json",
+        "sha256": "38cfecf3fcf98cc8e2030262aa3fed28eecc3bb7e91b8d62b6610f7924d81adf",
+        "status": "VERIFIED"
+      },
+      {
+        "origin": "https://json-schema.org/draft/2020-12/json-schema-validation",
+        "revision": "2020-12 / published 2022-06-16",
+        "locator": "6.1, 6.5, 7",
+        "observation": "Typed structural validation and optional format behavior; local subset is not complete dialect certification.",
+        "kind": "remote",
+        "path": "primary-consultation.json",
+        "sha256": "38cfecf3fcf98cc8e2030262aa3fed28eecc3bb7e91b8d62b6610f7924d81adf",
+        "status": "VERIFIED"
+      }
+    ]
+  },
+  "findings_sha256": "32bb39a85910e0499035e94a0cc977b253888fd6d40a927e1bedffc25c0bb9b5",
+  "checks": [
+    {
+      "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\qa-accepted-r9-r1-backend\\review.py",
+      "exit": 0,
+      "result": "PASS",
+      "observation": "Observed exec session 65601 exit0; independent-checks.json, semantic documentary review in report.md"
+    },
+    {
+      "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\scripts\\graphify.py query \"qa_backend documentary review persistence idempotency recovery queue stage loop consultation\" --bundle C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6 --config C:/Users/teste/.codex/tfd-graphify.json --index C:/Users/teste/.codex/tfd-graphify/index.json",
+      "exit": 0,
+      "expected_exit": 0,
+      "result": "PASS",
+      "observation": "Read-only documentary check"
+    },
+    {
+      "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify_saved.py",
+      "exit": 0,
+      "expected_exit": 0,
+      "result": "PASS",
+      "observation": "Read-only documentary check"
+    },
+    {
+      "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify_relations.py",
+      "exit": 0,
+      "expected_exit": 0,
+      "result": "PASS",
+      "observation": "Read-only documentary check"
+    },
+    {
+      "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify.py --requests",
+      "exit": 0,
+      "expected_exit": 0,
+      "result": "PASS",
+      "observation": "Read-only documentary check"
+    },
+    {
+      "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify.py",
+      "exit": 0,
+      "expected_exit": 0,
+      "result": "PASS",
+      "observation": "Read-only documentary check"
+    },
+    {
+      "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\accepted-documentary-consolidation-r9-r1\\verify.py --manifest",
+      "exit": 0,
+      "expected_exit": 0,
+      "result": "PASS",
+      "observation": "Read-only documentary check"
+    }
+  ],
+  "negative_checks": "commands.json records expected exit1 and eight rejected relations in each group; consolidated review.py exit0 asserts these counts",
+  "limits": [
+    "documentary only",
+    "no formal gate transition",
+    "no runtime proof",
+    "no other sector verdict"
+  ],
+  "report_sha256": "0304a5ad89d5be1012358f3d51b5cec7a8f11173ee8e0076f87aa64b16066410"
+}

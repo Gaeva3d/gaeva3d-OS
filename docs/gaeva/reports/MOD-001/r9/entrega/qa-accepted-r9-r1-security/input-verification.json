@@ -1,0 +1,70 @@
+{
+  "manifest_sha256": "e89c43ed3af0feece37fcfbba6688d3668798988d46649568b9d03b8cc7ebfaf",
+  "review_input_sha256": "e1ca7d28e10801fde590975765502fbb8d646d2648c1330fc06dd80968840961",
+  "members": 157,
+  "tuple": {
+    "task": {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.json",
+      "sha256": "526251998527ab041df85093d0eb32243b6c88289d64b62415f192f448cdda51"
+    },
+    "view": {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.md",
+      "sha256": "fa7d66455d4e2ca92a8b12ec1da524941bc65fd9fb01ec6ca1a40349bf26d146"
+    },
+    "spec": {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-spec.md",
+      "sha256": "fea8e3735e540068976459e9ab52f8fdba7213bd6cb8e17e409748cf80736e38"
+    },
+    "catalog": {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/action-catalog.json",
+      "sha256": "f6a579ad9e57016a5d35ae327042d8370e06aec448bf7dc4d05ecc10f3c3814e"
+    },
+    "errors": {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-failure-catalog.md",
+      "sha256": "58870b6f96856651676656b0dc9cee16ccb915079117418a8dea751fbfdcc907"
+    },
+    "acceptance": {
+      "path": "candidate/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-acceptance-r9.json",
+      "sha256": "bfe0076d3350b5850bda766b8a4b8f6932b2a183f89f4e08a72d86a52d953408"
+    },
+    "patch": {
+      "path": "combined.patch",
+      "sha256": "c4a73ecae5db6f0ec346f0100148f61e111bb1ca07fe20f4f94e12084a12792d"
+    },
+    "source_map": {
+      "path": "source-map.json",
+      "sha256": "454bffd29e6f923eb2708d7c2aa2b8e426ce851e6a0d2317033194f4a6c06351"
+    },
+    "allowlist": {
+      "path": "changed-paths.json",
+      "sha256": "4f2bfb564936b78146301d85ec6e2cfba7794c449d41f6a26a003a2aae634f25"
+    },
+    "consultation": {
+      "path": "consultation.json",
+      "sha256": "6fce60efd6dd6c656fc788b04378bb57aebc07976cd5d2d182b4399f75823ae9"
+    }
+  },
+  "preserved_files": [
+    "candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\typed-actions-v1\\acceptance-bindings.json",
+    "candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\typed-actions-v1\\action-catalog.json",
+    "candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\typed-actions-v1\\action-contracts.md",
+    "candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\typed-actions-v1\\action-fields.md",
+    "candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\typed-actions-v1\\examples.json",
+    "candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\typed-actions-v1\\field-vectors.json",
+    "candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\typed-actions-v1\\negative-response-examples.json",
+    "candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\typed-actions-v1\\relational-negative-examples.json",
+    "candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\typed-actions-v1\\request-union.schema.json",
+    "candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\typed-actions-v1\\response-examples.json",
+    "candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\typed-actions-v1\\schedule-acceptance-bindings.json",
+    "candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\typed-actions-v1\\schedule-roundtrip-examples.json",
+    "candidate\\docs\\gaeva\\retomada-tfd\\transformacao-filaops\\spec\\modules\\MOD-001\\typed-actions-v1\\timezone-vectors.json",
+    "authority-protocol.md",
+    "retention-protocol.md",
+    "retention-validation.md",
+    "approved-decisions.md"
+  ],
+  "author": "agent-65a76b70-79bc-4539-b8b9-840998b76a10",
+  "reviewer": "agent-6b9f3e9e-8ea7-4483-a52c-63129f849a5a",
+  "independence": "reviewer not author; prior independent reviews are not source authorship",
+  "runtime_tested": false
+}

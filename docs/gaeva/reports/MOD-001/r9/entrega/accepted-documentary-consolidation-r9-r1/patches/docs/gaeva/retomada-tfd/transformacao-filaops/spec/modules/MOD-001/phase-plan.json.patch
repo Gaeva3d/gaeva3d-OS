@@ -1,0 +1,276 @@
+--- /dev/null
++++ b/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-plan.json
+@@ -0,0 +1,273 @@
++{
++  "task_id": "GAEVA-MOD-001",
++  "contract_revision": 9,
++  "phases": [
++    {
++      "id": "P1-CONTRACT",
++      "title": "F1-P1 — Proveniência e configuração",
++      "note": "DF01–03 e contrato de configuração precedem a prova offline de DF04."
++    },
++    {
++      "id": "P2-EXECUTION",
++      "title": "F1-P2 — Prova offline do guard DF04",
++      "note": "Backend, Database e DevOps/observabilidade produzem evidência offline com QA Backend. Security revisa os três recibos e emite parecer sobre a mesma revisão/configuração. Os quatro resultados e o gate humano precedem qualquer conexão real."
++    },
++    {
++      "id": "P3-REVIEW",
++      "title": "F1-P3 — Migração, recuperação e revisão",
++      "note": "Operações dependem da evidência DF04 e dos gates humanos. Identidade em leitura antecede efeitos. Recuperação depende de autorização operacional separada."
++    },
++    {
++      "id": "P4-CONTROLS",
++      "title": "Controles duráveis e proteção HA/externa",
++      "note": "P3 comprovada/aceita e nova aprovação específica; não liberada"
++    },
++    {
++      "id": "P5-BACKUPS",
++      "title": "Backups e retenção com executor fiscalizado",
++      "note": "P4 integrada e aprovada; Drive real/recuperação só com autorização específica"
++    },
++    {
++      "id": "P6-ASSURANCE",
++      "title": "Provas integradas e dependências documentadas",
++      "note": "P5 + todos contratos; alvo novo isolado/guard antes de efeitos"
++    }
++  ],
++  "microtasks": [
++    {
++      "id": "MT-01",
++      "phase": "P1-CONTRACT",
++      "owner": "TFD-devops",
++      "validator": "TFD-qa_backend",
++      "depends_on": []
++    },
++    {
++      "id": "MT-03",
++      "phase": "P2-EXECUTION",
++      "owner": "TFD-backend",
++      "validator": "TFD-qa_backend",
++      "depends_on": [
++        "MT-01"
++      ]
++    },
++    {
++      "id": "MT-09",
++      "phase": "P2-EXECUTION",
++      "owner": "TFD-database",
++      "validator": "TFD-qa_backend",
++      "depends_on": [
++        "MT-03"
++      ]
++    },
++    {
++      "id": "MT-04",
++      "phase": "P2-EXECUTION",
++      "owner": "TFD-devops",
++      "validator": "TFD-qa_backend",
++      "depends_on": [
++        "MT-03",
++        "MT-09"
++      ]
++    },
++    {
++      "id": "MT-11",
++      "phase": "P2-EXECUTION",
++      "owner": "TFD-security",
++      "validator": "TFD-qa_spec",
++      "depends_on": [
++        "MT-03",
++        "MT-09",
++        "MT-04"
++      ]
++    },
++    {
++      "id": "MT-02",
++      "phase": "P3-REVIEW",
++      "owner": "TFD-database",
++      "validator": "TFD-qa_backend",
++      "depends_on": [
++        "MT-03",
++        "MT-09",
++        "MT-04",
++        "MT-11"
++      ]
++    },
++    {
++      "id": "MT-10",
++      "phase": "P3-REVIEW",
++      "owner": "TFD-devops",
++      "validator": "TFD-qa_backend",
++      "depends_on": [
++        "MT-03",
++        "MT-09",
++        "MT-04",
++        "MT-02",
++        "MT-11"
++      ]
++    },
++    {
++      "id": "MT-05",
++      "phase": "P3-REVIEW",
++      "owner": "TFD-documentation",
++      "validator": "TFD-qa_spec",
++      "depends_on": [
++        "MT-10"
++      ]
++    },
++    {
++      "id": "MT-06",
++      "phase": "P3-REVIEW",
++      "owner": "TFD-qa_backend",
++      "validator": "TFD-qa_spec",
++      "depends_on": [
++        "MT-05"
++      ]
++    },
++    {
++      "id": "MT-07",
++      "phase": "P3-REVIEW",
++      "owner": "TFD-security",
++      "validator": "TFD-qa_spec",
++      "depends_on": [
++        "MT-06"
++      ]
++    },
++    {
++      "id": "MT-08",
++      "phase": "P3-REVIEW",
++      "owner": "TFD-harness",
++      "validator": "TFD-qa_spec",
++      "depends_on": [
++        "MT-07"
++      ]
++    },
++    {
++      "id": "MT-12",
++      "phase": "P4-CONTROLS",
++      "owner": "TFD-ui_ux",
++      "validator": "TFD-qa_ui",
++      "depends_on": [
++        "MT-08"
++      ]
++    },
++    {
++      "id": "MT-13",
++      "phase": "P4-CONTROLS",
++      "owner": "TFD-frontend",
++      "validator": "TFD-qa_ui",
++      "depends_on": [
++        "MT-12"
++      ]
++    },
++    {
++      "id": "MT-14",
++      "phase": "P4-CONTROLS",
++      "owner": "TFD-database",
++      "validator": "TFD-qa_backend",
++      "depends_on": [
++        "MT-08"
++      ]
++    },
++    {
++      "id": "MT-15",
++      "phase": "P4-CONTROLS",
++      "owner": "TFD-devops",
++      "validator": "TFD-qa_backend",
++      "depends_on": [
++        "MT-14"
++      ]
++    },
++    {
++      "id": "MT-16",
++      "phase": "P4-CONTROLS",
++      "owner": "TFD-backend",
++      "validator": "TFD-qa_backend",
++      "depends_on": [
++        "MT-13",
++        "MT-14",
++        "MT-15"
++      ]
++    },
++    {
++      "id": "MT-17",
++      "phase": "P5-BACKUPS",
++      "owner": "TFD-database",
++      "validator": "TFD-qa_backend",
++      "depends_on": [
++        "MT-16"
++      ]
++    },
++    {
++      "id": "MT-18",
++      "phase": "P5-BACKUPS",
++      "owner": "TFD-backend",
++      "validator": "TFD-qa_backend",
++      "depends_on": [
++        "MT-17"
++      ]
++    },
++    {
++      "id": "MT-19",
++      "phase": "P5-BACKUPS",
++      "owner": "TFD-devops",
++      "validator": "TFD-qa_backend",
++      "depends_on": [
++        "MT-18"
++      ]
++    },
++    {
++      "id": "MT-20",
++      "phase": "P6-ASSURANCE",
++      "owner": "TFD-qa_backend",
++      "validator": "TFD-qa_spec",
++      "depends_on": [
++        "MT-19"
++      ]
++    },
++    {
++      "id": "MT-21",
++      "phase": "P6-ASSURANCE",
++      "owner": "TFD-qa_ui",
++      "validator": "TFD-qa_spec",
++      "depends_on": [
++        "MT-20"
++      ]
++    },
++    {
++      "id": "MT-22",
++      "phase": "P6-ASSURANCE",
++      "owner": "TFD-security",
++      "validator": "TFD-qa_spec",
++      "depends_on": [
++        "MT-20"
++      ]
++    },
++    {
++      "id": "MT-23",
++      "phase": "P6-ASSURANCE",
++      "owner": "TFD-documentation",
++      "validator": "TFD-qa_spec",
++      "depends_on": [
++        "MT-21",
++        "MT-22"
++      ]
++    },
++    {
++      "id": "MT-24",
++      "phase": "P6-ASSURANCE",
++      "owner": "TFD-harness",
++      "validator": "TFD-qa_spec",
++      "depends_on": [
++        "MT-23"
++      ]
++    }
++  ],
++  "state": "PROPOSED_NOT_WORKFLOW",
++  "estimate": {
++    "optimistic_h": 154,
++    "likely_h": 308,
++    "pessimistic_h": 616,
++    "confidence": "low",
++    "basis": "Julgamento documental de engenharia, NÃO medição/prazo/promessa: P1-3 herdados42/84/168; P4 contratos+modelos+enforcement/interfaces48/96/192; P5 backup/retention/adapters32/64/128; P6 oracle/reviews/docs32/64/128. Esforço humano equivalente, inclui uma correção limitada, exclui espera/provider/construção de serviço externo indisponível. Reestimar após readiness; não estimativa de implementação já autorizada."
++  }
++}

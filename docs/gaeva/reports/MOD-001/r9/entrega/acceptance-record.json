@@ -1,0 +1,21 @@
+{
+  "recorded_at_utc": "2026-11-20T04:42:27.894178+00:00",
+  "source": "Current human conversation, Nov 20 2026; exact supplied wording",
+  "human_words": [
+    "aprovei leia lá e prossiga",
+    "não me pergunta mais nada só me entraga no final vou sair"
+  ],
+  "scope": "Documentary acceptance and continuation of documentary consolidation r8/r9; four independent reviews performed subsequently.",
+  "formal_gate": "UNKNOWN; no retrospective workflow approval event created",
+  "upstream_human_comments": [
+    "https://github.com/Gaeva3d/gaeva3d-OS/issues/1#issuecomment-7026601969",
+    "https://github.com/Gaeva3d/gaeva3d-OS/issues/1#issuecomment-7027205182"
+  ],
+  "not_authorized_by_this_record": [
+    "product implementation",
+    "DB or infrastructure changes",
+    "publication",
+    "merge",
+    "deploy"
+  ]
+}

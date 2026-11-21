@@ -1,0 +1,48 @@
+--- /dev/null
++++ b/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/research-binding.json
+@@ -0,0 +1,45 @@
++{
++  "source_submission": {
++    "path": "review-submission-r3/submission.json",
++    "sha256": "4a17f80eb0be6ac7d74baa436f1f8c68375fdefe715ece9f380610434ff3a08f"
++  },
++  "Discovery": {
++    "revision": "GAEVA-MOD-001-discovery-r6-20261118",
++    "coverage_sha256": "841a1aa00d49868b7cdb81d099ebb1687291f52c0e5dd5144faa82fd77a1564f",
++    "manifest_sha256": "c054f20b99050d9217de4b855a1d817c505916ca70c0478814e372864f6b9069"
++  },
++  "reviewers": {
++    "qa-consolidation-r3-spec": "933ef27421c06b9fb6bd7bc9415662f5eb1f43be1bbb8eed8cb61af8008333b9",
++    "qa-consolidation-r3-backend": "ec4b1c85295bb9cc3e35efa094661ae53e428762f2d805ab4d31bcc0447bd5b0",
++    "qa-consolidation-r3-ui": "608204475a0efbf3af52a9bba07395d570838b25c68b57e54513ce8b8bf9ddd4",
++    "qa-consolidation-r3-security": "e40188df79e2019526be71e31678a02084965a757331ba3e9050e1706b994ec9"
++  },
++  "qualified_scope": "research/consolidation only; new spec/task/view/patches have NO independent current PASS; AP comparison one assurance reviewer used CRLF->LF not byte identity",
++  "status": "DOCUMENTARY_SCOPE_ACCEPTED_NEW_CONSOLIDATED_QA_PENDING_NOT_GATE",
++  "current_Discovery": {
++    "revision": "GAEVA-MOD-001-discovery-r7-20261118",
++    "manifest_sha256": "a870f87b025f0061936062243d4c589ef9d8a8ae44d52dab011efa33135c576c",
++    "coverage_sha256": "4ed53f08488c4d466ad2c9194cfe51357f0c61689bc6dfa1e370f0b8ec6a372a",
++    "stage_sha256": "c2e038d2cec621406ff840e58ee543b34e235f8f3e73b1e9ec51cf854787d7d3",
++    "equivalence_sha256": "3a32532201cb3a7c0b6b6d2b1f1be62abfc0c65402663bb6476c1392e1b350ff",
++    "alias_crosswalk_sha256": "a01735f23025af5a7a22a722662d57a88fdd2616c969c2fee2dc08024deea194",
++    "independent_current_coverage_QA": "PENDING",
++    "local_helper": "TO_BE_EXECUTED; not G6 PASS"
++  },
++  "binding_refresh": "r2 adds author-only r7 ID-equivalent coverage; original research tuple PASS qualified and historical, no current r7/new spec PASS inferred",
++  "typed_actions": {
++    "source_manifest": "6b648919653978159cfb104a0056718fbe0fbdb65422b1acf0c251f6c4dd01de",
++    "catalog": "f6a579ad9e57016a5d35ae327042d8370e06aec448bf7dc4d05ecc10f3c3814e",
++    "source_revision": "corrections-action-contracts-backend-r3",
++    "review": "PENDING",
++    "unchanged_catalog_sha256": "f6a579ad9e57016a5d35ae327042d8370e06aec448bf7dc4d05ecc10f3c3814e"
++  },
++  "proposed_contract_revision": 9,
++  "human_additions": {
++    "r8_manifest": "1ebee7f8b15ea16d7223570d99d27306a82a6be3eb095c7e1c5ebaf89bdb9cfa",
++    "r9_manifest": "358aeee9bb08d00985ba098b0617ddbbef0b21d87512c8a34e290ca58988ff2f",
++    "source": "human-acceptance-r9.json",
++    "review_provenance": "historical findings bind manifest but actor/consultation unverified; fresh independent review required",
++    "scope": "new explicit human additions, not reset of finalspec3/3 or consolidation2/3"
++  }
++}

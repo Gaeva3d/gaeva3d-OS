@@ -1,0 +1,14 @@
+--- /dev/null
++++ b/docs/gaeva/retomada-tfd/transformacao-filaops/spec/estimates/GAEVA-MOD-001-P5-BACKUPS.json
+@@ -0,0 +1,11 @@
++{
++  "task_id": "GAEVA-MOD-001",
++  "phase": "P5-BACKUPS",
++  "optimistic_h": 32,
++  "likely_h": 64,
++  "pessimistic_h": 128,
++  "confidence": "low",
++  "basis": "Julgamento de engenharia para contratos/estados/segurança/provas da fase; sem medição, pressupõe base disponível e equipe familiar, inclui uma correção limitada; exclui espera/provedor e novo serviço externo não disponível. Não prazo nem implementação autorizada.",
++  "updated_at": "2026-11-18",
++  "notes": "Reestimar após readiness e recorte de implementação explicitamente autorizado."
++}

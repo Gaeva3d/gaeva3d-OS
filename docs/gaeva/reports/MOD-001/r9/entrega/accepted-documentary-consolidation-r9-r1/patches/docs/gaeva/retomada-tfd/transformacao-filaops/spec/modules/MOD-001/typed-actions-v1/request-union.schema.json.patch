@@ -1,0 +1,2666 @@
+--- /dev/null
++++ b/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/request-union.schema.json
+@@ -0,0 +1,2663 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "oneOf": [
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "AssignProfile"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "user_policy"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "profile_id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "profile_id"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "SetIndividualAllow"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "user_policy"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "permission": {
++              "type": "object",
++              "properties": {
++                "module_id": {
++                  "type": "string",
++                  "minLength": 1,
++                  "maxLength": 128
++                },
++                "action_id": {
++                  "type": "string",
++                  "minLength": 1,
++                  "maxLength": 128
++                },
++                "record_scope_id": {
++                  "type": "string",
++                  "minLength": 1,
++                  "maxLength": 128
++                },
++                "field_ids": {
++                  "type": "array",
++                  "items": {
++                    "type": "string",
++                    "minLength": 1,
++                    "maxLength": 128
++                  },
++                  "minItems": 1,
++                  "uniqueItems": true
++                }
++              },
++              "required": [
++                "module_id",
++                "action_id"
++              ],
++              "additionalProperties": false
++            }
++          },
++          "required": [
++            "permission"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "SetIndividualDeny"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "user_policy"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "permission": {
++              "type": "object",
++              "properties": {
++                "module_id": {
++                  "type": "string",
++                  "minLength": 1,
++                  "maxLength": 128
++                },
++                "action_id": {
++                  "type": "string",
++                  "minLength": 1,
++                  "maxLength": 128
++                },
++                "record_scope_id": {
++                  "type": "string",
++                  "minLength": 1,
++                  "maxLength": 128
++                },
++                "field_ids": {
++                  "type": "array",
++                  "items": {
++                    "type": "string",
++                    "minLength": 1,
++                    "maxLength": 128
++                  },
++                  "minItems": 1,
++                  "uniqueItems": true
++                }
++              },
++              "required": [
++                "module_id",
++                "action_id"
++              ],
++              "additionalProperties": false
++            }
++          },
++          "required": [
++            "permission"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "ResetIndividualOverride"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "user_policy"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "permission": {
++              "type": "object",
++              "properties": {
++                "module_id": {
++                  "type": "string",
++                  "minLength": 1,
++                  "maxLength": 128
++                },
++                "action_id": {
++                  "type": "string",
++                  "minLength": 1,
++                  "maxLength": 128
++                },
++                "record_scope_id": {
++                  "type": "string",
++                  "minLength": 1,
++                  "maxLength": 128
++                },
++                "field_ids": {
++                  "type": "array",
++                  "items": {
++                    "type": "string",
++                    "minLength": 1,
++                    "maxLength": 128
++                  },
++                  "minItems": 1,
++                  "uniqueItems": true
++                }
++              },
++              "required": [
++                "module_id",
++                "action_id"
++              ],
++              "additionalProperties": false
++            },
++            "remove": {
++              "type": "string",
++              "enum": [
++                "ALLOW",
++                "DENY",
++                "BOTH"
++              ]
++            }
++          },
++          "required": [
++            "permission",
++            "remove"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "ActivateUser"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "user_policy"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {},
++          "required": [],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "DeactivateUser"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "user_policy"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {},
++          "required": [],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "DelegateApproval"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "approval_authority"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "delegate_user_id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "scopes": {
++              "type": "array",
++              "items": {
++                "type": "string",
++                "enum": [
++                  "RETENTION_POLICY",
++                  "RECOVERY_TOLERANCE"
++                ]
++              },
++              "minItems": 1,
++              "uniqueItems": true
++            },
++            "valid_from_utc": {
++              "type": "string",
++              "format": "date-time",
++              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
++            },
++            "valid_until_utc": {
++              "type": "string",
++              "format": "date-time",
++              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
++            }
++          },
++          "required": [
++            "delegate_user_id",
++            "scopes",
++            "valid_from_utc"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "RevokeApprovalDelegation"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "approval_delegation"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {},
++          "required": [],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "GetPermissionCatalog"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "permission_catalog"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "kind",
++            "id"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "page": {
++              "type": "object",
++              "properties": {
++                "page_size": {
++                  "type": "integer",
++                  "minimum": 1,
++                  "maximum": 200
++                },
++                "cursor": {
++                  "type": "string",
++                  "minLength": 1,
++                  "maxLength": 128
++                }
++              },
++              "required": [
++                "page_size"
++              ],
++              "additionalProperties": false
++            }
++          },
++          "required": [
++            "page"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "ListProfiles"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "profile_catalog"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "kind",
++            "id"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "page": {
++              "type": "object",
++              "properties": {
++                "page_size": {
++                  "type": "integer",
++                  "minimum": 1,
++                  "maximum": 200
++                },
++                "cursor": {
++                  "type": "string",
++                  "minLength": 1,
++                  "maxLength": 128
++                }
++              },
++              "required": [
++                "page_size"
++              ],
++              "additionalProperties": false
++            }
++          },
++          "required": [
++            "page"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "GetUserPermissions"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "user_policy"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "kind",
++            "id"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {},
++          "required": [],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "ListPolicyAudit"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "policy_audit"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "kind",
++            "id"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "page": {
++              "type": "object",
++              "properties": {
++                "page_size": {
++                  "type": "integer",
++                  "minimum": 1,
++                  "maximum": 200
++                },
++                "cursor": {
++                  "type": "string",
++                  "minLength": 1,
++                  "maxLength": 128
++                }
++              },
++              "required": [
++                "page_size"
++              ],
++              "additionalProperties": false
++            },
++            "subject_id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "page"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "ConfigureSchedule"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_config"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "enabled": {
++              "type": "boolean"
++            },
++            "timezone": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "schedule": {
++              "oneOf": [
++                {
++                  "type": "object",
++                  "properties": {
++                    "frequency": {
++                      "const": "DAILY"
++                    },
++                    "local_time": {
++                      "type": "string",
++                      "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
++                    }
++                  },
++                  "required": [
++                    "frequency",
++                    "local_time"
++                  ],
++                  "additionalProperties": false
++                },
++                {
++                  "type": "object",
++                  "properties": {
++                    "frequency": {
++                      "const": "WEEKLY"
++                    },
++                    "weekdays": {
++                      "type": "array",
++                      "items": {
++                        "type": "integer",
++                        "minimum": 1,
++                        "maximum": 7
++                      },
++                      "minItems": 1,
++                      "uniqueItems": true
++                    },
++                    "local_time": {
++                      "type": "string",
++                      "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
++                    }
++                  },
++                  "required": [
++                    "frequency",
++                    "weekdays",
++                    "local_time"
++                  ],
++                  "additionalProperties": false
++                },
++                {
++                  "type": "object",
++                  "properties": {
++                    "frequency": {
++                      "const": "MONTHLY"
++                    },
++                    "day_of_month": {
++                      "type": "integer",
++                      "minimum": 1,
++                      "maximum": 31
++                    },
++                    "local_time": {
++                      "type": "string",
++                      "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$"
++                    },
++                    "missing_day": {
++                      "const": "SKIP_AND_REPORT"
++                    }
++                  },
++                  "required": [
++                    "frequency",
++                    "day_of_month",
++                    "local_time",
++                    "missing_day"
++                  ],
++                  "additionalProperties": false
++                },
++                {
++                  "type": "object",
++                  "properties": {
++                    "frequency": {
++                      "const": "INTERVAL"
++                    },
++                    "interval_seconds": {
++                      "type": "integer",
++                      "minimum": 1,
++                      "maximum": 9007199254740991
++                    },
++                    "anchor_utc": {
++                      "type": "string",
++                      "format": "date-time",
++                      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
++                    }
++                  },
++                  "required": [
++                    "frequency",
++                    "interval_seconds",
++                    "anchor_utc"
++                  ],
++                  "additionalProperties": false
++                }
++              ]
++            },
++            "dst_overlap": {
++              "type": "string",
++              "enum": [
++                "FIRST",
++                "SECOND"
++              ]
++            },
++            "dst_gap": {
++              "const": "SKIP_AND_REPORT"
++            }
++          },
++          "required": [
++            "enabled",
++            "timezone",
++            "schedule",
++            "dst_overlap",
++            "dst_gap"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "ApproveRetentionChange"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_config"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "counts": {
++              "type": "object",
++              "properties": {
++                "daily_count": {
++                  "type": "integer",
++                  "minimum": 1,
++                  "maximum": 9007199254740991
++                },
++                "monthly_count": {
++                  "type": "integer",
++                  "minimum": 1,
++                  "maximum": 9007199254740991
++                }
++              },
++              "required": [
++                "daily_count",
++                "monthly_count"
++              ],
++              "additionalProperties": false
++            }
++          },
++          "required": [
++            "counts"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "ConfigureRetention"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_config"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "counts": {
++              "type": "object",
++              "properties": {
++                "daily_count": {
++                  "type": "integer",
++                  "minimum": 1,
++                  "maximum": 9007199254740991
++                },
++                "monthly_count": {
++                  "type": "integer",
++                  "minimum": 1,
++                  "maximum": 9007199254740991
++                }
++              },
++              "required": [
++                "daily_count",
++                "monthly_count"
++              ],
++              "additionalProperties": false
++            },
++            "approval_ref": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "counts",
++            "approval_ref"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "ConfigureDestination"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_config"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "provider_link_id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "folder_id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "provider_link_id",
++            "folder_id"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "RunManualBackup"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_config"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "classification": {
++              "type": "string",
++              "enum": [
++                "DAILY",
++                "MONTHLY",
++                "BOTH",
++                "UNCLASSIFIED"
++              ]
++            }
++          },
++          "required": [
++            "classification"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "GetBackupConfiguration"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_config"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "kind",
++            "id"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {},
++          "required": [],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "ListBackupHistory"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_history"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "kind",
++            "id"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "page": {
++              "type": "object",
++              "properties": {
++                "page_size": {
++                  "type": "integer",
++                  "minimum": 1,
++                  "maximum": 200
++                },
++                "cursor": {
++                  "type": "string",
++                  "minLength": 1,
++                  "maxLength": 128
++                }
++              },
++              "required": [
++                "page_size"
++              ],
++              "additionalProperties": false
++            },
++            "status": {
++              "type": "string",
++              "enum": [
++                "FAILED",
++                "UNKNOWN",
++                "UPLOAD_VERIFIED",
++                "SET_SEALED",
++                "RESTORE_VERIFIED",
++                "DELETED"
++              ]
++            },
++            "from_utc": {
++              "type": "string",
++              "format": "date-time",
++              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
++            },
++            "until_utc": {
++              "type": "string",
++              "format": "date-time",
++              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
++            }
++          },
++          "required": [
++            "page"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "GetBackupPoint"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_point"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "kind",
++            "id"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {},
++          "required": [],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "GetBackupJob"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_job"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "kind",
++            "id"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {},
++          "required": [],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "BeginProviderLink"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_integration"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "purpose": {
++              "type": "string",
++              "enum": [
++                "CONNECT",
++                "RECONNECT"
++              ]
++            },
++            "return_route_id": {
++              "type": "string",
++              "enum": [
++                "BACKUP_SETTINGS"
++              ]
++            }
++          },
++          "required": [
++            "purpose",
++            "return_route_id"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "CancelProviderLink"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "provider_flow"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {},
++          "required": [],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "CompleteProviderLink"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "provider_flow"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "callback_ref": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "callback_ref"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "GetProviderLink"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_integration"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "kind",
++            "id"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {},
++          "required": [],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "DisconnectProvider"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_integration"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {},
++          "required": [],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "PreviewCleanup"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_config"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "kind",
++            "id"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {},
++          "required": [],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "RequestCleanup"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "cleanup_plan"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {},
++          "required": [],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "RequestHold"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "recovery_family"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "point_ids": {
++              "type": "array",
++              "items": {
++                "type": "string",
++                "minLength": 1,
++                "maxLength": 128
++              },
++              "minItems": 1,
++              "uniqueItems": true
++            },
++            "reason": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 1024
++            }
++          },
++          "required": [
++            "point_ids",
++            "reason"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "ReleaseHold"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_hold"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "reason": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 1024
++            }
++          },
++          "required": [
++            "reason"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "GetHold"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_hold"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "kind",
++            "id"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {},
++          "required": [],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "GetCleanup"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "cleanup_task"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "kind",
++            "id"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {},
++          "required": [],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "ReconcileCleanup"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "cleanup_task"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {},
++          "required": [],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "SuspendCleanup"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_config"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "reason": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 1024
++            }
++          },
++          "required": [
++            "reason"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "ResumeCleanup"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_config"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "reason": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 1024
++            }
++          },
++          "required": [
++            "reason"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "ListDestinationFolders"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_integration"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "kind",
++            "id"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "page": {
++              "type": "object",
++              "properties": {
++                "page_size": {
++                  "type": "integer",
++                  "minimum": 1,
++                  "maximum": 200
++                },
++                "cursor": {
++                  "type": "string",
++                  "minLength": 1,
++                  "maxLength": 128
++                }
++              },
++              "required": [
++                "page_size"
++              ],
++              "additionalProperties": false
++            },
++            "parent_folder_id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "page"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "ListApprovalDelegations"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "approval_authority"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "kind",
++            "id"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "page": {
++              "type": "object",
++              "properties": {
++                "page_size": {
++                  "type": "integer",
++                  "minimum": 1,
++                  "maximum": 200
++                },
++                "cursor": {
++                  "type": "string",
++                  "minLength": 1,
++                  "maxLength": 128
++                }
++              },
++              "required": [
++                "page_size"
++              ],
++              "additionalProperties": false
++            }
++          },
++          "required": [
++            "page"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "RunScheduledBackup"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "backup_config"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            },
++            "expected_version": {
++              "type": "integer",
++              "minimum": 0,
++              "maximum": 9007199254740991
++            }
++          },
++          "required": [
++            "kind",
++            "id",
++            "expected_version"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "occurrence_ref": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "occurrence_ref"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    },
++    {
++      "type": "object",
++      "properties": {
++        "envelope_version": {
++          "const": 1
++        },
++        "action": {
++          "const": "GetOutcome"
++        },
++        "operation_id": {
++          "type": "string",
++          "minLength": 1,
++          "maxLength": 128
++        },
++        "target": {
++          "type": "object",
++          "properties": {
++            "kind": {
++              "const": "operation"
++            },
++            "id": {
++              "type": "string",
++              "minLength": 1,
++              "maxLength": 128
++            }
++          },
++          "required": [
++            "kind",
++            "id"
++          ],
++          "additionalProperties": false
++        },
++        "payload": {
++          "type": "object",
++          "properties": {
++            "original_action": {
++              "type": "string",
++              "enum": [
++                "AssignProfile",
++                "SetIndividualAllow",
++                "SetIndividualDeny",
++                "ResetIndividualOverride",
++                "ActivateUser",
++                "DeactivateUser",
++                "DelegateApproval",
++                "RevokeApprovalDelegation",
++                "ConfigureSchedule",
++                "ApproveRetentionChange",
++                "ConfigureRetention",
++                "ConfigureDestination",
++                "RunManualBackup",
++                "BeginProviderLink",
++                "CancelProviderLink",
++                "CompleteProviderLink",
++                "DisconnectProvider",
++                "RequestCleanup",
++                "RequestHold",
++                "ReleaseHold",
++                "ReconcileCleanup",
++                "SuspendCleanup",
++                "ResumeCleanup",
++                "RunScheduledBackup"
++              ]
++            },
++            "original_digest": {
++              "type": "string",
++              "pattern": "^[0-9a-f]{64}$"
++            }
++          },
++          "required": [
++            "original_action",
++            "original_digest"
++          ],
++          "additionalProperties": false
++        }
++      },
++      "required": [
++        "envelope_version",
++        "action",
++        "operation_id",
++        "target",
++        "payload"
++      ],
++      "additionalProperties": false
++    }
++  ]
++}

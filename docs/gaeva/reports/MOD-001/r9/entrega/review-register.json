@@ -1,0 +1,48 @@
+{
+  "task_id": "GAEVA-MOD-001",
+  "contract_revision": 9,
+  "packet_manifest_sha256": "e89c43ed3af0feece37fcfbba6688d3668798988d46649568b9d03b8cc7ebfaf",
+  "coverage_complement_r8_r9": "PASS_DOCUMENTARY_ONLY",
+  "reviews": [
+    {
+      "folder": "qa-accepted-r9-r1-spec",
+      "verdict": "PASS_DOCUMENTARY_ONLY",
+      "actor": "agent-13677c2e-fb09-41ac-b29b-2f30a6c7cbe7",
+      "manifest_sha256": "4bbce93c24ba3ddd1e931d37350cf84cb2854934905ca67b3a2cf4148b8c8da3",
+      "stage_receipt": "stage_receipt.json",
+      "findings_sha256": "30eb35a859a96d8347fee574fea07e1c1e06a7f6bdf5f84723e228bc72adf2a7",
+      "input_manifest_sha256": "e89c43ed3af0feece37fcfbba6688d3668798988d46649568b9d03b8cc7ebfaf"
+    },
+    {
+      "folder": "qa-accepted-r9-r1-backend",
+      "verdict": "PASS_DOCUMENTARY_ONLY",
+      "actor": "agent-d25ca98a-0e3f-47f1-8d1e-712fc437fba3",
+      "manifest_sha256": "a57a0132284d3464ba01a1308e4973e8e64454b426e130d675ec8ea53c1f9ff6",
+      "stage_receipt": "stage_receipt.json",
+      "findings_sha256": "32bb39a85910e0499035e94a0cc977b253888fd6d40a927e1bedffc25c0bb9b5",
+      "input_manifest_sha256": "e89c43ed3af0feece37fcfbba6688d3668798988d46649568b9d03b8cc7ebfaf"
+    },
+    {
+      "folder": "qa-accepted-r9-r1-ui",
+      "verdict": "PASS_DOCUMENTARY_ONLY",
+      "actor": "agent-93ed66c5-84b7-4158-bf46-1edbe1c27055",
+      "manifest_sha256": "9ff37460c4e50c5ba0e129a8b7063f4b258fb4b4dd51bf29c1dc2902fd59ec4f",
+      "stage_receipt": "stage_receipt-v2.json",
+      "findings_sha256": "883a01d92d3816b55af682c05d0941052b1578a7632ec972b8207a1dbbaa23b9",
+      "input_manifest_sha256": "e89c43ed3af0feece37fcfbba6688d3668798988d46649568b9d03b8cc7ebfaf"
+    },
+    {
+      "folder": "qa-accepted-r9-r1-security",
+      "verdict": "PASS_DOCUMENTARY_ONLY",
+      "actor": "agent-6b9f3e9e-8ea7-4483-a52c-63129f849a5a",
+      "manifest_sha256": "4f5a69fb1b58ef7b1da50f70a4f99213e4fc4d730fcdd718b4511e6825110bfa",
+      "stage_receipt": "stage_receipt.json",
+      "findings_sha256": "a4ad6ba10eebac315f68be120989ece0276e389e7f2cdfe884d36237e5bad488",
+      "input_manifest_sha256": "e89c43ed3af0feece37fcfbba6688d3668798988d46649568b9d03b8cc7ebfaf"
+    }
+  ],
+  "formal_gate": "UNKNOWN",
+  "implementation_authorized": false,
+  "publication_performed": false,
+  "runtime_validated": false
+}

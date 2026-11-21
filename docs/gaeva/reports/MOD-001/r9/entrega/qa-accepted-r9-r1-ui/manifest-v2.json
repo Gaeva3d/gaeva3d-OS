@@ -1,0 +1,77 @@
+﻿{
+    "revision":  "accepted-documentary-consolidation-r9-r1",
+    "stage_receipt":  "stage_receipt-v2.json",
+    "files":  [
+                  {
+                      "path":  "check-results.json",
+                      "sha256":  "3e2dc70de0f8641d09241a6fd3eab4fca3436121a53e418da69568a8dfbbe19d",
+                      "bytes":  823
+                  },
+                  {
+                      "path":  "commands.json",
+                      "sha256":  "c636641ddae83bf984791bc4b34d873e37ffede876a0532dce3d3c254fa5d63c",
+                      "bytes":  5863
+                  },
+                  {
+                      "path":  "consultation.json",
+                      "sha256":  "94aea2e716c4ea593111a53a020e657e7e81b225e58e7fe83563bcf2a2fe4895",
+                      "bytes":  16334
+                  },
+                  {
+                      "path":  "findings.json",
+                      "sha256":  "883a01d92d3816b55af682c05d0941052b1578a7632ec972b8207a1dbbaa23b9",
+                      "bytes":  5296
+                  },
+                  {
+                      "path":  "manifest.json",
+                      "sha256":  "4307550dc20c0b2e99a039fe1baf6fa2188c7fde03234e77316a1f2a86a1836f",
+                      "bytes":  2104
+                  },
+                  {
+                      "path":  "navigation.json",
+                      "sha256":  "4794e7c1cae18cec035948a9039b7b3cdde4f895a57b5a0f12d65b48186a3d4c",
+                      "bytes":  851
+                  },
+                  {
+                      "path":  "primary-source-notes.json",
+                      "sha256":  "fbc2d498fe1ca01447f52836381dfe24f6f0a012044cfa797d4d380dc9fbe184",
+                      "bytes":  1159
+                  },
+                  {
+                      "path":  "report.md",
+                      "sha256":  "c00035d10999da94485d3aba315618aad568c386bbbf1e8e88950f82162ba797",
+                      "bytes":  5858
+                  },
+                  {
+                      "path":  "review_checks.py",
+                      "sha256":  "0774e9cffc912356f4962f7b7f58bf8b1a599cab1390d608e1eb9ec9b658c6fc",
+                      "bytes":  5972
+                  },
+                  {
+                      "path":  "seal_review.py",
+                      "sha256":  "ad8be11c8b626cf51c401f3009de25a80ed47ae0747679418be89e5de43b2628",
+                      "bytes":  15305
+                  },
+                  {
+                      "path":  "self-check.json",
+                      "sha256":  "45c83d72daa3c180f079107c2f0a69e0f8b7561bc9cdfa8b2eda206f093f8a97",
+                      "bytes":  199
+                  },
+                  {
+                      "path":  "stage_receipt-v2.json",
+                      "sha256":  "35bce472afe208f0423e55fa2c66fc7c7469284709f4c33f28c57aa25cb32b2c",
+                      "bytes":  36410
+                  },
+                  {
+                      "path":  "stage_receipt.json",
+                      "sha256":  "8725f3df11bdf28371b06961aed601d5c013b19d225ffa32e85603d3fe57b855",
+                      "bytes":  25192
+                  },
+                  {
+                      "path":  "token-reader.json",
+                      "sha256":  "0b4a0fb864ff08ff39076bf4cac2f43ca7f825cd7a813e551131c28026a1b388",
+                      "bytes":  840
+                  }
+              ],
+    "supersedes":  "manifest.json; prior sealed files preserved"
+}

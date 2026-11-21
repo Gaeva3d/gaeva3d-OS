@@ -1,0 +1,362 @@
+[
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/README.md",
+    "source_preimage_sha256": "e0e197c45f4583f9f649da7863362130e21d48ac15ccd6f5ff8fe3438ed40e11",
+    "candidate_sha256": "a6a09d94db674029e01d6af5f77bebd121739d0cc5a737af7db760a48372c20a",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/README.md.patch",
+    "action": "modify",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/estimates/GAEVA-MOD-001-P4-CONTROLS.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "cd7bd3d05e5f56e05fe348eb9338ada9f473628f9e4a2278fa32382f6b2f0344",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/estimates/GAEVA-MOD-001-P4-CONTROLS.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/estimates/GAEVA-MOD-001-P5-BACKUPS.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "567380c880526cdc74ff5ecb098703e1d7ac00c575407837f96f83ef06f52833",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/estimates/GAEVA-MOD-001-P5-BACKUPS.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/estimates/GAEVA-MOD-001-P6-ASSURANCE.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "b6d7f749717a72463429c86316e63a97351c19e3589daec808e193530068f200",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/estimates/GAEVA-MOD-001-P6-ASSURANCE.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/integrated-spec.md",
+    "source_preimage_sha256": "2e74138fe945a41d56b5ab901d4c1a62429a44e9a0ee01e0e82a20e20cec35e3",
+    "candidate_sha256": "af20242a074809f47a4414aaed4d048313f9969d8a812b9af5829c57a2c736ad",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/integrated-spec.md.patch",
+    "action": "modify",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001.md",
+    "source_preimage_sha256": "a2efd01109e3305ace78c021dc3e6b253c8c5c3deead480f6e2fb357edf88485",
+    "candidate_sha256": "a90050a94af72beaab6c687187ed1d67b8f79601ee154f5398faecba9d07b8d7",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001.md.patch",
+    "action": "modify",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/action-changelog.md",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "3cd6dbb68d2ff9177f258864addc5daa3ad6902ac70858bb4ee70734b9058906",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/action-changelog.md.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/approved-decisions.md",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "a24f1ee49a4201fd98a98d8ea61c882b94fa00fbfd0afa8f6ac8d0b3b96ec0cf",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/approved-decisions.md.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/authority-protocol.md",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "753a8778ca86eff2969352f2d3423654deb4968e5fcc92817aa6c69477c9c401",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/authority-protocol.md.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/contracts.md",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "18db8214bcb3daefa4ca3945f63155a44ab81c0d782b093de188931d4f1d418c",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/contracts.md.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/human-acceptance-r9.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "f09c1eb93622f41a25d8f571c900c928b6d32103c0a772465a8ad94e5c8ab2ed",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/human-acceptance-r9.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/id-crosswalk.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "b2a5a045b375a4c39c93d166dee70185d029f2b1b9c04a82581c23747720090f",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/id-crosswalk.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-plan.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "bad0748210e8624ca7e69952ce35e71142911e4db027290ac2238d8d8dfea959",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-plan.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-plan.md",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "1005333602d1ca4e06488af6e39f299b6e7565adaf4c84cc2c023505e8718eec",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-plan.md.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-spec.md",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "fea8e3735e540068976459e9ab52f8fdba7213bd6cb8e17e409748cf80736e38",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/phase-spec.md.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/product-behavior-r9.md",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "04a643c15363c2724f819a440762254a3174715055239fbce8a96338a94b7249",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/product-behavior-r9.md.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/reference-hashes.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "c53cd2af8e325fd72d57e39a484b1d821caa21e58b89c2f06a10853627e5a5d4",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/reference-hashes.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/research-binding.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "7e6adedfc89fad6daaf94bb28ccb84c2671a241cafd3217f16bdc475f4e793b6",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/research-binding.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/retention-protocol.md",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "ccce06cd8b9f1012212cb25aed01ae10ac0a9a47985759db854aed5b39baf8a3",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/retention-protocol.md.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/retention-validation.md",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "d24abc2c9a22b7bf03f870e35242e0d4edbfd2f96d042d34945f26798358b10a",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/retention-validation.md.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-acceptance-r9.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "bfe0076d3350b5850bda766b8a4b8f6932b2a183f89f4e08a72d86a52d953408",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-acceptance-r9.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-action-bindings-r9.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "cf2bd896e7abe5a32e41ba00d60b19a50a744619b7c7cb454f180754ca839e28",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-action-bindings-r9.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-failure-catalog.md",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "58870b6f96856651676656b0dc9cee16ccb915079117418a8dea751fbfdcc907",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/save-failure-catalog.md.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/schema-compatibility.md",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "7fc858af015548624560e56b3f40d1076272bfcf427a6f5c83e209c3caed1acd",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/schema-compatibility.md.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/source-claims.md",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "2c965ed18c81372c759006c336fd4bcfbef6a06e123de356c458d5ed245d4ae9",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/source-claims.md.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/surface-contract-map.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "f28bdf92ae3b2aaa0b879ee87f830265f30590330ec5d1a7d1617baee50a1580",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/surface-contract-map.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/traceability.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "e007bb9c90d71f2f32e8bf2bf04f5444abf777cf5a38effe8a61f84c52028b5e",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/traceability.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/acceptance-bindings.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "abe1a0998a51b1d90fa61bc323bc559e3e576e841959122118b24bd8485b32c5",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/acceptance-bindings.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/action-catalog.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "f6a579ad9e57016a5d35ae327042d8370e06aec448bf7dc4d05ecc10f3c3814e",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/action-catalog.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/action-contracts.md",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "1a2f72ba03e82c505f1a8d79aed90cb330ca2f1d7817438036a3e65de93f7027",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/action-contracts.md.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/action-fields.md",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "85257480e26f1970c730eb81b4786cdd484f020c711fa76eae3af6faa747ec7e",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/action-fields.md.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/examples.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "f5e50ee743be49d0f071964382563d664a31250271e98371f113e3ce95290d5b",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/examples.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/field-vectors.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "276b5b7b8058d6b938e2423d8c757fc9ac0a7a4e17512e48e812f6b4d6f345a4",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/field-vectors.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/negative-response-examples.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "60ba8a17a5e967d5a82c4f2885e0912219e3aa69841872e76c1a41a2c2fd9cc4",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/negative-response-examples.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/relational-negative-examples.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "0eecde9e3e921da0a07d0c83781034892d38abc09c0993f7413b64055dedc86e",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/relational-negative-examples.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/request-union.schema.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "107d41ee4a962c72b014cf4bda2cfadadbdd7e74518743d5c7a50d6cf81b8030",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/request-union.schema.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/response-examples.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "70022f196020ccf91783cbbaee443038de04bb4bd7c86902287e8fdc973845a9",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/response-examples.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/schedule-acceptance-bindings.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "7148df9940a18555f4d482a737b955813de34bd0ae813c64bf397c647c8b23bf",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/schedule-acceptance-bindings.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/schedule-roundtrip-examples.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "8805cd703a69d9bdf9e40a063f957b1930120896a40438a04c73a7c478aed164",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/schedule-roundtrip-examples.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/timezone-vectors.json",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "46c9ef611d177810296805fbb373ceceb40b63c915899616b5ce7858b16c39f9",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/typed-actions-v1/timezone-vectors.json.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/validation-plan.md",
+    "source_preimage_sha256": null,
+    "candidate_sha256": "e0e34adf38e9c42c6380ee9a73aadb16c39e950bd2df29e40fa388c55643c430",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/validation-plan.md.patch",
+    "action": "add",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/phase-plan.md",
+    "source_preimage_sha256": "178045ad7a2f37b90ad5b2b4e11d42e7172e2d955bc39ffbf7d7bf515b5afb46",
+    "candidate_sha256": "affd9b62b7f21dfd4a768868a9fa7ffe46f833212b57880872bbee7e97dc7094",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/phase-plan.md.patch",
+    "action": "modify",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/task-registry.json",
+    "source_preimage_sha256": "b27f9c7724513b79d4a3ea821ced8c32044889eb59a31b83ff807f4719cdc443",
+    "candidate_sha256": "68d37afe40226dfde8ae163e552721d561e050661a33188c3a52f23f3743bede",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/task-registry.json.patch",
+    "action": "modify",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.json",
+    "source_preimage_sha256": "f139fc1e677347085c7f992e62d475d28933b3c6d068165beab8ec43174d2c6c",
+    "candidate_sha256": "526251998527ab041df85093d0eb32243b6c88289d64b62415f192f448cdda51",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.json.patch",
+    "action": "modify",
+    "permission": "documentary proposal only; no application authorized"
+  },
+  {
+    "path": "docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.md",
+    "source_preimage_sha256": "edfad6ebc6577e490908f518dea3801c5e731648190f47dd6d24c136e3b26f85",
+    "candidate_sha256": "fa7d66455d4e2ca92a8b12ec1da524941bc65fd9fb01ec6ca1a40349bf26d146",
+    "patch": "patches/docs/gaeva/retomada-tfd/transformacao-filaops/spec/tasks/MOD-001/task.md.patch",
+    "action": "modify",
+    "permission": "documentary proposal only; no application authorized"
+  }
+]

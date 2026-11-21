@@ -1,0 +1,10 @@
+--- /dev/null
++++ b/docs/gaeva/retomada-tfd/transformacao-filaops/spec/modules/MOD-001/schema-compatibility.md
+@@ -0,0 +1,7 @@
++# Compatibilidade exata de IDs — limitação de transição
++
++schemas/task.json impõe ^REQ-[0-9]{2,}$ e ^RULE-[0-9]{2,}$. Discovery r6 revisada tem REQ-DEC/RULE-DEC/RULE-PRD-R3/RULE-TASK-R5. Não inserir aliases inválidos nem fundir RULE01 de fontes distintas. A Task proposta usa IDs numéricos com bijeção explícita em id-crosswalk.json, todos literais/ações preservados e rastreados. Nenhuma fonte original ou framework foi alterado.
++
++O helper existente pipeline.require_task_context exige igualdade LITERAL de sets Task versus coverage G3. A falha com Discovery r6 foi preservada no pacote anterior. Discovery owner publicou r7 imutável usando exatamente a bijeção e preservando oito consumidores/literais salvo metadata declarada. A verificação local direta neste sucessor passa com r7, mantendo a MESMA Taskr6 e os mesmos bytes de spec/vista. Não houve mudança de framework/schema, renumeração de histórico ou evento de gate.
++
++A limitação formal de IDs está resolvida LOCALMENTE. Ainda é obrigatório QA independente corrente de coverage r7 e novo pacote final spec/Task/vista, com tuple exato; fixtures do helper em memória não são G3/G6 PASS. Raiz canônica/gate histórico permanecem UNKNOWN, candidato/diffs não aplicados. PASS de pesquisa r3/r6 permanece qualificado ao seu tuple anterior.

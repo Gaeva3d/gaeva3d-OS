@@ -1,0 +1,15 @@
+# Rotas internas e limites — DOC-R9-CONSOLIDATE-01
+
+Autor Architecture agent-65a76b70-79bc-4539-b8b9-840998b76a10. Coordenador agent-97250e7c-4112-4c26-bcaf-4d7066200462. Mensagem 2781fd83-a04d-41f6-9aba-2f19ddee8ef7, Task GAEVA-MOD-001, contrato 9, gate formal UNKNOWN. Sem evento de pipeline, sem aprovação independente pelo autor.
+
+QA Spec: ler manifesto final, source-map, input-hashes, Task/vista/spec, reference-hashes, changed-paths, comentários humanos exatos, matriz complementar LC/SQ e Discovery r7. Conferir escopo humano acrescido sem alegar cobertura automática antiga. Findings históricos r8/r9 vinculam os manifests corretos, mas ator/consulta não estão nos arquivos recebidos nem foram recuperados nas buscas disponíveis nesta conversa: proveniência independente UNVERIFIED. Revisor corrente deve produzir sua própria consulta/recibo. Não transferir um PASS antigo para estes bytes.
+
+QA Backend: contratos C/AP/RP, união tipada e fixtures preservados, nova política de fila/imutabilidade, GetOutcome antes de retry, dedupe/CAS e incerteza. QA UI: textos/estados, seis Falhas, precedência, preservação de novas edições, conflito e ausência de fila por contrato. Segurança: isolamento de conta/empresa/registro, cifra/custódia/recuperação, logout/revogação, anexos elegíveis e ausência de dados/chaves em claro. Todos revisam a mesma tupla; consultas e callbacks não viram cliques Salvar. Inventário concreto por módulo e elegibilidade de replay são trabalhos futuros, não comprovados.
+
+Task JSON r9 e sua vista são fontes byte a byte. Não alterar renderer/biblioteca. Seu REF-12 contém descrição histórica r6, sem determinar revisão; a identidade r9 está em contract_revision, spec e manifesto. QA deve avaliar essa conservação explícita. Estimativas históricas de baixa confiança não foram medidas e exigem reestimativa antes das fases afetadas pela ampliação humana.
+
+Discovery r7 (manifest a870f87b025f0061936062243d4c589ef9d8a8ae44d52dab011efa33135c576c, cobertura 4ed53f08488c4d466ad2c9194cfe51357f0c61689bc6dfa1e370f0b8ec6a372a) fica intacta. 31 REQ, 38 RULE, 22 fluxos e 88 cenários antigos não são revisão dos acréscimos r8/r9. Pesquisa r3 e QA r7 são históricas e restritas. Contadores finalspec3/3 e consolidação2/3 permanecem; esta ampliação humana não reabre achados encerrados nem inventa nova tentativa antiga.
+
+A0FAILED/P1OPEN/P2P3unreleased. RPO0/RTO300s não medidos. AEP/DDE/PSC não implementados. Raiz canônica UNKNOWN; nenhuma alteração na pasta Git com branch codex/gaeva-ui-design-guide. Apenas documentos/scripts de verificação local nesta nova pasta. Sem dependência, build, DB, infra, Drive, restore, failover, Git ou publicação. Não mover MOD002. Sem recuperação garantida de dados destruídos, sem escolher raiz/quorum/horizonte ou reduzir retenção.
+
+Material novo para AGENTS do projeto: a classificação de falha de salvamento depende do resultado autorizado E do estado local; só fila recuperável confirmada permite promessa de fila, e confirmação protegida com falha de limpeza nunca reenvia gravação. Fontes humanas 7026601969/7027205182 e catálogo r9. Proposta de memória do projeto, não escrita fora da pasta autorizada.

@@ -1,0 +1,10 @@
+--- a/docs/gaeva/retomada-tfd/transformacao-filaops/spec/phase-plan.md
++++ b/docs/gaeva/retomada-tfd/transformacao-filaops/spec/phase-plan.md
+@@ -54,3 +54,7 @@
+ Os registros em [estimates/](estimates/) sao o detalhamento atual por ID de fase nativa; os pools macro acima permanecem como totais, nao parcelas adicionais. Julgamento de engenharia de baixa confianca, sem tempos observados. F3: MOD003 24/48/96, MOD006 6/12/24, MOD008 12/24/48, MOD011 12/24/48 (soma 54/108/216). F5: MOD003 18/36/72, MOD009 18/30/60, MOD011 12/24/48 (soma 48/90/180). F6: MOD005/007/010 10/24/50 cada (soma 30/72/150), somente preparacao. MOD001/002/004 mantem totais anteriores.
+ 
+ Distribuicao por fase nativa: MOD001 conserva 18/36/72 + 12/24/48 + 12/24/48. Demais Tasks de tres fases alocam 25% contrato, 50% execucao, 25% revisao/documentacao, cobrindo seus MTs sem duplicar horas. Roadmaps alocam 100% a fase documental unica. Pressupoe equipe familiar com a base, recursos isolados e contratos disponiveis; inclui autotestes, QA e uma correcao limitada. Exclui espera por decisoes/provedor e funcionalidades desconhecidas. Mudanca de contrato/stop exige reestimativa antes da fase afetada; numeros nao resolvem PRD ausente nem aprovam gates.
++
++## Adendo documental consolidado MOD001 r9
++
++Plano específico [r9](modules/MOD-001/phase-plan.md) amplia somente MOD001 após P3, mantendo condições antigas; novos totais da Task substituem soma antiga apenas no candidato. #2-11 não iniciados. Nenhuma fase foi executada/liberada.

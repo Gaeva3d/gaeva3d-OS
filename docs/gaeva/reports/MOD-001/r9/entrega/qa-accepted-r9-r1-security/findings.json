@@ -1,0 +1,19 @@
+{
+  "task_id": "GAEVA-MOD-001",
+  "contract_revision": 9,
+  "microtask": "DOC-R9-QA-01",
+  "actor": "agent-6b9f3e9e-8ea7-4483-a52c-63129f849a5a",
+  "role": "independent operational security assurance",
+  "input_manifest_sha256": "e89c43ed3af0feece37fcfbba6688d3668798988d46649568b9d03b8cc7ebfaf",
+  "review_input_sha256": "e1ca7d28e10801fde590975765502fbb8d646d2648c1330fc06dd80968840961",
+  "verdict": "PASS",
+  "scope": "DOCUMENTARY_ONLY",
+  "findings": [],
+  "completion_blocked": false,
+  "runtime_security_status": "NOT VALIDATED",
+  "open_decisions": [
+    "abandonment period",
+    "copy fate after logout/revocation"
+  ],
+  "no_implementation_or_release_approval": true
+}

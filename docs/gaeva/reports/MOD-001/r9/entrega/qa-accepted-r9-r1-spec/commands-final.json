@@ -1,0 +1,30 @@
+[
+  {
+    "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\scripts\\graphify.py query \"qa_spec independent review coverage documentary consolidation draft durable queue acceptance\" --bundle C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6 --config C:/Users/teste/.codex/tfd-graphify.json --index C:/Users/teste/.codex/tfd-graphify/index.json",
+    "exit": 0,
+    "expected_exit": 0,
+    "result": "PASS",
+    "observation": "graphify"
+  },
+  {
+    "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-qa_spec\\scripts\\check_findings.py C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\qa-accepted-r9-r1-spec\\findings.json",
+    "exit": 0,
+    "expected_exit": 0,
+    "result": "PASS",
+    "observation": "findings-check"
+  },
+  {
+    "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\knowledge\\tfd-0.1.6\\skills\\TFD-qa_spec\\scripts\\check_findings.py C:\\Users\\teste\\OpenBot\\Shared\\tfd-native-adaptation\\gaeva-doc-review-20261118\\MOD-001\\qa-accepted-r9-r1-spec\\coverage-findings.json",
+    "exit": 0,
+    "expected_exit": 0,
+    "result": "PASS",
+    "observation": "coverage-findings-check"
+  },
+  {
+    "command": "C:\\Users\\teste\\Documents\\deepseek-harness\\default-workspace\\.venv-tfd\\Scripts\\python.exe -B C:\\Users\\teste\\.codex\\plugins\\cache\\tfd-local\\the-factory-developer\\0.1.6\\scripts\\token_usage.py --task GAEVA-MOD-001 --stage DOC-R9-QA-01",
+    "exit": 2,
+    "expected_exit": 2,
+    "result": "UNAVAILABLE",
+    "observation": "Receipt unavailable; not OpenBot metering"
+  }
+]
